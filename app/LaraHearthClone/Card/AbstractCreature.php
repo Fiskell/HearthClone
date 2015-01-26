@@ -8,13 +8,21 @@
 
 namespace Card;
 
+use Action\Attack;
+use Processor\Stack;
 
-class AbstractCreature {
+class AbstractCreature extends AbstractCard
+{
 	protected $attack;
 	protected $defense;
 
-	public function attack() {
-
+	public function attack(Stack $stack)
+	{
+		/** @var Attack $action */
+		$action         = App::make('Attack');
+		$action->value  = $this->attack;
+		$action->target = null;
+		$action->run();
 	}
 
 }

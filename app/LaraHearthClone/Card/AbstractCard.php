@@ -9,7 +9,7 @@
 namespace Card;
 
 
-class AbstractCard {
+abstract class AbstractCard {
 	protected $name;
 	protected $cost;
 	protected $rarity;

@@ -10,9 +10,11 @@ namespace Action;
 
 use Processor\Stack;
 
-class AbstractAction {
+abstract class AbstractAction {
 
-	public function run(Stack $stack) {
+	public function run() {
+		/** @var Stack $stack */
+		$stack = App::make('Stack');
 		$stack->push($this);
 	}
 }
