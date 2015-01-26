@@ -15,4 +15,5 @@ class AbstractCard {
 	protected $rarity;
 	protected $foil;
 	protected $owner; // Me or Them
+	protected $possesion; // Me or Them
 }
