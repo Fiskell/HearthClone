@@ -12,16 +12,8 @@ namespace App\LaraHearthClone\Action;
 use App\LaraHearthClone\Processor\Stack;
 
 abstract class AbstractAction {
-	protected $stack;
-
-//	public function __construct(Stack $stack) {
-//		$this->stack = $stack;
-//	}
 
 	public function run() {
 		Stack::push($this);
-//		dd($this->stack);
-//		var_dump($this->stack);
-		var_dump(Stack::$stack);
 	}
 }
