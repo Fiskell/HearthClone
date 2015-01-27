@@ -8,14 +8,27 @@
 
 namespace App\LaraHearthClone\Action;
 
+use App\LaraHearthClone\Card\AbstractCreature;
+use Player\Player;
+
 class Attack extends AbstractAction
 {
 	public $value;
+
+	/** @var  AbstractCreature|Player */
 	public $target;
 
-//	public function __construct($value, $target)
-//	{
-//		$this->value  = $value;
-//		$this->target = $target;
-//	}
+	public function resolve() {
+		$health = $this->target->getHealth();
+
+		if(is_null($this->target)) {
+			//TODO attack player
+			return;
+		}
+
+		if($health < $this->value) {
+			$this->target->setAlive(false);
+		}
+	}
+
 }
