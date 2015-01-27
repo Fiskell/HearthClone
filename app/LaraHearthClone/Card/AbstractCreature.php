@@ -12,19 +12,23 @@ use App\LaraHearthClone\Action\Attack;
 
 class AbstractCreature extends AbstractCard
 {
+	protected $id;
+	protected $alive;
 	protected $attack;
-	protected $defense;
+	protected $health;
 	protected $attackAction;
 
 	public function __construct(Attack $attack) {
 		$this->attackAction = $attack;
+		$this->id = str_random(20);
+		$this->alive = false;
 	}
 
-	public function attack()
+	public function attack($target = null)
 	{
 		/** @var Attack $action */
 		$this->attackAction->value  = $this->attack;
-		$this->attackAction->target = null;
+		$this->attackAction->target = $target;
 		$this->attackAction->run();
 	}
 
@@ -47,17 +51,41 @@ class AbstractCreature extends AbstractCard
 	/**
 	 * @return mixed
 	 */
-	public function getDefense()
+	public function getHealth()
 	{
-		return $this->defense;
+		return $this->health;
 	}
 
 	/**
-	 * @param mixed $defense
+	 * @param mixed $health
 	 */
-	public function setDefense($defense)
+	public function setHealth($health)
 	{
-		$this->defense = $defense;
+		$this->health = $health;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isAlive()
+	{
+		return $this->alive;
+	}
+
+	/**
+	 * @param boolean $alive
+	 */
+	public function setAlive($alive)
+	{
+		$this->alive = $alive;
 	}
 
 
