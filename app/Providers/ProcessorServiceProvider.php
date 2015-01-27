@@ -1,7 +1,7 @@
 <?php namespace App\Providers;
 
+use App\LaraHearthClone\Processor\Stack;
 use Illuminate\Support\ServiceProvider;
-use Processor\Stack;
 
 class ProcessorServiceProvider extends ServiceProvider
 {
