@@ -6,8 +6,7 @@
  * Time: 6:53 PM
  */
 
-namespace Action;
-
+namespace App\LaraHearthClone\Action;
 
 class Attack extends AbstractAction
 {

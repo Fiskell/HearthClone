@@ -6,8 +6,7 @@
  * Time: 5:19 PM
  */
 
-namespace Card;
-
+namespace App\LaraHearthClone\Card;
 
 abstract class AbstractCard {
 	protected $name;

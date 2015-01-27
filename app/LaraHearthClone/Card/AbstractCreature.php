@@ -6,22 +6,26 @@
  * Time: 5:20 PM
  */
 
-namespace Card;
+namespace App\LaraHearthClone\Card;
 
-use Action\Attack;
-use Processor\Stack;
+use App\LaraHearthClone\Action\Attack;
+use Illuminate\Support\Facades\App;
 
 class AbstractCreature extends AbstractCard
 {
 	protected $attack;
 	protected $defense;
+	protected $attackAction;
 
-	public function attack(Stack $stack)
+	public function __construct(Attack $attack) {
+		$this->attackAction = $attack;
+	}
+
+	public function attack()
 	{
 		/** @var Attack $action */
-		$action         = App::make('Attack');
-		$action->value  = $this->attack;
-		$action->target = null;
+		$this->attackAction->value  = $this->attack;
+		$this->attackAction->target = null;
 		$action->run();
 	}
 

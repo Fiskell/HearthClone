@@ -6,7 +6,7 @@
  * Time: 5:23 PM
  */
 
-namespace Action;
+namespace App\LaraHearthClone\Action;
 
 use Processor\Stack;
 
