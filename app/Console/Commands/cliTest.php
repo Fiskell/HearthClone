@@ -1,10 +1,9 @@
 <?php namespace App\Console\Commands;
 
 use App\LaraHearthClone\Card\AbstractCreature;
+use App\LaraHearthClone\Processor\Stack;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class cliTest extends Command {
 
@@ -22,14 +21,26 @@ class cliTest extends Command {
 	 */
 	protected $description = 'Command description.';
 
+	/** @var AbstractCreature */
+	protected $creature;
+
+	/** @var Stack  */
+	protected $stack;
+
 	/**
 	 * Create a new command instance.
 	 *
-	 * @return void
+	 * @param AbstractCreature $creature
+	 * @param Stack            $stack
+	 *
+	 * @return \App\Console\Commands\cliTest
 	 */
-	public function __construct()
+	public function __construct(AbstractCreature $creature, Stack $stack)
 	{
 		parent::__construct();
+
+		$this->creature = $creature;
+		$this->stack = $stack;
 	}
 
 	/**
@@ -39,11 +50,9 @@ class cliTest extends Command {
 	 */
 	public function fire()
 	{
-		$card = App::make('AbstractCreature');
-		$card->attack();
+		$this->creature->attack();
 
-		$stack = App::make('Stack');
-		print_r($stack);
+		print_r($this->stack);
 	}
 
 }
