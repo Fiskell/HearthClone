@@ -46,10 +46,21 @@ class cliTest extends Command {
 	public function fire()
 	{
 		$this->creature->setAttack(3);
-		$this->creature->setDefense(4);
-		$this->creature->attack();
+		$this->creature->setHealth(4);
+		$this->creature->setAlive(true);
+		var_dump($this->creature);
 
-		dd(Stack::$stack);
+		$creature = App::make('App\LaraHearthClone\Card\AbstractCreature');
+		$creature->setAttack(5);
+		$creature->setAlive(true);
+		$creature->attack($this->creature);
+
+		$action = Stack::pop();
+		$action->resolve();
+
+//		$this->creature->attack();
+
+		var_dump($this->creature);
 	}
 
 }
