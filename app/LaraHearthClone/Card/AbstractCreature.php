@@ -9,7 +9,6 @@
 namespace App\LaraHearthClone\Card;
 
 use App\LaraHearthClone\Action\Attack;
-use Illuminate\Support\Facades\App;
 
 class AbstractCreature extends AbstractCard
 {
@@ -26,7 +25,7 @@ class AbstractCreature extends AbstractCard
 		/** @var Attack $action */
 		$this->attackAction->value  = $this->attack;
 		$this->attackAction->target = null;
-		$action->run();
+		$this->attackAction->run();
 	}
 
 }

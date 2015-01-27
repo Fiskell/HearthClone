@@ -6,9 +6,9 @@
  * Time: 5:28 PM
  */
 
-namespace Processor;
+namespace App\LaraHearthClone\Processor;
 
-use Action\AbstractAction;
+use App\LaraHearthClone\Action\AbstractAction;
 
 class Stack {
 	protected $stack;
