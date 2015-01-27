@@ -24,23 +24,18 @@ class cliTest extends Command {
 	/** @var AbstractCreature */
 	protected $creature;
 
-	/** @var Stack  */
-	protected $stack;
-
 	/**
 	 * Create a new command instance.
 	 *
 	 * @param AbstractCreature $creature
-	 * @param Stack            $stack
 	 *
 	 * @return \App\Console\Commands\cliTest
 	 */
-	public function __construct(AbstractCreature $creature, Stack $stack)
+	public function __construct(AbstractCreature $creature)
 	{
 		parent::__construct();
 
 		$this->creature = $creature;
-		$this->stack = $stack;
 	}
 
 	/**
