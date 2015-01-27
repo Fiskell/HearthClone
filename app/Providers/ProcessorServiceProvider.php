@@ -24,7 +24,7 @@ class ProcessorServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->app->singleton(
-			'LaraHearthClone\Processor\Stack',
+			'App\LaraHearthClone\Processor\Stack',
 			function () {
 				return new Stack();
 			}

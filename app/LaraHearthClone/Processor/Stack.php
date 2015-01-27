@@ -11,21 +11,28 @@ namespace App\LaraHearthClone\Processor;
 use App\LaraHearthClone\Action\AbstractAction;
 
 class Stack {
-	protected $stack;
+	public static $stack;
 
 	public function __construct() {
-		$this->stack = [];
+		static::$stack = [];
 	}
 
-	public function push(AbstractAction $action) {
+	public static function push(AbstractAction $action) {
 		//TODO some cards will have multiple options for actions.
-		$this->stack[] = $action;
+		if(!isset(static::$stack)) {
+			static::$stack = [];
+		}
+
+		static::$stack[] = $action;
 	}
 
-	public function pop() {
-		$count = count($this->stack);
-		$action = $this->stack[$count-1];
-		unset($this->stack[$count-1]);
+	public static function pop() {
+		if(!isset(static::$stack)) {
+			static::$stack = [];
+		}
+		$count = count(static::$stack);
+		$action = static::$stack[$count-1];
+		unset(static::$stack[$count-1]);
 		return $action;
 	}
 } 

@@ -52,7 +52,7 @@ class cliTest extends Command {
 	{
 		$this->creature->attack();
 
-		print_r($this->stack);
+		dd(Stack::$stack);
 	}
 
 }

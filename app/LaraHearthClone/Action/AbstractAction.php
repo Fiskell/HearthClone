@@ -14,12 +14,14 @@ use App\LaraHearthClone\Processor\Stack;
 abstract class AbstractAction {
 	protected $stack;
 
-	public function __construct(Stack $stack) {
-		$this->stack = $stack;
-	}
+//	public function __construct(Stack $stack) {
+//		$this->stack = $stack;
+//	}
 
 	public function run() {
-		$this->stack->push($this);
-		dd($this->stack);
+		Stack::push($this);
+//		dd($this->stack);
+//		var_dump($this->stack);
+		var_dump(Stack::$stack);
 	}
 }
