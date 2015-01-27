@@ -45,6 +45,8 @@ class cliTest extends Command {
 	 */
 	public function fire()
 	{
+		$this->creature->setAttack(3);
+		$this->creature->setDefense(4);
 		$this->creature->attack();
 
 		dd(Stack::$stack);

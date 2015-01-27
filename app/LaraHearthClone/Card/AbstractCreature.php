@@ -28,4 +28,37 @@ class AbstractCreature extends AbstractCard
 		$this->attackAction->run();
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getAttack()
+	{
+		return $this->attack;
+	}
+
+	/**
+	 * @param mixed $attack
+	 */
+	public function setAttack($attack)
+	{
+		$this->attack = $attack;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDefense()
+	{
+		return $this->defense;
+	}
+
+	/**
+	 * @param mixed $defense
+	 */
+	public function setDefense($defense)
+	{
+		$this->defense = $defense;
+	}
+
+
 }
