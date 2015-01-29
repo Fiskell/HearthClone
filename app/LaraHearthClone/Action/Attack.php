@@ -27,7 +27,10 @@ class Attack extends AbstractAction
 		}
 
 		if($health < $this->value) {
-			$this->target->setAlive(false);
+			$this->target->kill();
+			if($this->target->isDeathrattle()) {
+				$this->target->deathrattle();
+			}
 		}
 	}
 
