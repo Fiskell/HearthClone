@@ -18,10 +18,11 @@ class AbstractCreature extends AbstractCard
 	protected $health;
 	protected $attackAction;
 
-	public function __construct(Attack $attack) {
+	public function __construct(Attack $attack)
+	{
 		$this->attackAction = $attack;
-		$this->id = str_random(20);
-		$this->alive = false;
+		$this->id           = str_random(20);
+		$this->alive        = false;
 	}
 
 	public function attack($target = null)
@@ -80,12 +81,14 @@ class AbstractCreature extends AbstractCard
 		return $this->alive;
 	}
 
-	/**
-	 * @param boolean $alive
-	 */
-	public function setAlive($alive)
+	public function summon()
 	{
-		$this->alive = $alive;
+		$this->alive = 1;
+	}
+
+	public function kill()
+	{
+		$this->alive = 0;
 	}
 
 
