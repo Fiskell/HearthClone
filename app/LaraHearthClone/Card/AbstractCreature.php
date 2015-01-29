@@ -22,7 +22,7 @@ class AbstractCreature extends AbstractCard
 	{
 		$this->attackAction = $attack;
 		$this->id           = str_random(20);
-		$this->alive        = false;
+		$this->alive        = 0;
 	}
 
 	public function attack($target = null)
@@ -90,6 +90,5 @@ class AbstractCreature extends AbstractCard
 	{
 		$this->alive = 0;
 	}
-
 
 }
