@@ -13,16 +13,18 @@ use App\LaraHearthClone\Action\Attack;
 class AbstractCreature extends AbstractCard
 {
 	protected $id;
-	protected $alive;
 	protected $attack;
 	protected $health;
+	protected $alive;
+	protected $deathrattle;
 	protected $attackAction;
 
 	public function __construct(Attack $attack)
 	{
 		$this->attackAction = $attack;
 		$this->id           = str_random(20);
-		$this->alive        = 0;
+		$this->alive        = false;
+		$this->deathrattle  = false;
 	}
 
 	public function attack($target = null)
@@ -89,6 +91,22 @@ class AbstractCreature extends AbstractCard
 	public function kill()
 	{
 		$this->alive = 0;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isDeathrattle()
+	{
+		return $this->deathrattle;
+	}
+
+	/**
+	 * @param boolean $deathrattle
+	 */
+	public function setDeathrattle($deathrattle)
+	{
+		$this->deathrattle = $deathrattle;
 	}
 
 }
