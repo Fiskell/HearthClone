@@ -1,10 +1,12 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+namespace App\Http\Controllers;
 
-abstract class Controller extends BaseController {
+use Laravel\Lumen\Routing\Controller as BaseController;
 
-	use ValidatesRequests;
-
+class Controller extends BaseController
+{
+    public function welcome() {
+        return 'So it begins';
+    }
 }
