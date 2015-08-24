@@ -13,6 +13,7 @@ class Card
     protected $handle;
     protected $attack;
     protected $defense;
+    protected $type;
 
     public function load($handle=null) {
         if(is_null($handle)) {
@@ -24,10 +25,15 @@ class Card
             case 'argent-squire':
                 $this->attack = 1;
                 $this->defense = 1;
+                $this->type = CardType::$CREATURE;
                 break;
             case 'knife-juggler':
                 $this->attack = 3;
                 $this->defense = 2;
+                $this->type = CardType::$CREATURE;
+                break;
+            case 'consecrate':
+                $this->type = CardType::$SPELL;
                 break;
             default:
                 throw new UnknownCardHandleException();
@@ -56,6 +62,14 @@ class Card
     public function getDefense()
     {
         return $this->defense;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
 }

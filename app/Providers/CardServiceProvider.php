@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Card;
+use App\Models\CardType;
 use Illuminate\Support\ServiceProvider;
 
 class CardServiceProvider extends ServiceProvider
@@ -15,7 +16,7 @@ class CardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Card', function () {
-            return new Card;
+            return new Card();
         });
     }
 }

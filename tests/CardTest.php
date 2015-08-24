@@ -1,4 +1,6 @@
 <?php
+use App\Models\Card;
+use App\Models\CardType;
 
 /**
  * Created by PhpStorm.
@@ -8,6 +10,7 @@
  */
 class CardTest extends TestCase
 {
+    /** @var  Card $card */
     public $card;
 
     public function setUp() {
@@ -53,6 +56,18 @@ class CardTest extends TestCase
         $card_name = 'knife-juggler';
         $this->card->load($card_name);
         $this->assertTrue($this->card->getDefense() == 2);
+    }
+
+    public function test_argent_squire_is_a_creature() {
+        $card_name = 'argent-squire';
+        $this->card->load($card_name);
+        $this->assertTrue($this->card->getType() == CardType::$CREATURE);
+    }
+
+    public function test_consecrate_is_a_spell() {
+        $card_name = 'consecrate';
+        $this->card->load($card_name);
+        $this->assertTrue($this->card->getType() == CardType::$SPELL);
     }
 
 
