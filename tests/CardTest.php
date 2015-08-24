@@ -82,4 +82,17 @@ class CardTest extends TestCase
     }
 
 
+    public function test_knife_juggler_defense_is_1_after_attacking_argent_squire() {
+        /** @var Card $argent_squire */
+        $argent_squire = $this->app->make('Card');
+        $argent_squire->load('argent-squire');
+
+        /** @var Card $knife_juggler */
+        $knife_juggler = $this->app->make('Card');
+        $knife_juggler->load('knife-juggler');
+
+        $knife_juggler->attack($argent_squire);
+        $this->assertTrue($knife_juggler->getDefense() == 1);
+    }
+
 }
