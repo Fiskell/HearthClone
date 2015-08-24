@@ -93,7 +93,9 @@ class Card
      * @param Card $target
      */
     public function attack(Card $target) {
+
         $this->setDefense($this->getDefense() - $target->getAttack());
+
         $target->setDefense($target->getDefense() - $this->getAttack());
     }
 
@@ -109,6 +111,5 @@ class Card
     {
         $this->alive = false;
     }
-
 
 }

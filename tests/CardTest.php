@@ -81,7 +81,6 @@ class CardTest extends TestCase
         $this->assertTrue($argent_squire->isAlive() == false);
     }
 
-
     public function test_knife_juggler_defense_is_1_after_attacking_argent_squire() {
         /** @var Card $argent_squire */
         $argent_squire = $this->app->make('Card');
