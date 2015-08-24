@@ -19,9 +19,8 @@ class Card
         if(is_null($handle)) {
            throw new MissingCardHandleException();
         }
-        $this->handle = $handle;
 
-        switch($this->handle) {
+        switch($handle) {
             case 'argent-squire':
                 $this->attack = 1;
                 $this->defense = 1;
@@ -38,6 +37,8 @@ class Card
             default:
                 throw new UnknownCardHandleException();
         }
+
+        $this->handle = $handle;
     }
 
     /**
