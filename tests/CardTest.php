@@ -70,5 +70,16 @@ class CardTest extends TestCase
         $this->assertTrue($this->card->getType() == CardType::$SPELL);
     }
 
+    public function test_knife_juggler_attack_kills_argent_squire_without_divine_shield() {
+        $argent_squire = $this->app->make('Card');
+        $argent_squire->load('argent-squire');
+
+        $knife_juggler = $this->app->make('Card');
+        $knife_juggler->load('knife-juggler');
+
+        $knife_juggler->attack($argent_squire);
+        $this->assertTrue($argent_squire->isAlive() == false);
+    }
+
 
 }

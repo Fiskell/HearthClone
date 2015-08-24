@@ -14,6 +14,7 @@ class Card
     protected $attack;
     protected $defense;
     protected $type;
+    protected $alive;
 
     public function load($handle=null) {
         if(is_null($handle)) {
@@ -39,6 +40,7 @@ class Card
         }
 
         $this->handle = $handle;
+        $this->alive  = true;
     }
 
     /**
@@ -66,11 +68,47 @@ class Card
     }
 
     /**
+     * @param mixed $defense
+     */
+    public function setDefense($defense)
+    {
+        $this->defense = $defense;
+        if($this->defense <= 0) {
+            $this->defense = 0;
+            $this->killed();
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function getType()
     {
         return $this->type;
     }
+
+    /**
+     * Card instance attacks the target, dealing damage and potentially killing.
+     *
+     * @param Card $target
+     */
+    public function attack(Card $target) {
+        $this->setDefense($this->getDefense() - $target->getAttack());
+        $target->setDefense($target->getDefense() - $this->getAttack());
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isAlive()
+    {
+        return $this->alive;
+    }
+
+    public function killed()
+    {
+        $this->alive = false;
+    }
+
 
 }
