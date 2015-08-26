@@ -79,6 +79,8 @@ $app->singleton(
 */
 
 $app->register(App\Providers\CardServiceProvider::class);
+$app->register(App\Providers\GameServiceProvider::class);
+$app->register(App\Providers\PlayerServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

@@ -68,11 +68,11 @@ class Card
     }
 
     /**
-     * @param mixed $defense
+     * @param mixed $new_defense
      */
-    public function setDefense($defense)
+    public function setDefense($new_defense)
     {
-        $this->defense = $defense;
+        $this->defense = $new_defense;
         if($this->defense <= 0) {
             $this->defense = 0;
             $this->killed();
