@@ -1,0 +1,2582 @@
+[
+  {
+    "id": "AT_063",
+    "name": "Acidmaw",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 4,
+    "health": 2,
+    "text": "Whenever another minion takes damage, destroy it.",
+    "flavor": "With the help of his trusty sidekick Dreadscale, the giant jormungar Acidmaw is ready to face any knight!",
+    "artist": "Andrew Hou",
+    "collectible": true,
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_071e",
+    "name": "Alexstrasza's Boon",
+    "type": "Enchantment",
+    "text": "+1 Attack and <b>Charge</b>.",
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_071",
+    "name": "Alexstrasza's Champion",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain +1 Attack and <b>Charge</b>.",
+    "flavor": "\"Put more spikes on her.  No, more spikes.  What part of 'more spikes' do you not understand?  MORE SPIKES!\" - Alexstrasza",
+    "artist": "Evgeniy Zagumennyy",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_035t",
+    "name": "Ambush!",
+    "type": "Spell",
+    "cost": 0,
+    "text": "When you draw this, summon a 4/4 Nerubian for your opponent. Draw a card.",
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_053",
+    "name": "Ancestral Knowledge",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "Draw 2 cards. <b>Overload: (2)</b>",
+    "flavor": "MOMMMMMYYYYYYYYY!!!",
+    "artist": "Zoltan & Gabor",
+    "collectible": true,
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_036",
+    "name": "Anub'arak",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 9,
+    "attack": 8,
+    "health": 4,
+    "text": "<b>Deathrattle:</b> Return this to your hand and summon a 4/4 Nerubian.",
+    "flavor": "Was actually a pretty nice guy before, you know, the whole Lich King thing.",
+    "artist": "Eric Braddock",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Rogue",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_004",
+    "name": "Arcane Blast",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 1,
+    "text": "Deal $2 damage to a minion. This spell gets double bonus from <b>Spell Damage</b>.",
+    "flavor": "Now with 100% more blast!",
+    "artist": "Gabor Szikszai",
+    "collectible": true,
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_087",
+    "name": "Argent Horserider",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Charge</b>\n<b>Divine Shield</b>",
+    "flavor": "His horse's name is Betsy.",
+    "artist": "Evgeniy Zagumennyy",
+    "collectible": true,
+    "mechanics": [
+      "Charge",
+      "Divine Shield"
+    ]
+  },
+  {
+    "id": "AT_077",
+    "name": "Argent Lance",
+    "type": "Weapon",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 2,
+    "durability": 2,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, +1 Durability.",
+    "flavor": "The stripes make it look like a candy cane, but we recommend against licking it.",
+    "artist": "Joe Wilson",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_109",
+    "name": "Argent Watchman",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 2,
+    "health": 4,
+    "text": "Can't attack.\n<b>Inspire:</b> Can attack as normal this turn.",
+    "flavor": "Who argent watches the Argent Watchman?",
+    "artist": "Ben Zhang",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_108",
+    "name": "Armored Warhorse",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 5,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, gain <b>Charge</b>.",
+    "flavor": "Yep.  It's a horse... wearing armor... going to war.",
+    "artist": "Edouard Guiton & Tony Washington",
+    "collectible": true,
+    "race": "Beast",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_043",
+    "name": "Astral Communion",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 4,
+    "text": "Gain 10 Mana Crystals. Discard your hand.",
+    "flavor": "Hey!  Moon!  Can I have some mana crystals?",
+    "artist": "Christopher Moeller",
+    "collectible": true,
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_045",
+    "name": "Aviana",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 9,
+    "attack": 5,
+    "health": 5,
+    "text": "Your minions cost (1).",
+    "flavor": "Call her \"Tweety\".  She'll find it real funny.  I PROMISE.",
+    "artist": "Velvet Engine",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Druid",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "AT_062",
+    "name": "Ball of Spiders",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 6,
+    "text": "Summon three 1/1 Webspinners.",
+    "flavor": "\"THEY'RE EVERYWHERE GET THEM OFF!!!\" - Everyone",
+    "artist": "Skan Srisuwan",
+    "collectible": true,
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_132_HUNTER",
+    "name": "Ballista Shot",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal $3 damage to the enemy hero.",
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_064",
+    "name": "Bash",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 3,
+    "text": "Deal $3 damage.\nGain 3 Armor.",
+    "flavor": "You might think bashing doesn't take a lot of practice.  It doesn't.",
+    "artist": "Dany Orizio",
+    "collectible": true,
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_060",
+    "name": "Bear Trap",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "<b>Secret:</b> After your hero is attacked, summon a 3/3 Bear with <b>Taunt</b>.",
+    "flavor": "You'll never guess what's in that conveniently bear-sized, bear-smelling box.",
+    "artist": "Richard Wright",
+    "collectible": true,
+    "playerClass": "Hunter",
+    "mechanics": [
+      "Secret"
+    ]
+  },
+  {
+    "id": "AT_035",
+    "name": "Beneath the Grounds",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 3,
+    "text": "Shuffle 3 Ambushes into your opponent's deck. When drawn, you summon a 4/4 Nerubian.",
+    "flavor": "Can you hold these eggs for just a second?  I promise they're not full of giant enraged undead spider things.",
+    "artist": "Daren Bader",
+    "collectible": true,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_005t",
+    "name": "Boar",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "<b>Charge</b>",
+    "race": "Beast",
+    "mechanics": [
+      "Charge"
+    ]
+  },
+  {
+    "id": "AT_124",
+    "name": "Bolf Ramshield",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 3,
+    "health": 9,
+    "text": "Whenever your hero takes damage, this minion takes it instead.",
+    "flavor": "Bolf keeps coming in 2nd at the Grand Tournament.  It might be his year this year, if Lebron doesn't enter.",
+    "artist": "Wayne Reynolds",
+    "collectible": true,
+    "elite": true
+  },
+  {
+    "id": "AT_068",
+    "name": "Bolster",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "Give your <b>Taunt</b> minions +2/+2.",
+    "flavor": "The best offense is a good defense.",
+    "artist": "Mishi McCaig",
+    "collectible": true,
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_068e",
+    "name": "Bolstered",
+    "type": "Enchantment",
+    "text": "+2/+2.",
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_089",
+    "name": "Boneguard Lieutenant",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Inspire:</b> Gain +1 Health.",
+    "flavor": "Underneath all that impressive armor, he's just skin and bones.  Okay, maybe just bones.",
+    "artist": "Slawomir Maniak",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_089e",
+    "name": "Boneguarded",
+    "type": "Enchantment",
+    "text": "Increased Health."
+  },
+  {
+    "id": "AT_059",
+    "name": "Brave Archer",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Inspire:</b> If your hand is empty, deal 2 damage to the enemy hero.",
+    "flavor": "This is a \"bearly\" concealed reference.",
+    "artist": "Eva Widermann",
+    "collectible": true,
+    "playerClass": "Hunter",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_116e",
+    "name": "Bring it on!",
+    "type": "Enchantment",
+    "text": "+1 Attack and <b>Taunt</b>.",
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_029",
+    "name": "Buccaneer",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "text": "Whenever you equip a weapon, give it +1 Attack.",
+    "flavor": "The best part of buccaneering is the pants.",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "race": "Pirate",
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_033",
+    "name": "Burgle",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "Add 2 random class cards to your hand <i>(from your opponent's class)</i>.",
+    "flavor": "Yoink!",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_041e",
+    "name": "Call of the Wild",
+    "type": "Enchantment",
+    "text": "Cost reduced."
+  },
+  {
+    "id": "AT_102",
+    "name": "Captured Jormungar",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 7,
+    "attack": 5,
+    "health": 9,
+    "flavor": "You can keep him, but you have to promise to feed him and clean out his tank every day!",
+    "artist": "Gonzalo Ordonez",
+    "collectible": true,
+    "race": "Beast"
+  },
+  {
+    "id": "AT_117e",
+    "name": "Ceremony",
+    "type": "Enchantment",
+    "text": "+2/+2."
+  },
+  {
+    "id": "AT_050",
+    "name": "Charged Hammer",
+    "type": "Weapon",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 2,
+    "durability": 4,
+    "text": "<b>Deathrattle:</b> Your Hero Power becomes 'Deal 2 damage.'",
+    "flavor": "You can only pick it up if you are worthy.",
+    "artist": "Peet Cooper",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_028e",
+    "name": "Chi Lance",
+    "type": "Enchantment",
+    "text": "+3 Attack."
+  },
+  {
+    "id": "AT_123",
+    "name": "Chillmaw",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 6,
+    "health": 6,
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> If you're holding a Dragon, deal 3 damage to all minions.",
+    "flavor": "Chillmaw keeps trying to ruin the Grand Tournament, and she would've done it too, if it weren't for those dang kids!",
+    "artist": "Raymond Swanland",
+    "collectible": true,
+    "elite": true,
+    "race": "Dragon",
+    "mechanics": [
+      "Deathrattle",
+      "Taunt"
+    ]
+  },
+  {
+    "id": "AT_096",
+    "name": "Clockwork Knight",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 5,
+    "health": 5,
+    "text": "<b>Battlecry:</b> Give a friendly Mech +1/+1.",
+    "flavor": "It takes a lot to wind him up.",
+    "artist": "Skan Srisuwan",
+    "collectible": true,
+    "race": "Mech",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_008",
+    "name": "Coldarra Drake",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 6,
+    "health": 6,
+    "text": "You can use your Hero Power any number of times.",
+    "flavor": "The Grand Tournament has a \"No dragons allowed\" policy, but it's rarely enforced.",
+    "artist": "Christopher Moeller",
+    "collectible": true,
+    "race": "Dragon",
+    "playerClass": "Mage",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "AT_110",
+    "name": "Coliseum Manager",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 2,
+    "health": 5,
+    "text": "<b>Inspire:</b> Return this minion to your hand.",
+    "flavor": "Meets monthly with the gladiators to discuss career goals.",
+    "artist": "Dan Scott",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_073",
+    "name": "Competitive Spirit",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 1,
+    "text": "<b>Secret:</b> When your turn starts, give your minions +1/+1.",
+    "flavor": "Competition can be an inspiration to improve oneself.  Or kill all the competitors.",
+    "artist": "Jim Nelson",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Secret"
+    ]
+  },
+  {
+    "id": "AT_073e",
+    "name": "Competitive Spirit",
+    "type": "Enchantment",
+    "text": "+1/+1."
+  },
+  {
+    "id": "AT_018",
+    "name": "Confessor Paletress",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Inspire:</b> Summon a random <b>Legendary</b> minion.",
+    "flavor": "She sees into your past and makes you face your fears.  Most common fear:  Getting Majordomo out of Sneed's Old Shredder.",
+    "artist": "Chris Rahn",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Priest",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_016",
+    "name": "Confuse",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 2,
+    "text": "Swap the Attack and Health of all minions.",
+    "flavor": "This minion is really powerful!",
+    "artist": "Sean O'Danield",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_016e",
+    "name": "Confused",
+    "type": "Enchantment",
+    "text": "Swapped Attack and Health.",
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_015",
+    "name": "Convert",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 2,
+    "text": "Put a copy of an enemy minion into your hand.",
+    "flavor": "\"Are you interested in... HEALTH benefits?!\"",
+    "artist": "Dan Dos Santos",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_121",
+    "name": "Crowd Favorite",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "text": "Whenever you play a card with <b>Battlecry</b>, gain +1/+1.",
+    "flavor": "The crowd ALWAYS yells lethal.",
+    "artist": "Jakub Kasper",
+    "collectible": true
+  },
+  {
+    "id": "AT_031",
+    "name": "Cutpurse",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 2,
+    "health": 2,
+    "text": "Whenever this minion attacks a hero, add the Coin to your hand.",
+    "flavor": "He has a giant collection of purses now.  One for every outfit!",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_006",
+    "name": "Dalaran Aspirant",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "text": "<b>Inspire:</b> Gain <b>Spell Damage +1</b>.",
+    "flavor": "Is he aspiring or inspiring?  Make up your mind!",
+    "artist": "Dan Scott",
+    "collectible": true,
+    "playerClass": "Mage",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_025",
+    "name": "Dark Bargain",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 6,
+    "text": "Destroy 2 random enemy minions. Discard 2 random cards.",
+    "flavor": "A prime example of lose-lose negotiating.",
+    "artist": "Paul Mafayon",
+    "collectible": true,
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_024e",
+    "name": "Dark Fusion",
+    "type": "Enchantment",
+    "text": "+3/+3."
+  },
+  {
+    "id": "AT_038",
+    "name": "Darnassus Aspirant",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Gain an empty Mana Crystal.\n<b>Deathrattle:</b> Lose a Mana Crystal.",
+    "flavor": "She loves mana crystals, she hates mana crystals.   So fickle!",
+    "artist": "Laurel Austin",
+    "collectible": true,
+    "playerClass": "Druid",
+    "mechanics": [
+      "Battlecry",
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_024",
+    "name": "Demonfuse",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "Give a Demon +3/+3. Give your opponent a Mana Crystal.",
+    "flavor": "Very dangerous when attached to a demonbomb.",
+    "artist": "Kevin Chen",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_132_DRUIDe",
+    "name": "Dire Claws",
+    "type": "Enchantment",
+    "text": "+2 Attack this turn.",
+    "playerClass": "Druid",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_132_DRUID",
+    "name": "Dire Shapeshift",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nGain 2 Armor and +2 Attack this turn.",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_047",
+    "name": "Draenei Totemcarver",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> Gain +1/+1 for each friendly Totem.",
+    "flavor": "It's nice to find a real craftsman in this day and age of mass-produced totems.",
+    "artist": "RK Post",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_083",
+    "name": "Dragonhawk Rider",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "text": "<b>Inspire:</b> Gain <b>Windfury</b>\nthis turn.",
+    "flavor": "Check it out.  You can do barrel rolls on this thing.",
+    "artist": "Anton Zemskov",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_083e",
+    "name": "Dragonhawkery",
+    "type": "Enchantment",
+    "text": "<b>Windfury</b> this turn.",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_063t",
+    "name": "Dreadscale",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "At the end of your turn, deal 1 damage to all other minions.",
+    "flavor": "Let's be clear about this:  ACIDMAW is the sidekick.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "elite": true,
+    "race": "Beast",
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_019",
+    "name": "Dreadsteed",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 1,
+    "health": 1,
+    "text": "<b>Deathrattle:</b> Summon a Dreadsteed.",
+    "flavor": "Crescendo himself summoned this steed, riding it to victory in the Grand Tournament.  Wherever he rides, an army of riders ride behind him, supporting the legendary champion.",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_042",
+    "name": "Druid of the Saber",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Choose One -</b> Transform to gain <b>Charge</b>; or +1/+1 and <b>Stealth</b>.",
+    "flavor": "That's saberTEETH, not like curved pirate blades.  That's a different kind of druid.  Druid of the Curved Pirate Blades.",
+    "artist": "Arthur Gimaldinov",
+    "collectible": true,
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_081",
+    "name": "Eadric the Pure",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 3,
+    "health": 7,
+    "text": "<b>Battlecry:</b> Change all enemy minions'\nAttack to 1.",
+    "flavor": "Nobody rocks a monocle like Eadric.",
+    "artist": "James Ryman",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_002",
+    "name": "Effigy",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "<b>Secret:</b> When a friendly minion dies, summon a random minion with the same Cost.",
+    "flavor": "Burning man, brah.",
+    "artist": "Tooth",
+    "collectible": true,
+    "playerClass": "Mage",
+    "mechanics": [
+      "Secret"
+    ]
+  },
+  {
+    "id": "AT_051",
+    "name": "Elemental Destruction",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 3,
+    "text": "Deal $4-$5 damage to all minions. <b>Overload: (5)</b>",
+    "flavor": "I'm not a shaman or anything, but isn't Elemental Destruction the opposite of what they want to do?",
+    "artist": "Tyler Walpole",
+    "collectible": true,
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_045e",
+    "name": "Empowering Mist",
+    "type": "Enchantment",
+    "text": "+1/+1."
+  },
+  {
+    "id": "AT_078",
+    "name": "Enter the Coliseum",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 6,
+    "text": "Destroy all minions except each player's highest Attack minion.",
+    "flavor": "You have to get past the vendors first.  So many are lost to shopping...",
+    "artist": "Mauricio Herrera",
+    "collectible": true,
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_084e",
+    "name": "Equipped",
+    "type": "Enchantment",
+    "text": "+2 Attack."
+  },
+  {
+    "id": "AT_114",
+    "name": "Evil Heckler",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Taunt</b>",
+    "flavor": "To be honest, heckling is not the most effective form of evil.",
+    "artist": "Dan Scott",
+    "collectible": true,
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "AT_047e",
+    "name": "Experienced",
+    "type": "Enchantment",
+    "text": "Increased stats.",
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_077e",
+    "name": "Extra Poke",
+    "type": "Enchantment",
+    "text": "+1 Durability."
+  },
+  {
+    "id": "AT_029e",
+    "name": "Extra Stabby",
+    "type": "Enchantment",
+    "text": "+1 Attack"
+  },
+  {
+    "id": "AT_131",
+    "name": "Eydis Darkbane",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 3,
+    "health": 4,
+    "text": "Whenever <b>you</b> target this minion with a spell, deal 3 damage to a random enemy.",
+    "flavor": "HATES being called \"the wonder twins\".",
+    "artist": "Ben Thompson",
+    "collectible": true,
+    "elite": true
+  },
+  {
+    "id": "AT_003",
+    "name": "Fallen Hero",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "Your Hero Power deals 1 extra damage.",
+    "flavor": "And he can't get up.",
+    "artist": "Arthur Bozonnet",
+    "collectible": true,
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_020",
+    "name": "Fearsome Doomguard",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 7,
+    "attack": 6,
+    "health": 8,
+    "flavor": "They were originally called Cuddleguards, but they were not inspiring the proper amount of fear.",
+    "artist": "Anton Zemskov",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_021e",
+    "name": "Felrage",
+    "type": "Enchantment",
+    "text": "Increased stats.",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_115",
+    "name": "Fencing Coach",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Battlecry:</b> The next time you use your Hero Power, it costs (2) less.",
+    "flavor": "Good fencers make good neighbors, right?",
+    "artist": "Howard Lyon",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_115e",
+    "name": "Fencing Practice",
+    "type": "Enchantment",
+    "text": "Your Hero Power costs (2) less."
+  },
+  {
+    "id": "AT_132_MAGE",
+    "name": "Fireblast Rank 2",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal $2 damage.",
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_022",
+    "name": "Fist of Jaraxxus",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 4,
+    "text": "When you play or discard this, deal $4 damage to a random enemy.",
+    "flavor": "* Not actually Jaraxxus' fist.",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_129",
+    "name": "Fjola Lightbane",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 3,
+    "health": 4,
+    "text": "Whenever <b>you</b> target this minion with a spell, gain <b>Divine Shield.</b>",
+    "flavor": "LOVES being called \"the wonder twins\".",
+    "artist": "Mark Zug",
+    "collectible": true,
+    "elite": true
+  },
+  {
+    "id": "AT_094",
+    "name": "Flame Juggler",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Deal 1 damage to a random enemy.",
+    "flavor": "At first he liked juggling chain saws, but then he thought, \"Flames are better!  Because FIRE!\"",
+    "artist": "James Zhang",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_001",
+    "name": "Flame Lance",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 5,
+    "text": "Deal $8 damage to a minion.",
+    "flavor": "It's on the rack next to ice lance, acid lance, and English muffin lance.",
+    "artist": "Nutthapon Petchthai",
+    "collectible": true,
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_055",
+    "name": "Flash Heal",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 1,
+    "text": "Restore #5 Health.",
+    "flavor": "Flash!  Ahhhhhhh~",
+    "artist": "Marcelo Vignali",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_066e",
+    "name": "Forges of Orgrimmar",
+    "type": "Enchantment",
+    "text": "Increased Attack.",
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_093",
+    "name": "Frigid Snobold",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 2,
+    "health": 6,
+    "text": "<b>Spell Damage +1</b>",
+    "flavor": "Ironically, the natural enemy of the snobold is THE CANDLE.",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "mechanics": [
+      "Spellpower"
+    ]
+  },
+  {
+    "id": "AT_120",
+    "name": "Frost Giant",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 10,
+    "attack": 8,
+    "health": 8,
+    "text": "Costs (1) less for each time you used your Hero Power this game.",
+    "flavor": "Don't ask him about the beard.  JUST DON'T.",
+    "artist": "Greg Staples",
+    "collectible": true
+  },
+  {
+    "id": "AT_133",
+    "name": "Gadgetzan Jouster",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, gain +1/+1.",
+    "flavor": "It's not HER fault you didn't put a spinning saw blade on your horse.",
+    "artist": "Skan Srisuwan",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_080",
+    "name": "Garrison Commander",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "You can use your Hero Power twice a turn.",
+    "flavor": "He'll never admit it, but he pushes you hard because he really cares about you.",
+    "artist": "Jesper Ejsing",
+    "collectible": true
+  },
+  {
+    "id": "AT_122",
+    "name": "Gormok the Impaler",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If you have at least 4 other minions, deal 4 damage.",
+    "flavor": "Gormok has been giving impaling lessons in a small tent near the tournament grounds.  For only 25g you too could learn the fine art of impaling!",
+    "artist": "Nutthapon Petchthai",
+    "collectible": true,
+    "elite": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_118",
+    "name": "Grand Crusader",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "text": "<b>Battlecry:</b> Add a random Paladin card to your hand.",
+    "flavor": "A veteran of a number of crusades, she is a force for light and goodness.  Her latest crusade is against goblin telemarketers.",
+    "artist": "Todd Lockwood",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_057o",
+    "name": "Groomed",
+    "type": "Enchantment",
+    "text": "<b>Immune</b> this turn.",
+    "playerClass": "Hunter",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_132_PRIEST",
+    "name": "Heal",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nRestore #4 Health.",
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_132_SHAMANa",
+    "name": "Healing Totem",
+    "type": "Minion",
+    "attack": 0,
+    "health": 2,
+    "text": "At the end of your turn, restore 1 Health to all friendly minions.",
+    "playerClass": "Shaman",
+    "cost": 0
+  },
+  {
+    "id": "AT_048",
+    "name": "Healing Wave",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "Restore #7 Health. Reveal a minion in each deck. If yours costs more, Restore #14 instead.",
+    "flavor": "Favored by shaman who study the art of restoration and healing, this spell would feel smug, if it had feelings.",
+    "artist": "Luca Zontini",
+    "collectible": true,
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_011",
+    "name": "Holy Champion",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "text": "Whenever a character is healed, gain +2 Attack.",
+    "flavor": "She really likes seeing people get better.  That's why she hurts them in the first place.",
+    "artist": "Alex Garner",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_121e",
+    "name": "Huge Ego",
+    "type": "Enchantment",
+    "text": "Increased stats."
+  },
+  {
+    "id": "AT_092",
+    "name": "Ice Rager",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 5,
+    "health": 2,
+    "flavor": "He's a lot cooler than Magma Rager.",
+    "artist": "Anton Zemskov",
+    "collectible": true
+  },
+  {
+    "id": "AT_125",
+    "name": "Icehowl",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 9,
+    "attack": 10,
+    "health": 10,
+    "text": "<b>Charge</b>\nCan't attack heroes.",
+    "flavor": "This massive yeti just closes his eyes and charges at the nearest target.  The nearest Target is a couple blocks away and has sick deals on skateboards.",
+    "artist": "John Polidora",
+    "collectible": true,
+    "elite": true,
+    "mechanics": [
+      "Charge"
+    ]
+  },
+  {
+    "id": "AT_105",
+    "name": "Injured Kvaldir",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 1,
+    "attack": 2,
+    "health": 4,
+    "text": "<b>Battlecry:</b> Deal 3 damage to this minion.",
+    "flavor": "Don't worry.  With a little skin cream he's going to clear right up.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_109e",
+    "name": "Inspired",
+    "type": "Enchantment",
+    "text": "Can attack this turn.",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_119e",
+    "name": "Inspired",
+    "type": "Enchantment",
+    "text": "Increased Stats."
+  },
+  {
+    "id": "AT_132",
+    "name": "Justicar Trueheart",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 6,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Replace your starting Hero Power with a better one.",
+    "flavor": "It's like putting racing stripes and a giant spoiler on your hero power.",
+    "artist": "Jomaro Kindred",
+    "collectible": true,
+    "elite": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_040e",
+    "name": "Kindred Spirit",
+    "type": "Enchantment",
+    "text": "+3 Health.",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_065e",
+    "name": "King's Defender",
+    "type": "Enchantment",
+    "text": "+1 Durability."
+  },
+  {
+    "id": "AT_065",
+    "name": "King's Defender",
+    "type": "Weapon",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 3,
+    "durability": 2,
+    "text": "<b>Battlecry</b>: If you have a minion with <b>Taunt</b>,  gain +1 Durability.",
+    "flavor": "\"King's Attacker\" is a shield.  Funny, huh?",
+    "artist": "Michael Franchina",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_058",
+    "name": "King's Elekk",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, draw it.",
+    "flavor": "Elekk jousting is AWESOME.",
+    "artist": "James Zhang",
+    "collectible": true,
+    "race": "Beast",
+    "playerClass": "Hunter",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_041",
+    "name": "Knight of the Wild",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 7,
+    "attack": 6,
+    "health": 6,
+    "text": "Whenever you summon a Beast, reduce the Cost of this card by (1).",
+    "flavor": "He gets a discount on the tournament entry fee because he is his own horse.",
+    "artist": "Ralph Horsley",
+    "collectible": true,
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_099",
+    "name": "Kodorider",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 3,
+    "health": 5,
+    "text": "<b>Inspire:</b> Summon a 3/5 War Kodo.",
+    "flavor": "Someone called her a Rhinorider, and she's NOT HAPPY.",
+    "artist": "Ben Wootten",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_119",
+    "name": "Kvaldir Raider",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Inspire:</b> Gain +2/+2.",
+    "flavor": "Coming soon... to a tuskarr village near you!",
+    "artist": "Trent Kaniuga",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_034e",
+    "name": "Laced",
+    "type": "Enchantment",
+    "text": "Increased Attack.",
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_084",
+    "name": "Lance Carrier",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Battlecry:</b> Give a friendly minion +2 Attack.",
+    "flavor": "Lance Carrier is an obscure entry level position in orcish armies.  A mystery, since orcs don't generally use lances.",
+    "artist": "Tyson Murphy",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_011e",
+    "name": "Light's Blessing",
+    "type": "Enchantment",
+    "text": "Increased Attack.",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "AT_106",
+    "name": "Light's Champion",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Battlecry:</b> <b>Silence</b> a Demon.",
+    "flavor": "When there's something strange (say, a gibbering demon) in your neighborhood, who are you going to call?",
+    "artist": "Andrea Uderzo",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_050t",
+    "name": "Lightning Jolt",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal $2 damage.",
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_042a",
+    "name": "Lion Form",
+    "type": "Spell",
+    "rarity": "Common",
+    "text": "<b>Charge</b>",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_037b",
+    "name": "Living Roots",
+    "type": "Spell",
+    "text": "Summon two 1/1 Saplings."
+  },
+  {
+    "id": "AT_037a",
+    "name": "Living Roots",
+    "type": "Spell",
+    "text": "Deal $2 damage."
+  },
+  {
+    "id": "AT_037",
+    "name": "Living Roots",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 1,
+    "text": "<b>Choose One</b> - Deal $2 damage; or Summon two 1/1 Saplings.",
+    "flavor": "2 out of 2 saplings recommend that you summon the saplings.",
+    "artist": "Dan Brereton",
+    "collectible": true,
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_061",
+    "name": "Lock and Load",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 2,
+    "text": "Each time you cast a spell this turn, add a random Hunter card to your hand.",
+    "flavor": "Rexxar narrowed his eyes, grabbed his machine gun, and said: \"It's go time.  Lock and load.\"\n\nThis card pays homage to that special moment.",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_061e",
+    "name": "Lock and Load",
+    "type": "Enchantment",
+    "playerClass": "Hunter",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_082",
+    "name": "Lowly Squire",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 1,
+    "health": 2,
+    "text": "<b>Inspire:</b> Gain +1 Attack.",
+    "flavor": "But not the lowliest!",
+    "artist": "Ron Spears",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_067",
+    "name": "Magnataur Alpha",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 5,
+    "health": 3,
+    "text": "Also damages the minions next to whomever\nhe attacks.",
+    "flavor": "Playing him also gets you into the Magnataur Beta.",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_085",
+    "name": "Maiden of the Lake",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 2,
+    "health": 6,
+    "text": "Your Hero Power costs (1).",
+    "flavor": "Not a good basis for a system of government.",
+    "artist": "Froilan Gardner",
+    "collectible": true,
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "AT_112",
+    "name": "Master Jouster",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 6,
+    "attack": 5,
+    "health": 6,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, gain <b>Taunt</b> and <b>Divine Shield</b>.",
+    "flavor": "Needs just a few more ratings points to become Grandmaster Jouster.",
+    "artist": "Penny Arcade",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_027e",
+    "name": "Master Summoner",
+    "type": "Enchantment",
+    "text": "Costs (0).",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_117",
+    "name": "Master of Ceremonies",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "<b>Battlecry:</b> If you have a minion with <b>Spell Damage</b>, gain +2/+2.",
+    "flavor": "Goes by \"MC ElfyElf\".",
+    "artist": "Jesper Ejsing",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_075e",
+    "name": "Might of the Hostler",
+    "type": "Enchantment",
+    "text": "Warhorse Trainer is granting this minion +1 Attack.",
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_090e",
+    "name": "Might of the Monkey",
+    "type": "Enchantment",
+    "text": "+1/+1."
+  },
+  {
+    "id": "AT_045ee",
+    "name": "Mistcaller Deck Ench",
+    "type": "Enchantment"
+  },
+  {
+    "id": "AT_088",
+    "name": "Mogor's Champion",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 6,
+    "attack": 8,
+    "health": 5,
+    "text": "50% chance to attack the wrong enemy.",
+    "flavor": "This champion has learned from the best.  Except for his target selection.",
+    "artist": "Steve Prescott",
+    "collectible": true
+  },
+  {
+    "id": "AT_090",
+    "name": "Mukla's Champion",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Inspire:</b> Give your other minions +1/+1.",
+    "flavor": "An elegant gorilla, for a more civilized age.",
+    "artist": "Andrew Hou",
+    "collectible": true,
+    "race": "Beast",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_044",
+    "name": "Mulch",
+    "type": "Spell",
+    "rarity": "Epic",
+    "cost": 3,
+    "text": "Destroy a minion.\nAdd a random minion to your opponent's hand.",
+    "flavor": "Is this a noun or a verb?  We will never know.",
+    "artist": "Dan Scott",
+    "collectible": true,
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_076",
+    "name": "Murloc Knight",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 4,
+    "text": "<b>Inspire:</b> Summon a random Murloc.",
+    "flavor": "Hee hee!  Look at his cute little feet.",
+    "artist": "Sam Nielsen",
+    "collectible": true,
+    "race": "Murloc",
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_079",
+    "name": "Mysterious Challenger",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 6,
+    "health": 6,
+    "text": "<b>Battlecry:</b> Put one of each <b>Secret</b> from your deck into the battlefield.",
+    "flavor": "He may sound surly and antisocial, but he's actually just really shy.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_036t",
+    "name": "Nerubian",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 4,
+    "health": 4,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_127",
+    "name": "Nexus-Champion Saraad",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 5,
+    "attack": 4,
+    "health": 5,
+    "text": "<b>Inspire:</b> Add a random spell to your hand.",
+    "flavor": "The ethereals have their own jousting tournament, and Saraad is the reigning champion.  Also he won the ethereal hot dog eating contest.",
+    "artist": "Marcleo Vignali",
+    "collectible": true,
+    "elite": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_103",
+    "name": "North Sea Kraken",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 9,
+    "attack": 9,
+    "health": 7,
+    "text": "<b>Battlecry:</b> Deal 4 damage.",
+    "flavor": "You have no idea how tired this guy is of being released.",
+    "artist": "Seamus Gallagher",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_066",
+    "name": "Orgrimmar Aspirant",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "text": "<b>Inspire:</b> Give your weapon +1 Attack.",
+    "flavor": "\"Four out of three orcs struggle with math.\" - Angry Zurge",
+    "artist": "Hideaki Takamura",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_042b",
+    "name": "Panther Form",
+    "type": "Spell",
+    "rarity": "Common",
+    "text": "+1/+1 and <b>Stealth</b>",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "AT_101",
+    "name": "Pit Fighter",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 5,
+    "health": 6,
+    "flavor": "What did the pits ever do to you?",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true
+  },
+  {
+    "id": "AT_034",
+    "name": "Poisoned Blade",
+    "type": "Weapon",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 1,
+    "durability": 3,
+    "text": "Your Hero Power gives this weapon +1 Attack instead of replacing it.",
+    "flavor": "How much more poisoned can a blade get?  The answer is a lot.  A lot more poisoned.",
+    "artist": "Nutthapon Petchthai",
+    "collectible": true,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_132_ROGUEt",
+    "name": "Poisoned Dagger",
+    "type": "Weapon",
+    "cost": 1,
+    "attack": 2,
+    "durability": 2,
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_132_ROGUE",
+    "name": "Poisoned Daggers",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nEquip a 2/2 Weapon.",
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_005",
+    "name": "Polymorph: Boar",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "Transform a minion into a 4/2 Boar with <b>Charge</b>.",
+    "flavor": "It's always Huffer.",
+    "artist": "Mike Sass",
+    "collectible": true,
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_013e",
+    "name": "Power Word: Glory",
+    "type": "Enchantment",
+    "text": "When this attacks, restore 4 Health to the hero of the player who buffed it."
+  },
+  {
+    "id": "AT_013",
+    "name": "Power Word: Glory",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 1,
+    "text": "Choose a minion. Whenever it attacks, restore 4 Health to\nyour hero.",
+    "flavor": "The promise of glory is a powerful tool to get minions to do your bidding.  Only slightly less powerful than the promise of an ice cream bar!",
+    "artist": "Mike Sass",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_006e",
+    "name": "Power of Dalaran",
+    "type": "Enchantment",
+    "text": "Increased Spell Damage.",
+    "playerClass": "Mage"
+  },
+  {
+    "id": "AT_049e",
+    "name": "Power of the Bluff",
+    "type": "Enchantment",
+    "text": "Increased Attack.",
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_056",
+    "name": "Powershot",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "Deal $2 damage to a minion and the minions next to it.",
+    "flavor": "pow POW pow",
+    "artist": "Jonboy Meyers",
+    "collectible": true,
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "AT_081e",
+    "name": "Purified",
+    "type": "Enchantment",
+    "text": "Attack changed to 1.",
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_010",
+    "name": "Ram Wrangler",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 3,
+    "health": 3,
+    "text": "<b>Battlecry:</b> If you have a Beast, summon a\nrandom Beast.",
+    "flavor": "Not getting trampled is really the trick here.",
+    "artist": "Brandon Kitkouski",
+    "collectible": true,
+    "playerClass": "Hunter",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_113",
+    "name": "Recruiter",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 5,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Inspire:</b> Add a 2/2 Squire to your hand.",
+    "flavor": "Join the Argent Crusade!  We have attractive tabards and you get to carry really nice swords!",
+    "artist": "Jim Nelson",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_111",
+    "name": "Refreshment Vendor",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "text": "<b>Battlecry:</b> Restore 4 Health to each hero.",
+    "flavor": "Menu:  Funnel cakes, carrots, popcorn, jormungar steaks.  It's hard serving a diverse clientele.",
+    "artist": "Ron Spears",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_009",
+    "name": "Rhonin",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 8,
+    "attack": 7,
+    "health": 7,
+    "text": "<b>Deathrattle:</b> Add 3 copies of Arcane Missiles to your hand.",
+    "flavor": "A masterless shamurai.",
+    "artist": "Zoltan & Gabor",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Mage",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_042t",
+    "name": "Sabertooth Lion",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Charge</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "mechanics": [
+      "Charge"
+    ]
+  },
+  {
+    "id": "AT_042t2",
+    "name": "Sabertooth Panther",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Stealth</b>",
+    "race": "Beast",
+    "playerClass": "Druid",
+    "mechanics": [
+      "Stealth"
+    ]
+  },
+  {
+    "id": "AT_086",
+    "name": "Saboteur",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Your opponent's Hero Power costs (5) more next turn.",
+    "flavor": "Listen all y'all it's a saboteur!",
+    "artist": "Greg Staples",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_037t",
+    "name": "Sapling",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1
+  },
+  {
+    "id": "AT_039e",
+    "name": "Savage",
+    "type": "Enchantment",
+    "text": "+2 Attack this turn.",
+    "playerClass": "Druid",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "AT_039",
+    "name": "Savage Combatant",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Inspire:</b> Give your hero\n+2 Attack this turn.",
+    "flavor": "Maybe if you whistle a tune it will soothe him.  Yeah...  Try that.",
+    "artist": "Alex Pascenko",
+    "collectible": true,
+    "race": "Beast",
+    "playerClass": "Druid",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_130",
+    "name": "Sea Reaver",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 6,
+    "health": 7,
+    "text": "When you draw this, deal 1 damage to your minions.",
+    "flavor": "A little better than Sea Minus Reaver.",
+    "artist": "James Ryman",
+    "collectible": true,
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_074",
+    "name": "Seal of Champions",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 3,
+    "text": "Give a minion\n+3 Attack and <b>Divine Shield</b>.",
+    "flavor": "\"Arf! Arf! Arf!\" - Seal of Champions",
+    "artist": "Jonboy Meyers",
+    "collectible": true,
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_074e2",
+    "name": "Seal of Champions",
+    "type": "Enchantment",
+    "text": "+3 Attack and <b>Divine Shield</b>.",
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_132_SHAMANb",
+    "name": "Searing Totem",
+    "type": "Minion",
+    "attack": 1,
+    "health": 1,
+    "playerClass": "Shaman",
+    "cost": 0
+  },
+  {
+    "id": "AT_028",
+    "name": "Shado-Pan Rider",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 3,
+    "health": 7,
+    "text": "<b>Combo:</b> Gain +3 Attack.",
+    "flavor": "He needed a break after that business in the Vale of Eternal Blossoms. Naturally, he chose to spend his vacation in an icy snowscape killing monsters.",
+    "artist": "Ryan Metcaff",
+    "collectible": true,
+    "playerClass": "Rogue",
+    "mechanics": [
+      "Combo"
+    ]
+  },
+  {
+    "id": "AT_014",
+    "name": "Shadowfiend",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "text": "Whenever you draw a card, reduce its Cost by (1).",
+    "flavor": "Hopes to be promoted to \"Shadowfriend\" someday.",
+    "artist": "Warren Mahy",
+    "collectible": true,
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_014e",
+    "name": "Shadowfiended",
+    "type": "Enchantment",
+    "text": "Costs (1) less.",
+    "playerClass": "Priest"
+  },
+  {
+    "id": "AT_032",
+    "name": "Shady Dealer",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Battlecry:</b> If you have a Pirate, gain +1/+1.",
+    "flavor": "I have great deal for you... for 4 damage to your face!",
+    "artist": "Tooth",
+    "collectible": true,
+    "playerClass": "Rogue",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_032e",
+    "name": "Shady Deals",
+    "type": "Enchantment",
+    "text": "+1/+1.",
+    "playerClass": "Rogue"
+  },
+  {
+    "id": "AT_098",
+    "name": "Sideshow Spelleater",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 6,
+    "attack": 6,
+    "health": 5,
+    "text": "<b>Battlecry:</b> Copy your opponent's Hero Power.",
+    "flavor": "Hey!  Let me try that...",
+    "artist": "Wayne Reynolds",
+    "collectible": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_095",
+    "name": "Silent Knight",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Stealth</b>\n<b>Divine Shield</b>",
+    "flavor": "He used to be a librarian.  Old habits die hard.",
+    "artist": "Esad Ribic",
+    "collectible": true,
+    "mechanics": [
+      "Divine Shield",
+      "Stealth"
+    ]
+  },
+  {
+    "id": "AT_100",
+    "name": "Silver Hand Regent",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 3,
+    "health": 3,
+    "text": "<b>Inspire:</b> Summon a 1/1 Silver Hand Recruit.",
+    "flavor": "The Silver Hand is the best paladin organization.  The Argent Crusaders are super jealous.",
+    "artist": "John Polidora",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_070",
+    "name": "Skycap'n Kragg",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 4,
+    "health": 6,
+    "text": "<b>Charrrrrge</b>\nCosts (1) less for each friendly Pirate.",
+    "flavor": "What's more boss than riding a parrot with a jawbone for a shoulderpad while wielding a giant hook-lance-thing and wearing a pirate hat?  NOTHING.",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "elite": true,
+    "race": "Pirate",
+    "mechanics": [
+      "Charge"
+    ]
+  },
+  {
+    "id": "AT_132_WARLOCK",
+    "name": "Soul Tap",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDraw a card.",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_069",
+    "name": "Sparring Partner",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Give a\nminion <b>Taunt</b>.",
+    "flavor": "Come at me, bro.",
+    "artist": "Jim Nelson",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "mechanics": [
+      "Battlecry",
+      "Taunt"
+    ]
+  },
+  {
+    "id": "AT_012",
+    "name": "Spawn of Shadows",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Inspire:</b> Deal 4 damage to each hero.",
+    "flavor": "What did you expect to happen?  He's a Spawn.  Of Shadows.",
+    "artist": "Dave Allsop",
+    "collectible": true,
+    "playerClass": "Priest",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_007",
+    "name": "Spellslinger",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 3,
+    "health": 4,
+    "text": "<b>Battlecry:</b> Add a random spell to each player's hand.",
+    "flavor": "Does he sling spells, or do his spells linger about.  Who can say?",
+    "artist": "Erik Ko",
+    "collectible": true,
+    "playerClass": "Mage",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_057",
+    "name": "Stablemaster",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 3,
+    "attack": 4,
+    "health": 2,
+    "text": "<b>Battlecry:</b> Give a friendly Beast <b>Immune</b> this turn.",
+    "flavor": "Takes way better care of her pets than her brother, Unstablemaster.",
+    "artist": "Tyson Murphy",
+    "collectible": true,
+    "playerClass": "Hunter",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_132_SHAMANc",
+    "name": "Stoneclaw Totem",
+    "type": "Minion",
+    "attack": 0,
+    "health": 2,
+    "text": "<b>Taunt</b>",
+    "playerClass": "Shaman",
+    "cost": 0
+  },
+  {
+    "id": "AT_132_WARRIOR",
+    "name": "Tank Up!",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nGain 4 Armor.",
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_054",
+    "name": "The Mistcaller",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> Give all minions in your hand and deck +1/+1.",
+    "flavor": "Calling the mist doesn't sound all that great.  \"Ooooh, it is slightly damp now!\"",
+    "artist": "Wei Wang",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Shaman",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_132_PALADIN",
+    "name": "The Silver Hand",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon two 1/1 Recruits.",
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "AT_128",
+    "name": "The Skeleton Knight",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 7,
+    "health": 4,
+    "text": "<b>Deathrattle:</b> Reveal a minion in each deck. If yours costs more, return this to your hand.",
+    "flavor": "Apparently it really was just a flesh wound.",
+    "artist": "Mike Sass",
+    "collectible": true,
+    "elite": true,
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "AT_049",
+    "name": "Thunder Bluff Valiant",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 3,
+    "health": 6,
+    "text": "<b>Inspire:</b> Give your Totems +2 Attack.",
+    "flavor": "Allowing totems to attack is not cheating.  I mean, there isn't anything in the rule books about it.",
+    "artist": "Sean McNally",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_021",
+    "name": "Tiny Knight of Evil",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "Whenever you discard a card, gain +1/+1.",
+    "flavor": "\"No, no, no. I asked for a tiny JESTER of evil.\"",
+    "artist": "Raymond Swanland",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_052",
+    "name": "Totem Golem",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 4,
+    "text": "<b>Overload: (1)</b>",
+    "flavor": "What happens when you glue a buncha totems together.",
+    "artist": "Steve Prescott",
+    "collectible": true,
+    "race": "Totem",
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_132_SHAMAN",
+    "name": "Totemic Slam",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon a Totem of your choice.",
+    "playerClass": "Shaman"
+  },
+  {
+    "id": "AT_097",
+    "name": "Tournament Attendee",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Taunt</b>",
+    "flavor": "He was so excited to get season tickets to this year's Grand Tournament.  He normally doesn't get them at first and has to buy them from Ogre scalpers.",
+    "artist": "Adam Byrne",
+    "collectible": true,
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "AT_091",
+    "name": "Tournament Medic",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 1,
+    "health": 8,
+    "text": "<b>Inspire:</b> Restore 2 Health to your hero.",
+    "flavor": "The medic tournament is less entertaining than the Grand Tournament.",
+    "artist": "Sean McNally",
+    "collectible": true,
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_082e",
+    "name": "Training",
+    "type": "Enchantment",
+    "text": "Increased Attack."
+  },
+  {
+    "id": "AT_069e",
+    "name": "Training Complete",
+    "type": "Enchantment",
+    "text": "<b>Taunt</b>",
+    "playerClass": "Warrior"
+  },
+  {
+    "id": "AT_104",
+    "name": "Tuskarr Jouster",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 5,
+    "health": 5,
+    "text": "<b>Battlecry:</b> Reveal a minion in each deck. If yours costs more, restore 7 Health to your hero.",
+    "flavor": "Just could not be talked out of using his turtle for the joust...",
+    "artist": "Skan Srisuwan",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_046",
+    "name": "Tuskarr Totemic",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Battlecry:</b> Summon ANY random Totem.",
+    "flavor": "Turns out the tuskarr aren't real choosy about their totems.",
+    "artist": "Eva Widermann",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_017",
+    "name": "Twilight Guardian",
+    "type": "Minion",
+    "rarity": "Epic",
+    "cost": 4,
+    "attack": 2,
+    "health": 6,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain +1 Attack and <b>Taunt</b>.",
+    "flavor": "A result of magical experiments carried out by the Black Dragonflight, it's not his fault that he's a vicious killer.",
+    "artist": "Slawomir Maniak",
+    "collectible": true,
+    "race": "Dragon",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_017e",
+    "name": "Twilight's Embrace",
+    "type": "Enchantment",
+    "text": "+1 Attack and <b>Taunt</b>."
+  },
+  {
+    "id": "AT_030",
+    "name": "Undercity Valiant",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 3,
+    "health": 2,
+    "text": "<b>Combo:</b> Deal 1 damage.",
+    "flavor": "Almost went to play for Stormwind before signing with Undercity.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "playerClass": "Rogue",
+    "mechanics": [
+      "Combo"
+    ]
+  },
+  {
+    "id": "AT_072",
+    "name": "Varian Wrynn",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 10,
+    "attack": 7,
+    "health": 7,
+    "text": "<b>Battlecry:</b> Draw 3 cards.\nPut any minions you drew directly into the battlefield.",
+    "flavor": "Leader of the Alliance!  Father of Anduin!  Also he likes to play Arena, and he averages 12 wins.",
+    "artist": "Wei Wang",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Warrior",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_133e",
+    "name": "Victory!",
+    "type": "Enchantment",
+    "text": "+1/+1."
+  },
+  {
+    "id": "AT_086e",
+    "name": "Villainy",
+    "type": "Enchantment",
+    "text": "Your Hero Power costs (5) more this turn."
+  },
+  {
+    "id": "AT_023",
+    "name": "Void Crusher",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 6,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Inspire:</b> Destroy a random minion for each player.",
+    "flavor": "We like to call him \"Wesley\".",
+    "artist": "Skan Srisuwan",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock",
+    "mechanics": [
+      "Inspire"
+    ]
+  },
+  {
+    "id": "AT_099t",
+    "name": "War Kodo",
+    "type": "Minion",
+    "cost": 5,
+    "attack": 3,
+    "health": 5,
+    "race": "Beast"
+  },
+  {
+    "id": "AT_075",
+    "name": "Warhorse Trainer",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "Your Silver Hand Recruits have +1 Attack.",
+    "flavor": "He doesn't even get Sundays off.  Every day he's hostling.",
+    "artist": "Zoltan & Gabor",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "AT_040",
+    "name": "Wildwalker",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> Give a friendly Beast +3 Health.",
+    "flavor": "She was born to be something.  She is just not quite sure what yet...",
+    "artist": "James Ryman",
+    "collectible": true,
+    "playerClass": "Druid",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "AT_027",
+    "name": "Wilfred Fizzlebang",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 4,
+    "health": 4,
+    "text": "Cards you draw from your Hero Power cost (0).",
+    "flavor": "He can summon anything, even a FEARSOME DOOMGUARD*.\n\n*He's pretty sure this is going to work out.",
+    "artist": "Tooth",
+    "collectible": true,
+    "elite": true,
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_096e",
+    "name": "Wound Up",
+    "type": "Enchantment",
+    "text": "+1/+1."
+  },
+  {
+    "id": "AT_132_SHAMANd",
+    "name": "Wrath of Air Totem",
+    "type": "Minion",
+    "attack": 0,
+    "health": 2,
+    "text": "<b>Spell Damage +1</b>",
+    "playerClass": "Shaman",
+    "cost": 0
+  },
+  {
+    "id": "AT_026",
+    "name": "Wrathguard",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 2,
+    "attack": 4,
+    "health": 3,
+    "text": "Whenever this minion takes damage, also deal that amount to your hero.",
+    "flavor": "After playing against 5 Annoy-O-Trons, any normal guard will become a Wrathguard.",
+    "artist": "Sojin Hwang",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "AT_116",
+    "name": "Wyrmrest Agent",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 2,
+    "attack": 1,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain +1 Attack and <b>Taunt</b>.",
+    "flavor": "Keeping tabs on the Grand Tournament is priority #1 for the five mighty Dragonflights!",
+    "artist": "Jeff Easley",
+    "collectible": true,
+    "playerClass": "Priest",
+    "mechanics": [
+      "Battlecry"
+    ]
+  }
+]

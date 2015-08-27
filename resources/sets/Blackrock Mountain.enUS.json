@@ -1,0 +1,1982 @@
+[
+  {
+    "id": "BRMA15_4",
+    "name": "Aberration",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "<b>Charge</b>",
+    "mechanics": [
+      "Charge"
+    ]
+  },
+  {
+    "id": "BRMA14_2",
+    "name": "Activate Arcanotron",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nActivate Arcanotron!"
+  },
+  {
+    "id": "BRMA14_2H",
+    "name": "Activate Arcanotron",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nActivate Arcanotron!"
+  },
+  {
+    "id": "BRMA14_6",
+    "name": "Activate Electron",
+    "type": "Hero Power",
+    "cost": 6,
+    "text": "<b>Hero Power</b>\nActivate Electron!"
+  },
+  {
+    "id": "BRMA14_6H",
+    "name": "Activate Electron",
+    "type": "Hero Power",
+    "cost": 4,
+    "text": "<b>Hero Power</b>\nActivate Electron!"
+  },
+  {
+    "id": "BRMA14_8",
+    "name": "Activate Magmatron",
+    "type": "Hero Power",
+    "cost": 8,
+    "text": "<b>Hero Power</b>\nActivate Magmatron!"
+  },
+  {
+    "id": "BRMA14_8H",
+    "name": "Activate Magmatron",
+    "type": "Hero Power",
+    "cost": 6,
+    "text": "<b>Hero Power</b>\nActivate Magmatron!"
+  },
+  {
+    "id": "BRMA14_4",
+    "name": "Activate Toxitron",
+    "type": "Hero Power",
+    "cost": 4,
+    "text": "<b>Hero Power</b>\nActivate Toxitron!"
+  },
+  {
+    "id": "BRMA14_4H",
+    "name": "Activate Toxitron",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nActivate Toxitron!"
+  },
+  {
+    "id": "BRMA14_10",
+    "name": "Activate!",
+    "type": "Hero Power",
+    "cost": 4,
+    "text": "<b>Hero Power</b>\nActivate a random Tron."
+  },
+  {
+    "id": "BRMA14_10H",
+    "name": "Activate!",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nActivate a random Tron."
+  },
+  {
+    "id": "BRMA14_3",
+    "name": "Arcanotron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 0,
+    "attack": 2,
+    "health": 2,
+    "text": "Both players have <b>Spell Damage +2</b>.",
+    "elite": true,
+    "race": "Mech",
+    "mechanics": [
+      "Spellpower"
+    ]
+  },
+  {
+    "id": "BRMA16_1",
+    "name": "Atramedes",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA16_1H",
+    "name": "Atramedes",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_016",
+    "name": "Axe Flinger",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 2,
+    "health": 5,
+    "text": "Whenever this minion takes damage, deal 2 damage to the enemy hero.",
+    "flavor": "Once a lowly \"Stick Flinger\", he's been relentless on the path to his ultimate dream: \"Tauren Flinger\".",
+    "artist": "Efrem Palacios",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "howToGet": "Unlocked by completing the Warrior Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Warrior Class Challenge in Blackrock Mountain."
+  },
+  {
+    "id": "BRMA05_1",
+    "name": "Baron Geddon",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA05_1H",
+    "name": "Baron Geddon",
+    "type": "Hero",
+    "health": 50
+  },
+  {
+    "id": "BRM_022t",
+    "name": "Black Whelp",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "artist": "Jaemin Kim",
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA09_4H",
+    "name": "Blackwing",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nSummon a 5/4 Dragonkin. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA09_4",
+    "name": "Blackwing",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nSummon a 3/1 Dragonkin. Get a new Hero Power."
+  },
+  {
+    "id": "BRM_034",
+    "name": "Blackwing Corruptor",
+    "type": "Minion",
+    "faction": "Neutral",
+    "rarity": "Common",
+    "cost": 5,
+    "attack": 5,
+    "health": 4,
+    "text": "<b>Battlecry</b>: If you're holding a Dragon, deal 3 damage.",
+    "flavor": "He got his name when he gave Blackwing some comic books and rock & roll records.",
+    "artist": "Greg Staples",
+    "collectible": true,
+    "howToGet": "Unlocked by defeating Maloriak in the Hidden Laboratory.",
+    "howToGetGold": "Can be crafted after defeating Maloriak in the Hidden Laboratory.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRM_033",
+    "name": "Blackwing Technician",
+    "type": "Minion",
+    "faction": "Neutral",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain +1/+1.",
+    "flavor": "This is who you go to when your Blackwing needs a tune up. Don't go to a cut rate Blackwing tune up shop!",
+    "artist": "Matt Dixon",
+    "collectible": true,
+    "howToGet": "Unlocked by defeating Baron Geddon in Molten Core.",
+    "howToGetGold": "Can be crafted after defeating Baron Geddon in Molten Core.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA10_6e",
+    "name": "Blind With Rage",
+    "type": "Enchantment",
+    "text": "Increased Attack."
+  },
+  {
+    "id": "BRMA17_6",
+    "name": "Bone Construct",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 2,
+    "health": 1
+  },
+  {
+    "id": "BRMA17_6H",
+    "name": "Bone Construct",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 4,
+    "health": 2
+  },
+  {
+    "id": "BRMA17_5",
+    "name": "Bone Minions",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon two 2/1 Bone Constructs."
+  },
+  {
+    "id": "BRMA17_5H",
+    "name": "Bone Minions",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon two 4/2 Bone Constructs."
+  },
+  {
+    "id": "BRMA12_2",
+    "name": "Brood Affliction",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nAt the end of your turn, add a Brood Affliction card to your opponent's hand."
+  },
+  {
+    "id": "BRMA12_2H",
+    "name": "Brood Affliction",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nAt the end of your turn, add a Brood Affliction card to your opponent's hand."
+  },
+  {
+    "id": "BRMA12_6H",
+    "name": "Brood Affliction: Black",
+    "type": "Spell",
+    "cost": 3,
+    "text": "While this is in your hand, whenever Chromaggus draws a card, he gets another copy of it."
+  },
+  {
+    "id": "BRMA12_6",
+    "name": "Brood Affliction: Black",
+    "type": "Spell",
+    "cost": 1,
+    "text": "While this is in your hand, whenever Chromaggus draws a card, he gets another copy of it."
+  },
+  {
+    "id": "BRMA12_5",
+    "name": "Brood Affliction: Blue",
+    "type": "Spell",
+    "cost": 1,
+    "text": "While this is in your hand, Chromaggus' spells cost (1) less."
+  },
+  {
+    "id": "BRMA12_5H",
+    "name": "Brood Affliction: Blue",
+    "type": "Spell",
+    "cost": 3,
+    "text": "While this is in your hand, Chromaggus' spells cost (3) less."
+  },
+  {
+    "id": "BRMA12_7H",
+    "name": "Brood Affliction: Bronze",
+    "type": "Spell",
+    "cost": 3,
+    "text": "While this is in your hand, Chromaggus' minions cost (3) less."
+  },
+  {
+    "id": "BRMA12_7",
+    "name": "Brood Affliction: Bronze",
+    "type": "Spell",
+    "cost": 1,
+    "text": "While this is in your hand, Chromaggus' minions cost (1) less."
+  },
+  {
+    "id": "BRMA12_4H",
+    "name": "Brood Affliction: Green",
+    "type": "Spell",
+    "cost": 3,
+    "text": "While this is in your hand, restore 6 health to your opponent at the start of your turn."
+  },
+  {
+    "id": "BRMA12_4",
+    "name": "Brood Affliction: Green",
+    "type": "Spell",
+    "cost": 1,
+    "text": "While this is in your hand, restore 2 health to your opponent at the start of your turn."
+  },
+  {
+    "id": "BRMA12_3H",
+    "name": "Brood Affliction: Red",
+    "type": "Spell",
+    "cost": 3,
+    "text": "While this is in your hand, take 3 damage at the start of your turn.",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ]
+  },
+  {
+    "id": "BRMA12_3",
+    "name": "Brood Affliction: Red",
+    "type": "Spell",
+    "cost": 1,
+    "text": "While this is in your hand, take 1 damage at the start of your turn.",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ]
+  },
+  {
+    "id": "BRMA11_3",
+    "name": "Burning Adrenaline",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Deal $2 damage to the enemy hero."
+  },
+  {
+    "id": "BRM_031",
+    "name": "Chromaggus",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 8,
+    "attack": 6,
+    "health": 8,
+    "text": "Whenever you draw a card, put another copy into your hand.",
+    "flavor": "Left head and right head can never agree about what to eat for dinner, so they always end up just eating ramen again.",
+    "artist": "Todd Lockwood",
+    "collectible": true,
+    "elite": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by completing Blackwing Lair.",
+    "howToGetGold": "Can be crafted after completing Blackwing Lair."
+  },
+  {
+    "id": "BRMA12_1H",
+    "name": "Chromaggus",
+    "type": "Hero",
+    "health": 60
+  },
+  {
+    "id": "BRMA12_1",
+    "name": "Chromaggus",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA12_8t",
+    "name": "Chromatic Dragonkin",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "Whenever your opponent casts a spell, gain +2/+2.",
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA12_9",
+    "name": "Chromatic Dragonkin",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA10_5H",
+    "name": "Chromatic Drake",
+    "type": "Minion",
+    "cost": 4,
+    "attack": 7,
+    "health": 7,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA10_5",
+    "name": "Chromatic Drake",
+    "type": "Minion",
+    "cost": 4,
+    "attack": 7,
+    "health": 3,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA12_8",
+    "name": "Chromatic Mutation",
+    "type": "Spell",
+    "cost": 2,
+    "text": "Transform a minion into a 2/2 Chromatic Dragonkin."
+  },
+  {
+    "id": "BRMA17_7",
+    "name": "Chromatic Prototype",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 1,
+    "health": 4,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRM_014",
+    "name": "Core Rager",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 4,
+    "attack": 4,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If your hand is empty, gain +3/+3.",
+    "flavor": "It takes a special kind of hunter to venture deep into a firey lava pit and convince a monster who lives there to come home and be a cuddly housepet.",
+    "artist": "Jomaro Kindred",
+    "collectible": true,
+    "race": "Beast",
+    "playerClass": "Hunter",
+    "howToGet": "Unlocked by defeating Highlord Omokk in Blackrock Spire.",
+    "howToGetGold": "Can be crafted after defeating Highlord Omokk in Blackrock Spire.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA01_1H",
+    "name": "Coren Direbrew",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA01_1",
+    "name": "Coren Direbrew",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA10_4H",
+    "name": "Corrupted Egg",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 0,
+    "health": 3,
+    "text": "When this minion has 5 or more Health, it hatches."
+  },
+  {
+    "id": "BRMA10_4",
+    "name": "Corrupted Egg",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 0,
+    "health": 1,
+    "text": "When this minion has 4 or more Health, it hatches."
+  },
+  {
+    "id": "BRMA13_8",
+    "name": "DIE, INSECT!",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Deal $8 damage to a random enemy.",
+    "mechanics": [
+      "AffectedBySpellPower"
+    ]
+  },
+  {
+    "id": "BRM_027p",
+    "name": "DIE, INSECT!",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal $8 damage to a random enemy."
+  },
+  {
+    "id": "BRM_027pH",
+    "name": "DIE, INSECTS!",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal $8 damage to a random enemy. TWICE."
+  },
+  {
+    "id": "BRMA01_3",
+    "name": "Dark Iron Bouncer",
+    "type": "Minion",
+    "cost": 6,
+    "attack": 4,
+    "health": 8,
+    "text": "Always wins Brawls."
+  },
+  {
+    "id": "BRM_008",
+    "name": "Dark Iron Skulker",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Deal 2 damage to all undamaged enemy minions.",
+    "flavor": "He loves skulking. He skulks after hours just for the joy of it, but his friends are pretty worried he'll get burnt out.",
+    "artist": "Eric Braddock",
+    "collectible": true,
+    "playerClass": "Rogue",
+    "howToGet": "Unlocked by completing the Rogue Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Rogue Class Challenge in Blackrock Mountain.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA02_2t",
+    "name": "Dark Iron Spectator",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRM_005",
+    "name": "Demonwrath",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 3,
+    "text": "Deal $2 damage to all non-Demon minions.",
+    "flavor": "Demons are not angry most of the time. You have to play this card in order to really bring it out of them.",
+    "artist": "Raymond Swanland",
+    "collectible": true,
+    "playerClass": "Warlock",
+    "howToGet": "Unlocked by completing the Warlock Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Warlock Class Challenge in Blackrock Mountain.",
+    "mechanics": [
+      "AffectedBySpellPower"
+    ]
+  },
+  {
+    "id": "BRMA09_5",
+    "name": "Dismount",
+    "type": "Hero Power",
+    "cost": 4,
+    "text": "<b>Hero Power</b>\nSummon Gyth. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA09_5H",
+    "name": "Dismount",
+    "type": "Hero Power",
+    "cost": 4,
+    "text": "<b>Hero Power</b>\nSummon Gyth. Get a new Hero Power."
+  },
+  {
+    "id": "BRM_020e",
+    "name": "Draconic Power",
+    "type": "Enchantment",
+    "text": "Increased stats."
+  },
+  {
+    "id": "BRM_033e",
+    "name": "Dragon Blood",
+    "type": "Enchantment",
+    "text": "+1/+1"
+  },
+  {
+    "id": "BRM_018",
+    "name": "Dragon Consort",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 5,
+    "health": 5,
+    "text": "<b>Battlecry:</b> The next Dragon you play costs (2) less.",
+    "flavor": "Everybody wants someone to snuggle with. Even giant armored scaly draconic beasts of destruction.",
+    "artist": "Raymond Swanland",
+    "collectible": true,
+    "race": "Dragon",
+    "playerClass": "Paladin",
+    "howToGet": "Unlocked by defeating General Drakkisath in Blackrock Spire.",
+    "howToGetGold": "Can be crafted after defeating General Drakkisath in Blackrock Spire.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRM_022",
+    "name": "Dragon Egg",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 1,
+    "attack": 0,
+    "health": 2,
+    "text": "Whenever this minion takes damage, summon a 2/1 Whelp.",
+    "flavor": "Think of them as bullets for your dragon gun.",
+    "artist": "Jaemin Kim",
+    "collectible": true,
+    "howToGet": "Unlocked by defeating Rend Blackhand in Blackrock Spire.",
+    "howToGetGold": "Can be crafted after defeating Rend Blackhand in Blackrock Spire."
+  },
+  {
+    "id": "BRM_003",
+    "name": "Dragon's Breath",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 5,
+    "text": "Deal $4 damage. Costs (1) less for each minion that died this turn.",
+    "flavor": "Dragons breathe fire, sure, but did you know they can also breathe Cotton Candy?  It's harder to give them a reason to do that, though.",
+    "artist": "Mauricio Herrera",
+    "collectible": true,
+    "playerClass": "Mage",
+    "howToGet": "Unlocked by completing the Mage Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Mage Class Challenge in Blackrock Mountain."
+  },
+  {
+    "id": "BRM_003e",
+    "name": "Dragon's Might",
+    "type": "Enchantment",
+    "text": "Costs (3) less this turn.",
+    "playerClass": "Mage",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "BRMA09_4t",
+    "name": "Dragonkin",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 3,
+    "health": 1,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA09_4Ht",
+    "name": "Dragonkin",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 5,
+    "health": 4,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRM_020",
+    "name": "Dragonkin Sorcerer",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 5,
+    "text": "Whenever <b>you</b> target this minion with a spell, gain +1/+1.",
+    "flavor": "Dragonkin Sorcerers be all \"I'm a wizard\" and everyone else be all \"daaaaang\".",
+    "artist": "Edouard Guiton & Stuido HIVE",
+    "collectible": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by defeating Nefarian in the Hidden Laboratory.",
+    "howToGetGold": "Can be crafted after defeating Nefarian in the Hidden Laboratory."
+  },
+  {
+    "id": "BRMA16_5",
+    "name": "Dragonteeth",
+    "type": "Weapon",
+    "cost": 1,
+    "attack": 0,
+    "durability": 6,
+    "text": "Whenever your opponent plays a card, gain +1 Attack."
+  },
+  {
+    "id": "BRMA08_3",
+    "name": "Drakkisath's Command",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Destroy a minion. Gain 10 Armor."
+  },
+  {
+    "id": "BRM_024",
+    "name": "Drakonid Crusher",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 6,
+    "health": 6,
+    "text": "<b>Battlecry:</b> If your opponent has 15 or less Health, gain +3/+3.",
+    "flavor": "Drakonids were created to have all the bad parts of a dragon in the form of a humaniod. But, like, why?",
+    "artist": "Slawomir Maniak",
+    "collectible": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by defeating Atramedes in the Hidden Laboratory.",
+    "howToGetGold": "Can be crafted after defeating Atramedes in the Hidden Laboratory.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRM_010t",
+    "name": "Druid of the Flame",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 5,
+    "health": 2,
+    "artist": "Ben Zhang",
+    "race": "Beast",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "BRM_010",
+    "name": "Druid of the Flame",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Choose One</b> - Transform into a 5/2 minion; or a 2/5 minion.",
+    "flavor": "Druids who fought too long in Northrend were easily seduced by Ragnaros; a mug of hot chocolate was generally all it took.",
+    "artist": "Stanley Lau",
+    "collectible": true,
+    "playerClass": "Druid",
+    "howToGet": "Unlocked by defeating Garr in Molten Core.",
+    "howToGetGold": "Can be crafted after defeating Garr in Molten Core."
+  },
+  {
+    "id": "BRM_010t2",
+    "name": "Druid of the Flame",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 5,
+    "artist": "Hideaki Takamura",
+    "race": "Beast",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "BRMA16_2",
+    "name": "Echolocate",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nEquip a weapon that grows as your opponent plays cards."
+  },
+  {
+    "id": "BRMA16_2H",
+    "name": "Echolocate",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nEquip a weapon that grows as your opponent plays cards."
+  },
+  {
+    "id": "BRMA14_7H",
+    "name": "Electron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 6,
+    "health": 6,
+    "text": "All spells cost (3) less.",
+    "elite": true,
+    "race": "Mech"
+  },
+  {
+    "id": "BRMA14_7",
+    "name": "Electron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 5,
+    "health": 5,
+    "text": "All spells cost (3) less.",
+    "elite": true,
+    "race": "Mech",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "BRM_028",
+    "name": "Emperor Thaurissan",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 5,
+    "health": 5,
+    "text": "At the end of your turn, reduce the Cost of cards in your hand by (1).",
+    "flavor": "His second greatest regret is summoning an evil Firelord who enslaved his entire people.",
+    "artist": "Wayne Reynolds",
+    "collectible": true,
+    "elite": true,
+    "howToGet": "Unlocked by completing Blackrock Depths.",
+    "howToGetGold": "Can be crafted after completing Blackrock Depths."
+  },
+  {
+    "id": "BRMA03_1H",
+    "name": "Emperor Thaurissan",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA03_1",
+    "name": "Emperor Thaurissan",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA11_2H",
+    "name": "Essence of the Red",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nEach player draws 3 cards. Gain a Mana Crystal."
+  },
+  {
+    "id": "BRMA11_2",
+    "name": "Essence of the Red",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nEach player draws 2 cards."
+  },
+  {
+    "id": "BRM_010b",
+    "name": "Fire Hawk Form",
+    "type": "Spell",
+    "rarity": "Common",
+    "text": "Transform into a 2/5 minion.",
+    "race": "Beast",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "BRM_010a",
+    "name": "Firecat Form",
+    "type": "Spell",
+    "rarity": "Common",
+    "text": "Transform into a 5/2 minion.",
+    "race": "Beast",
+    "playerClass": "Druid"
+  },
+  {
+    "id": "BRM_012",
+    "name": "Fireguard Destroyer",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 3,
+    "health": 6,
+    "text": "<b>Battlecry:</b> Gain 1-4 Attack. <b>Overload:</b> (1)",
+    "flavor": "Ragnaros interviews hundreds of Fire Elementals for the position of \"Destroyer\" but very few have what it takes.",
+    "artist": "Paul Mafayon",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "howToGet": "Unlocked by defeating Lord Victor Nefarius in Blackwing Lair.",
+    "howToGetGold": "Can be crafted after defeating Lord Victor Nefarius in Blackwing Lair.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA04_3H",
+    "name": "Firesworn",
+    "type": "Minion",
+    "cost": 0,
+    "attack": 0,
+    "health": 5,
+    "text": "<b>Deathrattle:</b> Deal 3 damage to the enemy hero for each Firesworn that died this turn.",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "BRMA04_3",
+    "name": "Firesworn",
+    "type": "Minion",
+    "cost": 0,
+    "attack": 0,
+    "health": 5,
+    "text": "<b>Deathrattle:</b> Deal 1 damage to the enemy hero for each Firesworn that died this turn.",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "BRMA_01",
+    "name": "Flameheart",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Draw 2 cards.\nGain 4 Armor."
+  },
+  {
+    "id": "BRM_002",
+    "name": "Flamewaker",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "After you cast a spell, deal 2 damage randomly split among all enemies.",
+    "flavor": "Flamewakers HATE being confused for Flamewalkers. They just wake up fire, they don’t walk on it. Walking on fire is CRAZY.",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "playerClass": "Mage",
+    "howToGet": "Unlocked by defeating Vaelastrasz in Blackwing Lair.",
+    "howToGetGold": "Can be crafted after defeating Vaelastrasz in Blackwing Lair."
+  },
+  {
+    "id": "BRMA06_4H",
+    "name": "Flamewaker Acolyte",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 3,
+    "health": 3
+  },
+  {
+    "id": "BRMA06_4",
+    "name": "Flamewaker Acolyte",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 1,
+    "health": 3
+  },
+  {
+    "id": "BRM_007",
+    "name": "Gang Up",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "Choose a minion. Shuffle 3 copies of it into your deck.",
+    "flavor": "If you are thinking about visiting Moonbrook, you better roll deep.",
+    "artist": "Jim Nelson",
+    "collectible": true,
+    "playerClass": "Rogue",
+    "howToGet": "Unlocked by defeating the Dark Iron Arena in Blackrock Depths.",
+    "howToGetGold": "Can be crafted after defeating the Dark Iron Arena in Blackrock Depths."
+  },
+  {
+    "id": "BRMA04_1H",
+    "name": "Garr",
+    "type": "Hero",
+    "health": 45
+  },
+  {
+    "id": "BRMA04_1",
+    "name": "Garr",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA08_1",
+    "name": "General Drakkisath",
+    "type": "Hero",
+    "health": 50
+  },
+  {
+    "id": "BRMA08_1H",
+    "name": "General Drakkisath",
+    "type": "Hero",
+    "health": 50
+  },
+  {
+    "id": "BRMA01_4",
+    "name": "Get 'em!",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Summon four 1/1 Dwarves with <b>Taunt</b>."
+  },
+  {
+    "id": "BRM_019",
+    "name": "Grim Patron",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 5,
+    "attack": 3,
+    "health": 3,
+    "text": "Whenever this minion survives damage, summon another Grim Patron.",
+    "flavor": "If you love getting your face punched, come to the Grim Guzzler!",
+    "artist": "Bobby Chiu",
+    "collectible": true,
+    "howToGet": "Unlocked by defeating The Grim Guzzler in Blackrock Depths.",
+    "howToGetGold": "Can be crafted after defeating The Grim Guzzler in Blackrock Depths."
+  },
+  {
+    "id": "BRMA01_4t",
+    "name": "Guzzler",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMA09_5Ht",
+    "name": "Gyth",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 8,
+    "health": 8,
+    "elite": true,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA09_5t",
+    "name": "Gyth",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 8,
+    "health": 4,
+    "elite": true,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA02_1H",
+    "name": "High Justice Grimstone",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA02_1",
+    "name": "High Justice Grimstone",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA07_1",
+    "name": "Highlord Omokk",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA07_1H",
+    "name": "Highlord Omokk",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_026",
+    "name": "Hungry Dragon",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 4,
+    "attack": 5,
+    "health": 6,
+    "text": "<b>Battlecry:</b> Summon a random 1-Cost minion for your opponent.",
+    "flavor": "Hungry Hungry Dragon is NOT a fun game.",
+    "artist": "John Polidora",
+    "collectible": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by defeating Chromaggus in Blackwing Lair.",
+    "howToGetGold": "Can be crafted after defeating Chromaggus in Blackwing Lair.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA16_5e",
+    "name": "I hear you...",
+    "type": "Enchantment",
+    "text": "Increased Attack."
+  },
+  {
+    "id": "BRMA05_2",
+    "name": "Ignite Mana",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nDeal 5 damage to the enemy hero if they have any unspent Mana."
+  },
+  {
+    "id": "BRMA05_2H",
+    "name": "Ignite Mana",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nDeal 10 damage to the enemy hero if they have any unspent Mana."
+  },
+  {
+    "id": "BRM_006t",
+    "name": "Imp",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "race": "Demon",
+    "playerClass": "Warlock"
+  },
+  {
+    "id": "BRM_006",
+    "name": "Imp Gang Boss",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "Whenever this minion takes damage, summon a 1/1 Imp.",
+    "flavor": "His imp gang likes to sneak into Stormwind to spraypaint \"Ragnaros Rulez\" on the Mage Tower.",
+    "artist": "Steve Prescott",
+    "collectible": true,
+    "race": "Demon",
+    "playerClass": "Warlock",
+    "howToGet": "Unlocked by defeating Majordomo Executus in Molten Core.",
+    "howToGetGold": "Can be crafted after defeating Majordomo Executus in Molten Core."
+  },
+  {
+    "id": "BRM_028e",
+    "name": "Imperial Favor",
+    "type": "Enchantment",
+    "text": "Costs (1) less."
+  },
+  {
+    "id": "BRMA10_3e",
+    "name": "Incubation",
+    "type": "Enchantment",
+    "text": "Increased Health."
+  },
+  {
+    "id": "BRMA08_2",
+    "name": "Intense Gaze",
+    "type": "Hero Power",
+    "text": "<b>Passive Hero Power</b>\nAll cards cost (1). Players are capped at 1 Mana Crystal."
+  },
+  {
+    "id": "BRMA08_2H",
+    "name": "Intense Gaze",
+    "type": "Hero Power",
+    "text": "<b>Passive Hero Power</b>\nAll cards cost (1). You are capped at 2 Mana Crystals, and opponent at 1."
+  },
+  {
+    "id": "BRMA02_2",
+    "name": "Jeering Crowd",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nSummon a 1/1 Spectator with <b>Taunt</b>."
+  },
+  {
+    "id": "BRMA02_2H",
+    "name": "Jeering Crowd",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nSummon a 1/1 Spectator with <b>Taunt</b>."
+  },
+  {
+    "id": "BRMA17_4",
+    "name": "LAVA!",
+    "type": "Spell",
+    "cost": 2,
+    "text": "Deal $2 damage to all minions."
+  },
+  {
+    "id": "BRM_024e",
+    "name": "Large Talons",
+    "type": "Enchantment",
+    "text": "+3/+3."
+  },
+  {
+    "id": "BRM_011",
+    "name": "Lava Shock",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 2,
+    "text": "Deal $2 damage.\nUnlock your <b>Overloaded</b> Mana Crystals.",
+    "flavor": "Chocolate lava cake is shockingly delicious.",
+    "artist": "Zoltan Boros",
+    "collectible": true,
+    "playerClass": "Shaman",
+    "howToGet": "Unlocked by completing the Shaman Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Shaman Class Challenge in Blackrock Mountain."
+  },
+  {
+    "id": "BRM_011t",
+    "name": "Lava Shock",
+    "type": "Enchantment",
+    "text": "Cards you play this turn don't cause <b>Overload</b>.",
+    "playerClass": "Shaman",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "BRMA05_3e",
+    "name": "Living Bomb",
+    "type": "Enchantment",
+    "text": "On Geddon's turn, deal 5 damage to all of your stuff."
+  },
+  {
+    "id": "BRMA05_3He",
+    "name": "Living Bomb",
+    "type": "Enchantment",
+    "text": "On Geddon's turn, deal 10 damage to all of your stuff."
+  },
+  {
+    "id": "BRMA05_3",
+    "name": "Living Bomb",
+    "type": "Spell",
+    "cost": 4,
+    "text": "Choose an enemy minion. If it lives until your next turn, deal $5 damage to all enemies."
+  },
+  {
+    "id": "BRMA05_3H",
+    "name": "Living Bomb",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Choose an enemy minion. If it lives until your next turn, deal $10 damage to all enemies."
+  },
+  {
+    "id": "BRMA13_6",
+    "name": "Living Lava",
+    "type": "Minion",
+    "cost": 0,
+    "attack": 6,
+    "health": 6,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMA13_1",
+    "name": "Lord Victor Nefarius",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA13_1H",
+    "name": "Lord Victor Nefarius",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA07_2",
+    "name": "ME SMASH",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nDestroy a random damaged enemy minion."
+  },
+  {
+    "id": "BRMA07_2H",
+    "name": "ME SMASH",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nDestroy a random enemy minion."
+  },
+  {
+    "id": "BRMA04_2",
+    "name": "Magma Pulse",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nDeal 1 damage to all minions."
+  },
+  {
+    "id": "BRMA14_9H",
+    "name": "Magmatron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 5,
+    "attack": 8,
+    "health": 8,
+    "text": "Whenever a player plays a card, Magmatron deals 2 damage to them.",
+    "elite": true,
+    "race": "Mech"
+  },
+  {
+    "id": "BRMA14_9",
+    "name": "Magmatron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 5,
+    "attack": 7,
+    "health": 7,
+    "text": "Whenever a player plays a card, Magmatron deals 2 damage to them.",
+    "elite": true,
+    "race": "Mech",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "BRMA14_12",
+    "name": "Magmaw",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 5,
+    "attack": 10,
+    "health": 2,
+    "text": "<b>Taunt</b>",
+    "elite": true,
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRM_027",
+    "name": "Majordomo Executus",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 9,
+    "attack": 9,
+    "health": 7,
+    "text": "<b>Deathrattle:</b> Replace your hero with Ragnaros, the Firelord.",
+    "flavor": "You thought Executus turned you into Ragnaros, but really Ragnaros was in you the whole time.",
+    "artist": "Alex Horley Orlandelli",
+    "collectible": true,
+    "elite": true,
+    "howToGet": "Unlocked by completing Molten Core.",
+    "howToGetGold": "Can be crafted after completing Molten Core.",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "BRMA06_1H",
+    "name": "Majordomo Executus",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA06_1",
+    "name": "Majordomo Executus",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA15_1H",
+    "name": "Maloriak",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA15_1",
+    "name": "Maloriak",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_001e",
+    "name": "Melt",
+    "type": "Enchantment",
+    "text": "Attack changed to 0 this turn.",
+    "playerClass": "Priest",
+    "mechanics": [
+      "OneTurnEffect"
+    ]
+  },
+  {
+    "id": "BRMA03_3",
+    "name": "Moira Bronzebeard",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 1,
+    "health": 3,
+    "text": "Thaurissan's Hero Power can't be used.\nNever attacks minions unless they have <b>Taunt</b>.",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "BRMA03_3H",
+    "name": "Moira Bronzebeard",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 3,
+    "health": 1,
+    "text": "Thaurissan's Hero Power can't be used.\nNever attacks minions unless they have <b>Taunt</b>.",
+    "mechanics": [
+      "Aura"
+    ]
+  },
+  {
+    "id": "BRMA12_10",
+    "name": "Mutation",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nDiscard a random card."
+  },
+  {
+    "id": "BRMA13_3",
+    "name": "Nefarian",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA13_3H",
+    "name": "Nefarian",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA17_2",
+    "name": "Nefarian",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_030",
+    "name": "Nefarian",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 9,
+    "attack": 8,
+    "health": 8,
+    "text": "<b>Battlecry:</b> Add 2 random spells to your hand <i>(from your opponent's class)</i>.",
+    "flavor": "They call him \"Blackwing\" because he's a black dragon...... and he's got wings.",
+    "artist": "Ruan Jia",
+    "collectible": true,
+    "elite": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by defeating every boss in Blackrock Mountain!",
+    "howToGetGold": "Can be crafted after completing the Hidden Laboratory.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA17_2H",
+    "name": "Nefarian",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA17_8H",
+    "name": "Nefarian Strikes!",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nNefarian rains fire from above!"
+  },
+  {
+    "id": "BRMA17_8",
+    "name": "Nefarian Strikes!",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nNefarian rains fire from above!"
+  },
+  {
+    "id": "BRMA09_3H",
+    "name": "Old Horde",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon two 2/2 Orcs with <b>Taunt</b>. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA09_3",
+    "name": "Old Horde",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon two 1/1 Orcs with <b>Taunt</b>. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA09_3Ht",
+    "name": "Old Horde Orc",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMA09_3t",
+    "name": "Old Horde Orc",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMA14_1",
+    "name": "Omnotron Defense System",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA14_1H",
+    "name": "Omnotron Defense System",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_012e",
+    "name": "On Fire!",
+    "type": "Enchantment",
+    "text": "Increased Attack."
+  },
+  {
+    "id": "BRMA17_3H",
+    "name": "Onyxia",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA17_3",
+    "name": "Onyxia",
+    "type": "Hero",
+    "health": 15
+  },
+  {
+    "id": "BRMA17_9",
+    "name": "Onyxiclaw",
+    "type": "Weapon",
+    "cost": 2,
+    "attack": 2,
+    "durability": 6
+  },
+  {
+    "id": "BRMA09_2H",
+    "name": "Open the Gates",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon three 2/2 Whelps. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA09_2",
+    "name": "Open the Gates",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon three 1/1 Whelps. Get a new Hero Power."
+  },
+  {
+    "id": "BRMA01_2",
+    "name": "Pile On!",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nPut a minion from each deck into the battlefield."
+  },
+  {
+    "id": "BRMA01_2H",
+    "name": "Pile On!",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nPut two minions from your deck and one from your opponent's into the battlefield."
+  },
+  {
+    "id": "BRMA15_2He",
+    "name": "Potion of Might",
+    "type": "Enchantment",
+    "text": "+2/+2."
+  },
+  {
+    "id": "BRM_014e",
+    "name": "Power Rager",
+    "type": "Enchantment",
+    "text": "+3/+3",
+    "playerClass": "Hunter"
+  },
+  {
+    "id": "BRMA03_2",
+    "name": "Power of the Firelord",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nDeal 30 damage."
+  },
+  {
+    "id": "BRM_013",
+    "name": "Quick Shot",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 2,
+    "text": "Deal $3 damage.\nIf your hand is empty, draw a card.",
+    "flavor": "Han shot first.",
+    "artist": "Jonboy Meyers",
+    "collectible": true,
+    "playerClass": "Hunter",
+    "howToGet": "Unlocked by completing the Hunter Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Hunter Class Challenge in Blackrock Mountain.",
+    "mechanics": [
+      "AffectedBySpellPower"
+    ]
+  },
+  {
+    "id": "BRM_027h",
+    "name": "Ragnaros the Firelord",
+    "type": "Hero",
+    "health": 8
+  },
+  {
+    "id": "BRMA06_3H",
+    "name": "Ragnaros the Firelord",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA06_3",
+    "name": "Ragnaros the Firelord",
+    "type": "Hero",
+    "health": 8
+  },
+  {
+    "id": "BRMA10_1H",
+    "name": "Razorgore the Untamed",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA10_1",
+    "name": "Razorgore the Untamed",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA10_6",
+    "name": "Razorgore's Claws",
+    "type": "Weapon",
+    "cost": 1,
+    "attack": 1,
+    "durability": 5,
+    "text": "Whenever a Corrupted Egg dies, gain +1 Attack."
+  },
+  {
+    "id": "BRMA14_11",
+    "name": "Recharge",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Fill all empty Mana Crystals."
+  },
+  {
+    "id": "BRMA15_3",
+    "name": "Release the Aberrations!",
+    "type": "Spell",
+    "cost": 2,
+    "text": "Summon 3 Aberrations."
+  },
+  {
+    "id": "BRMA09_1H",
+    "name": "Rend Blackhand",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA09_1",
+    "name": "Rend Blackhand",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_029",
+    "name": "Rend Blackhand",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 7,
+    "attack": 8,
+    "health": 4,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, destroy a <b>Legendary</b> minion.",
+    "flavor": "Rend believes he is the True Warchief of the Horde and he keeps editing the wikipedia page for \"Warchief of the Horde\" to include his picture.",
+    "artist": "Alex Horley",
+    "collectible": true,
+    "elite": true,
+    "howToGet": "Unlocked by completing Blackrock Spire.",
+    "howToGetGold": "Can be crafted after completing Blackrock Spire.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRM_017",
+    "name": "Resurrect",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 2,
+    "text": "Summon a random friendly minion that died this game.",
+    "flavor": "I walked into the dungeon and noticed a slain adventurer. In his final moments, he had scrawled out a message in the dust on the wall beside him. Two words: \"rez plz\"",
+    "artist": "Luke Mancini",
+    "collectible": true,
+    "playerClass": "Priest",
+    "howToGet": "Unlocked by defeating Emperor Thaurissan in Blackrock Depths.",
+    "howToGetGold": "Can be crafted after defeating Emperor Thaurissan in Blackrock Depths."
+  },
+  {
+    "id": "BRM_015",
+    "name": "Revenge",
+    "type": "Spell",
+    "rarity": "Rare",
+    "cost": 2,
+    "text": "Deal $1 damage to all minions. If you have 12 or less Health, deal $3 damage instead.",
+    "flavor": "This is better than Arcane Explosion, so I guess warriors are finally getting revenge on mages for Mortal Strike being worse than Fireball.",
+    "artist": "Ben Olson",
+    "collectible": true,
+    "playerClass": "Warrior",
+    "howToGet": "Unlocked by defeating Razorgore in Blackwing Lair.",
+    "howToGetGold": "Can be crafted after defeating Razorgore in Blackwing Lair."
+  },
+  {
+    "id": "BRMA16_4",
+    "name": "Reverberating Gong",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Destroy your opponent's weapon."
+  },
+  {
+    "id": "BRMA04_4",
+    "name": "Rock Out",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Summon 3 Firesworn. <b>Overload:</b> (2)"
+  },
+  {
+    "id": "BRMA04_4H",
+    "name": "Rock Out",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Summon 3 Firesworn. <b>Overload:</b> (2)"
+  },
+  {
+    "id": "BRM_001",
+    "name": "Solemn Vigil",
+    "type": "Spell",
+    "rarity": "Common",
+    "cost": 5,
+    "text": "Draw 2 cards. Costs (1) less for each minion that died this turn.",
+    "flavor": "Each year, folk gather in front of Blackrock Mountain to mourn those who were mind-controlled into the lava.",
+    "artist": "Jaime Jones",
+    "collectible": true,
+    "playerClass": "Paladin",
+    "howToGet": "Unlocked by completing the Paladin Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Paladin Class Challenge in Blackrock Mountain."
+  },
+  {
+    "id": "BRMA13_5",
+    "name": "Son of the Flame",
+    "type": "Minion",
+    "cost": 0,
+    "attack": 6,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Deal 6 damage.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMA16_3e",
+    "name": "Sonic Breath",
+    "type": "Enchantment",
+    "text": "+3 Attack."
+  },
+  {
+    "id": "BRMA16_3",
+    "name": "Sonic Breath",
+    "type": "Spell",
+    "cost": 4,
+    "text": "Deal $3 damage to a minion. Give your weapon +3 Attack."
+  },
+  {
+    "id": "BRMA07_3",
+    "name": "TIME FOR SMASH",
+    "type": "Spell",
+    "cost": 4,
+    "text": "Deal $5 damage to a random enemy. Gain 5 Armor."
+  },
+  {
+    "id": "BRM_030t",
+    "name": "Tail Swipe",
+    "type": "Spell",
+    "cost": 4,
+    "text": "Deal $4 damage."
+  },
+  {
+    "id": "BRMA15_2",
+    "name": "The Alchemist",
+    "type": "Hero Power",
+    "text": "<b>Passive Hero Power</b>\nWhenever a minion is summoned, swap its Attack and Health."
+  },
+  {
+    "id": "BRMA15_2H",
+    "name": "The Alchemist",
+    "type": "Hero Power",
+    "text": "<b>Passive Hero Power</b>\nMinions' Attack and Health are swapped.\nYour minions have +2/+2."
+  },
+  {
+    "id": "BRMA06_2H",
+    "name": "The Majordomo",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon a 3/3 Flamewaker Acolyte."
+  },
+  {
+    "id": "BRMA06_2",
+    "name": "The Majordomo",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon a 1/3 Flamewaker Acolyte."
+  },
+  {
+    "id": "BRMA10_3H",
+    "name": "The Rookery",
+    "type": "Hero Power",
+    "cost": 0,
+    "text": "<b>Hero Power</b>\nGive all Corrupted Eggs +1 Health, then summon one."
+  },
+  {
+    "id": "BRMA10_3",
+    "name": "The Rookery",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nGive all Corrupted Eggs +1 Health, then summon one."
+  },
+  {
+    "id": "BRMA09_6",
+    "name": "The True Warchief",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Destroy a Legendary minion."
+  },
+  {
+    "id": "BRMA14_5H",
+    "name": "Toxitron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 1,
+    "attack": 4,
+    "health": 4,
+    "text": "At the start of your turn, deal 1 damage to all other minions.",
+    "elite": true,
+    "race": "Mech"
+  },
+  {
+    "id": "BRMA14_5",
+    "name": "Toxitron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 1,
+    "attack": 3,
+    "health": 3,
+    "text": "At the start of your turn, deal 1 damage to all other minions.",
+    "elite": true,
+    "race": "Mech"
+  },
+  {
+    "id": "BRMA13_2",
+    "name": "True Form",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nLet the games begin!"
+  },
+  {
+    "id": "BRMA13_2H",
+    "name": "True Form",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nLet the games begin!"
+  },
+  {
+    "id": "BRM_004e",
+    "name": "Twilight Endurance",
+    "type": "Enchantment",
+    "text": "Increased Health."
+  },
+  {
+    "id": "BRM_004",
+    "name": "Twilight Whelp",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain +2 Health.",
+    "flavor": "The twilight whelps are basically magic-vampires. Despite this, they are not a reference to any popular series of novels.",
+    "artist": "Sam Nielson",
+    "collectible": true,
+    "race": "Dragon",
+    "playerClass": "Priest",
+    "howToGet": "Unlocked by completing the Priest Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Priest Class Challenge in Blackrock Mountain.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRM_018e",
+    "name": "Unchained!",
+    "type": "Enchantment",
+    "text": "Your next Dragon costs (2) less.",
+    "playerClass": "Paladin"
+  },
+  {
+    "id": "BRMA11_1H",
+    "name": "Vaelastrasz the Corrupt",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRMA11_1",
+    "name": "Vaelastrasz the Corrupt",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "BRM_025",
+    "name": "Volcanic Drake",
+    "type": "Minion",
+    "rarity": "Common",
+    "cost": 6,
+    "attack": 6,
+    "health": 4,
+    "text": "Costs (1) less for each minion that died this turn.",
+    "flavor": "Volcanic Drakes breathe lava instead of fire. The antacid vendor at Thorium Point does a brisk business with them.",
+    "artist": "Lucas Graciano",
+    "collectible": true,
+    "race": "Dragon",
+    "howToGet": "Unlocked by defeating Omnotron Defense System in the Hidden Laboratory.",
+    "howToGetGold": "Can be crafted after defeating Omnotron Defense System in the Hidden Laboratory."
+  },
+  {
+    "id": "BRM_009",
+    "name": "Volcanic Lumberer",
+    "type": "Minion",
+    "rarity": "Rare",
+    "cost": 9,
+    "attack": 7,
+    "health": 8,
+    "text": "<b>Taunt</b>\nCosts (1) less for each minion that died this turn.",
+    "flavor": "The roots, the roots, the roots is on fire!",
+    "artist": "Trent Kaniuga",
+    "collectible": true,
+    "playerClass": "Druid",
+    "howToGet": "Unlocked by completing the Druid Class Challenge in Blackrock Mountain.",
+    "howToGetGold": "Can be crafted after completing the Druid Class Challenge in Blackrock Mountain.",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMA09_2t",
+    "name": "Whelp",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRM_004t",
+    "name": "Whelp",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1
+  },
+  {
+    "id": "BRMA09_2Ht",
+    "name": "Whelp",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 2,
+    "health": 2,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMA13_7",
+    "name": "Whirling Ash",
+    "type": "Minion",
+    "cost": 0,
+    "attack": 4,
+    "health": 5,
+    "text": "<b>Windfury</b>",
+    "mechanics": [
+      "Windfury"
+    ]
+  },
+  {
+    "id": "BRMA13_4H",
+    "name": "Wild Magic",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nPut a random spell from your opponent's class into your hand."
+  },
+  {
+    "id": "BRMA13_4",
+    "name": "Wild Magic",
+    "type": "Hero Power",
+    "cost": 1,
+    "text": "<b>Hero Power</b>\nPut a random spell from your opponent's class into your hand."
+  }
+]

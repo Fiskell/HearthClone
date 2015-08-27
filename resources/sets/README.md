@@ -1,0 +1,1 @@
+Thanks to http://hearthstonejson.com/ for the lists of cards in JSON.

@@ -1,0 +1,454 @@
+[
+  {
+    "id": "BRMC_86",
+    "name": "Atramedes",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 4,
+    "attack": 2,
+    "health": 8,
+    "text": "Whenever your opponent plays a card, gain +2 Attack.",
+    "elite": true,
+    "race": "Dragon"
+  },
+  {
+    "id": "TB_006",
+    "name": "Big Banana",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Give a minion +2/+2.",
+    "collectible": false
+  },
+  {
+    "id": "TB_006e",
+    "name": "Big Banana",
+    "type": "Enchantment",
+    "text": "Has +2/+2."
+  },
+  {
+    "id": "TB_001",
+    "name": "Boss HP Swapper",
+    "type": "Enchantment"
+  },
+  {
+    "id": "BRMC_97e",
+    "name": "Burning Adrenaline",
+    "type": "Enchantment",
+    "text": "Costs (2) less."
+  },
+  {
+    "id": "TB_010e",
+    "name": "Choose One of Three",
+    "type": "Enchantment"
+  },
+  {
+    "id": "TB_014",
+    "name": "Choose a New Card!",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Look at 3 random cards. Choose one and put it into your hand."
+  },
+  {
+    "id": "TB_012",
+    "name": "Choose a New Card!",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Look at 3 random cards. Choose one and shuffle it into your deck."
+  },
+  {
+    "id": "BRMC_95he",
+    "name": "Core Hound Pup",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 2,
+    "health": 4,
+    "text": "At the end of each turn, summon all Core Hound Pups that died this turn.",
+    "race": "Beast"
+  },
+  {
+    "id": "BRMC_95h",
+    "name": "Core Hound Puppies",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Summon two 2/4 Core Hound Pups."
+  },
+  {
+    "id": "BRMC_92",
+    "name": "Coren Direbrew",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 4,
+    "attack": 4,
+    "health": 8,
+    "text": "Always wins Brawls.\n <b>Battlecry:</b> Add a Brawl to your hand.",
+    "elite": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "TB_009",
+    "name": "Create 15 Secrets",
+    "type": "Enchantment"
+  },
+  {
+    "id": "TB_010",
+    "name": "Deckbuilding Enchant",
+    "type": "Enchantment"
+  },
+  {
+    "id": "TB_007",
+    "name": "Deviate Banana",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Swap a minion's Attack and Health.",
+    "collectible": false
+  },
+  {
+    "id": "TB_007e",
+    "name": "Deviate Switch",
+    "type": "Enchantment",
+    "text": "Attack and Health have been swapped by Deviate Banana."
+  },
+  {
+    "id": "BRMC_84",
+    "name": "Dragonkin Spellcaster",
+    "type": "Minion",
+    "cost": 5,
+    "attack": 4,
+    "health": 6,
+    "text": "<b>Battlecry:</b> Summon two 2/2 Whelps.",
+    "race": "Dragon",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMC_98e",
+    "name": "Dragonlust",
+    "type": "Enchantment",
+    "text": "+3 Attack."
+  },
+  {
+    "id": "BRMC_88",
+    "name": "Drakonid Slayer",
+    "type": "Minion",
+    "cost": 6,
+    "attack": 6,
+    "health": 6,
+    "text": "Also damages the minions next to whomever he attacks.",
+    "race": "Dragon"
+  },
+  {
+    "id": "TB_EndlessMinions01",
+    "name": "Endless Enchantment",
+    "type": "Enchantment",
+    "text": "+2/+2."
+  },
+  {
+    "id": "BRMC_99",
+    "name": "Garr",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 5,
+    "attack": 4,
+    "health": 8,
+    "text": "Whenever this minion takes damage, summon a 2/3 Elemental with <b>Taunt</b>.",
+    "elite": true
+  },
+  {
+    "id": "BRMC_95",
+    "name": "Golemagg",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 50,
+    "attack": 20,
+    "health": 20,
+    "text": "Costs (1) less for each damage your hero has taken.",
+    "elite": true
+  },
+  {
+    "id": "BRMC_96",
+    "name": "High Justice Grimstone",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 4,
+    "health": 5,
+    "text": "At the start of your turn, summon a <b>Legendary</b> minion.",
+    "elite": true
+  },
+  {
+    "id": "BRMC_86e",
+    "name": "I Hear You...",
+    "type": "Enchantment",
+    "text": "Increased Attack."
+  },
+  {
+    "id": "BRMC_100e",
+    "name": "Living Bomb",
+    "type": "Enchantment",
+    "text": "On Ragnaros' turn, deal 5 damage to this side of the board."
+  },
+  {
+    "id": "BRMC_100",
+    "name": "Living Bomb",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Choose an enemy minion. If it lives until your next turn, deal 5 damage to all enemies."
+  },
+  {
+    "id": "BRMC_90",
+    "name": "Living Lava",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 6,
+    "health": 6,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "BRMC_85",
+    "name": "Lucifron",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 4,
+    "attack": 4,
+    "health": 7,
+    "text": "<b>Battlecry:</b> Cast Corruption on all other minions.",
+    "elite": true,
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMC_87",
+    "name": "Moira Bronzebeard",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 3,
+    "attack": 4,
+    "health": 3,
+    "text": "<b>Deathrattle:</b> Summon Emperor Thaurissan.",
+    "elite": true,
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "TBA01_6",
+    "name": "Molten Rage",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nSummon a 5/1 Magma Rager."
+  },
+  {
+    "id": "TB_Pilot1",
+    "name": "Mystery Pilot",
+    "type": "Enchantment",
+    "text": "Who could it be?!"
+  },
+  {
+    "id": "TBA01_4",
+    "name": "Nefarian",
+    "type": "Hero",
+    "health": 30
+  },
+  {
+    "id": "TBST_004",
+    "name": "OLDLegit Healer",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 2,
+    "health": 2,
+    "text": "At the end of your turn, summon a random friendly minion that died this turn."
+  },
+  {
+    "id": "TBST_003",
+    "name": "OLDN3wb Healer",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 1,
+    "health": 1,
+    "text": "At the end of your turn, heal 2 damage from adjacent minions."
+  },
+  {
+    "id": "TBST_002",
+    "name": "OLDN3wb Mage",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 2,
+    "health": 1,
+    "text": "At the end of your turn, deal 1 damage to random enemy minion."
+  },
+  {
+    "id": "TBST_001",
+    "name": "OLDN3wb Tank",
+    "type": "Minion",
+    "cost": 1,
+    "attack": 2,
+    "health": 2,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "TBST_005",
+    "name": "OLDPvP Rogue",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 3,
+    "health": 6,
+    "text": "<b>Stealth</b>\nRegain <b>Stealth</b> when PvP Rogue kills a minion.",
+    "mechanics": [
+      "Stealth"
+    ]
+  },
+  {
+    "id": "TBST_006",
+    "name": "OLDTBST Push Common Card",
+    "type": "Enchantment",
+    "cost": 0,
+    "text": "push a common card into player's hand"
+  },
+  {
+    "id": "BRMC_93",
+    "name": "Omnotron Defense System",
+    "type": "Spell",
+    "cost": 3,
+    "text": "Summon a random Tron."
+  },
+  {
+    "id": "BRMC_83",
+    "name": "Open the Gates",
+    "type": "Spell",
+    "cost": 8,
+    "text": "Fill your board with 2/2 Whelps."
+  },
+  {
+    "id": "TB_015",
+    "name": "Pirate",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "race": "Pirate"
+  },
+  {
+    "id": "TB_013",
+    "name": "Player Choice Enchant",
+    "type": "Enchantment"
+  },
+  {
+    "id": "TBA01_1",
+    "name": "Ragnaros the Firelord",
+    "type": "Hero",
+    "health": 60
+  },
+  {
+    "id": "BRMC_98",
+    "name": "Razorgore",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 4,
+    "health": 12,
+    "text": "At the start of your turn, give your minions +3 Attack.",
+    "elite": true,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMC_99e",
+    "name": "Rock Elemental",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 2,
+    "health": 3,
+    "text": "<b>Taunt</b>",
+    "mechanics": [
+      "Taunt"
+    ]
+  },
+  {
+    "id": "TB_008",
+    "name": "Rotten Banana",
+    "type": "Spell",
+    "cost": 1,
+    "text": "Deal $1 damage.",
+    "collectible": false,
+    "mechanics": [
+      "AffectedBySpellPower"
+    ]
+  },
+  {
+    "id": "BRMC_91",
+    "name": "Son of the Flame",
+    "type": "Minion",
+    "cost": 3,
+    "attack": 6,
+    "health": 3,
+    "text": "<b>Battlecry:</b> Deal 6 damage.",
+    "mechanics": [
+      "Battlecry"
+    ]
+  },
+  {
+    "id": "BRMC_94",
+    "name": "Sulfuras",
+    "type": "Weapon",
+    "cost": 2,
+    "attack": 2,
+    "durability": 6,
+    "text": "<b>Deathrattle:</b> Your Hero Power becomes 'Deal 8 damage to a random enemy'.",
+    "mechanics": [
+      "Deathrattle"
+    ]
+  },
+  {
+    "id": "TBUD_1",
+    "name": "TBUD Summon Early Minion",
+    "type": "Enchantment",
+    "text": "Each turn, if you have less health then a your opponent, summon a free minion"
+  },
+  {
+    "id": "TB_011",
+    "name": "Tarnished Coin",
+    "type": "Spell",
+    "cost": 0,
+    "text": "Gain 1 Mana Crystal this turn only."
+  },
+  {
+    "id": "BRMC_97",
+    "name": "Vaelastrasz",
+    "type": "Minion",
+    "rarity": "Legendary",
+    "cost": 6,
+    "attack": 7,
+    "health": 7,
+    "text": "Your cards cost (3) less.",
+    "elite": true,
+    "race": "Dragon"
+  },
+  {
+    "id": "BRMC_89",
+    "name": "Whirling Ash",
+    "type": "Minion",
+    "cost": 2,
+    "attack": 4,
+    "health": 5,
+    "text": "<b>Windfury</b>",
+    "mechanics": [
+      "Windfury"
+    ]
+  },
+  {
+    "id": "TBA01_5",
+    "name": "Wild Magic",
+    "type": "Hero Power",
+    "cost": 2,
+    "text": "<b>Hero Power</b>\nAdd a random spell from any class to your hand. It costs (0)."
+  }
+]
