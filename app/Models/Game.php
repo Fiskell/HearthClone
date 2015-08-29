@@ -59,8 +59,19 @@ class Game
         $this->player2 = $player2;
     }
 
+    /**
+     * @return Player
+     */
     public function getActivePlayer() {
         return $this->active_player;
+    }
+
+    public function toggleActivePlayer() {
+        if($this->active_player->getPlayerId() == 1) {
+            $this->active_player = $this->getPlayer2();
+            return;
+        }
+        $this->active_player = $this->getPlayer1();
     }
 
 }

@@ -27,4 +27,19 @@ class GameTest extends TestCase
 
         $this->assertNotNull($active_player);
     }
+
+    public function test_active_player_switches_when_turn_is_passed() {
+        $active_player = $this->game->getActivePlayer();
+
+        $expected_active_player = $this->game->getPlayer1();
+        if($active_player->getPlayerId() == 1) {
+            $expected_active_player = $this->game->getPlayer2();
+        }
+
+        $active_player->passTurn();
+
+        $new_active_player = $this->game->getActivePlayer();
+
+        $this->assertTrue($expected_active_player->getPlayerId() == $new_active_player->getPlayerId());
+    }
 }

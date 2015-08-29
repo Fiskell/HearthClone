@@ -11,10 +11,10 @@ namespace App\Models;
 class Mechanics
 {
     /* Main Mechanics */
-    public static $BATTLECRY = "BATTLECRY";
+    public static $BATTLECRY     = "BATTLECRY";
     public static $DIVINE_SHIELD = "DIVINE_SHIELD";
-    public static $TAUNT = "TAUNT";
-    public static $STEALTH = "STEALTH";
+    public static $TAUNT         = "TAUNT";
+    public static $STEALTH       = "STEALTH";
 
     /* Sub Mechanics */
     public static $SILENCE = "SILENCE";

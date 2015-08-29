@@ -144,4 +144,13 @@ class Player
         }
     }
 
+    /**
+     * Pass the turn to the other player and resolve any end of turn effects.
+     */
+    public function passTurn() {
+        /** @var Game $game */
+        $game = app('Game');
+        $game->toggleActivePlayer();
+    }
+
 }
