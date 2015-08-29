@@ -1,8 +1,8 @@
 <?php namespace App\Models;
+
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MissingCardHandleException;
 use App\Exceptions\UnknownCardHandleException;
-use Illuminate\Support\Facades\App;
 
 /**
  * Created by PhpStorm.
@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\App;
  */
 class Card
 {
+    protected $id;
     protected $handle;
     protected $attack;
     protected $defense;
@@ -21,16 +22,20 @@ class Card
     protected $owner = null;
     protected $game;
 
-    public function __construct(Game $game) {
+    public function __construct(Game $game)
+    {
         $this->game = $game;
     }
 
-    public function load($handle=null) {
-        if(is_null($handle)) {
-           throw new MissingCardHandleException();
+    public function load($handle = null)
+    {
+        if (is_null($handle)) {
+            throw new MissingCardHandleException();
         }
 
-        switch($handle) {
+        $this->id = rand(1, 1000000);
+
+        switch ($handle) {
             case 'argent-squire':
                 $this->attack = 1;
                 $this->defense = 1;
@@ -55,7 +60,15 @@ class Card
         }
 
         $this->handle = $handle;
-        $this->alive  = true;
+        $this->alive = true;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -88,7 +101,7 @@ class Card
     public function setDefense($new_defense)
     {
         $this->defense = $new_defense;
-        if($this->defense <= 0) {
+        if ($this->defense <= 0) {
             $this->defense = 0;
             $this->killed();
         }
@@ -110,13 +123,19 @@ class Card
         return $this->alive;
     }
 
+    /**
+     * Kill the card and remove it from the board.
+     */
     public function killed()
     {
         $this->alive = false;
+        $player = $this->getOwner();
+        $player->removeFromBoard($this->getId());
+        $player->recalculateActiveMechanics();
     }
 
     /**
-     * @return null
+     * @return Player
      */
     public function getOwner()
     {
@@ -148,16 +167,12 @@ class Card
     }
 
     /**
-     * @param string $_mechanic
+     * @param string $mechanic
      * @return bool
      */
-    public function hasMechanic($_mechanic) {
-        foreach($this->mechanics as $mechanic) {
-            if($mechanic == $_mechanic) {
-                return true;
-            }
-        }
-        return false;
+    public function hasMechanic($mechanic)
+    {
+        return array_search($mechanic, $this->mechanics) !== false;
     }
 
     /**
@@ -166,14 +181,15 @@ class Card
      * @param Card $target
      * @throws InvalidTargetException
      */
-    public function attack(Card $target) {
+    public function attack(Card $target)
+    {
         $attacking_player = $this->getOwner();
         $defending_player = Player::getDefendingPlayer($attacking_player);
 
         $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
         $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
 
-        if(!$target_has_taunt && $player_has_taunt) {
+        if (!$target_has_taunt && $player_has_taunt) {
             throw new InvalidTargetException('You may only attack a creature with taunt');
         }
 
@@ -181,5 +197,6 @@ class Card
 
         $target->setDefense($target->getDefense() - $this->getAttack());
     }
+
 
 }

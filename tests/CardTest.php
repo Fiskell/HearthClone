@@ -82,11 +82,11 @@ class CardTest extends TestCase
     }
 
     public function test_knife_juggler_attack_kills_argent_squire_without_divine_shield() {
-        $argent_squire = $this->app->make('Card');
+        $argent_squire = app('Card');
         $argent_squire->load($this->argent_squire_handle);
         $this->game->getPlayer1()->play($argent_squire);
 
-        $knife_juggler = $this->app->make('Card');
+        $knife_juggler = app('Card');
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
@@ -97,12 +97,12 @@ class CardTest extends TestCase
 
     public function test_knife_juggler_defense_is_1_after_attacking_argent_squire() {
         /** @var Card $argent_squire */
-        $argent_squire = $this->app->make('Card');
+        $argent_squire = app('Card');
         $argent_squire->load($this->argent_squire_handle);
         $this->game->getPlayer1()->play($argent_squire);
 
         /** @var Card $knife_juggler */
-        $knife_juggler = $this->app->make('Card');
+        $knife_juggler = app('Card');
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
@@ -113,21 +113,47 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_knife_juggler_cannot_attack_argent_squire_when_dread_corsair_is_on_the_field() {
          /** @var Card $argent_squire */
-        $argent_squire = $this->app->make('Card');
+        $argent_squire = app('Card');
         $argent_squire->load($this->argent_squire_handle);
         $this->game->getPlayer1()->play($argent_squire);
 
         /** @var Card $dread_corsair */
-        $dread_corsair = $this->app->make('Card');
+        $dread_corsair = app('Card');
         $dread_corsair->load($this->dread_corsair_handle);
         $this->game->getPlayer1()->play($dread_corsair);
 
         /** @var Card $knife_juggler */
-        $knife_juggler = $this->app->make('Card');
+        $knife_juggler = app('Card');
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
         $knife_juggler->attack($argent_squire);
+    }
+
+    public function test_knife_juggler_can_attack_argent_squire_after_dread_corsair_is_killed() {
+         /** @var Card $argent_squire */
+        $argent_squire = app('Card');
+        $argent_squire->load($this->argent_squire_handle);
+        $this->game->getPlayer1()->play($argent_squire);
+
+        /** @var Card $dread_corsair */
+        $dread_corsair = app('Card');
+        $dread_corsair->load($this->dread_corsair_handle);
+        $this->game->getPlayer1()->play($dread_corsair);
+
+        /** @var Card $knife_juggler */
+        $knife_juggler = app('Card');
+        $knife_juggler->load($this->knife_juggler_handle);
+        $this->game->getPlayer2()->play($knife_juggler);
+
+        /** @var Card $knife_juggler */
+        $knife_juggler2 = app('Card');
+        $knife_juggler2->load($this->knife_juggler_handle);
+        $this->game->getPlayer2()->play($knife_juggler2);
+
+
+        $knife_juggler->attack($dread_corsair);
+        $knife_juggler2->attack($argent_squire);
     }
 
 }

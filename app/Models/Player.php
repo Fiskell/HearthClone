@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\App;
 
 class Player
 {
+    /** @var  int $player_id */
     protected $player_id;
+
+    /** @var  Card[] $creatures_in_play */
     protected $creatures_in_play;
-    protected $app;
+
     protected $active_mechanics = [];
 
     /**
@@ -48,7 +51,7 @@ class Player
 
     public function play(Card $card) {
         $card->setOwner($this);
-        $this->creatures_in_play[] = $card;
+        $this->creatures_in_play[$card->getId()] = $card;
         $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
     }
 
@@ -62,5 +65,26 @@ class Player
 
     public function hasMechanic($_mechanic) {
         return array_search($_mechanic, $this->active_mechanics) !== false;
+    }
+
+    /**
+     * Remove the card from the board.
+     *
+     * @param $card_id
+     */
+    public function removeFromBoard($card_id)
+    {
+        unset($this->creatures_in_play[$card_id]);
+    }
+
+    /**
+     * Recalculate our cache of current board mechanics
+     */
+    public function recalculateActiveMechanics()
+    {
+        $this->active_mechanics = [];
+        foreach($this->creatures_in_play as $creature) {
+            $this->active_mechanics = array_merge($this->active_mechanics, $creature->getMechanics());
+        }
     }
 }
