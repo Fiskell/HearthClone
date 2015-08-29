@@ -17,6 +17,7 @@ class CardTest extends TestCase
      * Creatures
      */
     public $argent_squire_handle      = 'Argent Squire';
+    public $amani_berserker_handle    = 'Amani Berserker';
     public $bluegill_warrior_handle   = 'Bluegill Warrior';
     public $dread_corsair_handle      = 'Dread Corsair';
     public $knife_juggler_handle      = 'Knife Juggler';
@@ -218,9 +219,18 @@ class CardTest extends TestCase
     }
 
     public function test_creature_with_charge_does_not_fall_asleep() {
-        $bluegill_warrior  = $this->playCard($this->bluegill_warrior_handle, 1, [], true);
-        $wisp2 = $this->playCard($this->wisp_handle, 2, [], true);
+        $bluegill_warrior = $this->playCard($this->bluegill_warrior_handle, 1, [], true);
+        $wisp2            = $this->playCard($this->wisp_handle, 2, [], true);
         $bluegill_warrior->attack($wisp2);
+    }
+
+    public function test_amani_berserker_has_five_attack_after_being_attacked() {
+        $amani_beserker = $this->playCard($this->amani_berserker_handle, 1);
+        $wisp           = $this->playCard($this->wisp_handle, 2);
+
+        $wisp->attack($amani_beserker);
+
+        $this->assertTrue($amani_beserker->getAttack() == 5);
     }
 
 }

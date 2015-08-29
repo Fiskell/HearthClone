@@ -42,6 +42,12 @@ class Card
                 $this->type      = CardType::$CREATURE;
                 $this->mechanics = [Mechanics::$DIVINE_SHIELD];
                 break;
+            case 'Amani Berserker':
+                $this->attack    = 2;
+                $this->defense   = 3;
+                $this->type      = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$ENRAGE];
+                break;
             case 'Bluegill Warrior':
                 $this->attack    = 2;
                 $this->defense   = 1;
@@ -109,6 +115,13 @@ class Card
      */
     public function getAttack() {
         return $this->attack;
+    }
+
+    /**
+     * @param $new_attack
+     */
+    public function setAttack($new_attack) {
+        $this->attack = $new_attack;
     }
 
     /**
@@ -238,6 +251,11 @@ class Card
             $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
 
             return;
+        }
+
+        /* Enrage */
+        if($target->hasMechanic(Mechanics::$ENRAGE)) {
+            $target->setAttack($target->getAttack() + 3);
         }
 
         $this->setDefense($this->getDefense() - $target->getAttack());

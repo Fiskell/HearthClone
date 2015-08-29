@@ -14,6 +14,7 @@ class Mechanics
     public static $BATTLECRY     = "BATTLECRY";
     public static $CHARGE        = "CHARGE";
     public static $DIVINE_SHIELD = "DIVINE_SHIELD";
+    public static $ENRAGE        = "ENRAGE";
     public static $TAUNT         = "TAUNT";
     public static $STEALTH       = "STEALTH";
 
