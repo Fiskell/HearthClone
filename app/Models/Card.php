@@ -103,28 +103,6 @@ class Card
     }
 
     /**
-     * Card instance attacks the target, dealing damage and potentially killing.
-     *
-     * @param Card $target
-     * @throws InvalidTargetException
-     */
-    public function attack(Card $target) {
-        $attacking_player = $this->getOwner();
-        $defending_player = Player::getDefendingPlayer($attacking_player);
-
-        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
-        $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
-
-        if(!$target_has_taunt && $player_has_taunt) {
-            throw new InvalidTargetException('You may only attack a creature with taunt');
-        }
-
-        $this->setDefense($this->getDefense() - $target->getAttack());
-
-        $target->setDefense($target->getDefense() - $this->getAttack());
-    }
-
-    /**
      * @return mixed
      */
     public function isAlive()
@@ -162,6 +140,14 @@ class Card
     }
 
     /**
+     * @return array
+     */
+    public function getMechanics()
+    {
+        return $this->mechanics;
+    }
+
+    /**
      * @param string $_mechanic
      * @return bool
      */
@@ -175,11 +161,25 @@ class Card
     }
 
     /**
-     * @return array
+     * Card instance attacks the target, dealing damage and potentially killing.
+     *
+     * @param Card $target
+     * @throws InvalidTargetException
      */
-    public function getMechanics()
-    {
-        return $this->mechanics;
+    public function attack(Card $target) {
+        $attacking_player = $this->getOwner();
+        $defending_player = Player::getDefendingPlayer($attacking_player);
+
+        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
+        $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
+
+        if(!$target_has_taunt && $player_has_taunt) {
+            throw new InvalidTargetException('You may only attack a creature with taunt');
+        }
+
+        $this->setDefense($this->getDefense() - $target->getAttack());
+
+        $target->setDefense($target->getDefense() - $this->getAttack());
     }
 
 }
