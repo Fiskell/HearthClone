@@ -24,6 +24,7 @@ class Card
     protected $sleeping;
     /** @var CardSets $card_sets */
     protected $card_sets;
+    protected $frozen = false;
 
     public function __construct(Game $game) {
         $this->game = $game;
@@ -232,7 +233,12 @@ class Card
         }
 
         if (!$target_has_divine_shield) {
+
             $target->setHealth($target->getHealth() - $this->getAttack());
+
+            if($this->hasMechanic(Mechanics::$FREEZE)) {
+                $target->freeze();
+            }
         }
     }
 
@@ -242,6 +248,14 @@ class Card
 
     public function wakeUp() {
         $this->sleeping = false;
+    }
+
+    public function isFrozen() {
+        return $this->frozen;
+    }
+
+    public function freeze() {
+        $this->frozen = true;
     }
 
 }

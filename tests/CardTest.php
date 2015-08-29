@@ -20,10 +20,12 @@ class CardTest extends TestCase
     public $argent_squire_name      = 'Argent Squire';
     public $amani_berserker_name    = 'Amani Berserker';
     public $bluegill_warrior_name   = 'Bluegill Warrior';
+    public $chillwind_yeti          = 'Chillwind Yeti';
     public $dread_corsair_name      = 'Dread Corsair';
     public $knife_juggler_name      = 'Knife Juggler';
     public $ogre_magi_name          = 'Ogre Magi';
     public $spellbreaker_name       = 'Spellbreaker';
+    public $water_elemental_name    = 'Water Elemental';
     public $wisp_name               = 'Wisp';
     public $worgen_infiltrator_name = 'Worgen Infiltrator';
 
@@ -280,6 +282,20 @@ class CardTest extends TestCase
     public function test_ogre_magi_increases_spell_power_by_one() {
         $ogre_magi = $this->playCard($this->ogre_magi_name, 1);
         $this->assertTrue($this->game->getPlayer1()->getSpellPowerModifier() == 1);
+    }
+
+    public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
+        $water_elemental = $this->playCard($this->water_elemental_name, 1);
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, 2);
+
+        $water_elemental->attack($chillwind_yeti);
+
+        $is_frozen = $chillwind_yeti->isFrozen();
+        $this->assertTrue($is_frozen);
+    }
+
+    public function test_argent_squire_can_not_attack_when_frozen() {
+
     }
 
 }

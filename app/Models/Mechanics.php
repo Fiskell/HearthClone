@@ -15,6 +15,7 @@ class Mechanics
     public static $CHARGE        = "Charge";
     public static $DIVINE_SHIELD = "Divine Shield";
     public static $ENRAGE        = "Enrage";
+    public static $FREEZE        = "Freeze";
     public static $TAUNT         = "Taunt";
     public static $STEALTH       = "Stealth";
     public static $SPELL_POWER   = "Spellpower";
