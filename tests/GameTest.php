@@ -21,4 +21,10 @@ class GameTest extends TestCase
         $player2 = $this->game->getPlayer2();
         $this->assertTrue(!!$player1 && !!$player2);
     }
+
+    public function test_game_initialization_chooses_turn_order() {
+        $active_player = $this->game->getActivePlayer();
+
+        $this->assertNotNull($active_player);
+    }
 }

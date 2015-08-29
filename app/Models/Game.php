@@ -15,6 +15,9 @@ class Game
     protected $player1;
     protected $player2;
 
+    /** @var  Player $active_player */
+    protected $active_player;
+
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
@@ -24,6 +27,8 @@ class Game
         $this->player2->setPlayerId(2);
         App::instance('Player2', $this->getPlayer2());
 
+        //TODO for now hard coding player 1 as default active player
+        $this->active_player = $this->player1;
     }
 
     /**
@@ -52,6 +57,10 @@ class Game
      */
     public function setPlayer2($player2) {
         $this->player2 = $player2;
+    }
+
+    public function getActivePlayer() {
+        return $this->active_player;
     }
 
 }
