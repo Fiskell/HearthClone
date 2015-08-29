@@ -29,35 +29,32 @@ class Player
      * @param Player $attacking_player
      * @return Player
      */
-    public static function getDefendingPlayer(Player $attacking_player)
-    {
-        if($attacking_player->getPlayerId() == 1) {
+    public static function getDefendingPlayer(Player $attacking_player) {
+        if ($attacking_player->getPlayerId() == 1) {
             return App::make('Player2');
         }
+
         return App::make('Player1');
     }
 
     /**
      * @return mixed
      */
-    public function getPlayerId()
-    {
+    public function getPlayerId() {
         return $this->player_id;
     }
 
     /**
      * @param mixed $player_id
      */
-    public function setPlayerId($player_id)
-    {
+    public function setPlayerId($player_id) {
         $this->player_id = $player_id;
     }
 
     /**
      * @return Card[]
      */
-    public function getGraveyard()
-    {
+    public function getGraveyard() {
         return $this->graveyard;
     }
 
@@ -75,12 +72,12 @@ class Player
      * @param Card[] $targets
      * @throws InvalidTargetException
      */
-    public function play(Card $card, array $targets=[]) {
+    public function play(Card $card, array $targets = []) {
         $card->setOwner($this);
         $this->creatures_in_play[$card->getId()] = $card;
-        $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
+        $this->active_mechanics                  = array_merge($this->active_mechanics, $card->getMechanics());
 
-        if($card->hasMechanic(Mechanics::$BATTLECRY)) {
+        if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
             $this->resolveBattlecry($card, $targets);
         }
     }
@@ -88,8 +85,7 @@ class Player
     /**
      * @return Card[]
      */
-    public function getCreaturesInPlay()
-    {
+    public function getCreaturesInPlay() {
         return $this->creatures_in_play;
     }
 
@@ -106,8 +102,7 @@ class Player
      *
      * @param $card_id
      */
-    public function removeFromBoard($card_id)
-    {
+    public function removeFromBoard($card_id) {
         $this->addToGraveyard($this->creatures_in_play[$card_id]);
         unset($this->creatures_in_play[$card_id]);
     }
@@ -115,10 +110,9 @@ class Player
     /**
      * Recalculate our cache of current board mechanics
      */
-    public function recalculateActiveMechanics()
-    {
+    public function recalculateActiveMechanics() {
         $this->active_mechanics = [];
-        foreach($this->creatures_in_play as $creature) {
+        foreach ($this->creatures_in_play as $creature) {
             $this->active_mechanics = array_merge($this->active_mechanics, $creature->getMechanics());
         }
     }
@@ -128,9 +122,8 @@ class Player
      * @param array $targets
      * @throws InvalidTargetException
      */
-    private function resolveBattlecry(Card $card, array $targets)
-    {
-        $card_sub_mechanics = $card->getSubMechanics();
+    private function resolveBattlecry(Card $card, array $targets) {
+        $card_sub_mechanics      = $card->getSubMechanics();
         $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
 
         if (is_null($card_sub_mechanics)) {
