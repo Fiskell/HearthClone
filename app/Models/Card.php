@@ -36,12 +36,18 @@ class Card
         $this->id = rand(1, 1000000);
 
         switch ($handle) {
-            case 'argent-squire':
+            case 'Wisp':
                 $this->attack = 1;
                 $this->defense = 1;
                 $this->type = CardType::$CREATURE;
                 break;
-            case 'knife-juggler':
+            case 'Argent Squire':
+                $this->attack = 1;
+                $this->defense = 1;
+                $this->type = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$DIVINE_SHIELD];
+                break;
+            case 'Knife Juggler':
                 $this->attack = 3;
                 $this->defense = 2;
                 $this->type = CardType::$CREATURE;
@@ -175,6 +181,10 @@ class Card
         return array_search($mechanic, $this->mechanics) !== false;
     }
 
+    public function removeMechanic($mechanic) {
+        $this->mechanics = array_diff($this->mechanics, [$mechanic]);
+    }
+
     /**
      * Card instance attacks the target, dealing damage and potentially killing.
      *
@@ -186,6 +196,7 @@ class Card
         $attacking_player = $this->getOwner();
         $defending_player = Player::getDefendingPlayer($attacking_player);
 
+        /* Taunt */
         $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
         $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
 
@@ -193,10 +204,19 @@ class Card
             throw new InvalidTargetException('You may only attack a creature with taunt');
         }
 
+        /* Divine Shield */
+        $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
+        if($target_has_divine_shield) {
+            $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
+            return;
+        }
+
         $this->setDefense($this->getDefense() - $target->getAttack());
 
         $target->setDefense($target->getDefense() - $this->getAttack());
     }
+
+
 
 
 }

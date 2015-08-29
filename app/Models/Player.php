@@ -67,6 +67,11 @@ class Player
         $this->graveyard[] = $dead_card;
     }
 
+    /**
+     * Add a card to the board.
+     *
+     * @param Card $card
+     */
     public function play(Card $card) {
         $card->setOwner($this);
         $this->creatures_in_play[$card->getId()] = $card;
@@ -81,6 +86,10 @@ class Player
         return $this->creatures_in_play;
     }
 
+    /**
+     * @param $_mechanic
+     * @return bool
+     */
     public function hasMechanic($_mechanic) {
         return array_search($_mechanic, $this->active_mechanics) !== false;
     }

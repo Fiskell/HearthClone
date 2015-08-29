@@ -15,8 +15,9 @@ class CardTest extends TestCase
     /**
      * Creatures
      */
-    public $argent_squire_handle = 'argent-squire';
-    public $knife_juggler_handle = 'knife-juggler';
+    public $wisp_handle = 'Wisp';
+    public $argent_squire_handle = 'Argent Squire';
+    public $knife_juggler_handle = 'Knife Juggler';
     public $dread_corsair_handle = 'Dread Corsair';
 
     /**
@@ -47,17 +48,17 @@ class CardTest extends TestCase
     }
 
     public function test_card_handle_is_set_when_handle_passed_into_load() {
-        $this->card->load($this->argent_squire_handle);
-        $this->assertTrue($this->card->getHandle() == $this->argent_squire_handle);
+        $this->card->load($this->wisp_handle);
+        $this->assertTrue($this->card->getHandle() == $this->wisp_handle);
     }
 
-    public function test_card_attack_is_set_on_load_argent_squire() {
-        $this->card->load($this->argent_squire_handle);
+    public function test_card_attack_is_set_on_load_wisp() {
+        $this->card->load($this->wisp_handle);
         $this->assertTrue($this->card->getAttack() == 1);
     }
 
-    public function test_card_defense_is_set_on_load_argent_squire() {
-        $this->card->load($this->argent_squire_handle);
+    public function test_card_defense_is_set_on_load_wisp() {
+        $this->card->load($this->wisp_handle);
         $this->assertTrue($this->card->getDefense() == 1);
     }
 
@@ -71,8 +72,8 @@ class CardTest extends TestCase
         $this->assertTrue($this->card->getDefense() == 2);
     }
 
-    public function test_argent_squire_is_a_creature() {
-        $this->card->load($this->argent_squire_handle);
+    public function test_wisp_is_a_creature() {
+        $this->card->load($this->wisp_handle);
         $this->assertTrue($this->card->getType() == CardType::$CREATURE);
     }
 
@@ -81,41 +82,41 @@ class CardTest extends TestCase
         $this->assertTrue($this->card->getType() == CardType::$SPELL);
     }
 
-    public function test_knife_juggler_attack_kills_argent_squire_without_divine_shield() {
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
+    public function test_knife_juggler_attack_kills_wisp_without_divine_shield() {
+        $wisp = app('Card');
+        $wisp->load($this->wisp_handle);
+        $this->game->getPlayer1()->play($wisp);
 
         $knife_juggler = app('Card');
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
-        $knife_juggler->attack($argent_squire);
-        $this->assertTrue($argent_squire->getDefense() == 0);
-        $this->assertTrue($argent_squire->isAlive() == false);
+        $knife_juggler->attack($wisp);
+        $this->assertTrue($wisp->getDefense() == 0);
+        $this->assertTrue($wisp->isAlive() == false);
     }
 
-    public function test_knife_juggler_defense_is_1_after_attacking_argent_squire() {
-        /** @var Card $argent_squire */
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
+    public function test_knife_juggler_defense_is_1_after_attacking_wisp() {
+        /** @var Card $wisp */
+        $wisp = app('Card');
+        $wisp->load($this->wisp_handle);
+        $this->game->getPlayer1()->play($wisp);
 
         /** @var Card $knife_juggler */
         $knife_juggler = app('Card');
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
-        $knife_juggler->attack($argent_squire);
+        $knife_juggler->attack($wisp);
         $this->assertTrue($knife_juggler->getDefense() == 1);
     }
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
-    public function test_knife_juggler_cannot_attack_argent_squire_when_dread_corsair_is_on_the_field() {
-         /** @var Card $argent_squire */
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
+    public function test_knife_juggler_cannot_attack_wisp_when_dread_corsair_is_on_the_field() {
+         /** @var Card $wisp */
+        $wisp = app('Card');
+        $wisp->load($this->wisp_handle);
+        $this->game->getPlayer1()->play($wisp);
 
         /** @var Card $dread_corsair */
         $dread_corsair = app('Card');
@@ -127,14 +128,14 @@ class CardTest extends TestCase
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
-        $knife_juggler->attack($argent_squire);
+        $knife_juggler->attack($wisp);
     }
 
-    public function test_knife_juggler_can_attack_argent_squire_after_dread_corsair_is_killed() {
-         /** @var Card $argent_squire */
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
+    public function test_knife_juggler_can_attack_wisp_after_dread_corsair_is_killed() {
+         /** @var Card $wisp */
+        $wisp = app('Card');
+        $wisp->load($this->wisp_handle);
+        $this->game->getPlayer1()->play($wisp);
 
         /** @var Card $dread_corsair */
         $dread_corsair = app('Card');
@@ -153,11 +154,30 @@ class CardTest extends TestCase
 
 
         $knife_juggler->attack($dread_corsair);
-        $knife_juggler2->attack($argent_squire);
+        $knife_juggler2->attack($wisp);
     }
 
-    public function test_argent_squire_is_added_to_player_1_graveyard() {
+    public function test_wisp_is_added_to_player_1_graveyard() {
+        /** @var Card $wisp */
+        $wisp = app('Card');
+        $wisp->load($this->wisp_handle);
+        $this->game->getPlayer1()->play($wisp);
 
+        /** @var Card $knife_juggler */
+        $knife_juggler = app('Card');
+        $knife_juggler->load($this->knife_juggler_handle);
+        $this->game->getPlayer2()->play($knife_juggler);
+
+        $knife_juggler->attack($wisp);
+        $player1_graveyard = $this->game->getPlayer1()->getGraveyard();
+
+        /** @var Card $first_dead_card */
+        $first_dead_card = array_get($player1_graveyard, '0');
+
+        $this->assertTrue($first_dead_card->getHandle() === $this->wisp_handle);
+    }
+
+    public function test_argent_squire_does_not_die_from_attack_if_divine_shield_active() {
         /** @var Card $argent_squire */
         $argent_squire = app('Card');
         $argent_squire->load($this->argent_squire_handle);
@@ -169,12 +189,8 @@ class CardTest extends TestCase
         $this->game->getPlayer2()->play($knife_juggler);
 
         $knife_juggler->attack($argent_squire);
-        $player1_graveyard = $this->game->getPlayer1()->getGraveyard();
 
-        /** @var Card $first_dead_card */
-        $first_dead_card = array_get($player1_graveyard, '0');
-
-        $this->assertTrue($first_dead_card->getHandle() === $this->argent_squire_handle);
+        $this->assertTrue($argent_squire->isAlive());
     }
 
 }

@@ -12,5 +12,5 @@ namespace App\Models;
 class Mechanics
 {
     public static $TAUNT = "TAUNT";
-
+    public static $DIVINE_SHIELD = "DIVINE_SHIELD";
 }
