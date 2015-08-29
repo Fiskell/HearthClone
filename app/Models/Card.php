@@ -253,11 +253,10 @@ class Card
         $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
         if ($target_has_divine_shield) {
             $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
-
-            return;
         }
 
-        if ($this->hasMechanic(Mechanics::$DIVINE_SHIELD)) {
+        $attacker_has_divine_shield = $this->hasMechanic(Mechanics::$DIVINE_SHIELD);
+        if ($attacker_has_divine_shield) {
             $this->removeMechanic(Mechanics::$DIVINE_SHIELD);
         }
 
@@ -270,9 +269,13 @@ class Card
             $this->setAttack($this->getAttack() + 3);
         }
 
-        $this->setDefense($this->getDefense() - $target->getAttack());
+        if(!$attacker_has_divine_shield) {
+            $this->setDefense($this->getDefense() - $target->getAttack());
+        }
 
-        $target->setDefense($target->getDefense() - $this->getAttack());
+        if(!$target_has_divine_shield) {
+            $target->setDefense($target->getDefense() - $this->getAttack());
+        }
     }
 
     public function isSleeping() {

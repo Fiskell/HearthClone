@@ -179,6 +179,7 @@ class CardTest extends TestCase
         $knife_juggler->attack($argent_squire);
 
         $this->assertTrue($argent_squire->isAlive());
+        $this->assertTrue($knife_juggler->getDefense() == 1);
     }
 
     public function test_argent_squire_dies_from_attack_after_being_silenced() {
