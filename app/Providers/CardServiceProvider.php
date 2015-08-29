@@ -16,7 +16,7 @@ class CardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Card', function () {
-            return new Card();
+            return new Card($this->app['Game']);
         });
     }
 }

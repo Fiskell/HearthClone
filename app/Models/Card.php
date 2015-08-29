@@ -1,6 +1,8 @@
 <?php namespace App\Models;
+use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MissingCardHandleException;
 use App\Exceptions\UnknownCardHandleException;
+use Illuminate\Support\Facades\App;
 
 /**
  * Created by PhpStorm.
@@ -15,6 +17,13 @@ class Card
     protected $defense;
     protected $type;
     protected $alive;
+    protected $mechanics = [];
+    protected $owner = null;
+    protected $game;
+
+    public function __construct(Game $game) {
+        $this->game = $game;
+    }
 
     public function load($handle=null) {
         if(is_null($handle)) {
@@ -32,7 +41,13 @@ class Card
                 $this->defense = 2;
                 $this->type = CardType::$CREATURE;
                 break;
-            case 'consecrate':
+            case 'Dread Corsair':
+                $this->attack = 3;
+                $this->defense = 3;
+                $this->type = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$TAUNT];
+                break;
+            case 'Consecrate':
                 $this->type = CardType::$SPELL;
                 break;
             default:
@@ -91,8 +106,30 @@ class Card
      * Card instance attacks the target, dealing damage and potentially killing.
      *
      * @param Card $target
+     * @throws InvalidTargetException
      */
     public function attack(Card $target) {
+        $attacking_player = $this->getOwner();
+        $defending_player = Player::getDefendingPlayer($attacking_player);
+
+        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
+        $player_has_taunt = false;
+        if(!$target_has_taunt) {
+            $player_has_taunt = false;
+            foreach($defending_player->getCreaturesInPlay() as $defending_creature) {
+                $player_has_taunt = $defending_creature->hasMechanic(Mechanics::$TAUNT);
+
+                if($player_has_taunt) {
+                    break;
+                }
+            }
+        }
+
+        if($player_has_taunt) {
+            throw new InvalidTargetException('You may only attack a creature with taunt');
+        }
+
+        $player_has_taunt = false;
 
         $this->setDefense($this->getDefense() - $target->getAttack());
 
@@ -110,6 +147,43 @@ class Card
     public function killed()
     {
         $this->alive = false;
+    }
+
+    /**
+     * @return null
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param Player|null $owner
+     */
+    public function setOwner(Player $owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param string $_mechanic
+     * @return bool
+     */
+    public function hasMechanic($_mechanic) {
+        foreach($this->mechanics as $mechanic) {
+            if($mechanic == $_mechanic) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

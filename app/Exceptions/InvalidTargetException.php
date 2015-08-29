@@ -2,14 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Kegimaro
- * Date: 8/23/15
- * Time: 3:15 PM
+ * Date: 8/27/15
+ * Time: 12:11 AM
  */
 
 namespace App\Exceptions;
+
 use Exception;
 
-class UnknownCardHandleException extends Exception
+class InvalidTargetException extends Exception
 {
 
 }

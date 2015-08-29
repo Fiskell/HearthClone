@@ -12,10 +12,4 @@ use Exception;
 class MissingCardHandleException extends Exception
 {
 
-    /**
-     * MissingCardHandle constructor.
-     */
-    public function __construct()
-    {
-    }
 }

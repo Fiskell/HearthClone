@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\App;
 
 class Game
 {
@@ -17,9 +18,12 @@ class Game
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
+        App::instance('Player1', $this->getPlayer1());
 
         $this->player2 = $player2;
         $this->player2->setPlayerId(2);
+        App::instance('Player2', $this->getPlayer2());
+
     }
 
     public function init() {
@@ -56,6 +60,5 @@ class Game
     {
         $this->player2 = $player2;
     }
-
 
 }
