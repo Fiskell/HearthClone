@@ -26,6 +26,9 @@ class Player
     /** @var array $active_mechanics */
     protected $active_mechanics = [];
 
+    /** @var int $spell_damage_modifier */
+    protected $spell_damage_modifier = 0;
+
     /**
      * @param Player $attacking_player
      * @return Player
@@ -80,6 +83,10 @@ class Player
 
         if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
             $this->resolveBattlecry($card, $targets);
+        }
+
+        if($card->hasMechanic(Mechanics::$SPELL_DAMAGE)) {
+            $this->recalculateSpellDamage();
         }
     }
 
@@ -161,6 +168,25 @@ class Player
         /** @var Game $game */
         $game = app('Game');
         $game->toggleActivePlayer();
+    }
+
+    /**
+     * Recalculates the spell damage modifier based on the board
+     */
+    private function recalculateSpellDamage() {
+        $this->spell_damage_modifier = 0;
+        foreach ($this->creatures_in_play as $creature) {
+            if($creature->hasMechanic(Mechanics::$SPELL_DAMAGE)) {
+                $this->spell_damage_modifier++;
+            }
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getSpellDamageModifier() {
+        return $this->spell_damage_modifier;
     }
 
 }

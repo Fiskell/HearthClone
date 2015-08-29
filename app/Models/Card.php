@@ -68,6 +68,12 @@ class Card
                 $this->defense = 2;
                 $this->type    = CardType::$CREATURE;
                 break;
+            case 'Ogre Magi':
+                $this->attack  = 4;
+                $this->defense = 4;
+                $this->type    = CardType::$CREATURE;
+                $this->mechanics    = [Mechanics::$SPELL_DAMAGE];
+                break;
             case 'Spellbreaker':
                 $this->attack        = 4;
                 $this->defense       = 3;

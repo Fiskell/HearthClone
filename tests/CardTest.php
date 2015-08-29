@@ -22,6 +22,7 @@ class CardTest extends TestCase
     public $bluegill_warrior_handle   = 'Bluegill Warrior';
     public $dread_corsair_handle      = 'Dread Corsair';
     public $knife_juggler_handle      = 'Knife Juggler';
+    public $ogre_magi_handle          = 'Ogre Magi';
     public $spellbreaker_handle       = 'Spellbreaker';
     public $wisp_handle               = 'Wisp';
     public $worgen_infiltrator_handle = 'Worgen Infiltrator';
@@ -237,7 +238,7 @@ class CardTest extends TestCase
 
     public function test_amani_berserker_has_five_attack_after_attacking_and_taking_damage() {
         $amani_berserker = $this->playCard($this->amani_berserker_handle, 1);
-        $wisp           = $this->playCard($this->wisp_handle, 2);
+        $wisp            = $this->playCard($this->wisp_handle, 2);
 
         $amani_berserker->attack($wisp);
 
@@ -265,7 +266,7 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_spellbreaker_silencing_worgen_infiltrator_throws() {
         $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_handle, 1);
-        $spellbreaker  = $this->playCard($this->spellbreaker_handle, 2, [$worgen_infiltrator]);
+        $spellbreaker       = $this->playCard($this->spellbreaker_handle, 2, [$worgen_infiltrator]);
     }
 
     public function test_dread_corsair_loses_taunt_when_silenced() {
@@ -274,6 +275,11 @@ class CardTest extends TestCase
 
         $has_taunt = $dread_corsair->hasMechanic(Mechanics::$TAUNT);
         $this->assertTrue(!$has_taunt);
+    }
+
+    public function test_ogre_magi_increases_spell_damage_by_one() {
+        $ogre_magi = $this->playCard($this->ogre_magi_handle, 1);
+        $this->assertTrue($this->game->getPlayer1()->getSpellDamageModifier() == 1);
     }
 
 }

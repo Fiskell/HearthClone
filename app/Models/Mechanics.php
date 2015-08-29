@@ -17,6 +17,7 @@ class Mechanics
     public static $ENRAGE        = "ENRAGE";
     public static $TAUNT         = "TAUNT";
     public static $STEALTH       = "STEALTH";
+    public static $SPELL_DAMAGE  = "SPELL_DAMAGE";
 
     /* Sub Mechanics */
     public static $SILENCE = "SILENCE";
