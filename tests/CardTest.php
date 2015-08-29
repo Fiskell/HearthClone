@@ -2,6 +2,7 @@
 use App\Models\Card;
 use App\Models\CardType;
 use App\Models\Game;
+use App\Models\Mechanics;
 use App\Models\Player;
 
 /**
@@ -240,6 +241,15 @@ class CardTest extends TestCase
         $amani_beserker->attack($wisp);
 
         $this->assertTrue($amani_beserker->getAttack() == 5);
+    }
+
+    public function test_worgen_infiltrator_loses_stealth_after_attacking() {
+        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_handle, 1);
+        $wisp               = $this->playCard($this->wisp_handle, 1);
+        $worgen_infiltrator->attack($wisp);
+
+        $has_stealth = $worgen_infiltrator->hasMechanic(Mechanics::$STEALTH);
+        $this->assertTrue(!$has_stealth);
     }
 
 }

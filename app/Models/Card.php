@@ -245,6 +245,10 @@ class Card
             throw new InvalidTargetException('You cannot attack a stealth minion');
         }
 
+        if($this->hasMechanic(Mechanics::$STEALTH)) {
+            $this->removeMechanic(Mechanics::$STEALTH);
+        }
+
         /* Divine Shield */
         $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
         if ($target_has_divine_shield) {
