@@ -2,6 +2,7 @@
 use App\Models\Card;
 use App\Models\CardType;
 use App\Models\Game;
+use App\Models\Player;
 
 /**
  * Created by PhpStorm.
@@ -38,6 +39,33 @@ class CardTest extends TestCase
         parent::setUp();
         $this->card = app('Card');
         $this->game = app('Game');
+    }
+
+    /**
+     * @param $handle
+     * @param $player_id
+     * @param array $targets
+     * @param bool|false $summoning_sickness
+     * @return Card
+     * @throws \App\Exceptions\MissingCardHandleException
+     * @throws \App\Exceptions\UnknownCardHandleException
+     */
+    public function playCard($handle, $player_id, $targets = [], $summoning_sickness = false)
+    {
+        /** @var Card $card */
+        $card = app('Card');
+        $card->load($handle);
+
+        /** @var Player $player */
+        $player = $this->game->getPlayer1();
+        if ($player_id == 2) {
+            $player = $this->game->getPlayer2();
+        }
+
+        $player->play($card, $targets);
+
+        // TODO summoning sickness
+        return $card;
     }
 
     /** @expectedException \App\Exceptions\MissingCardHandleException */
@@ -96,13 +124,8 @@ class CardTest extends TestCase
 
     public function test_knife_juggler_attack_kills_wisp_without_divine_shield()
     {
-        $wisp = app('Card');
-        $wisp->load($this->wisp_handle);
-        $this->game->getPlayer1()->play($wisp);
-
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+        $wisp = $this->playCard($this->wisp_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($wisp);
         $this->assertTrue($wisp->getDefense() == 0);
@@ -111,15 +134,8 @@ class CardTest extends TestCase
 
     public function test_knife_juggler_defense_is_1_after_attacking_wisp()
     {
-        /** @var Card $wisp */
-        $wisp = app('Card');
-        $wisp->load($this->wisp_handle);
-        $this->game->getPlayer1()->play($wisp);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+        $wisp = $this->playCard($this->wisp_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($wisp);
         $this->assertTrue($knife_juggler->getDefense() == 1);
@@ -128,45 +144,22 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_knife_juggler_cannot_attack_wisp_when_dread_corsair_is_on_the_field()
     {
-        /** @var Card $wisp */
-        $wisp = app('Card');
-        $wisp->load($this->wisp_handle);
-        $this->game->getPlayer1()->play($wisp);
+        $wisp = $this->playCard($this->wisp_handle, 1);
+        $dread_corsair = $this->playCard($this->dread_corsair_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
-        /** @var Card $dread_corsair */
-        $dread_corsair = app('Card');
-        $dread_corsair->load($this->dread_corsair_handle);
-        $this->game->getPlayer1()->play($dread_corsair);
+        print_r($this->game);
 
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
 
         $knife_juggler->attack($wisp);
     }
 
     public function test_knife_juggler_can_attack_wisp_after_dread_corsair_is_killed()
     {
-        /** @var Card $wisp */
-        $wisp = app('Card');
-        $wisp->load($this->wisp_handle);
-        $this->game->getPlayer1()->play($wisp);
-
-        /** @var Card $dread_corsair */
-        $dread_corsair = app('Card');
-        $dread_corsair->load($this->dread_corsair_handle);
-        $this->game->getPlayer1()->play($dread_corsair);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
-
-        /** @var Card $knife_juggler2 */
-        $knife_juggler2 = app('Card');
-        $knife_juggler2->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler2);
+        $wisp = $this->playCard($this->wisp_handle, 1);
+        $dread_corsair = $this->playCard($this->dread_corsair_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
+        $knife_juggler2 = $this->playCard($this->knife_juggler_handle, 2);
 
 
         $knife_juggler->attack($dread_corsair);
@@ -175,15 +168,8 @@ class CardTest extends TestCase
 
     public function test_wisp_is_added_to_player_1_graveyard()
     {
-        /** @var Card $wisp */
-        $wisp = app('Card');
-        $wisp->load($this->wisp_handle);
-        $this->game->getPlayer1()->play($wisp);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+        $wisp = $this->playCard($this->wisp_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($wisp);
         $player1_graveyard = $this->game->getPlayer1()->getGraveyard();
@@ -196,15 +182,8 @@ class CardTest extends TestCase
 
     public function test_argent_squire_does_not_die_from_attack_if_divine_shield_active()
     {
-        /** @var Card $argent_squire */
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+        $argent_squire = $this->playCard($this->argent_squire_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($argent_squire);
 
@@ -213,20 +192,9 @@ class CardTest extends TestCase
 
     public function test_argent_squire_dies_from_attack_after_being_silenced()
     {
-        /** @var Card $argent_squire */
-        $argent_squire = app('Card');
-        $argent_squire->load($this->argent_squire_handle);
-        $this->game->getPlayer1()->play($argent_squire);
-
-        /** @var Card $spellbreaker */
-        $spellbreaker = app('Card');
-        $spellbreaker->load($this->spellbreaker_handle);
-        $this->game->getPlayer2()->play($spellbreaker, [$argent_squire]);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+        $argent_squire = $this->playCard($this->argent_squire_handle, 1);
+        $spellbreaker = $this->playCard($this->spellbreaker_handle, 2, [$argent_squire]);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($argent_squire);
 
@@ -234,17 +202,10 @@ class CardTest extends TestCase
     }
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
-    public function test_attacking_stealth_worgen_infiltrator_throws() {
-
-        /** @var Card $worgen_infiltrator */
-        $worgen_infiltrator = app('Card');
-        $worgen_infiltrator->load($this->worgen_infiltrator_handle);
-        $this->game->getPlayer1()->play($worgen_infiltrator);
-
-        /** @var Card $knife_juggler */
-        $knife_juggler = app('Card');
-        $knife_juggler->load($this->knife_juggler_handle);
-        $this->game->getPlayer2()->play($knife_juggler);
+    public function test_attacking_stealth_worgen_infiltrator_throws()
+    {
+        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
 
         $knife_juggler->attack($worgen_infiltrator);
     }
