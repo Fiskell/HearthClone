@@ -252,4 +252,14 @@ class CardTest extends TestCase
         $this->assertTrue(!$has_stealth);
     }
 
+    public function test_argent_squire_loses_divine_shield_after_attacking() {
+        $argent_squire = $this->playCard($this->argent_squire_handle, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_handle, 2);
+        $argent_squire->attack($knife_juggler);
+
+        $has_divine_shield = $argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD);
+        $this->assertTrue(!$has_divine_shield);
+
+    }
+
 }

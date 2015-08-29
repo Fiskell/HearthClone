@@ -225,7 +225,7 @@ class Card
      */
     public function attack(Card $target) {
 
-        if($this->isSleeping()) {
+        if ($this->isSleeping()) {
             throw new InvalidTargetException('This creature cannot attack because it is asleep');
         }
 
@@ -245,7 +245,7 @@ class Card
             throw new InvalidTargetException('You cannot attack a stealth minion');
         }
 
-        if($this->hasMechanic(Mechanics::$STEALTH)) {
+        if ($this->hasMechanic(Mechanics::$STEALTH)) {
             $this->removeMechanic(Mechanics::$STEALTH);
         }
 
@@ -257,12 +257,16 @@ class Card
             return;
         }
 
+        if ($this->hasMechanic(Mechanics::$DIVINE_SHIELD)) {
+            $this->removeMechanic(Mechanics::$DIVINE_SHIELD);
+        }
+
         /* Enrage */
-        if($target->hasMechanic(Mechanics::$ENRAGE)) {
+        if ($target->hasMechanic(Mechanics::$ENRAGE)) {
             $target->setAttack($target->getAttack() + 3);
         }
 
-        if($this->hasMechanic(Mechanics::$ENRAGE)) {
+        if ($this->hasMechanic(Mechanics::$ENRAGE)) {
             $this->setAttack($this->getAttack() + 3);
         }
 
