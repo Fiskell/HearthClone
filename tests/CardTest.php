@@ -209,4 +209,11 @@ class CardTest extends TestCase
         $this->assertTrue(!$wisp->isSleeping());
     }
 
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_sleeping_creatures_attacking_throws() {
+        $wisp  = $this->playCard($this->wisp_handle, 1, [], true);
+        $wisp2 = $this->playCard($this->wisp_handle, 2, [], true);
+        $wisp->attack($wisp2);
+    }
+
 }

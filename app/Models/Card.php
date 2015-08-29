@@ -205,6 +205,11 @@ class Card
      * @throws InvalidTargetException
      */
     public function attack(Card $target) {
+
+        if($this->isSleeping()) {
+            throw new InvalidTargetException('This creature cannot attack because it is asleep');
+        }
+
         $attacking_player = $this->getOwner();
         $defending_player = Player::getDefendingPlayer($attacking_player);
 
