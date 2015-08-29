@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Card;
+use App\Models\CardSets;
 use App\Models\CardType;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,6 +18,10 @@ class CardServiceProvider extends ServiceProvider
     {
         $this->app->bind('Card', function () {
             return new Card($this->app['Game']);
+        });
+
+        $this->app->singleton('CardSets', function () {
+            return new CardSets();
         });
     }
 }

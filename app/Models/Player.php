@@ -10,6 +10,7 @@ namespace App\Models;
 
 
 use App\Exceptions\InvalidTargetException;
+use Exceptions\UndefinedBattleCryMechanicException;
 use Illuminate\Support\Facades\App;
 
 class Player
@@ -17,8 +18,8 @@ class Player
     /** @var  int $player_id */
     protected $player_id;
 
-    /** @var  Card[] $creatures_in_play */
-    protected $creatures_in_play = [];
+    /** @var  Card[] $minions_in_play */
+    protected $minions_in_play = [];
 
     /** @var  Card[] $graveyard */
     protected $graveyard = [];
@@ -26,8 +27,8 @@ class Player
     /** @var array $active_mechanics */
     protected $active_mechanics = [];
 
-    /** @var int $spell_damage_modifier */
-    protected $spell_damage_modifier = 0;
+    /** @var int $spell_power_modifier */
+    protected $spell_power_modifier = 0;
 
     /**
      * @param Player $attacking_player
@@ -78,23 +79,23 @@ class Player
      */
     public function play(Card $card, array $targets = []) {
         $card->setOwner($this);
-        $this->creatures_in_play[$card->getId()] = $card;
-        $this->active_mechanics                  = array_merge($this->active_mechanics, $card->getMechanics());
+        $this->minions_in_play[$card->getId()] = $card;
+        $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
 
         if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
             $this->resolveBattlecry($card, $targets);
         }
 
-        if($card->hasMechanic(Mechanics::$SPELL_DAMAGE)) {
-            $this->recalculateSpellDamage();
+        if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
+            $this->recalculateSpellPower();
         }
     }
 
     /**
      * @return Card[]
      */
-    public function getCreaturesInPlay() {
-        return $this->creatures_in_play;
+    public function getMinionsInPlay() {
+        return $this->minions_in_play;
     }
 
     /**
@@ -111,8 +112,8 @@ class Player
      * @param $card_id
      */
     public function removeFromBoard($card_id) {
-        $this->addToGraveyard($this->creatures_in_play[$card_id]);
-        unset($this->creatures_in_play[$card_id]);
+        $this->addToGraveyard($this->minions_in_play[$card_id]);
+        unset($this->minions_in_play[$card_id]);
     }
 
     /**
@@ -120,8 +121,8 @@ class Player
      */
     public function recalculateActiveMechanics() {
         $this->active_mechanics = [];
-        foreach ($this->creatures_in_play as $creature) {
-            $this->active_mechanics = array_merge($this->active_mechanics, $creature->getMechanics());
+        foreach ($this->minions_in_play as $minion) {
+            $this->active_mechanics = array_merge($this->active_mechanics, $minion->getMechanics());
         }
     }
 
@@ -129,10 +130,15 @@ class Player
      * @param Card $card
      * @param array $targets
      * @throws InvalidTargetException
+     * @throws UndefinedBattleCryMechanicException
      */
     private function resolveBattlecry(Card $card, array $targets) {
         $card_sub_mechanics      = $card->getSubMechanics();
         $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
+
+        if (is_null($card_battlecry_mechanic)) {
+            throw new UndefinedBattleCryMechanicException('No battle cry mechanic specified');
+        }
 
         if (is_null($card_sub_mechanics)) {
             return;
@@ -141,14 +147,14 @@ class Player
         switch ($card_battlecry_mechanic) {
             case Mechanics::$SILENCE:
                 if (count($targets) > 1) {
-                    throw new InvalidTargetException('Silence can only target one creature');
+                    throw new InvalidTargetException('Silence can only target one minion');
                 }
 
                 /** @var Card $target */
                 $target = current($targets);
 
-                if($target->hasMechanic(Mechanics::$STEALTH)) {
-                    throw new InvalidTargetException('Cannot silence stealth creature');
+                if ($target->hasMechanic(Mechanics::$STEALTH)) {
+                    throw new InvalidTargetException('Cannot silence stealth minion');
                 }
 
                 $target->removeAllMechanics();
@@ -161,8 +167,8 @@ class Player
      * Pass the turn to the other player and resolve any end of turn effects.
      */
     public function passTurn() {
-        foreach($this->creatures_in_play as $creature) {
-            $creature->wakeUp();
+        foreach ($this->minions_in_play as $minion) {
+            $minion->wakeUp();
         }
 
         /** @var Game $game */
@@ -173,11 +179,11 @@ class Player
     /**
      * Recalculates the spell damage modifier based on the board
      */
-    private function recalculateSpellDamage() {
-        $this->spell_damage_modifier = 0;
-        foreach ($this->creatures_in_play as $creature) {
-            if($creature->hasMechanic(Mechanics::$SPELL_DAMAGE)) {
-                $this->spell_damage_modifier++;
+    private function recalculateSpellPower() {
+        $this->spell_power_modifier = 0;
+        foreach ($this->minions_in_play as $minion) {
+            if ($minion->hasMechanic(Mechanics::$SPELL_POWER)) {
+                $this->spell_power_modifier++;
             }
         }
     }
@@ -185,8 +191,8 @@ class Player
     /**
      * @return int
      */
-    public function getSpellDamageModifier() {
-        return $this->spell_damage_modifier;
+    public function getSpellPowerModifier() {
+        return $this->spell_power_modifier;
     }
 
 }

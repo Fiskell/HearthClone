@@ -9,7 +9,7 @@
 namespace App\Exceptions;
 use Exception;
 
-class UnknownCardHandleException extends Exception
+class UnknownCardNameException extends Exception
 {
 
 }

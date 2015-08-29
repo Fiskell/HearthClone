@@ -1,8 +1,7 @@
 <?php namespace App\Models;
 
 use App\Exceptions\InvalidTargetException;
-use App\Exceptions\MissingCardHandleException;
-use App\Exceptions\UnknownCardHandleException;
+use App\Exceptions\MissingCardNameException;
 
 /**
  * Created by PhpStorm.
@@ -13,9 +12,9 @@ use App\Exceptions\UnknownCardHandleException;
 class Card
 {
     protected $id;
-    protected $handle;
+    protected $name;
     protected $attack;
-    protected $defense;
+    protected $health;
     protected $type;
     protected $alive;
     protected $mechanics     = [];
@@ -23,82 +22,34 @@ class Card
     protected $owner         = null;
     protected $game;
     protected $sleeping;
+    /** @var CardSets $card_sets */
+    protected $card_sets;
 
     public function __construct(Game $game) {
         $this->game = $game;
     }
 
-    public function load($handle = null) {
-        if (is_null($handle)) {
-            throw new MissingCardHandleException();
+    public function load($name = null) {
+        if (is_null($name)) {
+            throw new MissingCardNameException();
         }
 
-        $this->id = rand(1, 1000000);
+        $card_sets = app('CardSets');
+        $card_json = $card_sets->findCard($name);
 
-        switch ($handle) {
-            case 'Argent Squire':
-                $this->attack    = 1;
-                $this->defense   = 1;
-                $this->type      = CardType::$CREATURE;
-                $this->mechanics = [Mechanics::$DIVINE_SHIELD];
-                break;
-            case 'Amani Berserker':
-                $this->attack    = 2;
-                $this->defense   = 3;
-                $this->type      = CardType::$CREATURE;
-                $this->mechanics = [Mechanics::$ENRAGE];
-                break;
-            case 'Bluegill Warrior':
-                $this->attack    = 2;
-                $this->defense   = 1;
-                $this->type      = CardType::$CREATURE;
-                $this->mechanics = [Mechanics::$CHARGE];
-                break;
-            case 'Consecrate':
-                $this->type = CardType::$SPELL;
-                break;
-            case 'Dread Corsair':
-                $this->attack    = 3;
-                $this->defense   = 3;
-                $this->type      = CardType::$CREATURE;
-                $this->mechanics = [Mechanics::$TAUNT];
-                break;
-            case 'Knife Juggler':
-                $this->attack  = 3;
-                $this->defense = 2;
-                $this->type    = CardType::$CREATURE;
-                break;
-            case 'Ogre Magi':
-                $this->attack  = 4;
-                $this->defense = 4;
-                $this->type    = CardType::$CREATURE;
-                $this->mechanics    = [Mechanics::$SPELL_DAMAGE];
-                break;
+        $this->id        = rand(1, 1000000);
+        $this->name      = $name;
+        $this->attack    = array_get($card_json, 'attack');
+        $this->health    = array_get($card_json, 'health');
+        $this->type      = array_get($card_json, 'type');
+        $this->mechanics = array_get($card_json, 'mechanics', []);
+
+        switch ($card_json['name']) {
             case 'Spellbreaker':
-                $this->attack        = 4;
-                $this->defense       = 3;
-                $this->type          = CardType::$CREATURE;
-                $this->mechanics     = [Mechanics::$BATTLECRY];
                 $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
-                break;
-            case 'Wisp':
-                $this->attack  = 1;
-                $this->defense = 1;
-                $this->type    = CardType::$CREATURE;
-                break;
-            case 'Worgen Infiltrator':
-                $this->attack    = 2;
-                $this->defense   = 1;
-                $this->type      = CardType::$CREATURE;
-                $this->mechanics = [Mechanics::$STEALTH];
-                break;
-
-            default:
-                throw new UnknownCardHandleException();
         }
 
         $this->sleeping = !$this->hasMechanic(Mechanics::$CHARGE);
-        $this->handle   = $handle;
         $this->alive    = true;
     }
 
@@ -112,8 +63,8 @@ class Card
     /**
      * @return null
      */
-    public function getHandle() {
-        return $this->handle;
+    public function getName() {
+        return $this->name;
     }
 
     /**
@@ -122,6 +73,7 @@ class Card
     public function getAttack() {
         return $this->attack;
     }
+
 
     /**
      * @param $new_attack
@@ -133,17 +85,17 @@ class Card
     /**
      * @return mixed
      */
-    public function getDefense() {
-        return $this->defense;
+    public function getHealth() {
+        return $this->health;
     }
 
     /**
-     * @param mixed $new_defense
+     * @param mixed $new_health
      */
-    public function setDefense($new_defense) {
-        $this->defense = $new_defense;
-        if ($this->defense <= 0) {
-            $this->defense = 0;
+    public function setHealth($new_health) {
+        $this->health = $new_health;
+        if ($this->health <= 0) {
+            $this->health = 0;
             $this->killed();
         }
     }
@@ -232,7 +184,7 @@ class Card
     public function attack(Card $target) {
 
         if ($this->isSleeping()) {
-            throw new InvalidTargetException('This creature cannot attack because it is asleep');
+            throw new InvalidTargetException('This minion cannot attack because it is asleep');
         }
 
         $attacking_player = $this->getOwner();
@@ -243,7 +195,7 @@ class Card
         $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
 
         if (!$target_has_taunt && $player_has_taunt) {
-            throw new InvalidTargetException('You may only attack a creature with taunt');
+            throw new InvalidTargetException('You may only attack a minion with taunt');
         }
 
         /* Stealth */
@@ -275,12 +227,12 @@ class Card
             $this->setAttack($this->getAttack() + 3);
         }
 
-        if(!$attacker_has_divine_shield) {
-            $this->setDefense($this->getDefense() - $target->getAttack());
+        if (!$attacker_has_divine_shield) {
+            $this->setHealth($this->getHealth() - $target->getAttack());
         }
 
-        if(!$target_has_divine_shield) {
-            $target->setDefense($target->getDefense() - $this->getAttack());
+        if (!$target_has_divine_shield) {
+            $target->setHealth($target->getHealth() - $this->getAttack());
         }
     }
 

@@ -11,15 +11,16 @@ namespace App\Models;
 class Mechanics
 {
     /* Main Mechanics */
-    public static $BATTLECRY     = "BATTLECRY";
-    public static $CHARGE        = "CHARGE";
-    public static $DIVINE_SHIELD = "DIVINE_SHIELD";
-    public static $ENRAGE        = "ENRAGE";
-    public static $TAUNT         = "TAUNT";
-    public static $STEALTH       = "STEALTH";
-    public static $SPELL_DAMAGE  = "SPELL_DAMAGE";
+    public static $BATTLECRY     = "Battlecry";
+    public static $CHARGE        = "Charge";
+    public static $DIVINE_SHIELD = "Divine Shield";
+    public static $ENRAGE        = "Enrage";
+    public static $TAUNT         = "Taunt";
+    public static $STEALTH       = "Stealth";
+    public static $SPELL_POWER   = "Spellpower";
 
     /* Sub Mechanics */
-    public static $SILENCE = "SILENCE";
+    public static $SILENCE = "Silence";
+
 
 }
