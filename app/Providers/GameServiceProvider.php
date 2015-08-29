@@ -16,11 +16,8 @@ class GameServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('Game', function () {
-            return new Game($this->app['Player'], $this->app['Player'], $this->app['Board']);
+            return new Game($this->app['Player'], $this->app['Player']);
         });
 
-        $this->app->singleton('Board', function () {
-            return new Board();
-        });
     }
 }
