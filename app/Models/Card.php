@@ -42,6 +42,12 @@ class Card
                 $this->type      = CardType::$CREATURE;
                 $this->mechanics = [Mechanics::$DIVINE_SHIELD];
                 break;
+            case 'Bluegill Warrior':
+                $this->attack    = 2;
+                $this->defense   = 1;
+                $this->type      = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$CHARGE];
+                break;
             case 'Consecrate':
                 $this->type = CardType::$SPELL;
                 break;

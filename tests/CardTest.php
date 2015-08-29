@@ -17,6 +17,7 @@ class CardTest extends TestCase
      * Creatures
      */
     public $argent_squire_handle      = 'Argent Squire';
+    public $bluegill_warrior_handle   = 'Bluegill Warrior';
     public $dread_corsair_handle      = 'Dread Corsair';
     public $knife_juggler_handle      = 'Knife Juggler';
     public $spellbreaker_handle       = 'Spellbreaker';
@@ -214,6 +215,12 @@ class CardTest extends TestCase
         $wisp  = $this->playCard($this->wisp_handle, 1, [], true);
         $wisp2 = $this->playCard($this->wisp_handle, 2, [], true);
         $wisp->attack($wisp2);
+    }
+
+    public function test_creature_with_charge_does_not_fall_asleep() {
+        $bluegill_warrior  = $this->playCard($this->bluegill_warrior_handle, 1, [], true);
+        $wisp2 = $this->playCard($this->wisp_handle, 2, [], true);
+        $bluegill_warrior->attack($wisp2);
     }
 
 }
