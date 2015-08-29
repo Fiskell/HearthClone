@@ -69,6 +69,12 @@ class Card
                 $this->defense = 1;
                 $this->type = CardType::$CREATURE;
                 break;
+            case 'Worgen Infiltrator':
+                $this->attack = 2;
+                $this->defense = 1;
+                $this->type = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$STEALTH];
+                break;
 
             default:
                 throw new UnknownCardHandleException();
@@ -224,6 +230,11 @@ class Card
 
         if (!$target_has_taunt && $player_has_taunt) {
             throw new InvalidTargetException('You may only attack a creature with taunt');
+        }
+
+        /* Stealth */
+        if($target->hasMechanic(Mechanics::$STEALTH)) {
+            throw new InvalidTargetException('You cannot attack a stealth minion');
         }
 
         /* Divine Shield */

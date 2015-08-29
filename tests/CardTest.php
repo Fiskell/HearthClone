@@ -20,6 +20,7 @@ class CardTest extends TestCase
     public $knife_juggler_handle = 'Knife Juggler';
     public $spellbreaker_handle = 'Spellbreaker';
     public $wisp_handle = 'Wisp';
+    public $worgen_infiltrator_handle = 'Worgen Infiltrator';
 
     /**
      * Spells
@@ -230,6 +231,22 @@ class CardTest extends TestCase
         $knife_juggler->attack($argent_squire);
 
         $this->assertTrue(!$argent_squire->isAlive());
+    }
+
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_attacking_stealth_worgen_infiltrator_throws() {
+
+        /** @var Card $worgen_infiltrator */
+        $worgen_infiltrator = app('Card');
+        $worgen_infiltrator->load($this->worgen_infiltrator_handle);
+        $this->game->getPlayer1()->play($worgen_infiltrator);
+
+        /** @var Card $knife_juggler */
+        $knife_juggler = app('Card');
+        $knife_juggler->load($this->knife_juggler_handle);
+        $this->game->getPlayer2()->play($knife_juggler);
+
+        $knife_juggler->attack($worgen_infiltrator);
     }
 
 }
