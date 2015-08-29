@@ -22,6 +22,7 @@ class Card
     protected $sub_mechanics = [];
     protected $owner         = null;
     protected $game;
+    protected $sleeping;
 
     public function __construct(Game $game) {
         $this->game = $game;
@@ -78,8 +79,9 @@ class Card
                 throw new UnknownCardHandleException();
         }
 
-        $this->handle = $handle;
-        $this->alive  = true;
+        $this->sleeping = !$this->hasMechanic(Mechanics::$CHARGE);
+        $this->handle   = $handle;
+        $this->alive    = true;
     }
 
     /**
@@ -230,6 +232,10 @@ class Card
         $this->setDefense($this->getDefense() - $target->getAttack());
 
         $target->setDefense($target->getDefense() - $this->getAttack());
+    }
+
+    public function isSleeping() {
+        return $this->sleeping;
     }
 
 }

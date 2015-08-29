@@ -188,4 +188,9 @@ class CardTest extends TestCase
         $knife_juggler->attack($worgen_infiltrator);
     }
 
+    public function test_card_played_this_turn_has_summoning_sickness() {
+        $wisp = $this->playCard($this->wisp_handle, 1, [], true);
+        $this->assertTrue($wisp->isSleeping());
+    }
+
 }
