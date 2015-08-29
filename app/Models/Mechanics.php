@@ -8,9 +8,14 @@
 
 namespace App\Models;
 
-
 class Mechanics
 {
-    public static $TAUNT = "TAUNT";
+    /* Main Mechanics */
+    public static $BATTLECRY = "BATTLECRY";
     public static $DIVINE_SHIELD = "DIVINE_SHIELD";
+    public static $TAUNT = "TAUNT";
+
+    /* Sub Mechanics */
+    public static $SILENCE = "SILENCE";
+
 }

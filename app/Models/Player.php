@@ -9,6 +9,7 @@
 namespace App\Models;
 
 
+use App\Exceptions\InvalidTargetException;
 use Illuminate\Support\Facades\App;
 
 class Player
@@ -71,11 +72,17 @@ class Player
      * Add a card to the board.
      *
      * @param Card $card
+     * @param Card[] $targets
+     * @throws InvalidTargetException
      */
-    public function play(Card $card) {
+    public function play(Card $card, array $targets=[]) {
         $card->setOwner($this);
         $this->creatures_in_play[$card->getId()] = $card;
         $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
+
+        if($card->hasMechanic(Mechanics::$BATTLECRY)) {
+            $this->resolveBattlecry($card, $targets);
+        }
     }
 
     /**
@@ -113,6 +120,34 @@ class Player
         $this->active_mechanics = [];
         foreach($this->creatures_in_play as $creature) {
             $this->active_mechanics = array_merge($this->active_mechanics, $creature->getMechanics());
+        }
+    }
+
+    /**
+     * @param Card $card
+     * @param array $targets
+     * @throws InvalidTargetException
+     */
+    private function resolveBattlecry(Card $card, array $targets)
+    {
+        $card_sub_mechanics = $card->getSubMechanics();
+        $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
+
+        if (is_null($card_sub_mechanics)) {
+            return;
+        }
+
+        switch ($card_battlecry_mechanic) {
+            case Mechanics::$SILENCE:
+                if (count($targets) > 1) {
+                    throw new InvalidTargetException('Silence can only target one creature');
+                }
+
+                /** @var Card $target */
+                $target = current($targets);
+                $target->removeAllMechanics();
+
+                break;
         }
     }
 

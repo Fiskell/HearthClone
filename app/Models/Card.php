@@ -19,6 +19,7 @@ class Card
     protected $type;
     protected $alive;
     protected $mechanics = [];
+    protected $sub_mechanics = [];
     protected $owner = null;
     protected $game;
 
@@ -36,21 +37,14 @@ class Card
         $this->id = rand(1, 1000000);
 
         switch ($handle) {
-            case 'Wisp':
-                $this->attack = 1;
-                $this->defense = 1;
-                $this->type = CardType::$CREATURE;
-                break;
             case 'Argent Squire':
                 $this->attack = 1;
                 $this->defense = 1;
                 $this->type = CardType::$CREATURE;
                 $this->mechanics = [Mechanics::$DIVINE_SHIELD];
                 break;
-            case 'Knife Juggler':
-                $this->attack = 3;
-                $this->defense = 2;
-                $this->type = CardType::$CREATURE;
+            case 'Consecrate':
+                $this->type = CardType::$SPELL;
                 break;
             case 'Dread Corsair':
                 $this->attack = 3;
@@ -58,9 +52,24 @@ class Card
                 $this->type = CardType::$CREATURE;
                 $this->mechanics = [Mechanics::$TAUNT];
                 break;
-            case 'Consecrate':
-                $this->type = CardType::$SPELL;
+            case 'Knife Juggler':
+                $this->attack = 3;
+                $this->defense = 2;
+                $this->type = CardType::$CREATURE;
                 break;
+            case 'Spellbreaker':
+                $this->attack = 4;
+                $this->defense = 3;
+                $this->type = CardType::$CREATURE;
+                $this->mechanics = [Mechanics::$BATTLECRY];
+                $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
+                break;
+            case 'Wisp':
+                $this->attack = 1;
+                $this->defense = 1;
+                $this->type = CardType::$CREATURE;
+                break;
+
             default:
                 throw new UnknownCardHandleException();
         }
@@ -173,6 +182,14 @@ class Card
     }
 
     /**
+     * @return array
+     */
+    public function getSubMechanics()
+    {
+        return $this->sub_mechanics;
+    }
+
+    /**
      * @param string $mechanic
      * @return bool
      */
@@ -183,6 +200,11 @@ class Card
 
     public function removeMechanic($mechanic) {
         $this->mechanics = array_diff($this->mechanics, [$mechanic]);
+    }
+
+    public function removeAllMechanics()
+    {
+        $this->mechanics = [];
     }
 
     /**
@@ -215,8 +237,5 @@ class Card
 
         $target->setDefense($target->getDefense() - $this->getAttack());
     }
-
-
-
 
 }
