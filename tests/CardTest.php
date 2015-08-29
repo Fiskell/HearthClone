@@ -146,7 +146,7 @@ class CardTest extends TestCase
         $knife_juggler->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler);
 
-        /** @var Card $knife_juggler */
+        /** @var Card $knife_juggler2 */
         $knife_juggler2 = app('Card');
         $knife_juggler2->load($this->knife_juggler_handle);
         $this->game->getPlayer2()->play($knife_juggler2);
@@ -154,6 +154,27 @@ class CardTest extends TestCase
 
         $knife_juggler->attack($dread_corsair);
         $knife_juggler2->attack($argent_squire);
+    }
+
+    public function test_argent_squire_is_added_to_player_1_graveyard() {
+
+        /** @var Card $argent_squire */
+        $argent_squire = app('Card');
+        $argent_squire->load($this->argent_squire_handle);
+        $this->game->getPlayer1()->play($argent_squire);
+
+        /** @var Card $knife_juggler */
+        $knife_juggler = app('Card');
+        $knife_juggler->load($this->knife_juggler_handle);
+        $this->game->getPlayer2()->play($knife_juggler);
+
+        $knife_juggler->attack($argent_squire);
+        $player1_graveyard = $this->game->getPlayer1()->getGraveyard();
+
+        /** @var Card $first_dead_card */
+        $first_dead_card = array_get($player1_graveyard, '0');
+
+        $this->assertTrue($first_dead_card->getHandle() === $this->argent_squire_handle);
     }
 
 }

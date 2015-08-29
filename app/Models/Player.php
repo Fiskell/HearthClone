@@ -19,6 +19,9 @@ class Player
     /** @var  Card[] $creatures_in_play */
     protected $creatures_in_play;
 
+    /** @var  Card[] $graveyard */
+    protected $graveyard;
+
     protected $active_mechanics = [];
 
     /**
@@ -49,6 +52,21 @@ class Player
         $this->player_id = $player_id;
     }
 
+    /**
+     * @return Card[]
+     */
+    public function getGraveyard()
+    {
+        return $this->graveyard;
+    }
+
+    /**
+     * @param Card $dead_card
+     */
+    public function addToGraveyard(Card $dead_card) {
+        $this->graveyard[] = $dead_card;
+    }
+
     public function play(Card $card) {
         $card->setOwner($this);
         $this->creatures_in_play[$card->getId()] = $card;
@@ -74,6 +92,7 @@ class Player
      */
     public function removeFromBoard($card_id)
     {
+        $this->addToGraveyard($this->creatures_in_play[$card_id]);
         unset($this->creatures_in_play[$card_id]);
     }
 
@@ -87,4 +106,5 @@ class Player
             $this->active_mechanics = array_merge($this->active_mechanics, $creature->getMechanics());
         }
     }
+
 }
