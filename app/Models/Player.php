@@ -16,6 +16,7 @@ class Player
     protected $player_id;
     protected $creatures_in_play;
     protected $app;
+    protected $active_mechanics = [];
 
     /**
      * @param Player $attacking_player
@@ -48,6 +49,7 @@ class Player
     public function play(Card $card) {
         $card->setOwner($this);
         $this->creatures_in_play[] = $card;
+        $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
     }
 
     /**
@@ -56,5 +58,9 @@ class Player
     public function getCreaturesInPlay()
     {
         return $this->creatures_in_play;
+    }
+
+    public function hasMechanic($_mechanic) {
+        return array_search($_mechanic, $this->active_mechanics) !== false;
     }
 }

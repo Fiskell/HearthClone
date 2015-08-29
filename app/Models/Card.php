@@ -113,23 +113,11 @@ class Card
         $defending_player = Player::getDefendingPlayer($attacking_player);
 
         $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
-        $player_has_taunt = false;
-        if(!$target_has_taunt) {
-            $player_has_taunt = false;
-            foreach($defending_player->getCreaturesInPlay() as $defending_creature) {
-                $player_has_taunt = $defending_creature->hasMechanic(Mechanics::$TAUNT);
+        $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
 
-                if($player_has_taunt) {
-                    break;
-                }
-            }
-        }
-
-        if($player_has_taunt) {
+        if(!$target_has_taunt && $player_has_taunt) {
             throw new InvalidTargetException('You may only attack a creature with taunt');
         }
-
-        $player_has_taunt = false;
 
         $this->setDefense($this->getDefense() - $target->getAttack());
 
@@ -184,6 +172,14 @@ class Card
             }
         }
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMechanics()
+    {
+        return $this->mechanics;
     }
 
 }
