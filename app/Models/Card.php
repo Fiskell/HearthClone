@@ -258,6 +258,10 @@ class Card
             $target->setAttack($target->getAttack() + 3);
         }
 
+        if($this->hasMechanic(Mechanics::$ENRAGE)) {
+            $this->setAttack($this->getAttack() + 3);
+        }
+
         $this->setDefense($this->getDefense() - $target->getAttack());
 
         $target->setDefense($target->getDefense() - $this->getAttack());

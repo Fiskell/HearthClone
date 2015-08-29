@@ -233,4 +233,13 @@ class CardTest extends TestCase
         $this->assertTrue($amani_beserker->getAttack() == 5);
     }
 
+    public function test_amani_berserker_has_five_attack_after_attacking_and_taking_damage() {
+        $amani_beserker = $this->playCard($this->amani_berserker_handle, 1);
+        $wisp           = $this->playCard($this->wisp_handle, 2);
+
+        $amani_beserker->attack($wisp);
+
+        $this->assertTrue($amani_beserker->getAttack() == 5);
+    }
+
 }
