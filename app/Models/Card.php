@@ -229,7 +229,12 @@ class Card
         }
 
         if (!$attacker_has_divine_shield) {
+
             $this->setHealth($this->getHealth() - $target->getAttack());
+
+            if($target->hasMechanic(Mechanics::$FREEZE)) {
+                $this->freeze();
+            }
         }
 
         if (!$target_has_divine_shield) {

@@ -294,6 +294,16 @@ class CardTest extends TestCase
         $this->assertTrue($is_frozen);
     }
 
+    public function test_chillwind_yeti_is_frozen_when_attacking_water_elemental() {
+        $water_elemental = $this->playCard($this->water_elemental_name, 1);
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, 2);
+
+        $chillwind_yeti->attack($water_elemental);
+
+        $is_frozen = $chillwind_yeti->isFrozen();
+        $this->assertTrue($is_frozen);
+    }
+
     public function test_argent_squire_can_not_attack_when_frozen() {
 
     }
