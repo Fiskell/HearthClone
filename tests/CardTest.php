@@ -268,4 +268,12 @@ class CardTest extends TestCase
         $spellbreaker  = $this->playCard($this->spellbreaker_handle, 2, [$worgen_infiltrator]);
     }
 
+    public function test_dread_corsair_loses_taunt_when_silenced() {
+        $dread_corsair = $this->playCard($this->dread_corsair_handle, 1);
+        $spellbreaker  = $this->playCard($this->spellbreaker_handle, 2, [$dread_corsair]);
+
+        $has_taunt = $dread_corsair->hasMechanic(Mechanics::$TAUNT);
+        $this->assertTrue(!$has_taunt);
+    }
+
 }
