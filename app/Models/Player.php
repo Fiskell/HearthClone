@@ -139,6 +139,11 @@ class Player
 
                 /** @var Card $target */
                 $target = current($targets);
+
+                if($target->hasMechanic(Mechanics::$STEALTH)) {
+                    throw new InvalidTargetException('Cannot silence stealth creature');
+                }
+
                 $target->removeAllMechanics();
 
                 break;

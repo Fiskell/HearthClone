@@ -260,7 +260,12 @@ class CardTest extends TestCase
 
         $has_divine_shield = $argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD);
         $this->assertTrue(!$has_divine_shield);
+    }
 
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_spellbreaker_silencing_worgen_infiltrator_throws() {
+        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_handle, 1);
+        $spellbreaker  = $this->playCard($this->spellbreaker_handle, 2, [$worgen_infiltrator]);
     }
 
 }
