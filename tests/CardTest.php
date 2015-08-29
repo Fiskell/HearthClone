@@ -62,6 +62,14 @@ class CardTest extends TestCase
 
         $player->play($card, $targets);
 
+        if (!$summoning_sickness) {
+            $active_player = $this->game->getActivePlayer();
+            $active_player->passTurn();
+
+            $active_player = $this->game->getActivePlayer();
+            $active_player->passTurn();
+        }
+
         // TODO summoning sickness
         return $card;
     }
@@ -188,9 +196,17 @@ class CardTest extends TestCase
         $knife_juggler->attack($worgen_infiltrator);
     }
 
-    public function test_card_played_this_turn_has_summoning_sickness() {
+    public function test_card_played_this_turn_is_sleeping() {
         $wisp = $this->playCard($this->wisp_handle, 1, [], true);
         $this->assertTrue($wisp->isSleeping());
+    }
+
+    public function test_creature_wakes_up_after_passing_turn() {
+        $active_player = $this->game->getActivePlayer();
+        $wisp          = $this->playCard($this->wisp_handle, $active_player->getPlayerId(), [], true);
+
+        $active_player->passTurn();
+        $this->assertTrue(!$wisp->isSleeping());
     }
 
 }

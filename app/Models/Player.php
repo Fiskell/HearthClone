@@ -18,11 +18,12 @@ class Player
     protected $player_id;
 
     /** @var  Card[] $creatures_in_play */
-    protected $creatures_in_play;
+    protected $creatures_in_play = [];
 
     /** @var  Card[] $graveyard */
-    protected $graveyard;
+    protected $graveyard = [];
 
+    /** @var array $active_mechanics */
     protected $active_mechanics = [];
 
     /**
@@ -148,6 +149,10 @@ class Player
      * Pass the turn to the other player and resolve any end of turn effects.
      */
     public function passTurn() {
+        foreach($this->creatures_in_play as $creature) {
+            $creature->wakeUp();
+        }
+
         /** @var Game $game */
         $game = app('Game');
         $game->toggleActivePlayer();

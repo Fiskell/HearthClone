@@ -238,4 +238,8 @@ class Card
         return $this->sleeping;
     }
 
+    public function wakeUp() {
+        $this->sleeping = false;
+    }
+
 }
