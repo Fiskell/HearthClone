@@ -188,6 +188,8 @@ class Player
     public function startTurn() {
         $this->incrementManaCrystalCount();
         $this->resetManaCrystalsUsed();
+        $this->setManaCrystalsUsed($this->getLockedManaCrystalCount());
+        $this->resetLockedManaCrystalCount();
     }
 
     /**

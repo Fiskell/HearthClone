@@ -98,11 +98,11 @@ class CardTest extends TestCase
             $player = $this->game->getPlayer2();
         }
 
-        if($turn > 1) {
+        if ($turn > 1) {
             $player_a = $this->game->getActivePlayer();
             $player_b = $this->game->getDefendingPlayer();
 
-            for($i = 1; $i <= ($turn-1); $i++) {
+            for ($i = 1; $i <= ($turn - 1); $i++) {
                 $player_a->passTurn();
                 $player_b->passTurn();
             }
@@ -529,6 +529,19 @@ class CardTest extends TestCase
         $active_player_id = $this->game->getActivePlayer()->getPlayerId();
         $this->playCardStrict($this->earth_elemental_name, $active_player_id, 5);
         $this->assertEquals(3, $this->game->getActivePlayer()->getLockedManaCrystalCount());
+    }
+
+    public function test_locked_mana_crystals_are_unlocked_at_beginning_of_next_turn() {
+        $player_a = $this->game->getActivePlayer();
+        $player_b = $this->game->getDefendingPlayer();
+        $this->playCardStrict($this->earth_elemental_name, $player_a->getPlayerId(), 5);
+
+        $player_a->passTurn();
+        $this->assertEquals(3, $player_a->getLockedManaCrystalCount());
+        $player_b->passTurn();
+
+        $this->assertEquals(0, $player_a->getLockedManaCrystalCount());
+        $this->assertEquals(3, $player_a->getManaCrystalsUsed());
     }
 
 }
