@@ -188,6 +188,10 @@ class Card
             throw new InvalidTargetException('This minion cannot attack because it is asleep');
         }
 
+        if($this->isFrozen()) {
+            throw new InvalidTargetException('This minion cannot attack because it is frozen');
+        }
+
         $attacking_player = $this->getOwner();
         $defending_player = Player::getDefendingPlayer($attacking_player);
 
@@ -261,6 +265,10 @@ class Card
 
     public function freeze() {
         $this->frozen = true;
+    }
+
+    public function thaw() {
+        $this->frozen = false;
     }
 
 }

@@ -169,6 +169,7 @@ class Player
     public function passTurn() {
         foreach ($this->minions_in_play as $minion) {
             $minion->wakeUp();
+//            $minion->thaw();
         }
 
         /** @var Game $game */

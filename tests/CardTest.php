@@ -80,6 +80,14 @@ class CardTest extends TestCase
         return $card;
     }
 
+    public function getActivePlayerId() {
+        return $this->game->getActivePlayer()->getPlayerId();
+    }
+
+    public function getDefendingPlayerId() {
+        return ($this->getActivePlayerId() % 2) + 1;
+    }
+
     /** @expectedException \App\Exceptions\MissingCardNameException */
     public function test_card_load_throws_when_no_card_name_specified() {
         $this->card->load();
@@ -304,8 +312,14 @@ class CardTest extends TestCase
         $this->assertTrue($is_frozen);
     }
 
-    public function test_argent_squire_can_not_attack_when_frozen() {
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_chillwind_yeti_can_not_attack_when_frozen() {
+        $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, $this->getDefendingPlayerId());
 
+        $water_elemental->attack($chillwind_yeti);
+        $this->game->getActivePlayer()->passTurn();
+        $chillwind_yeti->attack($water_elemental);
     }
 
 }
