@@ -339,14 +339,28 @@ class CardTest extends TestCase
         $wisp         = $this->playCard($this->wisp_name, 2);
 
         $hand_size = $this->game->getPlayer1()->getHandSize();
-        echo $hand_size . '---';
 
         $wisp->attack($loot_hoarder);
 
         $new_hand_size = $this->game->getPlayer1()->getHandSize();
-        echo $new_hand_size;
 
         $this->assertTrue($new_hand_size == ($hand_size + 1));
+    }
+
+    public function test_both_players_loot_hoarder_will_draw_a_card_when_killed() {
+        $loot_hoarder = $this->playCard($this->loot_hoarder_name, 1);
+        $loot_hoarder2 = $this->playCard($this->loot_hoarder_name, 2);
+
+        $hand_size_player1 = $this->game->getPlayer1()->getHandSize();
+        $hand_size_player2 = $this->game->getPlayer2()->getHandSize();
+
+        $loot_hoarder2->attack($loot_hoarder);
+
+        $new_hand_size_player1 = $this->game->getPlayer1()->getHandSize();
+        $new_hand_size_player2 = $this->game->getPlayer2()->getHandSize();
+
+        $this->assertTrue($new_hand_size_player1 == ($hand_size_player1 + 1));
+        $this->assertTrue($new_hand_size_player2 == ($hand_size_player2 + 1));
     }
 
 }
