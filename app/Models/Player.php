@@ -50,6 +50,16 @@ class Player
     /** @var  AbstractHero $hero */
     protected $hero;
 
+    protected $alive = true;
+
+    public function isAlive() {
+        return $this->alive;
+    }
+
+    public function killed() {
+        $this->alive = false;
+    }
+
     /**
      * @param Player $attacking_player
      * @return Player
@@ -352,7 +362,15 @@ class Player
      * @param array $targets
      */
     public function useAbility($targets=[]) {
-        $this->hero->useAbility($this, $this->getDefendingPlayer($this), $targets);
+        $defending_player = $this->getDefendingPlayer($this);
+        $this->hero->useAbility($this, $defending_player, $targets);
+        if(!$defending_player->getHero()->isAlive()) {
+            $defending_player->killed();
+        }
+
+        if(!$this->getHero()->isAlive()) {
+            $this->killed();
+        }
     }
 
 }

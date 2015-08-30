@@ -566,5 +566,14 @@ class CardTest extends TestCase
         $this->assertEquals(28, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
+    public function test_player_is_killed_when_hero_dies() {
+        $this->initPlayers();
+
+        $this->game->getPlayer2()->getHero()->takeDamage(28);
+        $this->game->getPlayer1()->useAbility();
+
+        $this->assertFalse($this->game->getPlayer2()->isAlive());
+    }
+
 }
 

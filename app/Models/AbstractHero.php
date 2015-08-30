@@ -16,6 +16,8 @@ abstract class AbstractHero
 
     protected $health = 30;
 
+    protected $alive = true;
+
     /**
      * @return mixed
      */
@@ -43,6 +45,9 @@ abstract class AbstractHero
      */
     public function takeDamage($damage) {
         $this->health -= $damage;
+        if($this->health <= 0) {
+            $this->killed();
+        }
     }
 
     /**
@@ -59,6 +64,14 @@ abstract class AbstractHero
      */
     public function getHealth() {
         return $this->health;
+    }
+
+    public function isAlive() {
+        return $this->alive;
+    }
+
+    public function killed() {
+        $this->alive = 0;
     }
 
 }
