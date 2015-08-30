@@ -15,4 +15,13 @@ class Rogue extends AbstractHero
         $this->hero_class = HeroClass::$ROGUE;
         $this->hero_power = HeroPower::$ROGUE;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

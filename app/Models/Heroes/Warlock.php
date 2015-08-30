@@ -15,4 +15,13 @@ class Warlock extends AbstractHero
         $this->hero_class = HeroClass::$WARLOCK;
         $this->hero_power = HeroPower::$WARLOCK;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

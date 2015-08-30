@@ -15,4 +15,13 @@ class Priest extends AbstractHero
         $this->hero_class = HeroClass::$PRIEST;
         $this->hero_power = HeroPower::$PRIEST;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

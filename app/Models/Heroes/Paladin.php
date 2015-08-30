@@ -15,4 +15,13 @@ class Paladin extends AbstractHero
         $this->hero_class = HeroClass::$PALADIN;
         $this->hero_power = HeroPower::$PALADIN;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

@@ -15,4 +15,13 @@ class Druid extends AbstractHero
         $this->hero_class = HeroClass::$DRUID;
         $this->hero_power = HeroPower::$DRUID;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

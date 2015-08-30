@@ -15,4 +15,13 @@ class Hunter extends AbstractHero
         $this->hero_class = HeroClass::$HUNTER;
         $this->hero_power = HeroPower::$HUNTER;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

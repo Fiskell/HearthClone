@@ -8,7 +8,7 @@
 
 namespace App\Models;
 
-class AbstractHero
+abstract class AbstractHero
 {
     protected $hero_class;
 
@@ -34,5 +34,12 @@ class AbstractHero
     public function setHeroPower($hero_power) {
         $this->hero_power = $hero_power;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    abstract function useAbility(array $targets);
 
 }

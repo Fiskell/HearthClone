@@ -113,6 +113,13 @@ class CardTest extends TestCase
         return $card;
     }
 
+    public function initPlayers($player1_class='Hunter', $player1_deck=[], $player2_class='Mage', $player2_deck=[]) {
+        $player1_deck = app('Deck', [app($player1_class), $player1_deck]);
+        $player2_deck = app('Deck', [app($player2_class), $player2_deck]);
+
+        $this->game->init($player1_deck, $player2_deck);
+    }
+
     public function getActivePlayerId() {
         return $this->game->getActivePlayer()->getPlayerId();
     }
@@ -542,6 +549,14 @@ class CardTest extends TestCase
 
         $this->assertEquals(0, $player_a->getLockedManaCrystalCount());
         $this->assertEquals(3, $player_a->getManaCrystalsUsed());
+    }
+
+    public function test_mage_power_kills_wisp() {
+        $this->initPlayers();
+        $wisp = $this->playCard($this->wisp_name, 1);
+        $this->game->getPlayer2()->getHero()->useAbility([$wisp]);
+
+        $this->assertFalse($wisp->isAlive());
     }
 
 }

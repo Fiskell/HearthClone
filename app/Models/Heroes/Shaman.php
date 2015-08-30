@@ -15,4 +15,13 @@ class Shaman extends AbstractHero
         $this->hero_class = HeroClass::$SHAMAN;
         $this->hero_power = HeroPower::$SHAMAN;
     }
+
+    /**
+     * Use the heroes ability
+     *
+     * @param array $targets
+     */
+    function useAbility(array $targets) {
+        // TODO: Implement useAbility() method.
+    }
 }

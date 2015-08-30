@@ -298,6 +298,9 @@ class Player
         $this->resetCardsPlayedThisTurn();
     }
 
+    /**
+     * Reset mana crystals to 0
+     */
     private function resetManaCrystalsUsed() {
         $this->setManaCrystalsUsed(0);
     }
