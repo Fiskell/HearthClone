@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use App\Exceptions\InvalidTargetException;
+use App\Exceptions\MinionAlreadyAttackedException;
 use App\Exceptions\MissingCardNameException;
 
 /**
@@ -25,6 +26,7 @@ class Card
     /** @var CardSets $card_sets */
     protected $card_sets;
     protected $frozen = false;
+    protected $times_attacked_this_turn = 0;
 
     public function __construct(Game $game) {
         $this->game = $game;
@@ -186,6 +188,7 @@ class Card
      *
      * @param Card $target
      * @throws InvalidTargetException
+     * @throws MinionAlreadyAttackedException
      */
     public function attack(Card $target) {
 
@@ -195,6 +198,10 @@ class Card
 
         if($this->isFrozen()) {
             throw new InvalidTargetException('This minion cannot attack because it is frozen');
+        }
+
+        if($this->alreadyAttacked()) {
+            throw new MinionAlreadyAttackedException('This minion has already attacked this turn');
         }
 
         $attacking_player = $this->getOwner();
@@ -254,6 +261,8 @@ class Card
                 $target->freeze();
             }
         }
+
+        $this->incrementTimesAttackedThisTurn();
     }
 
     public function isSleeping() {
@@ -280,6 +289,35 @@ class Card
         switch($this->name) {
             case 'Loot Hoarder':
                 $this->getOwner()->drawCard();
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimesAttackedThisTurn() {
+        return $this->times_attacked_this_turn;
+    }
+
+    /**
+     * Increment number of times attacked this turn by one.
+     * Minions without windfury can only attack once per turn.
+     * Minions with windfury can attack twice per turn.
+     */
+    public function incrementTimesAttackedThisTurn() {
+        $this->times_attacked_this_turn++;
+    }
+
+    /**
+     * Sets times attacked back to zero
+     */
+    public function resetTimesAttackedThisTurn() {
+        $this->times_attacked_this_turn = 0;
+    }
+
+    private function alreadyAttacked() {
+        if($this->getTimesAttackedThisTurn() == 1) {
+            return true;
         }
     }
 

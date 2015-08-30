@@ -152,7 +152,7 @@ class CardTest extends TestCase
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_knife_juggler_cannot_attack_wisp_when_dread_corsair_is_on_the_field() {
-        $wisp          = $this->playCard($this->wisp_name, 1);
+        $wisp = $this->playCard($this->wisp_name, 1);
         $this->playCard($this->dread_corsair_name, 1);
         $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
 
@@ -160,8 +160,8 @@ class CardTest extends TestCase
     }
 
     public function test_knife_juggler_can_attack_wisp_after_dread_corsair_is_killed() {
-        $wisp           = $this->playCard($this->wisp_name, 1);
-        $dread_corsair  = $this->playCard($this->dread_corsair_name, 1);
+        $wisp          = $this->playCard($this->wisp_name, 1);
+        $dread_corsair = $this->playCard($this->dread_corsair_name, 1);
 
         $knife_juggler  = $this->playCard($this->knife_juggler_name, 2);
         $knife_juggler2 = $this->playCard($this->knife_juggler_name, 2);
@@ -349,7 +349,7 @@ class CardTest extends TestCase
     }
 
     public function test_both_players_loot_hoarder_will_draw_a_card_when_killed() {
-        $loot_hoarder = $this->playCard($this->loot_hoarder_name, 1);
+        $loot_hoarder  = $this->playCard($this->loot_hoarder_name, 1);
         $loot_hoarder2 = $this->playCard($this->loot_hoarder_name, 2);
 
         $hand_size_player1 = $this->game->getPlayer1()->getHandSize();
@@ -362,6 +362,16 @@ class CardTest extends TestCase
 
         $this->assertTrue($new_hand_size_player1 == ($hand_size_player1 + 1));
         $this->assertTrue($new_hand_size_player2 == ($hand_size_player2 + 1));
+    }
+
+    /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
+    public function test_minions_can_only_attack_once_per_turn() {
+        $chillwind_yeti = $this->playCard($this->chillwind_yeti, 1);
+        $wisp           = $this->playCard($this->wisp_name, 2);
+        $wisp2          = $this->playCard($this->wisp_name, 2);
+
+        $chillwind_yeti->attack($wisp);
+        $chillwind_yeti->attack($wisp2);
     }
 
 }
