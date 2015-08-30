@@ -37,6 +37,13 @@ class Game
         $this->defending_player = $this->player2;
     }
 
+    public function init(Deck $player1, Deck $player2) {
+        /** @var Game $game */
+        $game = app('Game');
+        $game->getPlayer1()->setDeck($player1);
+        $game->getPlayer2()->setDeck($player2);
+    }
+
     /**
      * @return Player
      */

@@ -44,6 +44,12 @@ class Player
     /** @var int $mana_crystals_used_this_turn */
     protected $mana_crystals_used_this_turn = 0;
 
+    /** @var  Deck $deck */
+    protected $deck;
+
+    /** @var  AbstractHero $hero */
+    protected $hero;
+
     /**
      * @param Player $attacking_player
      * @return Player
@@ -315,6 +321,28 @@ class Player
      */
     public function resetLockedManaCrystalCount() {
         $this->locked_mana_crystal_count = 0;
+    }
+
+    /**
+     * @return Deck
+     */
+    public function getDeck() {
+        return $this->deck;
+    }
+
+    /**
+     * @param Deck $deck
+     */
+    public function setDeck(Deck $deck) {
+        $this->deck = $deck;
+        $this->hero = $deck->getHero();
+    }
+
+    /**
+     * @return AbstractHero
+     */
+    public function getHero() {
+        return $this->hero;
     }
 
 }

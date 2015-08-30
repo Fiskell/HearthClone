@@ -1,5 +1,7 @@
 <?php
 use App\Models\Game;
+use App\Models\HeroClass;
+use App\Models\Heroes\Hunter;
 
 /**
  * Created by PhpStorm.
@@ -41,5 +43,18 @@ class GameTest extends TestCase
         $new_active_player = $this->game->getActivePlayer();
 
         $this->assertTrue($expected_active_player->getPlayerId() == $new_active_player->getPlayerId());
+    }
+
+    public function test_game_is_initialized_with_a_hunter_and_a_mage() {
+        $player1_deck = app('Deck', [app('Hunter'), []]);
+        $player2_deck = app('Deck', [app('Mage'), []]);
+
+        $this->game->init($player1_deck, $player2_deck);
+
+        $player1_hero = $this->game->getPlayer1()->getHero();
+        $player2_hero = $this->game->getPlayer2()->getHero();
+
+        $this->assertEquals(HeroClass::$HUNTER, $player1_hero->getHeroClass());
+        $this->assertEquals(HeroClass::$MAGE, $player2_hero->getHeroClass());
     }
 }
