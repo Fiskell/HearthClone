@@ -65,11 +65,11 @@ class Player
     }
 
     /**
-     * @param Player $attacking_player
+     * @param Player $player
      * @return Player
      */
-    public static function getOtherPlayer(Player $attacking_player) {
-        if ($attacking_player->getPlayerId() == 1) {
+    public static function getOtherPlayer(Player $player) {
+        if ($player->getPlayerId() == 1) {
             return app('Player2');
         }
 
