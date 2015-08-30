@@ -488,11 +488,26 @@ class CardTest extends TestCase
     }
 
     public function test_player_gets_mana_crystal_at_beginning_of_turn() {
-        $active_player    = $this->game->getActivePlayer();
-        $defending_player = $this->game->getDefendingPlayer();
-        $this->assertEquals(0, $defending_player->getManaCrystalCount());
-        $active_player->passTurn();
-        $this->assertEquals(1, $defending_player->getManaCrystalCount());
+        $player_a    = $this->game->getActivePlayer();
+        $player_b = $this->game->getDefendingPlayer();
+        $this->assertEquals(1, $player_a->getManaCrystalCount());
+        $player_a->passTurn();
+        $player_b->passTurn();
+        $this->assertEquals(2, $player_a->getManaCrystalCount());
+    }
+
+    public function test_player_mana_crystals_reset_at_beginning_of_next_turn() {
+        $player_a = $this->game->getActivePlayer();
+        $player_b = $this->game->getDefendingPlayer();
+
+        $this->assertEquals(0, $player_a->getManaCrystalsUsed());
+        $this->playCardStrict($this->argent_squire_name, $player_a->getPlayerId());
+        $this->assertEquals(1, $player_a->getManaCrystalsUsed());
+
+        $player_a->passTurn(); // player a: 1 crystal
+        $player_b->passTurn(); // player b: 1 crystal
+
+        $this->assertEquals(0, $player_a->getManaCrystalsUsed());
     }
 
     /** @expectedException \App\Exceptions\NotEnoughManaCrystalsException */

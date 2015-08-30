@@ -93,10 +93,12 @@ class Player
      */
     public function play(Card $card, array $targets = [], $choose_mechanic=null) {
 
-        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsedThisTurn();
+        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
         if(($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
         }
+
+        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
 
         $card->setOwner($this);
         $this->minions_in_play[$card->getId()] = $card;
@@ -177,6 +179,7 @@ class Player
      */
     public function startTurn() {
         $this->incrementManaCrystalCount();
+        $this->resetManaCrystalsUsed();
     }
 
     /**
@@ -250,14 +253,14 @@ class Player
     /**
      * @return int
      */
-    public function getManaCrystalsUsedThisTurn() {
+    public function getManaCrystalsUsed() {
         return $this->mana_crystals_used_this_turn;
     }
 
     /**
      * @param int $mana_crystals_used_this_turn
      */
-    public function setManaCrystalsUsedThisTurn($mana_crystals_used_this_turn) {
+    public function setManaCrystalsUsed($mana_crystals_used_this_turn) {
         $this->mana_crystals_used_this_turn = $mana_crystals_used_this_turn;
     }
 
@@ -277,6 +280,10 @@ class Player
      */
     private function resetTurnCounters() {
         $this->resetCardsPlayedThisTurn();
+    }
+
+    private function resetManaCrystalsUsed() {
+        $this->setManaCrystalsUsed(0);
     }
 
 }
