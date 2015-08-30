@@ -400,6 +400,16 @@ class CardTest extends TestCase
         $this->assertTrue(!$wisp2->isAlive());
     }
 
+    public function test_thrallmar_farseer_can_still_attack_after_attacking_once() {
+        $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);
+        $wisp              = $this->playCard($this->wisp_name, 2);
+
+        $thrallmar_farseer->attack($wisp);
+
+        $this->assertTrue(!$wisp->isAlive());
+        $this->assertFalse($thrallmar_farseer->alreadyAttacked());
+    }
+
     /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
     public function test_thrallmar_farseer_can_not_attack_more_than_twice_per_turn() {
         $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);

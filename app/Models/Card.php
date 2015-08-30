@@ -315,7 +315,7 @@ class Card
         $this->times_attacked_this_turn = 0;
     }
 
-    private function alreadyAttacked() {
+    public function alreadyAttacked() {
         if($this->hasMechanic(Mechanics::$WINDFURY)) {
             return $this->getTimesAttackedThisTurn() == 2;
         }
