@@ -29,8 +29,6 @@ class Game
 
         //TODO for now hard coding player 1 as default active player
         $this->active_player = $this->player1;
-
-
     }
 
     /**

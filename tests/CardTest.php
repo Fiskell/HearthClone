@@ -59,10 +59,13 @@ class CardTest extends TestCase
      * @throws \App\Exceptions\MissingCardNameException
      * @throws \App\Exceptions\UnknownCardNameException
      */
-    public function playCard($name, $player_id, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
+    public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
         /** @var Card $card */
         $card = app('Card');
         $card->load($name);
+
+        $this->game->getPlayer1()->setManaCrystalCount(1000);
+        $this->game->getPlayer2()->setManaCrystalCount(1000);
 
         /** @var Player $player */
         $player = $this->game->getPlayer1();
@@ -79,6 +82,22 @@ class CardTest extends TestCase
             $active_player = $this->game->getActivePlayer();
             $active_player->passTurn();
         }
+
+        return $card;
+    }
+
+    public function playCardStrict($name, $player_id = 1, $targets = [], $choose_mechanic = null) {
+        /** @var Card $card */
+        $card = app('Card');
+        $card->load($name);
+
+        /** @var Player $player */
+        $player = $this->game->getPlayer1();
+        if ($player_id == 2) {
+            $player = $this->game->getPlayer2();
+        }
+
+        $player->play($card, $targets, $choose_mechanic);
 
         return $card;
     }
@@ -467,4 +486,33 @@ class CardTest extends TestCase
 
         $this->assertFalse($argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
+
+    /** @expectedException \App\Exceptions\NotEnoughManaCrystalsException */
+    public function test_knife_juggler_can_not_be_played_turn_one() {
+        $this->playCardStrict($this->knife_juggler_name);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

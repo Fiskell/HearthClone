@@ -15,6 +15,7 @@ class Card
 {
     protected $id;
     protected $name;
+    protected $cost;
     protected $attack;
     protected $health;
     protected $type;
@@ -44,13 +45,14 @@ class Card
 
         $this->id        = rand(1, 1000000);
         $this->name      = $name;
-        $this->attack    = array_get($card_json, 'attack');
-        $this->health    = array_get($card_json, 'health');
-        $this->type      = array_get($card_json, 'type');
+        $this->cost      = array_get($card_json, 'cost', 0);
+        $this->attack    = array_get($card_json, 'attack', 0);
+        $this->health    = array_get($card_json, 'health', 0);
+        $this->type      = array_get($card_json, 'type', CardType::$MINION);
         $this->mechanics = array_get($card_json, 'mechanics', []);
 
         // TODO fix this jank
-        if(strpos(array_get($card_json, 'text', ''), 'Choose One')) {
+        if (strpos(array_get($card_json, 'text', ''), 'Choose One')) {
             $this->mechanics[] = Mechanics::$CHOOSE;
         }
 
@@ -396,7 +398,7 @@ class Card
      * @throws InvalidTargetException
      */
     public function resolveChoose(array $targets, $chosen_value) {
-        switch($this->getName()) {
+        switch ($this->getName()) {
             case 'Keeper of the Grove':
                 if (count($targets) != 1) {
                     throw new InvalidTargetException('Must choose a target to apply combo to');
@@ -404,11 +406,11 @@ class Card
 
                 /** @var Card $target */
                 $target = current($targets);
-                if($chosen_value == 1) {
+                if ($chosen_value == 1) {
                     $target->takeDamage(2);
                 }
 
-                if($chosen_value == 2) {
+                if ($chosen_value == 2) {
                     $target->removeAllMechanics();
                 }
 
@@ -416,5 +418,18 @@ class Card
         }
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCost() {
+        return $this->cost;
+    }
+
+    /**
+     * @param mixed $cost
+     */
+    public function setCost($cost) {
+        $this->cost = $cost;
+    }
 
 }

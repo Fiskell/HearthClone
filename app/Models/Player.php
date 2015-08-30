@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use App\Exceptions\InvalidTargetException;
+use App\Exceptions\NotEnoughManaCrystalsException;
 use Exceptions\UndefinedBattleCryMechanicException;
 
 class Player
@@ -33,6 +34,12 @@ class Player
 
     /** @var int $cards_played_this_turn */
     protected $cards_played_this_turn = 0;
+
+    /** @var int $mana_crystal_count */
+    protected $mana_crystal_count = 0;
+
+    /** @var int $mana_crystals_used_this_turn */
+    protected $mana_crystals_used_this_turn = 0;
 
     /**
      * @param Player $attacking_player
@@ -81,9 +88,16 @@ class Player
      * @param Card[] $targets
      * @param null $choose_mechanic
      * @throws InvalidTargetException
+     * @throws NotEnoughManaCrystalsException
      * @throws UndefinedBattleCryMechanicException
      */
     public function play(Card $card, array $targets = [], $choose_mechanic=null) {
+
+        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsedThisTurn();
+        if(($remaining_mana_crystals - $card->getCost()) < 0) {
+            throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
+        }
+
         $card->setOwner($this);
         $this->minions_in_play[$card->getId()] = $card;
         $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
@@ -204,6 +218,34 @@ class Player
      */
     public function incrementCardsPlayedThisTurn() {
         $this->cards_played_this_turn++;
+    }
+
+    /**
+     * @return int
+     */
+    public function getManaCrystalCount() {
+        return $this->mana_crystal_count;
+    }
+
+    /**
+     * @param int $mana_crystal_count
+     */
+    public function setManaCrystalCount($mana_crystal_count) {
+        $this->mana_crystal_count = $mana_crystal_count;
+    }
+
+    /**
+     * @return int
+     */
+    public function getManaCrystalsUsedThisTurn() {
+        return $this->mana_crystals_used_this_turn;
+    }
+
+    /**
+     * @param int $mana_crystals_used_this_turn
+     */
+    public function setManaCrystalsUsedThisTurn($mana_crystals_used_this_turn) {
+        $this->mana_crystals_used_this_turn = $mana_crystals_used_this_turn;
     }
 
 }
