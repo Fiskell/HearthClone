@@ -14,6 +14,8 @@ abstract class AbstractHero
 
     protected $hero_power;
 
+    protected $health = 30;
+
     /**
      * @return mixed
      */
@@ -36,10 +38,27 @@ abstract class AbstractHero
     }
 
     /**
+     * Hero takes damage
+     * @param $damage
+     */
+    public function takeDamage($damage) {
+        $this->health -= $damage;
+    }
+
+    /**
      * Use the heroes ability
      *
+     * @param Player $active_player
+     * @param Player $defending_player
      * @param array $targets
      */
-    abstract function useAbility(array $targets);
+    abstract function useAbility(Player $active_player, Player $defending_player, array $targets);
+
+    /**
+     * @return int
+     */
+    public function getHealth() {
+        return $this->health;
+    }
 
 }

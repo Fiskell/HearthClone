@@ -2,6 +2,7 @@
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
+use App\Models\Player;
 
 /**
  * Created by PhpStorm.
@@ -19,9 +20,11 @@ class Shaman extends AbstractHero
     /**
      * Use the heroes ability
      *
+     * @param Player $active_player
+     * @param Player $defending_player
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    function useAbility(Player $active_player, Player $defending_player, array $targets) {
         // TODO: Implement useAbility() method.
     }
 }

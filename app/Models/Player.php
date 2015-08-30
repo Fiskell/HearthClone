@@ -348,4 +348,11 @@ class Player
         return $this->hero;
     }
 
+    /**
+     * @param array $targets
+     */
+    public function useAbility($targets=[]) {
+        $this->hero->useAbility($this, $this->getDefendingPlayer($this), $targets);
+    }
+
 }

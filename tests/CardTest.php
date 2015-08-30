@@ -554,9 +554,16 @@ class CardTest extends TestCase
     public function test_mage_power_kills_wisp() {
         $this->initPlayers();
         $wisp = $this->playCard($this->wisp_name, 1);
-        $this->game->getPlayer2()->getHero()->useAbility([$wisp]);
+        $this->game->getPlayer2()->useAbility([$wisp]);
 
         $this->assertFalse($wisp->isAlive());
+    }
+
+    public function test_hunter_power_does_two_damage_to_enemy_hero() {
+        $this->initPlayers();
+        $this->assertEquals(30, $this->game->getPlayer2()->getHero()->getHealth());
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(28, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
 }
