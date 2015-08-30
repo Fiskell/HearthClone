@@ -425,7 +425,7 @@ class CardTest extends TestCase
 
     public function test_si7_agent_does_not_combo_if_played_first() {
         $wisp      = $this->playCard($this->wisp_name, 2);
-        $this->playCard($this->si7_agent, 1, [$wisp]);
+        $this->playCard($this->si7_agent, 1, [$wisp], true);
 
         $this->assertTrue($wisp->isAlive());
     }
@@ -433,9 +433,22 @@ class CardTest extends TestCase
     public function test_si7_agent_combos_if_not_played_first() {
         $wisp = $this->playCard($this->wisp_name, 2);
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->si7_agent, 1, [$wisp]);
+        $this->playCard($this->wisp_name, 1, [], true);
+        $this->playCard($this->si7_agent, 1, [$wisp], true);
 
         $this->assertFalse($wisp->isAlive());
+    }
+
+    public function test_cards_played_this_turn_is_reset_at_end_of_turn() {
+        $wisp = $this->playCard($this->wisp_name, 2);
+
+        $this->playCard($this->wisp_name, 1, [], true);
+
+        $this->game->getPlayer1()->passTurn();
+        $this->game->getPlayer2()->passTurn();
+
+        $this->playCard($this->si7_agent, 1, [$wisp], true);
+
+        $this->assertTrue($wisp->isAlive());
     }
 }

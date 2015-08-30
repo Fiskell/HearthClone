@@ -99,6 +99,7 @@ class Player
         }
 
         $this->incrementCardsPlayedThisTurn();
+        echo $this->getCardsPlayedThisTurn();
     }
 
     /**
@@ -146,6 +147,8 @@ class Player
             $minion->resetTimesAttackedThisTurn();
         }
 
+        $this->resetCardsPlayedThisTurn();
+
         /** @var Game $game */
         $game = app('Game');
         $game->toggleActivePlayer();
@@ -183,6 +186,13 @@ class Player
      */
     public function getCardsPlayedThisTurn() {
         return $this->cards_played_this_turn;
+    }
+
+    /**
+     * Reset Cards Played this turn
+     */
+    public function resetCardsPlayedThisTurn() {
+        $this->cards_played_this_turn = 0;
     }
 
     /**
