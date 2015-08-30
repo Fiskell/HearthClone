@@ -3,6 +3,7 @@
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
 use App\Exceptions\MissingCardNameException;
+use Exceptions\UndefinedBattleCryMechanicException;
 
 /**
  * Created by PhpStorm.
@@ -25,7 +26,7 @@ class Card
     protected $sleeping;
     /** @var CardSets $card_sets */
     protected $card_sets;
-    protected $frozen = false;
+    protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
 
     public function __construct(Game $game) {
@@ -132,7 +133,7 @@ class Card
         $this->alive = false;
         $player      = $this->getOwner();
 
-        if($this->hasMechanic(Mechanics::$DEATHRATTLE)) {
+        if ($this->hasMechanic(Mechanics::$DEATHRATTLE)) {
             $this->resolveDeathrattle();
         }
 
@@ -204,11 +205,11 @@ class Card
             throw new InvalidTargetException('This minion cannot attack because it is asleep');
         }
 
-        if($this->isFrozen()) {
+        if ($this->isFrozen()) {
             throw new InvalidTargetException('This minion cannot attack because it is frozen');
         }
 
-        if($this->alreadyAttacked()) {
+        if ($this->alreadyAttacked()) {
             throw new MinionAlreadyAttackedException('This minion has already attacked this turn');
         }
 
@@ -256,7 +257,7 @@ class Card
 
             $this->setHealth($this->getHealth() - $target->getAttack());
 
-            if($target->hasMechanic(Mechanics::$FREEZE)) {
+            if ($target->hasMechanic(Mechanics::$FREEZE)) {
                 $this->freeze();
             }
         }
@@ -265,7 +266,7 @@ class Card
 
             $target->setHealth($target->getHealth() - $this->getAttack());
 
-            if($this->hasMechanic(Mechanics::$FREEZE)) {
+            if ($this->hasMechanic(Mechanics::$FREEZE)) {
                 $target->freeze();
             }
         }
@@ -294,7 +295,7 @@ class Card
     }
 
     public function resolveDeathrattle() {
-        switch($this->name) {
+        switch ($this->name) {
             case 'Loot Hoarder':
                 $this->getOwner()->drawCard();
         }
@@ -324,7 +325,7 @@ class Card
     }
 
     public function alreadyAttacked() {
-        if($this->hasMechanic(Mechanics::$WINDFURY)) {
+        if ($this->hasMechanic(Mechanics::$WINDFURY)) {
             return $this->getTimesAttackedThisTurn() == 2;
         }
 
@@ -336,15 +337,51 @@ class Card
      * @throws InvalidTargetException
      */
     public function resolveCombo($targets) {
-        switch($this->name) {
+        switch ($this->name) {
             case 'SI:7 Agent':
-                if(count($targets) != 1) {
+                if (count($targets) != 1) {
                     throw new InvalidTargetException('Must choose a target to do damage on');
                 }
 
                 /** @var Card $target */
                 $target = current($targets);
                 $target->takeDamage(2);
+        }
+    }
+
+    /**
+     * @param array $targets
+     * @throws InvalidTargetException
+     * @throws UndefinedBattleCryMechanicException
+     */
+    public function resolveBattlecry(array $targets) {
+        $card_sub_mechanics      = $this->getSubMechanics();
+        $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
+
+        if (is_null($card_battlecry_mechanic)) {
+            throw new UndefinedBattleCryMechanicException('No battle cry mechanic specified');
+        }
+
+        if (is_null($card_sub_mechanics)) {
+            return;
+        }
+
+        switch ($card_battlecry_mechanic) {
+            case Mechanics::$SILENCE:
+                if (count($targets) > 1) {
+                    throw new InvalidTargetException('Silence can only target one minion');
+                }
+
+                /** @var Card $target */
+                $target = current($targets);
+
+                if ($target->hasMechanic(Mechanics::$STEALTH)) {
+                    throw new InvalidTargetException('Cannot silence stealth minion');
+                }
+
+                $target->removeAllMechanics();
+
+                break;
         }
     }
 

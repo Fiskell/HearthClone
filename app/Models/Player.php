@@ -86,12 +86,12 @@ class Player
         $this->minions_in_play[$card->getId()] = $card;
         $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
 
-        if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
-            $this->resolveBattlecry($card, $targets);
-        }
-
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
             $this->recalculateSpellPower();
+        }
+
+        if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
+            $card->resolveBattlecry($targets);
         }
 
         if($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
@@ -133,43 +133,6 @@ class Player
         $this->active_mechanics = [];
         foreach ($this->minions_in_play as $minion) {
             $this->active_mechanics = array_merge($this->active_mechanics, $minion->getMechanics());
-        }
-    }
-
-    /**
-     * @param Card $card
-     * @param array $targets
-     * @throws InvalidTargetException
-     * @throws UndefinedBattleCryMechanicException
-     */
-    private function resolveBattlecry(Card $card, array $targets) {
-        $card_sub_mechanics      = $card->getSubMechanics();
-        $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
-
-        if (is_null($card_battlecry_mechanic)) {
-            throw new UndefinedBattleCryMechanicException('No battle cry mechanic specified');
-        }
-
-        if (is_null($card_sub_mechanics)) {
-            return;
-        }
-
-        switch ($card_battlecry_mechanic) {
-            case Mechanics::$SILENCE:
-                if (count($targets) > 1) {
-                    throw new InvalidTargetException('Silence can only target one minion');
-                }
-
-                /** @var Card $target */
-                $target = current($targets);
-
-                if ($target->hasMechanic(Mechanics::$STEALTH)) {
-                    throw new InvalidTargetException('Cannot silence stealth minion');
-                }
-
-                $target->removeAllMechanics();
-
-                break;
         }
     }
 
@@ -227,6 +190,5 @@ class Player
     public function incrementCardsPlayedThisTurn() {
         $this->cards_played_this_turn++;
     }
-
 
 }
