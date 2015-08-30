@@ -38,6 +38,9 @@ class Player
     /** @var int $mana_crystal_count */
     protected $mana_crystal_count = 0;
 
+    /** @var int $locked_mana_crystal_count */
+    protected $locked_mana_crystal_count = 0;
+
     /** @var int $mana_crystals_used_this_turn */
     protected $mana_crystals_used_this_turn = 0;
 
@@ -98,11 +101,16 @@ class Player
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
         }
 
-        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
-
         $card->setOwner($this);
         $this->minions_in_play[$card->getId()] = $card;
         $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
+
+        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
+
+        if($card->hasMechanic(Mechanics::$OVERLOAD)) {
+            // TODO I hate this
+            $this->addLockedManaCrystalCount($card->getOverloadValue());
+        }
 
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
             $this->recalculateSpellPower();
@@ -284,6 +292,27 @@ class Player
 
     private function resetManaCrystalsUsed() {
         $this->setManaCrystalsUsed(0);
+    }
+
+    /**
+     * @return int
+     */
+    public function getLockedManaCrystalCount() {
+        return $this->locked_mana_crystal_count;
+    }
+
+    /**
+     * @param int $add_locked_mana_crystals
+     */
+    public function addLockedManaCrystalCount($add_locked_mana_crystals) {
+        $this->locked_mana_crystal_count += $add_locked_mana_crystals;
+    }
+
+    /**
+     * Reset number of locked mana crystals to 0
+     */
+    public function resetLockedManaCrystalCount() {
+        $this->locked_mana_crystal_count = 0;
     }
 
 }

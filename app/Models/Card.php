@@ -56,6 +56,10 @@ class Card
             $this->mechanics[] = Mechanics::$CHOOSE;
         }
 
+        if (strpos(array_get($card_json, 'text', ''), 'Overload')) {
+            $this->mechanics[] = Mechanics::$OVERLOAD;
+        }
+
         switch ($card_json['name']) {
             case 'Spellbreaker':
                 $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
@@ -430,6 +434,13 @@ class Card
      */
     public function setCost($cost) {
         $this->cost = $cost;
+    }
+
+    public function getOverloadValue() {
+        switch($this->getName()) {
+            case 'Earth Elemental':
+                return 3;
+        }
     }
 
 }

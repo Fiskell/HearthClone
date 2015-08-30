@@ -10,7 +10,6 @@ namespace App\Models;
 
 class Mechanics
 {
-    /* Main Mechanics */
     public static $BATTLECRY     = "Battlecry";
     public static $CHARGE        = "Charge";
     public static $CHOOSE        = "Choose";
@@ -19,13 +18,11 @@ class Mechanics
     public static $DIVINE_SHIELD = "Divine Shield";
     public static $ENRAGE        = "Enrage";
     public static $FREEZE        = "Freeze";
+    public static $OVERLOAD      = "Overload";
     public static $TAUNT         = "Taunt";
+    public static $SILENCE       = "Silence";
     public static $STEALTH       = "Stealth";
     public static $SPELL_POWER   = "Spellpower";
     public static $WINDFURY      = "Windfury";
-
-    /* Sub Mechanics */
-    public static $SILENCE = "Silence";
-
 
 }

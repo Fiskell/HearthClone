@@ -22,7 +22,7 @@ class CardTest extends TestCase
     public $bluegill_warrior_name    = 'Bluegill Warrior';
     public $chillwind_yeti_name      = 'Chillwind Yeti';
     public $dread_corsair_name       = 'Dread Corsair';
-    public $earth_element_name       = 'Earth Elemental';
+    public $earth_elemental_name     = 'Earth Elemental';
     public $keeper_of_the_grove_name = 'Keeper of the Grove';
     public $knife_juggler_name       = 'Knife Juggler';
     public $loot_hoarder_name        = 'Loot Hoarder';
@@ -87,7 +87,7 @@ class CardTest extends TestCase
         return $card;
     }
 
-    public function playCardStrict($name, $player_id = 1, $targets = [], $choose_mechanic = null) {
+    public function playCardStrict($name, $player_id = 1, $turn = 1, $targets = [], $choose_mechanic = null) {
         /** @var Card $card */
         $card = app('Card');
         $card->load($name);
@@ -96,6 +96,16 @@ class CardTest extends TestCase
         $player = $this->game->getPlayer1();
         if ($player_id == 2) {
             $player = $this->game->getPlayer2();
+        }
+
+        if($turn > 1) {
+            $player_a = $this->game->getActivePlayer();
+            $player_b = $this->game->getDefendingPlayer();
+
+            for($i = 1; $i <= ($turn-1); $i++) {
+                $player_a->passTurn();
+                $player_b->passTurn();
+            }
         }
 
         $player->play($card, $targets, $choose_mechanic);
@@ -488,7 +498,7 @@ class CardTest extends TestCase
     }
 
     public function test_player_gets_mana_crystal_at_beginning_of_turn() {
-        $player_a    = $this->game->getActivePlayer();
+        $player_a = $this->game->getActivePlayer();
         $player_b = $this->game->getDefendingPlayer();
         $this->assertEquals(1, $player_a->getManaCrystalCount());
         $player_a->passTurn();
@@ -515,8 +525,11 @@ class CardTest extends TestCase
         $this->playCardStrict($this->knife_juggler_name);
     }
 
-//    public function test_earth_elemental_locks_three_mana_crystals_when_played() {
-//    }
+    public function test_earth_elemental_locks_three_mana_crystals_when_played() {
+        $active_player_id = $this->game->getActivePlayer()->getPlayerId();
+        $this->playCardStrict($this->earth_elemental_name, $active_player_id, 5);
+        $this->assertEquals(3, $this->game->getActivePlayer()->getLockedManaCrystalCount());
+    }
 
 }
 
