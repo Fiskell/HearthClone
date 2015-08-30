@@ -21,6 +21,14 @@ class Game
     /** @var  Player $defending_player */
     protected $defending_player;
 
+    protected $active_game = true;
+
+    /** @var Player $winning_player */
+    protected $winning_player;
+
+    /** @var Player $losing_player */
+    protected $losing_player;
+
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
@@ -90,6 +98,61 @@ class Game
         $old_active_player      = $this->active_player;
         $this->active_player    = $this->getDefendingPlayer();
         $this->defending_player = $old_active_player;
+    }
+
+    /**
+     * End the game and assign the winner and loser.
+     * @param Player $winning_player
+     */
+    public function gameOver(Player $winning_player) {
+        $this->winning_player = $winning_player;
+        $this->losing_player  = app('Player1');
+        if($winning_player->getPlayerId() == 1) {
+            $this->losing_player  = app('Player2');
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOver() {
+        return $this->active_game;
+    }
+
+    /**
+     * @return Player
+     */
+    public function getWinningPlayer() {
+        return $this->winning_player;
+    }
+
+    /**
+     * @return Player
+     */
+    public function getLosingPlayer() {
+        return $this->losing_player;
+    }
+
+    /**
+     * Find the winning player and end the game
+     * @param Player $losing_player
+     */
+    public function setLoser(Player $losing_player) {
+        /** @var Player $winning_player */
+        $winning_player = app('Player1');
+        if($losing_player->getPlayerId() == 1) {
+            $winning_player = app('Player2');
+        }
+
+        $this->gameOver($winning_player);
+    }
+
+    /**
+     * Set the winning player and end the game.
+     * @param Player $winning_player
+     */
+    public function setWinner(Player $winning_player) {
+        $this->gameOver($winning_player);
     }
 
 }

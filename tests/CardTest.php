@@ -125,7 +125,7 @@ class CardTest extends TestCase
     }
 
     public function getDefendingPlayerId() {
-        return ($this->getActivePlayerId() % 2) + 1;
+        return $this->game->getDefendingPlayer()->getPlayerId();
     }
 
     /** @expectedException \App\Exceptions\MissingCardNameException */
@@ -573,6 +573,14 @@ class CardTest extends TestCase
         $this->game->getPlayer1()->useAbility();
 
         $this->assertFalse($this->game->getPlayer2()->isAlive());
+    }
+
+    public function test_game_ends_when_player_is_killed() {
+        $this->initPlayers();
+        $this->game->getPlayer2()->getHero()->takeDamage(28);
+        $this->game->getPlayer1()->useAbility();
+        $this->assertTrue($this->game->isOver());
+        $this->assertEquals(1, $this->game->getWinningPlayer()->getPlayerId());
     }
 
 }

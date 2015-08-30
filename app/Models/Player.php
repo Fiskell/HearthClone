@@ -58,13 +58,17 @@ class Player
 
     public function killed() {
         $this->alive = false;
+
+        /** @var Game $game */
+        $game = app('Game');
+        $game->setLoser($this);
     }
 
     /**
      * @param Player $attacking_player
      * @return Player
      */
-    public static function getDefendingPlayer(Player $attacking_player) {
+    public static function getOtherPlayer(Player $attacking_player) {
         if ($attacking_player->getPlayerId() == 1) {
             return app('Player2');
         }
@@ -362,7 +366,7 @@ class Player
      * @param array $targets
      */
     public function useAbility($targets=[]) {
-        $defending_player = $this->getDefendingPlayer($this);
+        $defending_player = $this->getOtherPlayer($this);
         $this->hero->useAbility($this, $defending_player, $targets);
         if(!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();
