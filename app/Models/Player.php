@@ -8,10 +8,8 @@
 
 namespace App\Models;
 
-
 use App\Exceptions\InvalidTargetException;
 use Exceptions\UndefinedBattleCryMechanicException;
-use Illuminate\Support\Facades\App;
 
 class Player
 {
@@ -32,6 +30,9 @@ class Player
 
     /** @var int $hand_size */
     protected $hand_size = 0;
+
+    /** @var int $cards_played_this_turn */
+    protected $cards_played_this_turn = 0;
 
     /**
      * @param Player $attacking_player
@@ -92,6 +93,12 @@ class Player
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
             $this->recalculateSpellPower();
         }
+
+        if($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
+            $card->resolveCombo($targets);
+        }
+
+        $this->incrementCardsPlayedThisTurn();
     }
 
     /**
@@ -207,5 +214,19 @@ class Player
     public function drawCard() {
         $this->hand_size++;
     }
+
+    /**
+     * @return int
+     */
+    public function getCardsPlayedThisTurn() {
+        return $this->cards_played_this_turn;
+    }
+
+    /**
+     */
+    public function incrementCardsPlayedThisTurn() {
+        $this->cards_played_this_turn++;
+    }
+
 
 }

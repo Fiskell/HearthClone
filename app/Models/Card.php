@@ -37,6 +37,7 @@ class Card
             throw new MissingCardNameException();
         }
 
+        /** @var CardSets $card_sets */
         $card_sets = app('CardSets');
         $card_json = $card_sets->findCard($name);
 
@@ -101,6 +102,13 @@ class Card
             $this->health = 0;
             $this->killed();
         }
+    }
+
+    /**
+     * @param $damage
+     */
+    public function takeDamage($damage) {
+        $this->setHealth($this->getHealth() - $damage);
     }
 
     /**
@@ -321,6 +329,23 @@ class Card
         }
 
         return $this->getTimesAttackedThisTurn() == 1;
+    }
+
+    /**
+     * @param Card[] $targets
+     * @throws InvalidTargetException
+     */
+    public function resolveCombo($targets) {
+        switch($this->name) {
+            case 'SI:7 Agent':
+                if(count($targets) != 1) {
+                    throw new InvalidTargetException('Must choose a target to do damage on');
+                }
+
+                /** @var Card $target */
+                $target = current($targets);
+                $target->takeDamage(2);
+        }
     }
 
 }

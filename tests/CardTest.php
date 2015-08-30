@@ -25,6 +25,7 @@ class CardTest extends TestCase
     public $knife_juggler_name      = 'Knife Juggler';
     public $loot_hoarder_name       = 'Loot Hoarder';
     public $ogre_magi_name          = 'Ogre Magi';
+    public $si7_agent               = "SI:7 Agent";
     public $spellbreaker_name       = 'Spellbreaker';
     public $thrallmar_farseer_name  = 'Thrallmar Farseer';
     public $water_elemental_name    = 'Water Elemental';
@@ -420,5 +421,21 @@ class CardTest extends TestCase
         $thrallmar_farseer->attack($wisp);
         $thrallmar_farseer->attack($wisp2);
         $thrallmar_farseer->attack($wisp3);
+    }
+
+    public function test_si7_agent_does_not_combo_if_played_first() {
+        $wisp      = $this->playCard($this->wisp_name, 2);
+        $this->playCard($this->si7_agent, 1, [$wisp]);
+
+        $this->assertTrue($wisp->isAlive());
+    }
+
+    public function test_si7_agent_combos_if_not_played_first() {
+        $wisp = $this->playCard($this->wisp_name, 2);
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->si7_agent, 1, [$wisp]);
+
+        $this->assertFalse($wisp->isAlive());
     }
 }
