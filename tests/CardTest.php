@@ -22,6 +22,7 @@ class CardTest extends TestCase
     public $bluegill_warrior_name    = 'Bluegill Warrior';
     public $chillwind_yeti_name      = 'Chillwind Yeti';
     public $dread_corsair_name       = 'Dread Corsair';
+    public $earth_element_name       = 'Earth Elemental';
     public $keeper_of_the_grove_name = 'Keeper of the Grove';
     public $knife_juggler_name       = 'Knife Juggler';
     public $loot_hoarder_name        = 'Loot Hoarder';
@@ -479,7 +480,6 @@ class CardTest extends TestCase
         $this->assertFalse($wisp->isAlive());
     }
 
-
     public function test_keeper_of_the_grove_silences_argent_squire_when_silence_is_chosen() {
         $argent_squire = $this->playCard($this->argent_squire_name, 1);
         $this->playCard($this->keeper_of_the_grove_name, 2, [$argent_squire], false, 2);
@@ -487,32 +487,21 @@ class CardTest extends TestCase
         $this->assertFalse($argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
 
+    public function test_player_gets_mana_crystal_at_beginning_of_turn() {
+        $active_player    = $this->game->getActivePlayer();
+        $defending_player = $this->game->getDefendingPlayer();
+        $this->assertEquals(0, $defending_player->getManaCrystalCount());
+        $active_player->passTurn();
+        $this->assertEquals(1, $defending_player->getManaCrystalCount());
+    }
+
     /** @expectedException \App\Exceptions\NotEnoughManaCrystalsException */
     public function test_knife_juggler_can_not_be_played_turn_one() {
         $this->playCardStrict($this->knife_juggler_name);
     }
 
+//    public function test_earth_elemental_locks_three_mana_crystals_when_played() {
+//    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

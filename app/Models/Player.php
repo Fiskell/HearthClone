@@ -160,17 +160,23 @@ class Player
      * Pass the turn to the other player and resolve any end of turn effects.
      */
     public function passTurn() {
-        foreach ($this->minions_in_play as $minion) {
-            $minion->wakeUp();
-            $minion->thaw();
-            $minion->resetTimesAttackedThisTurn();
-        }
+        $game = app('Game');
 
-        $this->resetCardsPlayedThisTurn();
+        $this->updateBoardStates();
+
+        $this->resetTurnCounters();
 
         /** @var Game $game */
-        $game = app('Game');
         $game->toggleActivePlayer();
+
+        $game->getActivePlayer()->startTurn();
+    }
+
+    /**
+     * Start of a players turn
+     */
+    public function startTurn() {
+        $this->incrementManaCrystalCount();
     }
 
     /**
@@ -235,6 +241,13 @@ class Player
     }
 
     /**
+     * Add one mana crystal
+     */
+    public function incrementManaCrystalCount() {
+        $this->mana_crystal_count++;
+    }
+
+    /**
      * @return int
      */
     public function getManaCrystalsUsedThisTurn() {
@@ -246,6 +259,24 @@ class Player
      */
     public function setManaCrystalsUsedThisTurn($mana_crystals_used_this_turn) {
         $this->mana_crystals_used_this_turn = $mana_crystals_used_this_turn;
+    }
+
+    /**
+     * Update minions and character states
+     */
+    private function updateBoardStates() {
+        foreach ($this->minions_in_play as $minion) {
+            $minion->wakeUp();
+            $minion->thaw();
+            $minion->resetTimesAttackedThisTurn();
+        }
+    }
+
+    /**
+     * Reset the turn counters
+     */
+    private function resetTurnCounters() {
+        $this->resetCardsPlayedThisTurn();
     }
 
 }

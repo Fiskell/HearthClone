@@ -18,6 +18,9 @@ class Game
     /** @var  Player $active_player */
     protected $active_player;
 
+    /** @var  Player $defending_player */
+    protected $defending_player;
+
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
@@ -28,7 +31,8 @@ class Game
         App::instance('Player2', $this->getPlayer2());
 
         //TODO for now hard coding player 1 as default active player
-        $this->active_player = $this->player1;
+        $this->active_player    = $this->player1;
+        $this->defending_player = $this->player2;
     }
 
     /**
@@ -66,12 +70,17 @@ class Game
         return $this->active_player;
     }
 
+    public function getDefendingPlayer() {
+        return $this->defending_player;
+    }
+
+    /**
+     * Change active and defending players.
+     */
     public function toggleActivePlayer() {
-        if($this->active_player->getPlayerId() == 1) {
-            $this->active_player = $this->getPlayer2();
-            return;
-        }
-        $this->active_player = $this->getPlayer1();
+        $old_active_player      = $this->active_player;
+        $this->active_player    = $this->getDefendingPlayer();
+        $this->defending_player = $old_active_player;
     }
 
 }
