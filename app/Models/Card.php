@@ -396,7 +396,6 @@ class Card
      * @throws InvalidTargetException
      */
     public function resolveChoose(array $targets, $chosen_value) {
-        echo '--';
         switch($this->getName()) {
             case 'Keeper of the Grove':
                 if (count($targets) != 1) {
@@ -407,6 +406,10 @@ class Card
                 $target = current($targets);
                 if($chosen_value == 1) {
                     $target->takeDamage(2);
+                }
+
+                if($chosen_value == 2) {
+                    $target->removeAllMechanics();
                 }
 
                 break;
