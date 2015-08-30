@@ -173,6 +173,7 @@ class Player
         foreach ($this->minions_in_play as $minion) {
             $minion->wakeUp();
             $minion->thaw();
+            $minion->resetTimesAttackedThisTurn();
         }
 
         /** @var Game $game */

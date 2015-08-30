@@ -20,7 +20,7 @@ class CardTest extends TestCase
     public $argent_squire_name      = 'Argent Squire';
     public $amani_berserker_name    = 'Amani Berserker';
     public $bluegill_warrior_name   = 'Bluegill Warrior';
-    public $chillwind_yeti          = 'Chillwind Yeti';
+    public $chillwind_yeti_name     = 'Chillwind Yeti';
     public $dread_corsair_name      = 'Dread Corsair';
     public $knife_juggler_name      = 'Knife Juggler';
     public $loot_hoarder_name       = 'Loot Hoarder';
@@ -296,7 +296,7 @@ class CardTest extends TestCase
 
     public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
         $water_elemental = $this->playCard($this->water_elemental_name, 1);
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, 2);
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, 2);
 
         $water_elemental->attack($chillwind_yeti);
 
@@ -306,7 +306,7 @@ class CardTest extends TestCase
 
     public function test_chillwind_yeti_is_frozen_when_attacking_water_elemental() {
         $water_elemental = $this->playCard($this->water_elemental_name, 1);
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, 2);
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, 2);
 
         $chillwind_yeti->attack($water_elemental);
 
@@ -317,7 +317,7 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_chillwind_yeti_can_not_attack_when_frozen() {
         $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, $this->getDefendingPlayerId());
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, $this->getDefendingPlayerId());
 
         $water_elemental->attack($chillwind_yeti);
         $this->game->getActivePlayer()->passTurn();
@@ -326,7 +326,7 @@ class CardTest extends TestCase
 
     public function test_chillwind_yeti_is_thawed_after_passing_turn() {
         $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, $this->getDefendingPlayerId());
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, $this->getDefendingPlayerId());
 
         $water_elemental->attack($chillwind_yeti);
         $this->game->getActivePlayer()->passTurn();
@@ -365,13 +365,26 @@ class CardTest extends TestCase
     }
 
     /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
-    public function test_minions_can_only_attack_once_per_turn() {
-        $chillwind_yeti = $this->playCard($this->chillwind_yeti, 1);
+    public function test_chillwind_yeti_can_only_attack_once_per_turn() {
+        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
         $wisp           = $this->playCard($this->wisp_name, 2);
         $wisp2          = $this->playCard($this->wisp_name, 2);
 
         $chillwind_yeti->attack($wisp);
         $chillwind_yeti->attack($wisp2);
+    }
+
+    public function test_chillwind_yeti_can_attack_twice_in_two_turns() {
+        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
+        $wisp           = $this->playCard($this->wisp_name, 2);
+        $wisp2          = $this->playCard($this->wisp_name, 2);
+
+        $chillwind_yeti->attack($wisp);
+        $this->game->getActivePlayer()->passTurn();
+        $this->assertTrue($chillwind_yeti->getTimesAttackedThisTurn() == 0);
+        $chillwind_yeti->attack($wisp2);
+        $this->assertTrue(!$wisp->isAlive());
+        $this->assertTrue(!$wisp2->isAlive());
     }
 
 }
