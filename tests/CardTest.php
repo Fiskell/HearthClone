@@ -77,7 +77,6 @@ class CardTest extends TestCase
             $active_player->passTurn();
         }
 
-        // TODO summoning sickness
         return $card;
     }
 
@@ -154,7 +153,7 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_knife_juggler_cannot_attack_wisp_when_dread_corsair_is_on_the_field() {
         $wisp          = $this->playCard($this->wisp_name, 1);
-        $dread_corsair = $this->playCard($this->dread_corsair_name, 1);
+        $this->playCard($this->dread_corsair_name, 1);
         $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
 
         $knife_juggler->attack($wisp);
@@ -163,6 +162,7 @@ class CardTest extends TestCase
     public function test_knife_juggler_can_attack_wisp_after_dread_corsair_is_killed() {
         $wisp           = $this->playCard($this->wisp_name, 1);
         $dread_corsair  = $this->playCard($this->dread_corsair_name, 1);
+
         $knife_juggler  = $this->playCard($this->knife_juggler_name, 2);
         $knife_juggler2 = $this->playCard($this->knife_juggler_name, 2);
 
@@ -196,7 +196,8 @@ class CardTest extends TestCase
 
     public function test_argent_squire_dies_from_attack_after_being_silenced() {
         $argent_squire = $this->playCard($this->argent_squire_name, 1);
-        $spellbreaker  = $this->playCard($this->spellbreaker_name, 2, [$argent_squire]);
+
+        $this->playCard($this->spellbreaker_name, 2, [$argent_squire]);
         $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
 
         $knife_juggler->attack($argent_squire);
@@ -277,19 +278,19 @@ class CardTest extends TestCase
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_spellbreaker_silencing_worgen_infiltrator_throws() {
         $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_name, 1);
-        $spellbreaker       = $this->playCard($this->spellbreaker_name, 2, [$worgen_infiltrator]);
+        $this->playCard($this->spellbreaker_name, 2, [$worgen_infiltrator]);
     }
 
     public function test_dread_corsair_loses_taunt_when_silenced() {
         $dread_corsair = $this->playCard($this->dread_corsair_name, 1);
-        $spellbreaker  = $this->playCard($this->spellbreaker_name, 2, [$dread_corsair]);
+        $this->playCard($this->spellbreaker_name, 2, [$dread_corsair]);
 
         $has_taunt = $dread_corsair->hasMechanic(Mechanics::$TAUNT);
         $this->assertTrue(!$has_taunt);
     }
 
     public function test_ogre_magi_increases_spell_power_by_one() {
-        $ogre_magi = $this->playCard($this->ogre_magi_name, 1);
+        $this->playCard($this->ogre_magi_name, 1);
         $this->assertTrue($this->game->getPlayer1()->getSpellPowerModifier() == 1);
     }
 
