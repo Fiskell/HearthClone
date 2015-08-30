@@ -225,7 +225,7 @@ class Card
         }
 
         $attacking_player = $this->getOwner();
-        $defending_player = Player::getOtherPlayer($attacking_player);
+        $defending_player = $attacking_player->getOtherPlayer();
 
         /* Taunt */
         $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);

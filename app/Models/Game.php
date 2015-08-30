@@ -39,7 +39,7 @@ class Game
         App::instance('Player2', $this->getPlayer2());
 
         //TODO for now hard coding player 1 as default active player
-        $this->active_player    = $this->player1;
+        $this->active_player = $this->player1;
         $this->active_player->startTurn();
 
         $this->defending_player = $this->player2;
@@ -106,10 +106,7 @@ class Game
      */
     public function gameOver(Player $winning_player) {
         $this->winning_player = $winning_player;
-        $this->losing_player  = app('Player1');
-        if($winning_player->getPlayerId() == 1) {
-            $this->losing_player  = app('Player2');
-        }
+        $this->losing_player  = $winning_player->getOtherPlayer();
     }
 
     /**
@@ -139,10 +136,7 @@ class Game
      */
     public function setLoser(Player $losing_player) {
         /** @var Player $winning_player */
-        $winning_player = app('Player1');
-        if($losing_player->getPlayerId() == 1) {
-            $winning_player = app('Player2');
-        }
+        $winning_player = $losing_player->getOtherPlayer();
 
         $this->gameOver($winning_player);
     }
