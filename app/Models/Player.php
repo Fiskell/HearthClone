@@ -30,16 +30,19 @@ class Player
     /** @var int $spell_power_modifier */
     protected $spell_power_modifier = 0;
 
+    /** @var int $hand_size */
+    protected $hand_size = 0;
+
     /**
      * @param Player $attacking_player
      * @return Player
      */
     public static function getDefendingPlayer(Player $attacking_player) {
         if ($attacking_player->getPlayerId() == 1) {
-            return App::make('Player2');
+            return app('Player2');
         }
 
-        return App::make('Player1');
+        return app('Player1');
     }
 
     /**
@@ -194,6 +197,14 @@ class Player
      */
     public function getSpellPowerModifier() {
         return $this->spell_power_modifier;
+    }
+
+    public function getHandSize() {
+        return $this->hand_size;
+    }
+
+    public function drawCard() {
+        $this->hand_size++;
     }
 
 }

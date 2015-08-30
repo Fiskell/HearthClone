@@ -121,6 +121,11 @@ class Card
     public function killed() {
         $this->alive = false;
         $player      = $this->getOwner();
+
+        if($this->hasMechanic(Mechanics::$DEATHRATTLE)) {
+            $this->resolveDeathrattle();
+        }
+
         $player->removeFromBoard($this->getId());
         $player->recalculateActiveMechanics();
     }
@@ -269,6 +274,13 @@ class Card
 
     public function thaw() {
         $this->frozen = false;
+    }
+
+    public function resolveDeathrattle() {
+        switch($this->name) {
+            case 'Loot Hoarder':
+                $this->getOwner()->drawCard();
+        }
     }
 
 }

@@ -23,6 +23,7 @@ class CardTest extends TestCase
     public $chillwind_yeti          = 'Chillwind Yeti';
     public $dread_corsair_name      = 'Dread Corsair';
     public $knife_juggler_name      = 'Knife Juggler';
+    public $loot_hoarder_name       = 'Loot Hoarder';
     public $ogre_magi_name          = 'Ogre Magi';
     public $spellbreaker_name       = 'Spellbreaker';
     public $water_elemental_name    = 'Water Elemental';
@@ -331,7 +332,21 @@ class CardTest extends TestCase
         $this->assertTrue($chillwind_yeti->isFrozen());
         $this->game->getActivePlayer()->passTurn();
         $this->assertTrue(!$chillwind_yeti->isFrozen());
+    }
 
+    public function test_loot_hoarder_draws_card_when_killed() {
+        $loot_hoarder = $this->playCard($this->loot_hoarder_name, 1);
+        $wisp         = $this->playCard($this->wisp_name, 2);
+
+        $hand_size = $this->game->getPlayer1()->getHandSize();
+        echo $hand_size . '---';
+
+        $wisp->attack($loot_hoarder);
+
+        $new_hand_size = $this->game->getPlayer1()->getHandSize();
+        echo $new_hand_size;
+
+        $this->assertTrue($new_hand_size == ($hand_size + 1));
     }
 
 }

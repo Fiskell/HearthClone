@@ -34,30 +34,30 @@ class Game
     }
 
     /**
-     * @return mixed
+     * @return Player
      */
     public function getPlayer1() {
         return $this->player1;
     }
 
     /**
-     * @param mixed $player1
+     * @param Player $player1
      */
-    public function setPlayer1($player1) {
+    public function setPlayer1(Player $player1) {
         $this->player1 = $player1;
     }
 
     /**
-     * @return mixed
+     * @return Player
      */
     public function getPlayer2() {
         return $this->player2;
     }
 
     /**
-     * @param mixed $player2
+     * @param Player $player2
      */
-    public function setPlayer2($player2) {
+    public function setPlayer2(Player $player2) {
         $this->player2 = $player2;
     }
 
