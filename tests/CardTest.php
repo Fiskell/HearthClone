@@ -322,4 +322,16 @@ class CardTest extends TestCase
         $chillwind_yeti->attack($water_elemental);
     }
 
+    public function test_chillwind_yeti_is_thawed_after_passing_turn() {
+        $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard($this->chillwind_yeti, $this->getDefendingPlayerId());
+
+        $water_elemental->attack($chillwind_yeti);
+        $this->game->getActivePlayer()->passTurn();
+        $this->assertTrue($chillwind_yeti->isFrozen());
+        $this->game->getActivePlayer()->passTurn();
+        $this->assertTrue(!$chillwind_yeti->isFrozen());
+
+    }
+
 }
