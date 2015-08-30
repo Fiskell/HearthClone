@@ -49,6 +49,11 @@ class Card
         $this->type      = array_get($card_json, 'type');
         $this->mechanics = array_get($card_json, 'mechanics', []);
 
+        // TODO fix this jank
+        if(strpos(array_get($card_json, 'text', ''), 'Choose One')) {
+            $this->mechanics[] = Mechanics::$CHOOSE;
+        }
+
         switch ($card_json['name']) {
             case 'Spellbreaker':
                 $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
@@ -384,5 +389,29 @@ class Card
                 break;
         }
     }
+
+    /**
+     * @param Card[] $targets
+     * @param $chosen_value
+     * @throws InvalidTargetException
+     */
+    public function resolveChoose(array $targets, $chosen_value) {
+        echo '--';
+        switch($this->getName()) {
+            case 'Keeper of the Grove':
+                if (count($targets) != 1) {
+                    throw new InvalidTargetException('Must choose a target to apply combo to');
+                }
+
+                /** @var Card $target */
+                $target = current($targets);
+                if($chosen_value == 1) {
+                    $target->takeDamage(2);
+                }
+
+                break;
+        }
+    }
+
 
 }

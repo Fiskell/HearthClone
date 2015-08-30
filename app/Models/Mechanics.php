@@ -13,6 +13,7 @@ class Mechanics
     /* Main Mechanics */
     public static $BATTLECRY     = "Battlecry";
     public static $CHARGE        = "Charge";
+    public static $CHOOSE        = "Choose";
     public static $COMBO         = "Combo";
     public static $DEATHRATTLE   = "Deathrattle";
     public static $DIVINE_SHIELD = "Divine Shield";

@@ -79,15 +79,21 @@ class Player
      *
      * @param Card $card
      * @param Card[] $targets
+     * @param null $choose_mechanic
      * @throws InvalidTargetException
+     * @throws UndefinedBattleCryMechanicException
      */
-    public function play(Card $card, array $targets = []) {
+    public function play(Card $card, array $targets = [], $choose_mechanic=null) {
         $card->setOwner($this);
         $this->minions_in_play[$card->getId()] = $card;
         $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
 
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
             $this->recalculateSpellPower();
+        }
+
+        if($card->hasMechanic(Mechanics::$CHOOSE)) {
+            $card->resolveChoose($targets, $choose_mechanic);
         }
 
         if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
@@ -99,7 +105,6 @@ class Player
         }
 
         $this->incrementCardsPlayedThisTurn();
-        echo $this->getCardsPlayedThisTurn();
     }
 
     /**

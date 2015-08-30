@@ -17,20 +17,21 @@ class CardTest extends TestCase
     /**
      * Minions
      */
-    public $argent_squire_name      = 'Argent Squire';
-    public $amani_berserker_name    = 'Amani Berserker';
-    public $bluegill_warrior_name   = 'Bluegill Warrior';
-    public $chillwind_yeti_name     = 'Chillwind Yeti';
-    public $dread_corsair_name      = 'Dread Corsair';
-    public $knife_juggler_name      = 'Knife Juggler';
-    public $loot_hoarder_name       = 'Loot Hoarder';
-    public $ogre_magi_name          = 'Ogre Magi';
-    public $si7_agent               = "SI:7 Agent";
-    public $spellbreaker_name       = 'Spellbreaker';
-    public $thrallmar_farseer_name  = 'Thrallmar Farseer';
-    public $water_elemental_name    = 'Water Elemental';
-    public $wisp_name               = 'Wisp';
-    public $worgen_infiltrator_name = 'Worgen Infiltrator';
+    public $argent_squire_name       = 'Argent Squire';
+    public $amani_berserker_name     = 'Amani Berserker';
+    public $bluegill_warrior_name    = 'Bluegill Warrior';
+    public $chillwind_yeti_name      = 'Chillwind Yeti';
+    public $dread_corsair_name       = 'Dread Corsair';
+    public $keeper_of_the_grove_name = 'Keeper of the Grove';
+    public $knife_juggler_name       = 'Knife Juggler';
+    public $loot_hoarder_name        = 'Loot Hoarder';
+    public $ogre_magi_name           = 'Ogre Magi';
+    public $si7_agent                = "SI:7 Agent";
+    public $spellbreaker_name        = 'Spellbreaker';
+    public $thrallmar_farseer_name   = 'Thrallmar Farseer';
+    public $water_elemental_name     = 'Water Elemental';
+    public $wisp_name                = 'Wisp';
+    public $worgen_infiltrator_name  = 'Worgen Infiltrator';
 
     /**
      * Spells
@@ -58,7 +59,7 @@ class CardTest extends TestCase
      * @throws \App\Exceptions\MissingCardNameException
      * @throws \App\Exceptions\UnknownCardNameException
      */
-    public function playCard($name, $player_id, $targets = [], $summoning_sickness = false) {
+    public function playCard($name, $player_id, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
         /** @var Card $card */
         $card = app('Card');
         $card->load($name);
@@ -69,7 +70,7 @@ class CardTest extends TestCase
             $player = $this->game->getPlayer2();
         }
 
-        $player->play($card, $targets);
+        $player->play($card, $targets, $choose_mechanic);
 
         if (!$summoning_sickness) {
             $active_player = $this->game->getActivePlayer();
@@ -424,7 +425,7 @@ class CardTest extends TestCase
     }
 
     public function test_si7_agent_does_not_combo_if_played_first() {
-        $wisp      = $this->playCard($this->wisp_name, 2);
+        $wisp = $this->playCard($this->wisp_name, 2);
         $this->playCard($this->si7_agent, 1, [$wisp], true);
 
         $this->assertTrue($wisp->isAlive());
@@ -450,5 +451,12 @@ class CardTest extends TestCase
         $this->playCard($this->si7_agent, 1, [$wisp], true);
 
         $this->assertTrue($wisp->isAlive());
+    }
+
+    public function test_keeper_of_the_grove_kills_wisp_when_damage_is_choosen() {
+        $wisp = $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->keeper_of_the_grove_name, 2, [$wisp], false, 1);
+
+        $this->assertFalse($wisp->isAlive());
     }
 }
