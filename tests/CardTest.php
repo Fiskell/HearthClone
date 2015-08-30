@@ -26,6 +26,7 @@ class CardTest extends TestCase
     public $loot_hoarder_name       = 'Loot Hoarder';
     public $ogre_magi_name          = 'Ogre Magi';
     public $spellbreaker_name       = 'Spellbreaker';
+    public $thrallmar_farseer_name  = 'Thrallmar Farseer';
     public $water_elemental_name    = 'Water Elemental';
     public $wisp_name               = 'Wisp';
     public $worgen_infiltrator_name = 'Worgen Infiltrator';
@@ -383,6 +384,18 @@ class CardTest extends TestCase
         $this->game->getActivePlayer()->passTurn();
         $this->assertTrue($chillwind_yeti->getTimesAttackedThisTurn() == 0);
         $chillwind_yeti->attack($wisp2);
+        $this->assertTrue(!$wisp->isAlive());
+        $this->assertTrue(!$wisp2->isAlive());
+    }
+
+    public function test_thrallmar_farseer_can_attack_twice_per_turn() {
+        $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);
+        $wisp              = $this->playCard($this->wisp_name, 2);
+        $wisp2             = $this->playCard($this->wisp_name, 2);
+
+        $thrallmar_farseer->attack($wisp);
+        $thrallmar_farseer->attack($wisp2);
+
         $this->assertTrue(!$wisp->isAlive());
         $this->assertTrue(!$wisp2->isAlive());
     }

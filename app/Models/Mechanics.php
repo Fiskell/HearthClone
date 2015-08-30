@@ -20,6 +20,7 @@ class Mechanics
     public static $TAUNT         = "Taunt";
     public static $STEALTH       = "Stealth";
     public static $SPELL_POWER   = "Spellpower";
+    public static $WINDFURY      = "Windfury";
 
     /* Sub Mechanics */
     public static $SILENCE = "Silence";

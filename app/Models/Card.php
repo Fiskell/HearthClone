@@ -316,9 +316,11 @@ class Card
     }
 
     private function alreadyAttacked() {
-        if($this->getTimesAttackedThisTurn() == 1) {
-            return true;
+        if($this->hasMechanic(Mechanics::$WINDFURY)) {
+            return $this->getTimesAttackedThisTurn() == 2;
         }
+
+        return $this->getTimesAttackedThisTurn() == 1;
     }
 
 }
