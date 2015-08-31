@@ -12,7 +12,6 @@ use App\Models\Mechanics;
  */
 class CardTest extends HearthCloneTest
 {
-
     /** @expectedException \App\Exceptions\MissingCardNameException */
     public function test_card_load_throws_when_no_card_name_specified() {
         $this->card->load();
@@ -442,6 +441,30 @@ class CardTest extends HearthCloneTest
         $this->game->getPlayer2()->useAbility([$wisp]);
 
         $this->assertFalse($wisp->isAlive());
+    }
+
+    /** @expectedException \App\Exceptions\HeroPowerAlreadyFlippedException */
+    public function test_mage_hero_power_can_only_be_played_once_per_turn() {
+        $this->initPlayers();
+        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp2 = $this->playCard($this->wisp_name, 1);
+        $this->game->getPlayer2()->useAbility([$wisp]);
+        $this->game->getPlayer2()->useAbility([$wisp2]);
+    }
+
+    public function test_mage_can_use_hero_power_twice_in_two_turns() {
+        $this->initPlayers();
+        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp2 = $this->playCard($this->wisp_name, 1);
+        $this->game->getPlayer2()->useAbility([$wisp]);
+
+        $this->game->getPlayer2()->passTurn();
+        $this->game->getPlayer1()->passTurn();
+
+        $this->game->getPlayer2()->useAbility([$wisp2]);
+
+        $this->assertFalse($wisp->isAlive());
+        $this->assertFalse($wisp2->isAlive());
     }
 
     public function test_hunter_power_does_two_damage_to_enemy_hero() {

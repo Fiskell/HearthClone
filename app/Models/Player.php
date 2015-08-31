@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
 use Exceptions\UndefinedBattleCryMechanicException;
@@ -180,10 +181,6 @@ class Player
      */
     public function killed() {
         $this->alive = false;
-
-        /** @var Game $game */
-        $game = app('Game');
-        $game->setLoser($this);
     }
 
     /**
@@ -305,22 +302,20 @@ class Player
         $this->resetManaCrystalsUsed();
         $this->setManaCrystalsUsed($this->getLockedManaCrystalCount());
         $this->resetLockedManaCrystalCount();
+        $this->getHero()->resetHeroPower();
     }
 
     /**
      * Pass the turn to the other player and resolve any end of turn effects.
      */
     public function passTurn() {
-        $game = app('Game');
-
         $this->updateBoardStates();
 
         $this->resetTurnCounters();
 
-        /** @var Game $game */
-        $game->toggleActivePlayer();
+        $this->game->toggleActivePlayer();
 
-        $game->getActivePlayer()->startTurn();
+        $this->game->getActivePlayer()->startTurn();
     }
 
     /**
@@ -390,11 +385,9 @@ class Player
 
         $this->incrementCardsPlayedThisTurn();
 
-        /** @var Game $game */
-        $game = app('Game');
-        $game->incrementCardsPlayedThisGame();
+        $this->game->incrementCardsPlayedThisGame();
 
-        $card->setPlayOrderId($game->getCardsPlayedThisGame());
+        $card->setPlayOrderId($this->game->getCardsPlayedThisGame());
     }
 
     /**
@@ -416,15 +409,9 @@ class Player
      * @param array $targets
      */
     public function useAbility($targets = []) {
-        $defending_player = $this->getOtherPlayer();
-        $this->hero->useAbility($this, $defending_player, $targets);
-        if (!$defending_player->getHero()->isAlive()) {
-            $defending_player->killed();
-        }
-
-        if (!$this->getHero()->isAlive()) {
-            $this->killed();
-        }
+        $this->flipHeroPower();
+        $this->resolveHeroPower($targets);
+        $this->game->checkForGameOver();
     }
     /* ---------------------------------- */
 
@@ -460,6 +447,33 @@ class Player
      */
     private function resetTurnCounters() {
         $this->resetCardsPlayedThisTurn();
+    }
+
+    /**
+     * @param $targets
+     */
+    private function resolveHeroPower($targets) {
+        $defending_player = $this->getOtherPlayer();
+        $this->hero->useAbility($this, $defending_player, $targets);
+        if (!$defending_player->getHero()->isAlive()) {
+            $defending_player->killed();
+        }
+
+        if (!$this->getHero()->isAlive()) {
+            $this->killed();
+        }
+    }
+
+    /**
+     * Phase which flips the hero power so it cannot be used again
+     * @throws HeroPowerAlreadyFlippedException
+     */
+    private function flipHeroPower() {
+        if($this->getHero()->powerIsFlipped()) {
+            throw new HeroPowerAlreadyFlippedException('You have already used your ability this turn');
+        }
+
+        $this->getHero()->flipHeroPower();
     }
 
     /* ---------------------------------- */

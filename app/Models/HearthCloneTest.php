@@ -43,8 +43,9 @@ class HearthCloneTest extends TestCase
 
     public function setUp() {
         parent::setUp();
-        $this->card = app('Card');
         $this->game = app('Game');
+        $this->initPlayers();
+        $this->card = app('Card');
     }
 
     /**

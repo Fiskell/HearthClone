@@ -1,5 +1,6 @@
 <?php
 use App\Models\Game;
+use App\Models\HearthCloneTest;
 use App\Models\HeroClass;
 use App\Models\Heroes\Hunter;
 
@@ -9,10 +10,8 @@ use App\Models\Heroes\Hunter;
  * Date: 8/23/15
  * Time: 9:45 PM
  */
-class GameTest extends TestCase
+class GameTest extends HearthCloneTest
 {
-    /** @var  Game $game */
-    protected $game;
     public function setUp() {
         parent::setUp();
         $this->game = $this->app->make('Game');

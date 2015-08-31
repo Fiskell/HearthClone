@@ -44,16 +44,17 @@ class Game
         App::instance('Player2', $this->getPlayer2());
 
         //TODO for now hard coding player 1 as default active player
-        $this->active_player = $this->player1;
-        $this->active_player->startTurn();
-
+        $this->active_player    = $this->player1;
         $this->defending_player = $this->player2;
     }
 
     public function init(Deck $player1, Deck $player2) {
         /** @var Game $game */
         $this->getPlayer1()->setDeck($player1);
+        print_r($this->getPlayer1()->getHero());
         $this->getPlayer2()->setDeck($player2);
+
+        $this->active_player->startTurn();
     }
 
     /**
@@ -173,13 +174,15 @@ class Game
      */
     public function checkForGameOver() {
         // TODO need to account for draw
-        if($this->player1->getHero()->getHealth() <= 0) {
+        if ($this->player1->getHero()->getHealth() <= 0) {
             $this->gameOver($this->player2);
+
             return true;
         }
 
-        if($this->player2->getHero()->getHealth() <= 0) {
+        if ($this->player2->getHero()->getHealth() <= 0) {
             $this->gameOver($this->player1);
+
             return true;
         }
 

@@ -18,6 +18,8 @@ abstract class AbstractHero
 
     protected $alive = true;
 
+    protected $flipped = false;
+
     /**
      * @return mixed
      */
@@ -72,6 +74,21 @@ abstract class AbstractHero
 
     public function killed() {
         $this->alive = 0;
+    }
+
+    public function resetHeroPower() {
+        $this->flipped = false;
+    }
+
+    public function flipHeroPower() {
+        $this->flipped = true;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function powerIsFlipped() {
+        return $this->flipped;
     }
 
 }
