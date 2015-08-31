@@ -591,5 +591,19 @@ class CardTest extends TestCase
         $this->assertEquals($current_card_counter+2, $this->game->getCardsPlayedThisGame());
     }
 
+    public function test_card_play_order_id_is_set_when_card_is_played() {
+        $current_card_counter = $this->game->getCardsPlayedThisGame();
+        $wisp1 = $this->playCard($this->wisp_name, 1);
+        $wisp2 = $this->playCard($this->wisp_name, 1);
+
+        $wisp3 = $this->playCard($this->wisp_name, 2);
+        $wisp4 = $this->playCard($this->wisp_name, 2);
+
+        $this->assertEquals($current_card_counter+1, $wisp1->getPlayOrderId());
+        $this->assertEquals($current_card_counter+2, $wisp2->getPlayOrderId());
+        $this->assertEquals($current_card_counter+3, $wisp3->getPlayOrderId());
+        $this->assertEquals($current_card_counter+4, $wisp4->getPlayOrderId());
+    }
+
 }
 

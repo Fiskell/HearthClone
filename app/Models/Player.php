@@ -156,6 +156,8 @@ class Player
         /** @var Game $game */
         $game = app('Game');
         $game->incrementCardsPlayedThisGame();
+
+        $card->setPlayOrderId($game->getCardsPlayedThisGame());
     }
 
     /**

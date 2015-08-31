@@ -14,6 +14,7 @@ use Exceptions\UndefinedBattleCryMechanicException;
 class Card
 {
     protected $id;
+    protected $play_order_id;
     protected $name;
     protected $cost;
     protected $attack;
@@ -440,6 +441,20 @@ class Card
             case 'Earth Elemental':
                 return 3;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayOrderId() {
+        return $this->play_order_id;
+    }
+
+    /**
+     * @param mixed $play_order_id
+     */
+    public function setPlayOrderId($play_order_id) {
+        $this->play_order_id = $play_order_id;
     }
 
 }
