@@ -416,7 +416,7 @@ class Player
      * @param array $targets
      */
     public function useAbility($targets = []) {
-        $defending_player = $this->getOtherPlayer($this);
+        $defending_player = $this->getOtherPlayer();
         $this->hero->useAbility($this, $defending_player, $targets);
         if (!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();
