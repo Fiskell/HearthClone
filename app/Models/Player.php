@@ -50,12 +50,16 @@ class Player
     /** @var  AbstractHero $hero */
     protected $hero;
 
+    /** @var bool $alive */
     protected $alive = true;
 
     public function isAlive() {
         return $this->alive;
     }
 
+    /**
+     * Kill the player, game over!
+     */
     public function killed() {
         $this->alive = false;
 
@@ -113,10 +117,10 @@ class Player
      * @throws NotEnoughManaCrystalsException
      * @throws UndefinedBattleCryMechanicException
      */
-    public function play(Card $card, array $targets = [], $choose_mechanic=null) {
+    public function play(Card $card, array $targets = [], $choose_mechanic = null) {
 
         $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
-        if(($remaining_mana_crystals - $card->getCost()) < 0) {
+        if (($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
         }
 
@@ -126,7 +130,7 @@ class Player
 
         $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
 
-        if($card->hasMechanic(Mechanics::$OVERLOAD)) {
+        if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
             // TODO I hate this
             $this->addLockedManaCrystalCount($card->getOverloadValue());
         }
@@ -135,7 +139,7 @@ class Player
             $this->recalculateSpellPower();
         }
 
-        if($card->hasMechanic(Mechanics::$CHOOSE)) {
+        if ($card->hasMechanic(Mechanics::$CHOOSE)) {
             $card->resolveChoose($targets, $choose_mechanic);
         }
 
@@ -143,11 +147,15 @@ class Player
             $card->resolveBattlecry($targets);
         }
 
-        if($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
+        if ($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
             $card->resolveCombo($targets);
         }
 
         $this->incrementCardsPlayedThisTurn();
+
+        /** @var Game $game */
+        $game = app('Game');
+        $game->incrementCardsPlayedThisGame();
     }
 
     /**
@@ -364,14 +372,14 @@ class Player
     /**
      * @param array $targets
      */
-    public function useAbility($targets=[]) {
+    public function useAbility($targets = []) {
         $defending_player = $this->getOtherPlayer($this);
         $this->hero->useAbility($this, $defending_player, $targets);
-        if(!$defending_player->getHero()->isAlive()) {
+        if (!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();
         }
 
-        if(!$this->getHero()->isAlive()) {
+        if (!$this->getHero()->isAlive()) {
             $this->killed();
         }
     }

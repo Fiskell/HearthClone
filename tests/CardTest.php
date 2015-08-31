@@ -583,5 +583,13 @@ class CardTest extends TestCase
         $this->assertEquals(1, $this->game->getWinningPlayer()->getPlayerId());
     }
 
+    public function test_card_order_increments_when_card_is_played() {
+        $current_card_counter = $this->game->getCardsPlayedThisGame();
+        $this->playCard($this->wisp_name, 1);
+        $this->assertEquals($current_card_counter+1, $this->game->getCardsPlayedThisGame());
+        $this->playCard($this->wisp_name, 2);
+        $this->assertEquals($current_card_counter+2, $this->game->getCardsPlayedThisGame());
+    }
+
 }
 

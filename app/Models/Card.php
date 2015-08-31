@@ -90,7 +90,6 @@ class Card
         return $this->attack;
     }
 
-
     /**
      * @param $new_attack
      */

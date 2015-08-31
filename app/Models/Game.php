@@ -29,6 +29,9 @@ class Game
     /** @var Player $losing_player */
     protected $losing_player;
 
+    /** @var  int $cards_played_this_game */
+    protected $cards_played_this_game;
+
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
@@ -147,6 +150,21 @@ class Game
      */
     public function setWinner(Player $winning_player) {
         $this->gameOver($winning_player);
+    }
+
+    /**
+     * Increment the value storing the number of cards played throughout the game.
+     */
+    public function incrementCardsPlayedThisGame() {
+        $this->cards_played_this_game++;
+    }
+
+    /**
+     * Get number of cards played this game.
+     * @return int
+     */
+    public function getCardsPlayedThisGame() {
+        return $this->cards_played_this_game;
     }
 
 }
