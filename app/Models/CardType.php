@@ -11,5 +11,6 @@ namespace App\Models;
 class CardType
 {
     public static $MINION = "Minion";
-    public static $SPELL = "Spell";
+    public static $SPELL  = "Spell";
+    public static $WEAPON = "Weapon";
 }
