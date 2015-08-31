@@ -17,6 +17,9 @@ class Player
     /** @var  int $player_id */
     protected $player_id;
 
+    /** @var  Game $game */
+    protected $game;
+
     /** @var  Card[] $minions_in_play */
     protected $minions_in_play = [];
 
@@ -396,7 +399,22 @@ class Player
      */
     public function attack(Card $attacker, Card $target) {
         $attacker->resolvePreparationPhase($target);
+        $this->game->checkForGameOver();
         $attacker->resolveCombatPhase($target);
+    }
+
+    /**
+     * @return Game
+     */
+    public function getGame() {
+        return $this->game;
+    }
+
+    /**
+     * @param Game $game
+     */
+    public function setGame($game) {
+        $this->game = $game;
     }
 
 }

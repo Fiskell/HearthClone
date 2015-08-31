@@ -35,10 +35,12 @@ class Game
     public function __construct(Player $player1, Player $player2) {
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
+        $this->player1->setGame($this);
         App::instance('Player1', $this->getPlayer1());
 
         $this->player2 = $player2;
         $this->player2->setPlayerId(2);
+        $this->player2->setGame($this);
         App::instance('Player2', $this->getPlayer2());
 
         //TODO for now hard coding player 1 as default active player
@@ -50,9 +52,8 @@ class Game
 
     public function init(Deck $player1, Deck $player2) {
         /** @var Game $game */
-        $game = app('Game');
-        $game->getPlayer1()->setDeck($player1);
-        $game->getPlayer2()->setDeck($player2);
+        $this->getPlayer1()->setDeck($player1);
+        $this->getPlayer2()->setDeck($player2);
     }
 
     /**
@@ -165,6 +166,24 @@ class Game
      */
     public function getCardsPlayedThisGame() {
         return $this->cards_played_this_game;
+    }
+
+    /**
+     * Phase which checks if the game is over, and assigns winner/losers/draw accordingly
+     */
+    public function checkForGameOver() {
+        // TODO need to account for draw
+        if($this->player1->getHero()->getHealth() <= 0) {
+            $this->gameOver($this->player2);
+            return true;
+        }
+
+        if($this->player2->getHero()->getHealth() <= 0) {
+            $this->gameOver($this->player1);
+            return true;
+        }
+
+        return false;
     }
 
 }

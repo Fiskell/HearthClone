@@ -49,14 +49,17 @@ class HearthCloneTest extends TestCase
 
     /**
      * @param $name
-     * @param $player_id
+     * @param int $player_id
      * @param array $targets
      * @param bool|false $summoning_sickness
+     * @param null $choose_mechanic
      * @return Card
      * @throws \App\Exceptions\MissingCardNameException
-     * @throws \App\Exceptions\UnknownCardNameException
+     * @throws \App\Exceptions\NotEnoughManaCrystalsException
      */
     public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
+        $this->initPlayers();
+
         /** @var Card $card */
         $card = app('Card');
         $card->load($name);

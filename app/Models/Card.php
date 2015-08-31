@@ -204,16 +204,14 @@ class Card
     }
 
     /**
-     * Card instance attacks the target, dealing damage and potentially killing.
+     * Syntactic sugar for initiating the player attack sequence.
      *
      * @param Card $target
      * @throws InvalidTargetException
      * @throws MinionAlreadyAttackedException
      */
     public function attack(Card $target) {
-
         $this->getOwner()->attack($this, $target);
-
     }
 
     /**
@@ -222,7 +220,7 @@ class Card
      * @throws MinionAlreadyAttackedException
      */
     public function resolveCombatPhase(Card $target) {
-         if ($this->isSleeping()) {
+        if ($this->isSleeping()) {
             throw new InvalidTargetException('This minion cannot attack because it is asleep');
         }
 
@@ -447,7 +445,7 @@ class Card
     }
 
     public function getOverloadValue() {
-        switch($this->getName()) {
+        switch ($this->getName()) {
             case 'Earth Elemental':
                 return 3;
         }
@@ -467,6 +465,11 @@ class Card
         $this->play_order_id = $play_order_id;
     }
 
+    /**
+     * Resolve the preparation phase of the player initiated attack sequence.
+     *
+     * @param $target
+     */
     public function resolvePreparationPhase($target) {
         return;
     }
