@@ -386,4 +386,17 @@ class Player
         }
     }
 
+    /**
+     * Player initiated attack sequence.
+     *
+     * @param Card $attacker
+     * @param Card $target
+     * @throws InvalidTargetException
+     * @throws \App\Exceptions\MinionAlreadyAttackedException
+     */
+    public function attack(Card $attacker, Card $target) {
+        $attacker->resolvePreparationPhase($target);
+        $attacker->resolveCombatPhase($target);
+    }
+
 }

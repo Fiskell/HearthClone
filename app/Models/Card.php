@@ -212,7 +212,17 @@ class Card
      */
     public function attack(Card $target) {
 
-        if ($this->isSleeping()) {
+        $this->getOwner()->attack($this, $target);
+
+    }
+
+    /**
+     * @param Card $target
+     * @throws InvalidTargetException
+     * @throws MinionAlreadyAttackedException
+     */
+    public function resolveCombatPhase(Card $target) {
+         if ($this->isSleeping()) {
             throw new InvalidTargetException('This minion cannot attack because it is asleep');
         }
 
@@ -455,6 +465,10 @@ class Card
      */
     public function setPlayOrderId($play_order_id) {
         $this->play_order_id = $play_order_id;
+    }
+
+    public function resolvePreparationPhase($target) {
+        return;
     }
 
 }

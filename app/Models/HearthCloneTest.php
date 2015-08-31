@@ -1,6 +1,4 @@
 <?php namespace App\Models;
-use App\Models\Card;
-use App\Models\Game;
 use TestCase;
 
 /**
