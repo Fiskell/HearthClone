@@ -340,6 +340,7 @@ class Player
                 $this->playWeapon($card, $targets, $choose_mechanic);
                 break;
         }
+        $this->game->resolveDeaths();
     }
 
     public function playSpell(Card $card, array $targets = [], $choose_mechanic = null) {
@@ -402,7 +403,8 @@ class Player
         $attacker->resolvePreparationPhase($target);
         $this->game->checkForGameOver();
         $attacker->resolveCombatPhase($target);
-        $this->game->checkForGameOver();
+        $this->game->resolveDeaths();
+        $this->endSequence();
     }
 
     /**
@@ -411,6 +413,7 @@ class Player
     public function useAbility($targets = []) {
         $this->flipHeroPower();
         $this->resolveHeroPower($targets);
+        $this->game->resolveDeaths();
         $this->game->checkForGameOver();
     }
     /* ---------------------------------- */
@@ -474,6 +477,11 @@ class Player
         }
 
         $this->getHero()->flipHeroPower();
+    }
+
+    private function endSequence() {
+        $this->game->resolveDeaths();
+        $this->game->checkForGameOver();
     }
 
     /* ---------------------------------- */

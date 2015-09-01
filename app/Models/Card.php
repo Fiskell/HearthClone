@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+use App\Events\DeathEvent;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
 use App\Exceptions\MissingCardNameException;
@@ -110,10 +111,6 @@ class Card
      */
     public function setHealth($new_health) {
         $this->health = $new_health;
-        if ($this->health <= 0) {
-            $this->health = 0;
-            $this->killed();
-        }
     }
 
     /**
@@ -142,14 +139,8 @@ class Card
      */
     public function killed() {
         $this->alive = false;
-        $player      = $this->getOwner();
-
-        if ($this->hasMechanic(Mechanics::$DEATHRATTLE)) {
-            $this->resolveDeathrattle();
-        }
-
-        $player->removeFromBoard($this->getId());
-        $player->recalculateActiveMechanics();
+        $this->getOwner()->removeFromBoard($this->getId());
+        event(new DeathEvent($this));
     }
 
     /**
@@ -311,13 +302,6 @@ class Card
 
     public function thaw() {
         $this->frozen = false;
-    }
-
-    public function resolveDeathrattle() {
-        switch ($this->name) {
-            case 'Loot Hoarder':
-                $this->getOwner()->drawCard();
-        }
     }
 
     /**

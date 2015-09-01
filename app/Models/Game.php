@@ -51,7 +51,6 @@ class Game
     public function init(Deck $player1, Deck $player2) {
         /** @var Game $game */
         $this->getPlayer1()->setDeck($player1);
-        print_r($this->getPlayer1()->getHero());
         $this->getPlayer2()->setDeck($player2);
 
         $this->active_player->startTurn();
@@ -187,6 +186,29 @@ class Game
         }
 
         return false;
+    }
+
+    public function resolveDeaths() {
+        $player1_minions = $this->getPlayer1()->getMinionsInPlay();
+        /** @var Card $player1_minion */
+        foreach($player1_minions as $player1_minion) {
+            if ($player1_minion->getHealth() <= 0) {
+                $player1_minion->setHealth(0);
+                $player1_minion->killed();
+            }
+        }
+
+        $player2_minions = $this->getPlayer2()->getMinionsInPlay();
+        /** @var Card $player2_minion */
+        foreach($player2_minions as $player2_minion) {
+            if ($player2_minion->getHealth() <= 0) {
+                $player2_minion->setHealth(0);
+                $player2_minion->killed();
+            }
+        }
+
+        $this->getPlayer1()->recalculateActiveMechanics();
+        $this->getPlayer2()->recalculateActiveMechanics();
     }
 
 }

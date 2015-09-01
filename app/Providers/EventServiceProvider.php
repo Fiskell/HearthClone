@@ -15,5 +15,8 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\DeathEvent' => [
+            'App\Listeners\Deathrattle'
+        ]
     ];
 }

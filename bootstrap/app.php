@@ -82,6 +82,7 @@ $app->register(App\Providers\CardServiceProvider::class);
 $app->register(App\Providers\GameServiceProvider::class);
 $app->register(App\Providers\HeroServiceProvider::class);
 $app->register(App\Providers\PlayerServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

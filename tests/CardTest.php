@@ -284,8 +284,8 @@ class CardTest extends HearthCloneTest
         $new_hand_size_player1 = $this->game->getPlayer1()->getHandSize();
         $new_hand_size_player2 = $this->game->getPlayer2()->getHandSize();
 
-        $this->assertTrue($new_hand_size_player1 == ($hand_size_player1 + 1));
-        $this->assertTrue($new_hand_size_player2 == ($hand_size_player2 + 1));
+        $this->assertEquals($hand_size_player1 + 1, $new_hand_size_player1);
+        $this->assertEquals($hand_size_player2 + 1, $new_hand_size_player2);
     }
 
     /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
