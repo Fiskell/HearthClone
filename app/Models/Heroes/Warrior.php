@@ -12,6 +12,7 @@ use App\Models\Player;
  */
 class Warrior extends AbstractHero
 {
+    private $armor_gained = 2;
     public function __construct() {
         $this->hero_class = HeroClass::$WARRIOR;
         $this->hero_power = HeroPower::$WARRIOR;
@@ -25,6 +26,6 @@ class Warrior extends AbstractHero
      * @param array $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        // TODO: Implement useAbility() method.
+        $active_player->getHero()->gainArmor($this->armor_gained);
     }
 }

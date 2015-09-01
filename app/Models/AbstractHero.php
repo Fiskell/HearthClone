@@ -16,6 +16,8 @@ abstract class AbstractHero
 
     protected $health = 30;
 
+    protected $armor = 0;
+
     protected $alive = true;
 
     protected $flipped = false;
@@ -89,6 +91,17 @@ abstract class AbstractHero
      */
     public function powerIsFlipped() {
         return $this->flipped;
+    }
+
+    public function getArmor() {
+        return $this->armor;
+    }
+
+    /**
+     * @param $armor_gained
+     */
+    public function gainArmor($armor_gained) {
+        $this->armor += $armor_gained;
     }
 
 }

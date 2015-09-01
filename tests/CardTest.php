@@ -547,5 +547,15 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
     }
 
+    public function test_using_warrior_power_adds_two_armor_to_hero() {
+        $this->initPlayers(HeroClass::$WARRIOR);
+
+        $this->assertEquals(0, $this->game->getPlayer1()->getHero()->getArmor());
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getArmor());
+    }
+
+
+
 }
 
