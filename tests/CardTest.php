@@ -526,5 +526,16 @@ class CardTest extends HearthCloneTest
         $this->assertEquals($this->silver_hand_recruit_name, $minion_in_play->getName());
     }
 
+    public function test_using_priest_power_heals_target_by_two_health() {
+        $this->initPlayers(HeroClass::$PRIEST);
+        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
+        $knife_juggler  = $this->playCard($this->knife_juggler_name, 2);
+        $knife_juggler->attack($chillwind_yeti);
+
+        $this->assertEquals(2, $chillwind_yeti->getHealth());
+        $this->game->getPlayer1()->useAbility([$chillwind_yeti]);
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
+
 }
 

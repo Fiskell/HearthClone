@@ -1,5 +1,7 @@
 <?php namespace App\Models\Heroes;
+use App\Exceptions\InvalidTargetException;
 use App\Models\AbstractHero;
+use App\Models\Card;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
 use App\Models\Player;
@@ -12,6 +14,7 @@ use App\Models\Player;
  */
 class Priest extends AbstractHero
 {
+    protected $heal_value = 2;
     public function __construct() {
         $this->hero_class = HeroClass::$PRIEST;
         $this->hero_power = HeroPower::$PRIEST;
@@ -23,8 +26,15 @@ class Priest extends AbstractHero
      * @param Player $active_player
      * @param Player $defending_player
      * @param array $targets
+     * @throws InvalidTargetException
      */
-    function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        // TODO: Implement useAbility() method.
+    public function useAbility(Player $active_player, Player $defending_player, array $targets) {
+        if(count($targets) != 1) {
+            throw new InvalidTargetException('Must select one target');
+        }
+
+        /** @var Card $target */
+        $target = current($targets);
+        $target->heal($this->heal_value);
     }
 }

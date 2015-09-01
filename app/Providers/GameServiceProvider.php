@@ -21,11 +21,6 @@ class GameServiceProvider extends ServiceProvider
             return new Game($this->app['Player'], $this->app['Player']);
         });
 
-        $this->app->singleton('TriggerTree', function () {
-            return new TriggerTree();
-        });
-
-
         $this->app->bind('Deck', function($app, $params) {
             //TODO validate params
             return new Deck(array_get($params, 0), array_get($params, 1));

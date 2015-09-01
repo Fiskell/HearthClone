@@ -458,4 +458,14 @@ class Card
         return;
     }
 
+    /**
+     * Phase to heal the target.
+     *
+     * @param $heal_value
+     */
+    public function heal($heal_value) {
+        echo 'hey';
+        $this->setHealth($this->getHealth() + $heal_value);
+    }
+
 }

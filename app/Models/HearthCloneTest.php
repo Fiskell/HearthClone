@@ -60,7 +60,6 @@ class HearthCloneTest extends TestCase
      * @throws \App\Exceptions\NotEnoughManaCrystalsException
      */
     public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
-        $this->initPlayers();
 
         /** @var Card $card */
         $card = app('Card');
@@ -115,6 +114,7 @@ class HearthCloneTest extends TestCase
     }
 
     public function initPlayers($player1_class='Hunter', $player1_deck=[], $player2_class='Mage', $player2_deck=[]) {
+        print_r($player1_class);
         $player1_deck = app('Deck', [app($player1_class), $player1_deck]);
         $player2_deck = app('Deck', [app($player2_class), $player2_deck]);
 
