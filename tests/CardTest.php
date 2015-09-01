@@ -2,6 +2,7 @@
 use App\Models\Card;
 use App\Models\CardType;
 use App\Models\HearthCloneTest;
+use App\Models\HeroClass;
 use App\Models\Mechanics;
 
 /**
@@ -446,7 +447,7 @@ class CardTest extends HearthCloneTest
     /** @expectedException \App\Exceptions\HeroPowerAlreadyFlippedException */
     public function test_mage_hero_power_can_only_be_played_once_per_turn() {
         $this->initPlayers();
-        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp  = $this->playCard($this->wisp_name, 1);
         $wisp2 = $this->playCard($this->wisp_name, 1);
         $this->game->getPlayer2()->useAbility([$wisp]);
         $this->game->getPlayer2()->useAbility([$wisp2]);
@@ -454,7 +455,7 @@ class CardTest extends HearthCloneTest
 
     public function test_mage_can_use_hero_power_twice_in_two_turns() {
         $this->initPlayers();
-        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp  = $this->playCard($this->wisp_name, 1);
         $wisp2 = $this->playCard($this->wisp_name, 1);
         $this->game->getPlayer2()->useAbility([$wisp]);
 
@@ -494,23 +495,35 @@ class CardTest extends HearthCloneTest
     public function test_card_order_increments_when_card_is_played() {
         $current_card_counter = $this->game->getCardsPlayedThisGame();
         $this->playCard($this->wisp_name, 1);
-        $this->assertEquals($current_card_counter+1, $this->game->getCardsPlayedThisGame());
+        $this->assertEquals($current_card_counter + 1, $this->game->getCardsPlayedThisGame());
         $this->playCard($this->wisp_name, 2);
-        $this->assertEquals($current_card_counter+2, $this->game->getCardsPlayedThisGame());
+        $this->assertEquals($current_card_counter + 2, $this->game->getCardsPlayedThisGame());
     }
 
     public function test_card_play_order_id_is_set_when_card_is_played() {
         $current_card_counter = $this->game->getCardsPlayedThisGame();
-        $wisp1 = $this->playCard($this->wisp_name, 1);
-        $wisp2 = $this->playCard($this->wisp_name, 1);
+        $wisp1                = $this->playCard($this->wisp_name, 1);
+        $wisp2                = $this->playCard($this->wisp_name, 1);
 
         $wisp3 = $this->playCard($this->wisp_name, 2);
         $wisp4 = $this->playCard($this->wisp_name, 2);
 
-        $this->assertEquals($current_card_counter+1, $wisp1->getPlayOrderId());
-        $this->assertEquals($current_card_counter+2, $wisp2->getPlayOrderId());
-        $this->assertEquals($current_card_counter+3, $wisp3->getPlayOrderId());
-        $this->assertEquals($current_card_counter+4, $wisp4->getPlayOrderId());
+        $this->assertEquals($current_card_counter + 1, $wisp1->getPlayOrderId());
+        $this->assertEquals($current_card_counter + 2, $wisp2->getPlayOrderId());
+        $this->assertEquals($current_card_counter + 3, $wisp3->getPlayOrderId());
+        $this->assertEquals($current_card_counter + 4, $wisp4->getPlayOrderId());
+    }
+
+    public function test_using_paladin_power_summons_silver_hand_recruit() {
+        $this->initPlayers(HeroClass::$PALADIN);
+
+        $this->assertEquals(0, count($this->game->getPlayer1()->getMinionsInPlay()));
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(1, count($this->game->getPlayer1()->getMinionsInPlay()));
+
+        /** @var Card $minion_in_play */
+        $minion_in_play = current($this->game->getPlayer1()->getMinionsInPlay());
+        $this->assertEquals($this->silver_hand_recruit_name, $minion_in_play->getName());
     }
 
 }
