@@ -537,5 +537,15 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
 
+    public function test_using_warlock_power_deals_two_damage_to_hero_and_player_draws_card() {
+        $this->initPlayers(HeroClass::$WARLOCK);
+
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(28, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+    }
+
 }
 

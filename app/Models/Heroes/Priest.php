@@ -36,5 +36,8 @@ class Priest extends AbstractHero
         /** @var Card $target */
         $target = current($targets);
         $target->heal($this->heal_value);
+
+        // todo hero needs to be a card so i can heal it
+        // todo should not be able to heal past max modified health
     }
 }

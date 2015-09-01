@@ -12,6 +12,7 @@ use App\Models\Player;
  */
 class Warlock extends AbstractHero
 {
+    private $life_lost = 2;
     public function __construct() {
         $this->hero_class = HeroClass::$WARLOCK;
         $this->hero_power = HeroPower::$WARLOCK;
@@ -25,6 +26,7 @@ class Warlock extends AbstractHero
      * @param array $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        // TODO: Implement useAbility() method.
+        $active_player->drawCard();
+        $active_player->getHero()->takeDamage($this->life_lost);
     }
 }
