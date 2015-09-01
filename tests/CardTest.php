@@ -555,6 +555,28 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getArmor());
     }
 
+    public function test_armor_is_used_before_life_when_damage_is_taken_by_hero_power() {
+        $this->initPlayers(HeroClass::$WARRIOR, HeroClass::$HUNTER);
+
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(0, $this->game->getPlayer1()->getHero()->getArmor());
+        $this->game->getPlayer1()->useAbility();
+        $this->game->getPlayer2()->useAbility();
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getArmor());
+    }
+
+    public function test_armor_is_used_before_life_when_damage_is_taken_from_attack() {
+        $this->initPlayers(HeroClass::$WARRIOR);
+
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(0, $this->game->getPlayer1()->getHero()->getArmor());
+        $this->game->getPlayer1()->useAbility();
+        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $knife_juggler->attack($this->game->getPlayer1()->getHero());
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getArmor());
+    }
 
 
 }
