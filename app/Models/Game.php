@@ -188,6 +188,9 @@ class Game
         return false;
     }
 
+    /**
+     * Phase which resolves the deaths that may have resulted from damage/triggers.
+     */
     public function resolveDeaths() {
         $player1_minions = $this->getPlayer1()->getMinionsInPlay();
         /** @var Card $player1_minion */
@@ -209,6 +212,10 @@ class Game
 
         $this->getPlayer1()->recalculateActiveMechanics();
         $this->getPlayer2()->recalculateActiveMechanics();
+
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+        $trigger_queue->resolveQueue();
     }
 
 }
