@@ -609,5 +609,13 @@ class CardTest extends HearthCloneTest
         $this->assertEquals($this->lights_justice_name, $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
+    public function test_rogue_ability_epuips_a_1_2_dagger() {
+        $this->initPlayers(HeroClass::$ROGUE);
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
+        $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getWeapon()->getDurability());
+        $this->assertEquals('Dagger', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
+    }
+
 }
 
