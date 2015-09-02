@@ -36,7 +36,7 @@ class HearthCloneTest extends TestCase
      */
     public $consecrate_name = 'Consecration';
 
-    /** @var  Card $card */
+    /** @var  Minion $card */
     public $card;
 
     /** @var  Game $game */
@@ -46,7 +46,7 @@ class HearthCloneTest extends TestCase
         parent::setUp();
         $this->game = app('Game');
         $this->initPlayers();
-        $this->card = app('Card');
+        $this->card = app('Minion');
     }
 
     /**
@@ -55,14 +55,14 @@ class HearthCloneTest extends TestCase
      * @param array $targets
      * @param bool|false $summoning_sickness
      * @param null $choose_mechanic
-     * @return Card
+     * @return Minion
      * @throws \App\Exceptions\MissingCardNameException
      * @throws \App\Exceptions\NotEnoughManaCrystalsException
      */
     public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
 
         /** @var Card $card */
-        $card = app('Card');
+        $card = app('Minion');
         $card->load($name);
 
         $this->game->getPlayer1()->setManaCrystalCount(1000);
@@ -89,7 +89,7 @@ class HearthCloneTest extends TestCase
 
     public function playCardStrict($name, $player_id = 1, $turn = 1, $targets = [], $choose_mechanic = null) {
         /** @var Card $card */
-        $card = app('Card');
+        $card = app('Minion');
         $card->load($name);
 
         /** @var Player $player */
@@ -114,7 +114,6 @@ class HearthCloneTest extends TestCase
     }
 
     public function initPlayers($player1_class='Hunter', $player1_deck=[], $player2_class='Mage', $player2_deck=[]) {
-        print_r($player1_class);
         $player1_deck = app('Deck', [app($player1_class), $player1_deck]);
         $player2_deck = app('Deck', [app($player2_class), $player2_deck]);
 

@@ -1,41 +1,51 @@
-<?php namespace App\Models;
-
-use App\Events\DeathEvent;
-use App\Exceptions\InvalidTargetException;
-use App\Exceptions\MinionAlreadyAttackedException;
-use App\Exceptions\MissingCardNameException;
-use Exceptions\UndefinedBattleCryMechanicException;
-
+<?php
 /**
  * Created by PhpStorm.
  * User: Kegimaro
- * Date: 8/23/15
- * Time: 3:07 PM
+ * Date: 9/1/15
+ * Time: 9:36 PM
  */
+
+namespace App\Models;
+
+use App\Exceptions\MissingCardNameException;
+
 class Card
 {
     protected $id;
-    protected $play_order_id;
+
     protected $name;
+
     protected $cost;
-    protected $attack;
-    protected $health;
+
     protected $type;
-    protected $alive;
-    protected $mechanics     = [];
+
+    protected $mechanics = [];
+
     protected $sub_mechanics = [];
-    protected $owner         = null;
+    
+    protected $card_json;
+
+    /** @var  Game $game */
     protected $game;
-    protected $sleeping;
-    /** @var CardSets $card_sets */
-    protected $card_sets;
-    protected $frozen                   = false;
-    protected $times_attacked_this_turn = 0;
+
+    /** @var  Player $owner */
+    protected $owner = null;
+
+    protected $play_order_id;
+
 
     public function __construct(Game $game) {
         $this->game = $game;
     }
 
+    /**
+     * Load a card from json into object.
+     *
+     * @param null $name
+     * @throws MissingCardNameException
+     * @throws \App\Exceptions\UnknownCardNameException
+     */
     public function load($name = null) {
         if (is_null($name)) {
             throw new MissingCardNameException();
@@ -43,32 +53,27 @@ class Card
 
         /** @var CardSets $card_sets */
         $card_sets = app('CardSets');
-        $card_json = $card_sets->findCard($name);
+        $this->card_json = $card_sets->findCard($name);
 
         $this->id        = rand(1, 1000000);
         $this->name      = $name;
-        $this->cost      = array_get($card_json, 'cost', 0);
-        $this->attack    = array_get($card_json, 'attack', 0);
-        $this->health    = array_get($card_json, 'health', 0);
-        $this->type      = array_get($card_json, 'type', CardType::$MINION);
-        $this->mechanics = array_get($card_json, 'mechanics', []);
+        $this->cost      = array_get($this->card_json, 'cost', 0);
+        $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
+        $this->mechanics = array_get($this->card_json, 'mechanics', []);
 
         // TODO fix this jank
-        if (strpos(array_get($card_json, 'text', ''), 'Choose One')) {
+        if (strpos(array_get($this->card_json, 'text', ''), 'Choose One')) {
             $this->mechanics[] = Mechanics::$CHOOSE;
         }
 
-        if (strpos(array_get($card_json, 'text', ''), 'Overload')) {
+        if (strpos(array_get($this->card_json, 'text', ''), 'Overload')) {
             $this->mechanics[] = Mechanics::$OVERLOAD;
         }
 
-        switch ($card_json['name']) {
+        switch ($this->card_json['name']) {
             case 'Spellbreaker':
                 $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
         }
-
-        $this->sleeping = !$this->hasMechanic(Mechanics::$CHARGE);
-        $this->alive    = true;
     }
 
     /**
@@ -85,62 +90,12 @@ class Card
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAttack() {
-        return $this->attack;
-    }
-
-    /**
-     * @param $new_attack
-     */
-    public function setAttack($new_attack) {
-        $this->attack = $new_attack;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHealth() {
-        return $this->health;
-    }
-
-    /**
-     * @param mixed $new_health
-     */
-    public function setHealth($new_health) {
-        $this->health = $new_health;
-    }
-
-    /**
-     * @param $damage
-     */
-    public function takeDamage($damage) {
-        $this->setHealth($this->getHealth() - $damage);
-    }
 
     /**
      * @return mixed
      */
     public function getType() {
         return $this->type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function isAlive() {
-        return $this->alive;
-    }
-
-    /**
-     * Kill the card and remove it from the board.
-     */
-    public function killed() {
-        $this->alive = false;
-        $this->getOwner()->removeFromBoard($this->getId());
-        event(new DeathEvent($this));
     }
 
     /**
@@ -164,6 +119,33 @@ class Card
         return $this->game;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCost() {
+        return $this->cost;
+    }
+
+    /**
+     * @param mixed $cost
+     */
+    public function setCost($cost) {
+        $this->cost = $cost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayOrderId() {
+        return $this->play_order_id;
+    }
+
+    /**
+     * @param mixed $play_order_id
+     */
+    public function setPlayOrderId($play_order_id) {
+        $this->play_order_id = $play_order_id;
+    }
     /**
      * @return array
      */
@@ -192,280 +174,6 @@ class Card
 
     public function removeAllMechanics() {
         $this->mechanics = [];
-    }
-
-    /**
-     * Syntactic sugar for initiating the player attack sequence.
-     *
-     * @param Card $target
-     * @throws InvalidTargetException
-     * @throws MinionAlreadyAttackedException
-     */
-    public function attack(Card $target) {
-        $this->getOwner()->attack($this, $target);
-    }
-
-    /**
-     * @param Card $target
-     * @throws InvalidTargetException
-     * @throws MinionAlreadyAttackedException
-     */
-    public function resolveCombatPhase(Card $target) {
-        if ($this->isSleeping()) {
-            throw new InvalidTargetException('This minion cannot attack because it is asleep');
-        }
-
-        if ($this->isFrozen()) {
-            throw new InvalidTargetException('This minion cannot attack because it is frozen');
-        }
-
-        if ($this->alreadyAttacked()) {
-            throw new MinionAlreadyAttackedException('This minion has already attacked this turn');
-        }
-
-        $attacking_player = $this->getOwner();
-        $defending_player = $attacking_player->getOtherPlayer();
-
-        /* Taunt */
-        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
-        $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
-
-        if (!$target_has_taunt && $player_has_taunt) {
-            throw new InvalidTargetException('You may only attack a minion with taunt');
-        }
-
-        /* Stealth */
-        if ($target->hasMechanic(Mechanics::$STEALTH)) {
-            throw new InvalidTargetException('You cannot attack a stealth minion');
-        }
-
-        if ($this->hasMechanic(Mechanics::$STEALTH)) {
-            $this->removeMechanic(Mechanics::$STEALTH);
-        }
-
-        /* Divine Shield */
-        $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
-        if ($target_has_divine_shield) {
-            $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
-        }
-
-        $attacker_has_divine_shield = $this->hasMechanic(Mechanics::$DIVINE_SHIELD);
-        if ($attacker_has_divine_shield) {
-            $this->removeMechanic(Mechanics::$DIVINE_SHIELD);
-        }
-
-        /* Enrage */
-        if ($target->hasMechanic(Mechanics::$ENRAGE)) {
-            $target->setAttack($target->getAttack() + 3);
-        }
-
-        if ($this->hasMechanic(Mechanics::$ENRAGE)) {
-            $this->setAttack($this->getAttack() + 3);
-        }
-
-        if (!$attacker_has_divine_shield) {
-
-            $this->setHealth($this->getHealth() - $target->getAttack());
-
-            if ($target->hasMechanic(Mechanics::$FREEZE)) {
-                $this->freeze();
-            }
-        }
-
-        if (!$target_has_divine_shield) {
-
-            $target->setHealth($target->getHealth() - $this->getAttack());
-
-            if ($this->hasMechanic(Mechanics::$FREEZE)) {
-                $target->freeze();
-            }
-        }
-
-        $this->incrementTimesAttackedThisTurn();
-    }
-
-    public function isSleeping() {
-        return $this->sleeping;
-    }
-
-    public function wakeUp() {
-        $this->sleeping = false;
-    }
-
-    public function isFrozen() {
-        return $this->frozen;
-    }
-
-    public function freeze() {
-        $this->frozen = true;
-    }
-
-    public function thaw() {
-        $this->frozen = false;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTimesAttackedThisTurn() {
-        return $this->times_attacked_this_turn;
-    }
-
-    /**
-     * Increment number of times attacked this turn by one.
-     * Minions without windfury can only attack once per turn.
-     * Minions with windfury can attack twice per turn.
-     */
-    public function incrementTimesAttackedThisTurn() {
-        $this->times_attacked_this_turn++;
-    }
-
-    /**
-     * Sets times attacked back to zero
-     */
-    public function resetTimesAttackedThisTurn() {
-        $this->times_attacked_this_turn = 0;
-    }
-
-    public function alreadyAttacked() {
-        if ($this->hasMechanic(Mechanics::$WINDFURY)) {
-            return $this->getTimesAttackedThisTurn() == 2;
-        }
-
-        return $this->getTimesAttackedThisTurn() == 1;
-    }
-
-    /**
-     * @param Card[] $targets
-     * @throws InvalidTargetException
-     */
-    public function resolveCombo($targets) {
-        switch ($this->name) {
-            case 'SI:7 Agent':
-                if (count($targets) != 1) {
-                    throw new InvalidTargetException('Must choose a target to do damage on');
-                }
-
-                /** @var Card $target */
-                $target = current($targets);
-                $target->takeDamage(2);
-        }
-    }
-
-    /**
-     * @param array $targets
-     * @throws InvalidTargetException
-     * @throws UndefinedBattleCryMechanicException
-     */
-    public function resolveBattlecry(array $targets) {
-        $card_sub_mechanics      = $this->getSubMechanics();
-        $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
-
-        if (is_null($card_battlecry_mechanic)) {
-            throw new UndefinedBattleCryMechanicException('No battle cry mechanic specified');
-        }
-
-        if (is_null($card_sub_mechanics)) {
-            return;
-        }
-
-        switch ($card_battlecry_mechanic) {
-            case Mechanics::$SILENCE:
-                if (count($targets) > 1) {
-                    throw new InvalidTargetException('Silence can only target one minion');
-                }
-
-                /** @var Card $target */
-                $target = current($targets);
-
-                if ($target->hasMechanic(Mechanics::$STEALTH)) {
-                    throw new InvalidTargetException('Cannot silence stealth minion');
-                }
-
-                $target->removeAllMechanics();
-
-                break;
-        }
-    }
-
-    /**
-     * @param Card[] $targets
-     * @param $chosen_value
-     * @throws InvalidTargetException
-     */
-    public function resolveChoose(array $targets, $chosen_value) {
-        switch ($this->getName()) {
-            case 'Keeper of the Grove':
-                if (count($targets) != 1) {
-                    throw new InvalidTargetException('Must choose a target to apply combo to');
-                }
-
-                /** @var Card $target */
-                $target = current($targets);
-                if ($chosen_value == 1) {
-                    $target->takeDamage(2);
-                }
-
-                if ($chosen_value == 2) {
-                    $target->removeAllMechanics();
-                }
-
-                break;
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCost() {
-        return $this->cost;
-    }
-
-    /**
-     * @param mixed $cost
-     */
-    public function setCost($cost) {
-        $this->cost = $cost;
-    }
-
-    public function getOverloadValue() {
-        switch ($this->getName()) {
-            case 'Earth Elemental':
-                return 3;
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPlayOrderId() {
-        return $this->play_order_id;
-    }
-
-    /**
-     * @param mixed $play_order_id
-     */
-    public function setPlayOrderId($play_order_id) {
-        $this->play_order_id = $play_order_id;
-    }
-
-    /**
-     * Resolve the preparation phase of the player initiated attack sequence.
-     *
-     * @param $target
-     */
-    public function resolvePreparationPhase($target) {
-        return;
-    }
-
-    /**
-     * Phase to heal the target.
-     *
-     * @param $heal_value
-     */
-    public function heal($heal_value) {
-        echo 'hey';
-        $this->setHealth($this->getHealth() + $heal_value);
     }
 
 }

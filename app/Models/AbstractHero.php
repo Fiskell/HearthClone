@@ -8,7 +8,7 @@
 
 namespace App\Models;
 
-abstract class AbstractHero
+abstract class AbstractHero extends Minion
 {
     protected $hero_class;
 
@@ -48,6 +48,7 @@ abstract class AbstractHero
      * @param $damage
      */
     public function takeDamage($damage) {
+        echo 'hey';
         if($this->armor >= $damage) {
             $this->armor -= $damage;
             return;
