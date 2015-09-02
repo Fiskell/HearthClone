@@ -48,6 +48,14 @@ abstract class AbstractHero
      * @param $damage
      */
     public function takeDamage($damage) {
+        if($this->armor >= $damage) {
+            $this->armor -= $damage;
+            return;
+        }
+
+        $damage -= $this->armor;
+        $this->armor = 0;
+
         $this->health -= $damage;
         if($this->health <= 0) {
             $this->killed();
