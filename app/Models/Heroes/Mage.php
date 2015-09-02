@@ -1,9 +1,9 @@
 <?php namespace App\Models\Heroes;
 use App\Exceptions\InvalidTargetException;
 use App\Models\AbstractHero;
-use App\Models\Card;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
+use App\Models\Minion;
 use App\Models\Player;
 
 /**
@@ -26,7 +26,7 @@ class Mage extends AbstractHero
      *
      * @param Player $active_player
      * @param Player $defending_player
-     * @param array $targets
+     * @param Minion[] $targets
      * @throws InvalidTargetException
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
@@ -34,7 +34,7 @@ class Mage extends AbstractHero
             throw new InvalidTargetException('Must select one target');
         }
 
-        /** @var Card $target */
+        /** @var Minion $target */
         $target = current($targets);
         $target->takeDamage($this->hero_damage);
     }
