@@ -601,5 +601,12 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(0, $this->game->getPlayer1()->getHero()->getArmor());
     }
 
+    public function test_lights_justice_can_be_equipped() {
+        $this->initPlayers(HeroClass::$PALADIN);
+        $this->playWeaponCard($this->lights_justice_name, 1);
+        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
+        $this->assertEquals(4, $this->game->getPlayer1()->getHero()->getWeapon()->getDurability());
+    }
+
 }
 

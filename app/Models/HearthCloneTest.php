@@ -36,6 +36,11 @@ class HearthCloneTest extends TestCase
      */
     public $consecrate_name = 'Consecration';
 
+    /**
+     * Weapons
+     */
+     public $lights_justice_name = "Light's Justice";
+
     /** @var  Minion $card */
     public $card;
 
@@ -118,6 +123,20 @@ class HearthCloneTest extends TestCase
         $player2_deck = app('Deck', [app($player2_class), $player2_deck]);
 
         $this->game->init($player1_deck, $player2_deck);
+    }
+
+    public function playWeaponCard($weapon_name, $player_id=1, $targets=[]){
+        /** @var Card $card */
+        $card = app('Weapon');
+        $card->load($weapon_name);
+
+        /** @var Player $player */
+        $player = $this->game->getPlayer1();
+        if ($player_id == 2) {
+            $player = $this->game->getPlayer2();
+        }
+
+        $player->play($card, $targets);
     }
 
     public function getActivePlayerId() {

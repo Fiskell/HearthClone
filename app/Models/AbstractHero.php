@@ -24,6 +24,9 @@ abstract class AbstractHero extends Minion
 
     protected $flipped = false;
 
+    /** @var Weapon $weapon */
+    protected $weapon;
+
     /**
      * @return mixed
      */
@@ -112,6 +115,17 @@ abstract class AbstractHero extends Minion
      */
     public function gainArmor($armor_gained) {
         $this->armor += $armor_gained;
+    }
+
+    public function equipWeapon($card, $targets) {
+        $this->weapon = $card;
+    }
+
+    /**
+     * @return Weapon
+     */
+    public function getWeapon() {
+        return $this->weapon;
     }
 
 }

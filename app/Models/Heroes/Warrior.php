@@ -23,7 +23,7 @@ class Warrior extends AbstractHero
      *
      * @param Player $active_player
      * @param Player $defending_player
-     * @param array $targets
+     * @param Minion[] $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
         $active_player->getHero()->gainArmor($this->armor_gained);

@@ -337,7 +337,7 @@ class Player
                 $this->playSpell($card, $targets, $choose_mechanic);
                 break;
             case CardType::$WEAPON:
-                $this->playWeapon($card, $targets, $choose_mechanic);
+                $this->playWeapon($card, $targets);
                 break;
         }
         $this->game->resolveDeaths();
@@ -347,8 +347,8 @@ class Player
         // Todo
     }
 
-    public function playWeapon(Card $card, array $targets = [], $choose_mechanic = null) {
-        // Todo
+    public function playWeapon(Card $card, array $targets = []) {
+        $this->getHero()->equipWeapon($card, $targets);
     }
 
     public function playMinion(Card $card, array $targets = [], $choose_mechanic = null) {

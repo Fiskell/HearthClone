@@ -25,6 +25,6 @@ class Shaman extends AbstractHero
      * @param array $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        // TODO: Implement useAbility() method.
+
     }
 }
