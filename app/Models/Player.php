@@ -35,7 +35,7 @@ class Player
     /** @var int $mana_crystal_count */
     protected $mana_crystal_count = 0;
 
-    /** @var  Card[] $minions_in_play */
+    /** @var  Minion[] $minions_in_play */
     protected $minions_in_play = [];
 
     /* Player Attributes */
@@ -145,7 +145,7 @@ class Player
     }
 
     /**
-     * @return Card[]
+     * @return Minion[]
      */
     public function getMinionsInPlay() {
         return $this->minions_in_play;
@@ -322,7 +322,7 @@ class Player
      * Add a card to the board.
      *
      * @param Card $card
-     * @param Card[] $targets
+     * @param Minion[] $targets
      * @param null $choose_mechanic
      * @throws InvalidTargetException
      * @throws NotEnoughManaCrystalsException
@@ -351,7 +351,7 @@ class Player
         $this->getHero()->equipWeapon($card, $targets);
     }
 
-    public function playMinion(Card $card, array $targets = [], $choose_mechanic = null) {
+    public function playMinion(Minion $card, array $targets = [], $choose_mechanic = null) {
         $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
         if (($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
@@ -394,12 +394,12 @@ class Player
     /**
      * Player initiated attack sequence.
      *
-     * @param Card $attacker
-     * @param Card $target
+     * @param Minion $attacker
+     * @param Minion $target
      * @throws InvalidTargetException
      * @throws \App\Exceptions\MinionAlreadyAttackedException
      */
-    public function attack(Card $attacker, Card $target) {
+    public function attack(Minion $attacker, Minion $target) {
         $attacker->resolvePreparationPhase($target);
         $this->game->checkForGameOver();
         $attacker->resolveCombatPhase($target);
