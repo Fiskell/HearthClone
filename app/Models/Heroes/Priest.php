@@ -1,9 +1,9 @@
 <?php namespace App\Models\Heroes;
 use App\Exceptions\InvalidTargetException;
 use App\Models\AbstractHero;
-use App\Models\Card;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
+use App\Models\Minion;
 use App\Models\Player;
 
 /**
@@ -25,7 +25,7 @@ class Priest extends AbstractHero
      *
      * @param Player $active_player
      * @param Player $defending_player
-     * @param array $targets
+     * @param Minion[] $targets
      * @throws InvalidTargetException
      */
     public function useAbility(Player $active_player, Player $defending_player, array $targets) {
@@ -33,11 +33,21 @@ class Priest extends AbstractHero
             throw new InvalidTargetException('Must select one target');
         }
 
-        /** @var Card $target */
+        /** @var Minion $target */
         $target = current($targets);
-        $target->heal($this->heal_value);
 
-        // todo hero needs to be a card so i can heal it
-        // todo should not be able to heal past max modified health
+        if($target instanceof AbstractHero) {
+            $amount_to_heal = $this->heal_value;
+            $heal_result = $target->getHealth() + $this->heal_value;
+
+            if($heal_result > AbstractHero::$MAX_LIFE) {
+                $amount_to_heal -= $heal_result - AbstractHero::$MAX_LIFE;
+            }
+
+            $target->heal($amount_to_heal);
+            return;
+        }
+
+        $target->heal($this->heal_value);
     }
 }

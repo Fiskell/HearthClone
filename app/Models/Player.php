@@ -457,7 +457,6 @@ class Player
      */
     private function resolveHeroPower($targets) {
         $defending_player = $this->getOtherPlayer();
-        print_r($this->hero->getHeroClass());
         $this->hero->useAbility($this, $defending_player, $targets);
         if (!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();

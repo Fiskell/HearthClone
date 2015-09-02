@@ -68,7 +68,6 @@ class Minion extends Card
         $this->setHealth($this->getHealth() - $damage);
     }
 
-
     /**
      * @return mixed
      */

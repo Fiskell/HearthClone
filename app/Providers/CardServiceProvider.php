@@ -18,12 +18,12 @@ class CardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Card', function () {
-            return new Card($this->app['Game']);
+            return new Card();
         });
 
 
         $this->app->bind('Minion', function () {
-            return new Minion($this->app['Game']);
+            return new Minion();
         });
 
         $this->app->singleton('CardSets', function () {

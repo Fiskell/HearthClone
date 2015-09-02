@@ -537,6 +537,13 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
 
+    public function test_using_priest_power_to_heal_does_not_go_over_thirty_life() {
+        $this->initPlayers(HeroClass::$PRIEST);
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->game->getPlayer1()->useAbility([$this->game->getPlayer1()->getHero()]);
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+    }
+
     public function test_using_warlock_power_deals_two_damage_to_hero_and_player_draws_card() {
         $this->initPlayers(HeroClass::$WARLOCK);
 

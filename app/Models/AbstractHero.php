@@ -10,6 +10,8 @@ namespace App\Models;
 
 abstract class AbstractHero extends Minion
 {
+    public static $MAX_LIFE = 30;
+
     protected $hero_class;
 
     protected $hero_power;
@@ -48,7 +50,6 @@ abstract class AbstractHero extends Minion
      * @param $damage
      */
     public function takeDamage($damage) {
-        echo 'hey';
         if($this->armor >= $damage) {
             $this->armor -= $damage;
             return;

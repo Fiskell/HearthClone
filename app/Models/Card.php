@@ -34,11 +34,6 @@ class Card
 
     protected $play_order_id;
 
-
-    public function __construct(Game $game) {
-        $this->game = $game;
-    }
-
     /**
      * Load a card from json into object.
      *
