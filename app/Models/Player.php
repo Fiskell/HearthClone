@@ -405,8 +405,7 @@ class Player
         event(new SummonMinionEvent($card));
 
         /** @var Game $game */
-        $game = app('Game');
-        $game->resolveDeaths();
+        $this->game->resolveDeaths();
     }
 
     /**
