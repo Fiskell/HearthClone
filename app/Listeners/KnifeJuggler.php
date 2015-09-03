@@ -35,13 +35,14 @@ class KnifeJuggler implements TriggerableInterface
         $opponent_minions = $opponent->getMinionsInPlay();
 
         foreach ($player_minions as $minion) {
-
             if ($minion->getName() == 'Knife Juggler' && $minion->getId() != $summoned_minion->getId()) {
                 // todo knife juggler can hit the player
-
+                echo $opponent->getHero()->getId();
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero()->getId();
                 $random_key = array_rand($opponent_minions);
                 $random_minion = $opponent_minions[$random_key];
-                $random_minion->takeDamage(1);
+                echo $random_minion->getName();
+//                $random_minion->takeDamage(1);
             }
         }
     }

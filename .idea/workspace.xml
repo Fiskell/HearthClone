@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CardTest.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CardTest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/CardTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.533334">
-              <caret line="631" column="26" selection-start-line="631" selection-start-column="26" selection-end-line="631" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.78740156">
+              <caret line="635" column="61" selection-start-line="635" selection-start-column="61" selection-end-line="635" selection-end-column="61" />
               <folding>
                 <element signature="e#6#26#0#PHP" expanded="true" />
               </folding>
@@ -44,10 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Player.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7929051">
+            <state vertical-scroll-proportion="22.212122">
               <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
               <folding>
                 <element signature="e#114#147#0#PHP" expanded="true" />
@@ -69,8 +69,8 @@
       <file leaf-file-name="KnifeJuggler.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Listeners/KnifeJuggler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.60606">
-              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state vertical-scroll-proportion="-24.333334">
+              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -81,6 +81,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.515152">
               <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractHero.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/AbstractHero.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.727272">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -151,14 +161,12 @@
         <option value="$PROJECT_DIR$/app/Models/Heroes/Paladin.php" />
         <option value="$PROJECT_DIR$/app/Models/Card.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Priest.php" />
-        <option value="$PROJECT_DIR$/app/Models/Minion.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Mage.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Warrior.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Shaman.php" />
         <option value="$PROJECT_DIR$/resources/sets/Basic.enUS.json" />
         <option value="$PROJECT_DIR$/app/Providers/CardServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Models/HearthCloneTest.php" />
-        <option value="$PROJECT_DIR$/app/Models/AbstractHero.php" />
         <option value="$PROJECT_DIR$/app/Models/Weapon.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Rogue.php" />
         <option value="$PROJECT_DIR$/app/Models/Heroes/Druid.php" />
@@ -170,10 +178,12 @@
         <option value="$PROJECT_DIR$/app/Listeners/KinfeJuggler.php" />
         <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Events/SummonMinionEvent.php" />
-        <option value="$PROJECT_DIR$/app/Listeners/KnifeJuggler.php" />
-        <option value="$PROJECT_DIR$/tests/CardTest.php" />
         <option value="$PROJECT_DIR$/app/Models/TriggerQueue.php" />
         <option value="$PROJECT_DIR$/app/Models/Player.php" />
+        <option value="$PROJECT_DIR$/app/Listeners/KnifeJuggler.php" />
+        <option value="$PROJECT_DIR$/app/Models/Minion.php" />
+        <option value="$PROJECT_DIR$/app/Models/AbstractHero.php" />
+        <option value="$PROJECT_DIR$/tests/CardTest.php" />
       </list>
     </option>
   </component>
@@ -633,12 +643,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/SummonMinionEvent.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/TriggerQueue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.363636">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="-20.969696">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Player.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="22.212122">
+          <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
           <folding>
-            <element signature="e#30#62#0#PHP" expanded="true" />
+            <element signature="e#114#147#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -659,20 +677,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CardTest.php">
+    <entry file="file://$PROJECT_DIR$/app/Events/SummonMinionEvent.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.533334">
-          <caret line="631" column="26" selection-start-line="631" selection-start-column="26" selection-end-line="631" selection-end-column="26" />
+        <state vertical-scroll-proportion="-12.363636">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#6#26#0#PHP" expanded="true" />
+            <element signature="e#30#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/KnifeJuggler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.60606">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state vertical-scroll-proportion="-24.333334">
+          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/Headers/AbstractHeader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -685,20 +711,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/TriggerQueue.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/AbstractHero.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.969696">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        <state vertical-scroll-proportion="-16.727272">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Player.php">
+    <entry file="file://$PROJECT_DIR$/tests/CardTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7929051">
-          <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.78740156">
+          <caret line="635" column="61" selection-start-line="635" selection-start-column="61" selection-end-line="635" selection-end-column="61" />
           <folding>
-            <element signature="e#114#147#0#PHP" expanded="true" />
+            <element signature="e#6#26#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
