@@ -18,6 +18,9 @@ class CardTest extends HearthCloneTest
         $this->card->load();
     }
 
+
+
+
     /** @expectedException \App\Exceptions\UnknownCardNameException */
     public function test_card_load_throws_when_unknown_name_is_given() {
         $this->card->load('NOT_A_REAL_CARD_HANDLE');

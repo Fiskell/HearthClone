@@ -351,6 +351,16 @@ class Player
         $this->getHero()->equipWeapon($card, $targets);
     }
 
+    /**
+     * Player initiated sequence of summoning a minion.
+     * @param Minion $card
+     * @param array $targets
+     * @param null $choose_mechanic
+     * @throws InvalidTargetException
+     * @throws NotEnoughManaCrystalsException
+     * @throws UndefinedBattleCryMechanicException
+     * @throws \App\Exceptions\DumbassDeveloperException
+     */
     public function playMinion(Minion $card, array $targets = [], $choose_mechanic = null) {
         $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
         if (($remaining_mana_crystals - $card->getCost()) < 0) {
@@ -430,6 +440,9 @@ class Player
         }
     }
 
+    /**
+     * Draw a card.
+     */
     public function drawCard() {
         $this->hand_size++;
     }
