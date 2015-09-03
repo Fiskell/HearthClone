@@ -117,7 +117,7 @@ abstract class AbstractHero extends Minion
         $this->armor += $armor_gained;
     }
 
-    public function equipWeapon($card, $targets) {
+    public function equipWeapon($card, $targets=[]) {
         $this->weapon = $card;
     }
 

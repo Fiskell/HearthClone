@@ -47,4 +47,18 @@ class Weapon extends Card
         $this->durability--;
     }
 
+    /**
+     * @param $durability
+     */
+    public function setDurability($durability) {
+        $this->durability = $durability;
+    }
+
+    /**
+     * @param $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+
 }
