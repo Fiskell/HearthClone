@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\DeathEvent' => [
             'App\Listeners\Deathrattle'
+        ],
+        'App\Events\SummonMinionEvent' => [
+            'App\Listeners\KnifeJuggler'
         ]
     ];
 }

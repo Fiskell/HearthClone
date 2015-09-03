@@ -18,9 +18,6 @@ class CardTest extends HearthCloneTest
         $this->card->load();
     }
 
-
-
-
     /** @expectedException \App\Exceptions\UnknownCardNameException */
     public function test_card_load_throws_when_unknown_name_is_given() {
         $this->card->load('NOT_A_REAL_CARD_HANDLE');
@@ -626,6 +623,14 @@ class CardTest extends HearthCloneTest
         $this->game->getPlayer1()->useAbility();
         $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
         $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getArmor());
+    }
+
+    public function test_knife_juggler_kills_enemy_minion_when_friendly_minion_is_summoned() {
+        $this->playCard($this->knife_juggler_name, 1);
+        $wisp = $this->playCard($this->wisp_name, 2);
+        $this->playCard($this->argent_squire_name, 1);
+        echo $wisp->getHealth();
+        $this->assertFalse($wisp->isAlive());
     }
 
 }

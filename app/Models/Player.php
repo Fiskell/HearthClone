@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+use App\Events\SummonMinionEvent;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
@@ -399,6 +400,13 @@ class Player
         $this->game->incrementCardsPlayedThisGame();
 
         $card->setPlayOrderId($this->game->getCardsPlayedThisGame());
+
+        // todo clean up these phases
+        event(new SummonMinionEvent($card));
+
+        /** @var Game $game */
+        $game = app('Game');
+        $game->resolveDeaths();
     }
 
     /**
