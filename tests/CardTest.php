@@ -617,5 +617,13 @@ class CardTest extends HearthCloneTest
         $this->assertEquals('Dagger', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
+
+    public function test_druid_ability_adds_one_attack_and_one_armor() {
+        $this->initPlayers(HeroClass::$DRUID);
+        $this->game->getPlayer1()->useAbility();
+        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
+        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getArmor());
+    }
+
 }
 

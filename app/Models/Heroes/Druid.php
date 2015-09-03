@@ -1,8 +1,10 @@
 <?php namespace App\Models\Heroes;
+
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
 use App\Models\Player;
+use App\Models\Weapon;
 
 /**
  * Created by PhpStorm.
@@ -12,6 +14,9 @@ use App\Models\Player;
  */
 class Druid extends AbstractHero
 {
+    private $hero_power_armor  = 1;
+    private $hero_power_attack = 1;
+
     public function __construct() {
         $this->hero_class = HeroClass::$DRUID;
         $this->hero_power = HeroPower::$DRUID;
@@ -25,6 +30,11 @@ class Druid extends AbstractHero
      * @param array $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        // TODO: Implement useAbility() method.
+        $this->gainArmor($this->hero_power_armor);
+
+        /** @var Weapon $weapon */
+        $weapon = app('Weapon');
+        $weapon->setAttack($this->hero_power_attack);
+        $this->equipWeapon($weapon);
     }
 }
