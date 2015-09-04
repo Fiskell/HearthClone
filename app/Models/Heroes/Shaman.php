@@ -55,7 +55,7 @@ class Shaman extends AbstractHero
      *
      * @return mixed
      */
-    private function getRandomTotemName() {
+    public function getRandomTotemName() {
         return $this->totems[rand(0, 3)];
     }
 }
