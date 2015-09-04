@@ -12,11 +12,12 @@ use App\Exceptions\UnknownCardNameException;
 
 class CardSets
 {
-    protected $sets;
+    protected $sets ;
+    protected $set_names = ['Basic', 'Classic'];
 
     public function __construct() {
         // Load card sets into memory.
-        $sets = ['Basic', 'Classic'];
+        $sets = $this->set_names;
         foreach($sets as $set) {
             $cards_in_set = [];
 
@@ -46,6 +47,20 @@ class CardSets
         }
 
         return $card_json;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSets() {
+        return $this->sets;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSetsNames() {
+        return $this->sets_names;
     }
 
 }

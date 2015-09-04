@@ -672,7 +672,7 @@ class CardTest extends HearthCloneTest
 //        $minion = current($minions_in_play);
 //        $this->assertEquals($this->wrath_of_air_totem_name, $minion->getName());
 //    }
-    
+
 
 }
 
