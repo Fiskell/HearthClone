@@ -193,7 +193,7 @@ class Game
      */
     public function resolveDeaths() {
         $player1_minions = $this->getPlayer1()->getMinionsInPlay();
-        /** @var Card $player1_minion */
+        /** @var Minion $player1_minion */
         foreach($player1_minions as $player1_minion) {
             if ($player1_minion->getHealth() <= 0) {
                 $player1_minion->setHealth(0);
@@ -202,7 +202,7 @@ class Game
         }
 
         $player2_minions = $this->getPlayer2()->getMinionsInPlay();
-        /** @var Card $player2_minion */
+        /** @var Minion $player2_minion */
         foreach($player2_minions as $player2_minion) {
             if ($player2_minion->getHealth() <= 0) {
                 $player2_minion->setHealth(0);

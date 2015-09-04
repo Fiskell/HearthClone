@@ -16,7 +16,7 @@ abstract class AbstractHero extends Minion
 
     protected $hero_power;
 
-    protected $health = 30;
+    protected $health;
 
     protected $armor = 0;
 
@@ -26,6 +26,11 @@ abstract class AbstractHero extends Minion
 
     /** @var Weapon $weapon */
     protected $weapon;
+
+    public function load($name=null) {
+        parent::load($name);
+        $this->health = array_get($this->card_json, 'health');
+    }
 
     /**
      * @return mixed

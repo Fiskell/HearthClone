@@ -1,4 +1,5 @@
 <?php namespace App\Models\Heroes;
+
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
@@ -13,6 +14,7 @@ use App\Models\Player;
 class Hunter extends AbstractHero
 {
     protected $hero_damage = 2;
+    protected $name        = "Rexxar";
 
     public function __construct() {
         $this->hero_class = HeroClass::$HUNTER;

@@ -17,6 +17,8 @@ class Druid extends AbstractHero
     private $hero_power_armor  = 1;
     private $hero_power_attack = 1;
 
+    protected $name = "Malfurion Stormrage";
+
     public function __construct() {
         $this->hero_class = HeroClass::$DRUID;
         $this->hero_power = HeroPower::$DRUID;

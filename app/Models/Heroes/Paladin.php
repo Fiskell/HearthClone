@@ -14,6 +14,8 @@ use App\Models\Player;
 class Paladin extends AbstractHero
 {
     private $hero_power_minion_name = 'Silver Hand Recruit';
+
+    protected $name = "Uther Lightbringer";
     public function __construct() {
         $this->hero_class = HeroClass::$PALADIN;
         $this->hero_power = HeroPower::$PALADIN;

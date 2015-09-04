@@ -1,4 +1,5 @@
 <?php namespace App\Models\Heroes;
+
 use App\Exceptions\InvalidTargetException;
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
@@ -15,6 +16,7 @@ use App\Models\Player;
 class Mage extends AbstractHero
 {
     protected $hero_damage = 1;
+    protected $name        = "Jaina Proudmoore";
 
     public function __construct() {
         $this->hero_class = HeroClass::$MAGE;
@@ -30,7 +32,7 @@ class Mage extends AbstractHero
      * @throws InvalidTargetException
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
-        if(count($targets) != 1) {
+        if (count($targets) != 1) {
             throw new InvalidTargetException('Must select one target');
         }
 

@@ -12,6 +12,8 @@ use App\Models\Player;
  */
 class Shaman extends AbstractHero
 {
+    protected $name = "Thrall";
+
     public function __construct() {
         $this->hero_class = HeroClass::$SHAMAN;
         $this->hero_power = HeroPower::$SHAMAN;

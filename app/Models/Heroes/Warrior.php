@@ -2,6 +2,7 @@
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
+use App\Models\Minion;
 use App\Models\Player;
 
 /**
@@ -13,6 +14,9 @@ use App\Models\Player;
 class Warrior extends AbstractHero
 {
     private $armor_gained = 2;
+
+    protected $name = "Garrosh Hellscream";
+
     public function __construct() {
         $this->hero_class = HeroClass::$WARRIOR;
         $this->hero_power = HeroPower::$WARRIOR;

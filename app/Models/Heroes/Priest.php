@@ -15,6 +15,8 @@ use App\Models\Player;
 class Priest extends AbstractHero
 {
     protected $heal_value = 2;
+    protected $name = "Anduin Wrynn";
+
     public function __construct() {
         $this->hero_class = HeroClass::$PRIEST;
         $this->hero_power = HeroPower::$PRIEST;
@@ -50,4 +52,5 @@ class Priest extends AbstractHero
 
         $target->heal($this->heal_value);
     }
+
 }

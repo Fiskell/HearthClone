@@ -18,6 +18,8 @@ class Rogue extends AbstractHero
     private $hero_weapon_attack     = 1;
     private $hero_weapon_durability = 2;
 
+    protected $name = "Valeera Sanguinar";
+
     public function __construct() {
         $this->hero_class = HeroClass::$ROGUE;
         $this->hero_power = HeroPower::$ROGUE;

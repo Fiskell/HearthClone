@@ -13,6 +13,9 @@ use App\Models\Player;
 class Warlock extends AbstractHero
 {
     private $life_lost = 2;
+
+    protected $name = "Gul'dan";
+
     public function __construct() {
         $this->hero_class = HeroClass::$WARLOCK;
         $this->hero_power = HeroPower::$WARLOCK;

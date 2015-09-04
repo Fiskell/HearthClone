@@ -633,12 +633,12 @@ class CardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
-        //todo heros are not going through the load function.
+        //todo heroes are not going through the load function.
         $this->playCard($this->knife_juggler_name, 1);
         $this->playCard($this->argent_squire_name, 1);
         $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
-    }
 
+    }
 
 }
 

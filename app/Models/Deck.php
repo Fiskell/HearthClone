@@ -18,6 +18,7 @@ class Deck
 
     public function __construct($hero, array $deck_list) {
         $this->hero = $hero;
+        $this->hero->load($this->hero->getName());
         $this->deck_list = $deck_list;
     }
 
