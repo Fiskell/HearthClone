@@ -1,4 +1,5 @@
 <?php namespace App\Models\Heroes;
+
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
@@ -37,7 +38,7 @@ class Shaman extends AbstractHero
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
         /** @var Minion $card */
         $card = app('Minion');
-        $card->load($this->totems[0]);
+        $card->load($this->getRandomTotemName());
 
         $active_player->play($card);
     }
@@ -47,5 +48,14 @@ class Shaman extends AbstractHero
      */
     public function getTotems() {
         return $this->totems;
+    }
+
+    /**
+     * Return the name of one random shaman totem that the ability can summon.
+     *
+     * @return mixed
+     */
+    private function getRandomTotemName() {
+        return $this->totems[rand(0, 3)];
     }
 }

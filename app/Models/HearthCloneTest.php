@@ -30,6 +30,7 @@ class HearthCloneTest extends TestCase
     public $water_elemental_name     = 'Water Elemental';
     public $wisp_name                = 'Wisp';
     public $worgen_infiltrator_name  = 'Worgen Infiltrator';
+    public $wrath_of_air_totem_name  = 'Wrath of Air Totem';
 
     /**
      * Spells
