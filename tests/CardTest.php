@@ -3,6 +3,7 @@ use App\Models\Card;
 use App\Models\CardType;
 use App\Models\HearthCloneTest;
 use App\Models\HeroClass;
+use App\Models\Heroes\Shaman;
 use App\Models\Mechanics;
 
 /**
@@ -617,7 +618,6 @@ class CardTest extends HearthCloneTest
         $this->assertEquals('Dagger', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
-
     public function test_druid_ability_adds_one_attack_and_one_armor() {
         $this->initPlayers(HeroClass::$DRUID);
         $this->game->getPlayer1()->useAbility();
@@ -633,11 +633,23 @@ class CardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
-        //todo heroes are not going through the load function.
         $this->playCard($this->knife_juggler_name, 1);
         $this->playCard($this->argent_squire_name, 1);
         $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
+    }
 
+    public function test_shaman_ability_summons_a_totem() {
+        $this->initPlayers(HeroClass::$SHAMAN);
+
+        $player1 = $this->game->getPlayer1();
+        $player1->useAbility();
+        $minions_in_play = $player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions_in_play));
+        $minion = current($minions_in_play);
+
+        /** @var Shaman $player1_hero */
+        $player1_hero = $player1->getHero();
+        $this->assertTrue(in_array($minion->getName(), $player1_hero->getTotems()));
     }
 
 }

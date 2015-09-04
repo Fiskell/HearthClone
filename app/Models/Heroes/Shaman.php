@@ -2,6 +2,7 @@
 use App\Models\AbstractHero;
 use App\Models\HeroClass;
 use App\Models\HeroPower;
+use App\Models\Minion;
 use App\Models\Player;
 
 /**
@@ -12,7 +13,14 @@ use App\Models\Player;
  */
 class Shaman extends AbstractHero
 {
-    protected $name = "Thrall";
+    protected $name = 'Thrall';
+
+    private $totems = [
+        'Healing Totem',
+        'Searing Totem',
+        'Stoneclaw Totem',
+        'Wrath of Air Totem'
+    ];
 
     public function __construct() {
         $this->hero_class = HeroClass::$SHAMAN;
@@ -27,6 +35,17 @@ class Shaman extends AbstractHero
      * @param array $targets
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
+        /** @var Minion $card */
+        $card = app('Minion');
+        $card->load($this->totems[0]);
 
+        $active_player->play($card);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTotems() {
+        return $this->totems;
     }
 }
