@@ -35,6 +35,7 @@ class CardNames extends Command
 
 
 
+
 //            protected $set_names = ['Basic', 'Classic',
 // 'Blackrock Mountain', 'Curse of Naxxramas', 'Goblins vs Gnomes', 'The Grand Tournament']
             if($key != 'The Grand Tournament') {
