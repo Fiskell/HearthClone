@@ -19,13 +19,13 @@ class CardSets
     public static $GOBLINS_VS_GNOMES    = 'Goblins vs Gnomes';
     public static $THE_GRAND_TOURNAMENT = 'The Grand Tournament';
 
-    protected $sets;
+    protected     $sets;
     public static $set_names = ['b'   => 'Basic',
-                            'c'   => 'Classic',
-                            'bm'  => 'Blackrock Mountain',
-                            'con' => 'Curse of Naxxramas',
-                            'gvg' => 'Goblins vs Gnomes',
-                            'tgt' => 'The Grand Tournament'];
+                                'c'   => 'Classic',
+                                'bm'  => 'Blackrock Mountain',
+                                'con' => 'Curse of Naxxramas',
+                                'gvg' => 'Goblins vs Gnomes',
+                                'tgt' => 'The Grand Tournament'];
 
     public function __construct() {
         // Load card sets into memory.
