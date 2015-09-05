@@ -24,6 +24,10 @@ class Minion extends Card
     protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
 
+    public function __construct(Player $player) {
+        parent::__construct($player);
+    }
+
     public function load($name=null) {
         parent::load($name);
         $this->attack = array_get($this->card_json, 'attack', 0);

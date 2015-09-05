@@ -34,6 +34,13 @@ class Card
 
     protected $play_order_id;
 
+    // todo this should not even be here =( all random numbers default to 0
+    protected $random_number = 0;
+
+    public function __construct(Player $player) {
+        $this->owner = $player;
+    }
+
     /**
      * Load a card from json into object.
      *
@@ -50,7 +57,11 @@ class Card
         $card_sets = app('CardSets');
         $this->card_json = $card_sets->findCard($name);
 
-        $this->id        = rand(1, 1000000);
+        $this->owner->getGame()->incrementCardsPlayedThisGame();
+        $this->play_order_id = $this->owner->getGame()->getCardsPlayedThisGame();
+        $this->id = $this->play_order_id;
+
+//        $this->id        = rand(1, 1000000);
         $this->name      = $name;
         $this->cost      = array_get($this->card_json, 'cost', 0);
         $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
@@ -169,6 +180,20 @@ class Card
 
     public function removeAllMechanics() {
         $this->mechanics = [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRandomNumber() {
+        return $this->random_number;
+    }
+
+    /**
+     * @param mixed $random_number
+     */
+    public function setRandomNumber($random_number) {
+        $this->random_number = $random_number;
     }
 
 }

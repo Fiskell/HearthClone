@@ -23,7 +23,9 @@ class Shaman extends AbstractHero
         'Wrath of Air Totem'
     ];
 
-    public function __construct() {
+
+    public function __construct(Player $player) {
+        parent::__construct($player);
         $this->hero_class = HeroClass::$SHAMAN;
         $this->hero_power = HeroPower::$SHAMAN;
     }
@@ -37,7 +39,7 @@ class Shaman extends AbstractHero
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
         /** @var Minion $card */
-        $card = app('Minion');
+        $card = app('Minion', [$active_player]);
         $card->load($this->getRandomTotemName());
 
         $active_player->play($card);

@@ -52,7 +52,7 @@ class HearthCloneTest extends TestCase
         parent::setUp();
         $this->game = app('Game');
         $this->initPlayers();
-        $this->card = app('Minion');
+        $this->card = app('Minion', [$this->game->getPlayer1()]);
     }
 
     /**
@@ -67,18 +67,19 @@ class HearthCloneTest extends TestCase
      */
     public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
 
-        /** @var Card $card */
-        $card = app('Minion');
-        $card->load($name);
-
-        $this->game->getPlayer1()->setManaCrystalCount(1000);
-        $this->game->getPlayer2()->setManaCrystalCount(1000);
-
         /** @var Player $player */
         $player = $this->game->getPlayer1();
         if ($player_id == 2) {
             $player = $this->game->getPlayer2();
         }
+
+        /** @var Card $card */
+        $card = app('Minion', [$player]);
+        $card->load($name);
+
+        $this->game->getPlayer1()->setManaCrystalCount(1000);
+        $this->game->getPlayer2()->setManaCrystalCount(1000);
+
 
         $player->play($card, $targets, $choose_mechanic);
 
@@ -95,7 +96,7 @@ class HearthCloneTest extends TestCase
 
     public function playCardStrict($name, $player_id = 1, $turn = 1, $targets = [], $choose_mechanic = null) {
         /** @var Card $card */
-        $card = app('Minion');
+        $card = app('Minion', [$this->game->getPlayer1()]);
         $card->load($name);
 
         /** @var Player $player */
@@ -120,22 +121,24 @@ class HearthCloneTest extends TestCase
     }
 
     public function initPlayers($player1_class='Hunter', $player1_deck=[], $player2_class='Mage', $player2_deck=[]) {
-        $player1_deck = app('Deck', [app($player1_class), $player1_deck]);
-        $player2_deck = app('Deck', [app($player2_class), $player2_deck]);
+        $player1_deck = app('Deck', [app($player1_class, [$this->game->getPlayer1()]), $player1_deck]);
+        $player2_deck = app('Deck', [app($player2_class, [$this->game->getPlayer2()]), $player2_deck]);
 
         $this->game->init($player1_deck, $player2_deck);
     }
 
     public function playWeaponCard($weapon_name, $player_id=1, $targets=[]){
-        /** @var Card $card */
-        $card = app('Weapon');
-        $card->load($weapon_name);
 
         /** @var Player $player */
         $player = $this->game->getPlayer1();
         if ($player_id == 2) {
             $player = $this->game->getPlayer2();
         }
+
+        /** @var Card $card */
+        $card = app('Weapon', [$player]);
+        $card->load($weapon_name);
+
 
         $player->play($card, $targets);
     }

@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+use App\Events\AfterSummonPhaseEvent;
 use App\Events\SummonMinionEvent;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
@@ -368,7 +369,6 @@ class Player
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
         }
 
-        $card->setOwner($this);
         $this->minions_in_play[$card->getId()] = $card;
         $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
 
@@ -397,12 +397,8 @@ class Player
 
         $this->incrementCardsPlayedThisTurn();
 
-        $this->game->incrementCardsPlayedThisGame();
-
-        $card->setPlayOrderId($this->game->getCardsPlayedThisGame());
-
         // todo clean up these phases
-        event(new SummonMinionEvent($card));
+        event(new AfterSummonPhaseEvent($card));
 
         /** @var Game $game */
         $this->game->resolveDeaths();

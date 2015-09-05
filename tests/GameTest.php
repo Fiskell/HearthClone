@@ -45,8 +45,8 @@ class GameTest extends HearthCloneTest
     }
 
     public function test_game_is_initialized_with_a_hunter_and_a_mage() {
-        $player1_deck = app('Deck', [app('Hunter'), []]);
-        $player2_deck = app('Deck', [app('Mage'), []]);
+        $player1_deck = app('Deck', [app('Hunter', [$this->game->getPlayer1()]), []]);
+        $player2_deck = app('Deck', [app('Mage', [$this->game->getPlayer2()]), []]);
 
         $this->game->init($player1_deck, $player2_deck);
 

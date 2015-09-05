@@ -16,7 +16,8 @@ class Hunter extends AbstractHero
     protected $hero_damage = 2;
     protected $name        = "Rexxar";
 
-    public function __construct() {
+    public function __construct(Player $player) {
+        parent::__construct($player);
         $this->hero_class = HeroClass::$HUNTER;
         $this->hero_power = HeroPower::$HUNTER;
     }

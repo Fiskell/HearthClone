@@ -627,14 +627,16 @@ class CardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_kills_enemy_minion_when_friendly_minion_is_summoned() {
-        $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler->setRandomNumber(1);
         $wisp = $this->playCard($this->wisp_name, 2);
         $this->playCard($this->argent_squire_name, 1);
         $this->assertFalse($wisp->isAlive());
     }
 
     public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
-        $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler = $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler->setRandomNumber(0);
         $this->playCard($this->argent_squire_name, 1);
         $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
     }

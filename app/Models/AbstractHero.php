@@ -24,8 +24,15 @@ abstract class AbstractHero extends Minion
 
     protected $flipped = false;
 
+    protected $play_order_id = 0;
+
     /** @var Weapon $weapon */
     protected $weapon;
+
+
+    public function __construct(Player $player) {
+        parent::__construct($player);
+    }
 
     public function load($name=null) {
         parent::load($name);

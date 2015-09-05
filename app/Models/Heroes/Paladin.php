@@ -16,7 +16,9 @@ class Paladin extends AbstractHero
     private $hero_power_minion_name = 'Silver Hand Recruit';
 
     protected $name = "Uther Lightbringer";
-    public function __construct() {
+
+    public function __construct(Player $player) {
+        parent::__construct($player);
         $this->hero_class = HeroClass::$PALADIN;
         $this->hero_power = HeroPower::$PALADIN;
     }
@@ -30,7 +32,7 @@ class Paladin extends AbstractHero
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
         /** @var Minion $card */
-        $card = app('Minion');
+        $card = app('Minion', [$active_player]);
         $card->load($this->hero_power_minion_name);
 
         $active_player->play($card);

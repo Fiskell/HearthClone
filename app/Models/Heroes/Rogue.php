@@ -20,7 +20,8 @@ class Rogue extends AbstractHero
 
     protected $name = "Valeera Sanguinar";
 
-    public function __construct() {
+    public function __construct(Player $player) {
+        parent::__construct($player);
         $this->hero_class = HeroClass::$ROGUE;
         $this->hero_power = HeroPower::$ROGUE;
     }
@@ -34,7 +35,7 @@ class Rogue extends AbstractHero
      */
     function useAbility(Player $active_player, Player $defending_player, array $targets) {
         /** @var Weapon $weapon */
-        $weapon = app('Weapon');
+        $weapon = app('Weapon', [$active_player]);
         $weapon->setName($this->hero_weapon_name);
         $weapon->setAttack($this->hero_weapon_attack);
         $weapon->setDurability($this->hero_weapon_durability);
