@@ -13,7 +13,7 @@ use App\Exceptions\UnknownCardNameException;
 class CardSets
 {
     protected $sets ;
-    protected $set_names = ['Basic', 'Classic'];
+    protected $set_names = ['Basic', 'Classic', 'Blackrock Mountain', 'Curse of Naxxramas', 'Goblins vs Gnomes', 'The Grand Tournament'];
 
     public function __construct() {
         // Load card sets into memory.

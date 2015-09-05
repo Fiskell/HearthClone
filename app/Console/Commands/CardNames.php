@@ -28,17 +28,22 @@ class CardNames extends Command
      */
     public function handle()
     {
-        $this->info('Printing out card names');
         /** @var CardSets $card_sets */
         $card_sets = app('CardSets');
-//        $this->info(count($card_sets->getSets()));
         $names = [];
-        foreach($card_sets->getSets() as $set) {
-            $this->info(count($set));
+        foreach($card_sets->getSets() as $key => $set) {
+
+
+
+//            protected $set_names = ['Basic', 'Classic',
+// 'Blackrock Mountain', 'Curse of Naxxramas', 'Goblins vs Gnomes', 'The Grand Tournament']
+            if($key != 'The Grand Tournament') {
+                continue;
+            }
             foreach($set as $card) {
                 $names[] = array_get($card, 'name');
             }
         }
-        $this->info(implode(',' . PHP_EOL, $names));
+        $this->info(implode(PHP_EOL, $names));
     }
 }
