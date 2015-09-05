@@ -12,19 +12,31 @@ use App\Exceptions\UnknownCardNameException;
 
 class CardSets
 {
-    protected $sets ;
-    protected $set_names = ['Basic', 'Classic', 'Blackrock Mountain', 'Curse of Naxxramas', 'Goblins vs Gnomes', 'The Grand Tournament'];
+    public static $BASIC                = 'Basic';
+    public static $CLASSIC              = 'Classic';
+    public static $BLACKROCK_MOUNTAIN   = 'Blackrock Mountain';
+    public static $CURSE_OF_NAXXRAMAS   = 'Curse of Naxxramas';
+    public static $GOBLINS_VS_GNOMES    = 'Goblins vs Gnomes';
+    public static $THE_GRAND_TOURNAMENT = 'The Grand Tournament';
+
+    protected $sets;
+    public static $set_names = ['b'   => 'Basic',
+                            'c'   => 'Classic',
+                            'bm'  => 'Blackrock Mountain',
+                            'con' => 'Curse of Naxxramas',
+                            'gvg' => 'Goblins vs Gnomes',
+                            'tgt' => 'The Grand Tournament'];
 
     public function __construct() {
         // Load card sets into memory.
-        $sets = $this->set_names;
-        foreach($sets as $set) {
+        $sets = self::$set_names;
+        foreach ($sets as $set) {
             $cards_in_set = [];
 
             $tmp_set_cards = file_get_contents(__DIR__ . '/../../resources/sets/' . $set . '.enUS.json');
             $tmp_set_cards = json_decode($tmp_set_cards, true);
 
-            foreach($tmp_set_cards as $tmp_set_card) {
+            foreach ($tmp_set_cards as $tmp_set_card) {
                 $cards_in_set[$tmp_set_card['name']] = $tmp_set_card;
             }
 
@@ -32,17 +44,17 @@ class CardSets
         }
     }
 
-    public function findCard($name=null) {
+    public function findCard($name = null) {
 
         $card_json = null;
-        foreach($this->sets as $set) {
+        foreach ($this->sets as $set) {
             $card_json = array_get($set, $name);
-            if(!is_null($card_json)) {
+            if (!is_null($card_json)) {
                 break;
             }
         }
 
-        if(is_null($card_json)) {
+        if (is_null($card_json)) {
             throw new UnknownCardNameException('Failed to find card handle ' . $name);
         }
 
