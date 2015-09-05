@@ -12,7 +12,7 @@ class CardNames extends Command
      *
      * @var string
      */
-    protected $signature = 'card:names {set_code} {card_type} {--list_types}';
+    protected $signature = 'card:names {set_code} {card_type?} {--list_types}';
 
     /**
      * The console command description.
