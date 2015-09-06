@@ -1,15 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 8/23/15
- * Time: 9:52 PM
- */
-
-namespace App\Models;
+<?php namespace App\Models;
 
 use App\Events\AfterSummonPhaseEvent;
-use App\Events\SummonMinionEvent;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;

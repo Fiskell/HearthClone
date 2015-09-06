@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Listeners;
+<?php namespace App\Listeners;
 
 use App\Events\AfterSummonPhaseEvent;
 use App\Exceptions\DumbassDeveloperException;
@@ -60,7 +58,6 @@ class AfterSummonPhase implements TriggerableInterface
 
             switch ($target_type) {
                 case 'random_opponent_character':
-
                     // todo fix random numbers using ioc
                     $opponent_minion_keys = array_keys(
                         array_sort($opponent_minions, function (Minion $value) {
@@ -68,8 +65,8 @@ class AfterSummonPhase implements TriggerableInterface
                         })
                     );
 
-                    $random_key    = $minion->getRandomNumber();
-                    $targets = [$opponent_minions[$opponent_minion_keys[$random_key]]];
+                    $random_key = $minion->getRandomNumber();
+                    $targets    = [$opponent_minions[$opponent_minion_keys[$random_key]]];
                     break;
                 default:
                     throw new DumbassDeveloperException('Unknown target type ' . $target_type);
@@ -77,13 +74,13 @@ class AfterSummonPhase implements TriggerableInterface
 
             // Should take damage.
             $damage = array_get($trigger, 'damage.value');
-            if(!is_null($damage)) {
-                if(!count($targets)) {
+            if (!is_null($damage)) {
+                if (!count($targets)) {
                     throw new InvalidTargetException('You must have at least one target');
                 }
 
                 /** @var Minion $target */
-                foreach($targets as $target) {
+                foreach ($targets as $target) {
                     $target->takeDamage($damage);
                 }
             }
