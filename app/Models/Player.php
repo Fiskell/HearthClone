@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use App\Events\AfterSummonPhaseEvent;
+use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
@@ -12,6 +13,8 @@ class Player
     protected $game;
 
     /* Zones */
+
+    public static $MAX_MINIONS = 7;
 
     /** @var  Deck $deck */
     protected $deck;
@@ -317,13 +320,16 @@ class Player
      * @param Card $card
      * @param Minion[] $targets
      * @param null $choose_mechanic
-     * @throws InvalidTargetException
+     * @throws BattlefieldFullException
      * @throws NotEnoughManaCrystalsException
-     * @throws UndefinedBattleCryMechanicException
      */
     public function play(Card $card, array $targets = [], $choose_mechanic = null) {
         switch($card->getType()) {
             case CardType::$MINION:
+                $count_minions = count($this->getMinionsInPlay());
+                if($count_minions == Player::$MAX_MINIONS) {
+                    throw new BattlefieldFullException();
+                }
                 /** @var Minion $card */
                 $this->playMinion($card, $targets, $choose_mechanic);
                 break;

@@ -56,4 +56,36 @@ class GameTest extends HearthCloneTest
         $this->assertEquals(HeroClass::$HUNTER, $player1_hero->getHeroClass());
         $this->assertEquals(HeroClass::$MAGE, $player2_hero->getHeroClass());
     }
+
+    /** @expectedException \App\Exceptions\BattlefieldFullException */
+    public function test_playing_minion_fails_if_board_already_has_seven_minions() {
+        $this->initPlayers();
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+    }
+
+    public function test_player_can_have_seven_minions_on_board() {
+        $this->initPlayers();
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+        $this->playCard($this->wisp_name, 1);
+
+        $this->playCard($this->wisp_name, 1);
+
+        $this->assertEquals(7, count($this->game->getPlayer1()->getMinionsInPlay()));
+    }
 }
