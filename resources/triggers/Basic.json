@@ -1,0 +1,22 @@
+{
+  "Houndmaster": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "race": "beast",
+            "quantity": 1
+          },
+          "enchantment": {
+            "mechanics": [
+              "Taunt"
+            ],
+            "attack": 2,
+            "health": 2
+          }
+        }
+      }
+    ]
+  }
+}

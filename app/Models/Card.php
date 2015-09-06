@@ -159,6 +159,10 @@ class Card
         return $this->mechanics;
     }
 
+    public function setMechanics($mechanics=[]) {
+        $this->mechanics = array_merge($this->mechanics, $mechanics);
+    }
+
     /**
      * @return array
      */

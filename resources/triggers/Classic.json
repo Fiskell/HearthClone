@@ -5,11 +5,24 @@
         "after_summon_phase": {
           "targets": {
             "type": "random_opponent_character",
-            "quantity": 1
+            "required_quantity": 1
           },
           "damage": {
             "value": 1
           }
+        }
+      }
+    ]
+  },
+  "Spellbreaker": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "quantity": 1
+          },
+          "silence": true
         }
       }
     ]

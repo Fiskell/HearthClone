@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use App\Events\AfterSummonPhaseEvent;
+use App\Events\BattlecryPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
@@ -324,12 +325,15 @@ class Player
      * @throws NotEnoughManaCrystalsException
      */
     public function play(Card $card, array $targets = [], $choose_mechanic = null) {
-        switch($card->getType()) {
+        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
+        if (($remaining_mana_crystals - $card->getCost()) < 0) {
+            throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
+        }
+
+        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
+
+        switch ($card->getType()) {
             case CardType::$MINION:
-                $count_minions = count($this->getMinionsInPlay());
-                if($count_minions == Player::$MAX_MINIONS) {
-                    throw new BattlefieldFullException();
-                }
                 /** @var Minion $card */
                 $this->playMinion($card, $targets, $choose_mechanic);
                 break;
@@ -340,6 +344,9 @@ class Player
                 $this->playWeapon($card, $targets);
                 break;
         }
+
+        $this->incrementCardsPlayedThisTurn();
+
         $this->game->resolveDeaths();
     }
 
@@ -356,24 +363,32 @@ class Player
      * @param Minion $card
      * @param array $targets
      * @param null $choose_mechanic
+     * @throws BattlefieldFullException
      * @throws InvalidTargetException
      * @throws NotEnoughManaCrystalsException
      * @throws UndefinedBattleCryMechanicException
      * @throws \App\Exceptions\DumbassDeveloperException
      */
     public function playMinion(Minion $card, array $targets = [], $choose_mechanic = null) {
-        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
-        if (($remaining_mana_crystals - $card->getCost()) < 0) {
-            throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
+        $count_minions = count($this->getMinionsInPlay());
+        if ($count_minions == Player::$MAX_MINIONS) {
+            throw new BattlefieldFullException();
         }
 
+        /* Remove from hand and enter battlefield */
         $this->minions_in_play[$card->getId()] = $card;
-        $this->active_mechanics                = array_merge($this->active_mechanics, $card->getMechanics());
 
-        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
+        $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
+
+
+        /* Early on Summon Phase */
+
+        /* On Play Phase */
+
+        // todo not all of these are right.
 
         if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
-            // TODO I hate this
+            // todo I hate this
             $this->addLockedManaCrystalCount($card->getOverloadValue());
         }
 
@@ -385,21 +400,29 @@ class Player
             $card->resolveChoose($targets, $choose_mechanic);
         }
 
-        if ($card->hasMechanic(Mechanics::$BATTLECRY)) {
-            $card->resolveBattlecry($targets);
-        }
-
         if ($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
             $card->resolveCombo($targets);
         }
 
-        $this->incrementCardsPlayedThisTurn();
+        /* Late On Summon Phase */
 
-        // todo clean up these phases
-        event(new AfterSummonPhaseEvent($card));
+        /* Battlecry Phase */
+        event(new BattlecryPhaseEvent($card, $targets));
 
-        /** @var Game $game */
-        $this->game->resolveDeaths();
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+        $trigger_queue->resolveQueue();
+
+        /* Secret Activation Phase */
+
+        /* After Summon Phase */
+        event(new AfterSummonPhaseEvent($card, $targets));
+
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+        $trigger_queue->resolveQueue();
+
+        /* Check Game Over Phase */
     }
 
     /**
@@ -486,7 +509,7 @@ class Player
      * @throws HeroPowerAlreadyFlippedException
      */
     private function flipHeroPower() {
-        if($this->getHero()->powerIsFlipped()) {
+        if ($this->getHero()->powerIsFlipped()) {
             throw new HeroPowerAlreadyFlippedException('You have already used your ability this turn');
         }
 

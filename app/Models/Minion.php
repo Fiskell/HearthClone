@@ -18,6 +18,7 @@ class Minion extends Card
 {
     protected $attack;
     protected $health;
+    protected $race;
     protected $alive;
     protected $sleeping;
     /** @var CardSets $card_sets */
@@ -28,10 +29,11 @@ class Minion extends Card
         parent::__construct($player);
     }
 
-    public function load($name=null) {
+    public function load($name = null) {
         parent::load($name);
         $this->attack = array_get($this->card_json, 'attack', 0);
         $this->health = array_get($this->card_json, 'health', 0);
+        $this->race   = array_get($this->card_json, 'race');
 
         $this->sleeping = !$this->hasMechanic(Mechanics::$CHARGE);
         $this->alive    = true;
@@ -331,6 +333,20 @@ class Minion extends Card
      */
     public function heal($heal_value) {
         $this->setHealth($this->getHealth() + $heal_value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRace() {
+        return $this->race;
+    }
+
+    /**
+     * @param mixed $race
+     */
+    public function setRace($race) {
+        $this->race = $race;
     }
 
 }

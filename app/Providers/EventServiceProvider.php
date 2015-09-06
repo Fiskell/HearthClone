@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\AfterSummonPhaseEvent' => [
             'App\Listeners\AfterSummonPhase'
+        ],
+        'App\Events\BattlecryPhaseEvent' => [
+            'App\Listeners\BattlecryPhase'
         ]
     ];
 }

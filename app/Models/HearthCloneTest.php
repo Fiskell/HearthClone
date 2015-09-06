@@ -33,6 +33,11 @@ class HearthCloneTest extends TestCase
     public $wrath_of_air_totem_name  = 'Wrath of Air Totem';
 
     /**
+     * Battlecry Minions
+     */
+    public $houndmaster_name = 'Houndmaster';
+
+    /**
      * Spells
      */
     public $consecrate_name = 'Consecration';

@@ -7,7 +7,7 @@ use App\Models\Minion;
 use App\Models\TriggerableInterface;
 use App\Models\TriggerQueue;
 
-class AfterSummonPhase implements TriggerableInterface
+class AfterSummonPhase extends SummonListener implements TriggerableInterface
 {
     /** @var  AfterSummonPhaseEvent $event */
     private $event;
@@ -35,8 +35,7 @@ class AfterSummonPhase implements TriggerableInterface
         $hero_id                    = $opponent->getHero()->getId();
         $opponent_minions[$hero_id] = $opponent->getHero();
 
-        $trigger_json  = file_get_contents(__DIR__ . '/../../resources/triggers/Classic.json');
-        $trigger_array = json_decode($trigger_json, true);
+        $trigger_array = $this->getSetTriggers();
 
         foreach ($player_minions as $minion) {
             // todo may change depending on card
