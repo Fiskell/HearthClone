@@ -84,7 +84,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
         if($required_race) {
             /** @var Minion $target */
             foreach($targets as $target) {
-                if($target->getRace() != $required_race) {
+                if(strtolower($target->getRace()) != strtolower($required_race)) {
                     throw new InvalidTargetException('Target must be a ' . $required_race . ' ' . $target->getRace() . ' given');
                 }
             }

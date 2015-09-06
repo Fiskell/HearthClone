@@ -1,4 +1,5 @@
 <?php namespace App\Models;
+
 use TestCase;
 
 /**
@@ -26,6 +27,7 @@ class HearthCloneTest extends TestCase
     public $si7_agent                = 'SI:7 Agent';
     public $silver_hand_recruit_name = 'Silver Hand Recruit';
     public $spellbreaker_name        = 'Spellbreaker';
+    public $timber_wolf_name         = 'Timber Wolf';
     public $thrallmar_farseer_name   = 'Thrallmar Farseer';
     public $water_elemental_name     = 'Water Elemental';
     public $wisp_name                = 'Wisp';
@@ -45,7 +47,7 @@ class HearthCloneTest extends TestCase
     /**
      * Weapons
      */
-     public $lights_justice_name = "Light's Justice";
+    public $lights_justice_name = "Light's Justice";
 
     /** @var  Minion $card */
     public $card;
@@ -125,14 +127,14 @@ class HearthCloneTest extends TestCase
         return $card;
     }
 
-    public function initPlayers($player1_class='Hunter', $player1_deck=[], $player2_class='Mage', $player2_deck=[]) {
+    public function initPlayers($player1_class = 'Hunter', $player1_deck = [], $player2_class = 'Mage', $player2_deck = []) {
         $player1_deck = app('Deck', [app($player1_class, [$this->game->getPlayer1()]), $player1_deck]);
         $player2_deck = app('Deck', [app($player2_class, [$this->game->getPlayer2()]), $player2_deck]);
 
         $this->game->init($player1_deck, $player2_deck);
     }
 
-    public function playWeaponCard($weapon_name, $player_id=1, $targets=[]){
+    public function playWeaponCard($weapon_name, $player_id = 1, $targets = []) {
 
         /** @var Player $player */
         $player = $this->game->getPlayer1();

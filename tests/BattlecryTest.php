@@ -1,5 +1,6 @@
 <?php
 use App\Models\HearthCloneTest;
+use App\Models\Mechanics;
 
 /**
  * Created by PhpStorm.
@@ -9,6 +10,8 @@ use App\Models\HearthCloneTest;
  */
 class BattlecryTest extends HearthCloneTest
 {
+    /* Houndmaster */
+
     public function test_houndmaster_does_not_target_himself() {
         $this->initPlayers();
         $houndmaster = $this->playCard($this->houndmaster_name, 1);
@@ -22,5 +25,15 @@ class BattlecryTest extends HearthCloneTest
         $wisp = $this->playCard($this->wisp_name, 1);
         $this->playCard($this->houndmaster_name, 1, [$wisp]);
     }
+
+    public function test_houndmaster_adds_2_2_and_taunt_to_valid_beast_target() {
+        $this->initPlayers();
+        $timber_wolf = $this->playCard($this->timber_wolf_name, 1);
+        $this->playCard($this->houndmaster_name, 1, [$timber_wolf]);
+        $this->assertEquals(3, $timber_wolf->getAttack());
+        $this->assertEquals(3, $timber_wolf->getHealth());
+        $this->assertTrue($timber_wolf->hasMechanic(Mechanics::$TAUNT));
+    }
+
 
 }

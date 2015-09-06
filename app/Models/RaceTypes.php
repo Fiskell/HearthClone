@@ -8,9 +8,8 @@
 
 namespace App\Models;
 
-
 class RaceTypes
 {
-    public $BEAST = 'beast';
+    public $BEAST = 'Beast';
 
 }
