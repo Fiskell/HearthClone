@@ -28,6 +28,7 @@ class HearthCloneTest extends TestCase
     public $si7_agent                = 'SI:7 Agent';
     public $silver_hand_recruit_name = 'Silver Hand Recruit';
     public $spellbreaker_name        = 'Spellbreaker';
+    public $succubus_name            = 'Succubus';
     public $timber_wolf_name         = 'Timber Wolf';
     public $thrallmar_farseer_name   = 'Thrallmar Farseer';
     public $water_elemental_name     = 'Water Elemental';

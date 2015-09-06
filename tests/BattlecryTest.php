@@ -60,4 +60,15 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard($this->fire_elemental_name, 1, [$player2->getHero()]);
         $this->assertEquals(27, $player2->getHero()->getHealth());
     }
+
+    /* Succubus */
+    public function test_succubus_forces_player_to_discard_one_card() {
+        $this->initPlayers();
+        $player1 = $this->game->getPlayer1();
+        $player1->drawCard();
+        $player1->drawCard();
+        $this->assertEquals(2, $player1->getHandSize());
+        $this->playCard($this->succubus_name, 1);
+        $this->assertEquals(1, $player1->getHandSize());
+    }
 }

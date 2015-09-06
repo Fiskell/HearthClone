@@ -7,6 +7,7 @@ use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Models\Mechanics;
 use App\Models\Minion;
+use App\Models\Player;
 use App\Models\TriggerableInterface;
 use App\Models\TriggerQueue;
 use App\Models\Triggers\TargetTypes;
@@ -26,10 +27,10 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
     public function handle(BattlecryPhaseEvent $event) {
         $this->event = $event;
 
-        if($event->getSummonedMinion()->hasMechanic(Mechanics::$BATTLECRY)) {
+        if ($event->getSummonedMinion()->hasMechanic(Mechanics::$BATTLECRY)) {
 
             /** @var Minion $target */
-            foreach($event->getTargets() as $target) {
+            foreach ($event->getTargets() as $target) {
                 if ($target->hasMechanic(Mechanics::$STEALTH)) {
                     throw new InvalidTargetException('Cannot silence stealth minion');
                 }
@@ -78,16 +79,19 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             case TargetTypes::$FRIENDLY_HERO:
                 $targets = [$player->getHero()];
                 break;
+            case TargetTypes::$FRIENDLY_PLAYER:
+                $targets = [$player];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
 
         /* Check if race is correct */
         $required_race = array_get($trigger, 'targets.race');
-        if($required_race) {
+        if ($required_race) {
             /** @var Minion $target */
-            foreach($targets as $target) {
-                if(strtolower($target->getRace()) != strtolower($required_race)) {
+            foreach ($targets as $target) {
+                if (strtolower($target->getRace()) != strtolower($required_race)) {
                     throw new InvalidTargetException('Target must be a ' . $required_race . ' ' . $target->getRace() . ' given');
                 }
             }
@@ -108,16 +112,16 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
 
         /* Silence */
         $silence = array_get($trigger, 'silence');
-        if(!is_null($silence)) {
-            foreach($targets as $target) {
+        if (!is_null($silence)) {
+            foreach ($targets as $target) {
                 $target->removeAllMechanics();
             }
         }
 
         /* Enchantment */
         $enchantment = array_get($trigger, 'enchantment');
-        if(!is_null($enchantment)) {
-            foreach($targets as $target) {
+        if (!is_null($enchantment)) {
+            foreach ($targets as $target) {
                 $target->setMechanics(array_get($enchantment, 'mechanics', []));
 
                 $delta_attack = array_get($enchantment, 'attack', 0);
@@ -127,6 +131,23 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $target->setHealth($target->getHealth() + $delta_health);
 
 
+            }
+        }
+
+        /* Discard */
+        $discard = array_get($trigger, 'discard');
+        if (!is_null($discard)) {
+            /** @var Player $target */
+            foreach ($targets as $target) {
+                $type     = array_get($discard, 'type');
+                $quantity = array_get($discard, 'quantity');
+                switch($type) {
+                    case 'random':
+                        $target->discardRandom($quantity);
+                        break;
+                    default:
+                        throw new DumbassDeveloperException('Unknown discard type ' . $type);
+                }
             }
         }
     }

@@ -471,6 +471,11 @@ class Player
         $this->hand_size++;
     }
 
+    public function discardRandom($quantity) {
+        // todo will need to test more
+        $this->hand_size -= $quantity;
+    }
+
     /**
      * Update minions and character states
      */

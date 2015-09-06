@@ -19,8 +19,7 @@
       {
         "battlecry": {
           "targets": {
-            "type": "friendly_hero",
-            "quantity": 1
+            "type": "friendly_hero"
           },
           "enchantment": {
             "health": 6
@@ -44,6 +43,21 @@
             ],
             "attack": 2,
             "health": 2
+          }
+        }
+      }
+    ]
+  },
+  "Succubus": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "friendly_player"
+          },
+          "discard": {
+            "type": "random",
+            "quantity": 1
           }
         }
       }
