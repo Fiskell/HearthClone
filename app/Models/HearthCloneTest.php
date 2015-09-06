@@ -39,6 +39,7 @@ class HearthCloneTest extends TestCase
      */
     public $houndmaster_name       = 'Houndmaster';
     public $guardian_of_kings_name = 'Guardian of Kings';
+    public $windspeaker_name       = 'Windspeaker';
 
     /**
      * Spells

@@ -43,5 +43,13 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(16, $this->game->getPlayer1()->getHero()->getHealth());
     }
 
+    /* Windspeaker */
+    public function test_windspeaker_gives_friendly_minion_windfury_when_played() {
+        $this->initPlayers();
+        $wisp = $this->playCard($this->wisp_name, 1);
+        $this->assertTrue(!$wisp->hasMechanic(Mechanics::$WINDFURY));
+        $this->playCard($this->windspeaker_name, 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
+    }
 
 }
