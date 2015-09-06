@@ -126,6 +126,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $delta_health = array_get($enchantment, 'health', 0);
                 $target->setHealth($target->getHealth() + $delta_health);
 
+
             }
         }
     }

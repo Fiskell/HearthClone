@@ -52,4 +52,12 @@ class BattlecryTest extends HearthCloneTest
         $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
     }
 
+    /* Fire Elemental */
+    public function test_fire_elemental_does_3_damage_when_played() {
+        $this->initPlayers();
+        $player2 = $this->game->getPlayer2();
+        $this->assertEquals(30, $player2->getHero()->getHealth());
+        $this->playCard($this->fire_elemental_name, 1, [$player2->getHero()]);
+        $this->assertEquals(27, $player2->getHero()->getHealth());
+    }
 }

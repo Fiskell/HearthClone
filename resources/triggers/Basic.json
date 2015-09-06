@@ -1,4 +1,19 @@
 {
+  "Fire Elemental": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "quantity": 1
+          },
+          "enchantment": {
+            "health": -3
+          }
+        }
+      }
+    ]
+  },
   "Guardian of Kings": {
     "triggers": [
       {

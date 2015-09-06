@@ -20,6 +20,7 @@ class HearthCloneTest extends TestCase
     public $chillwind_yeti_name      = 'Chillwind Yeti';
     public $dread_corsair_name       = 'Dread Corsair';
     public $earth_elemental_name     = 'Earth Elemental';
+    public $fire_elemental_name      = 'Fire Elemental';
     public $keeper_of_the_grove_name = 'Keeper of the Grove';
     public $knife_juggler_name       = 'Knife Juggler';
     public $loot_hoarder_name        = 'Loot Hoarder';
