@@ -92,7 +92,6 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
 
-
         /* Check if race is correct */
         $required_race = array_get($trigger, 'targets.race');
         if ($required_race) {
