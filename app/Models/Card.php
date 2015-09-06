@@ -75,11 +75,6 @@ class Card
         if (strpos(array_get($this->card_json, 'text', ''), 'Overload')) {
             $this->mechanics[] = Mechanics::$OVERLOAD;
         }
-
-        switch ($this->card_json['name']) {
-            case 'Spellbreaker':
-                $this->sub_mechanics = [Mechanics::$BATTLECRY => [Mechanics::$SILENCE]];
-        }
     }
 
     /**

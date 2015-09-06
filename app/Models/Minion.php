@@ -248,42 +248,6 @@ class Minion extends Card
     }
 
     /**
-     * @param array $targets
-     * @throws InvalidTargetException
-     * @throws UndefinedBattleCryMechanicException
-     */
-    public function resolveBattlecry(array $targets) {
-        $card_sub_mechanics      = $this->getSubMechanics();
-        $card_battlecry_mechanic = array_get($card_sub_mechanics, Mechanics::$BATTLECRY . '.0');
-
-        if (is_null($card_battlecry_mechanic)) {
-            throw new UndefinedBattleCryMechanicException('No battle cry mechanic specified');
-        }
-
-        if (is_null($card_sub_mechanics)) {
-            return;
-        }
-
-        switch ($card_battlecry_mechanic) {
-            case Mechanics::$SILENCE:
-                if (count($targets) > 1) {
-                    throw new InvalidTargetException('Silence can only target one minion');
-                }
-
-                /** @var Minion $target */
-                $target = current($targets);
-
-                if ($target->hasMechanic(Mechanics::$STEALTH)) {
-                    throw new InvalidTargetException('Cannot silence stealth minion');
-                }
-
-                $target->removeAllMechanics();
-
-                break;
-        }
-    }
-
-    /**
      * @param Minion[] $targets
      * @param $chosen_value
      * @throws InvalidTargetException
