@@ -1,0 +1,17 @@
+{
+  "Knife Juggler": {
+    "triggers": [
+      {
+        "after_summon_phase": {
+          "targets": {
+            "type": "random_opponent_character",
+            "quantity": 1
+          },
+          "damage": {
+            "value": 1
+          }
+        }
+      }
+    ]
+  }
+}

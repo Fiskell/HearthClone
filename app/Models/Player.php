@@ -333,6 +333,7 @@ class Player
     public function play(Card $card, array $targets = [], $choose_mechanic = null) {
         switch($card->getType()) {
             case CardType::$MINION:
+                /** @var Minion $card */
                 $this->playMinion($card, $targets, $choose_mechanic);
                 break;
             case CardType::$SPELL:
