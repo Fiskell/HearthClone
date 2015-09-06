@@ -474,6 +474,9 @@ class Player
     public function discardRandom($quantity) {
         // todo will need to test more
         $this->hand_size -= $quantity;
+        if($this->hand_size < 0) {
+            $this->hand_size = 0;
+        }
     }
 
     /**

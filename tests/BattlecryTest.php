@@ -71,4 +71,12 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard($this->succubus_name, 1);
         $this->assertEquals(1, $player1->getHandSize());
     }
+
+    public function test_succubus_does_not_discard_when_hand_is_empty() {
+        $this->initPlayers();
+        $player1 = $this->game->getPlayer1();
+        $this->assertEquals(0, $player1->getHandSize());
+        $this->playCard($this->succubus_name, 1);
+        $this->assertEquals(0, $player1->getHandSize());
+    }
 }
