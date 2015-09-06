@@ -79,4 +79,17 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard($this->succubus_name, 1);
         $this->assertEquals(0, $player1->getHandSize());
     }
+
+    /* Dread Infernal */
+    public function test_dread_infernal_damages_all_other_characters() {
+        $this->initPlayers();
+        $wisp           = $this->playCard('Wisp', 1);
+        $wisp2          = $this->playCard('Wisp', 2);
+        $dread_infernal = $this->playCard('Dread Infernal', 1);
+        $this->assertFalse($wisp->isAlive());
+        $this->assertFalse($wisp2->isAlive());
+        $this->assertEquals(29, $this->game->getPlayer1()->getHero()->getHealth());
+        $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
+        $this->assertEquals(6, $dread_infernal->getHealth());
+    }
 }

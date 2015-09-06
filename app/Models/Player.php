@@ -471,6 +471,11 @@ class Player
         $this->hand_size++;
     }
 
+    /**
+     * Discard a specified number of random cards.
+     *
+     * @param $quantity
+     */
     public function discardRandom($quantity) {
         // todo will need to test more
         $this->hand_size -= $quantity;

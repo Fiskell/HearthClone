@@ -1,4 +1,18 @@
 {
+  "Dread Infernal": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "all_other_characters"
+          },
+          "enchantment": {
+            "health": -1
+          }
+        }
+      }
+    ]
+  },
   "Fire Elemental": {
     "triggers": [
       {

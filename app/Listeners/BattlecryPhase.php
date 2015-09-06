@@ -43,14 +43,13 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
     }
 
     public function resolve() {
-        $trigger_array              = $this->getSetTriggers();
-        $summoned_minion            = $this->event->getSummonedMinion();
-        $player                     = $summoned_minion->getOwner();
-        $player_minions             = $player->getMinionsInPlay();
-        $opponent                   = $player->getOtherPlayer();
-        $opponent_minions           = $opponent->getMinionsInPlay();
-        $hero_id                    = $opponent->getHero()->getId();
-        $opponent_minions[$hero_id] = $opponent->getHero();
+        $trigger_array    = $this->getSetTriggers();
+        $summoned_minion  = $this->event->getSummonedMinion();
+        $player           = $summoned_minion->getOwner();
+        $player_minions   = $player->getMinionsInPlay();
+        $opponent         = $player->getOtherPlayer();
+        $opponent_minions = $opponent->getMinionsInPlay();
+        $hero_id          = $opponent->getHero()->getId();
 
         // todo assumes we only have one trigger.
         $trigger = array_get($trigger_array, $this->event->getSummonedMinion()->getName() . '.triggers.0.' . TriggerTypes::$BATTLECRY);
@@ -82,9 +81,17 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             case TargetTypes::$FRIENDLY_PLAYER:
                 $targets = [$player];
                 break;
+            case TargetTypes::$ALL_OTHER_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $player_minions[$player->getHero()->getId()]     = $player->getHero();
+
+                $targets = $opponent_minions + $player_minions;
+                unset($targets[$summoned_minion->getId()]);
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
+
 
         /* Check if race is correct */
         $required_race = array_get($trigger, 'targets.race');
@@ -141,7 +148,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             foreach ($targets as $target) {
                 $type     = array_get($discard, 'type');
                 $quantity = array_get($discard, 'quantity');
-                switch($type) {
+                switch ($type) {
                     case 'random':
                         $target->discardRandom($quantity);
                         break;
