@@ -35,5 +35,13 @@ class BattlecryTest extends HearthCloneTest
         $this->assertTrue($timber_wolf->hasMechanic(Mechanics::$TAUNT));
     }
 
+    /* Guardian of Kings */
+    public function test_guardian_of_kings_heals_friendly_hero_by_6() {
+        $this->initPlayers();
+        $this->game->getPlayer1()->getHero()->takeDamage(20);
+        $this->playCard($this->guardian_of_kings_name, 1);
+        $this->assertEquals(16, $this->game->getPlayer1()->getHero()->getHealth());
+    }
+
 
 }

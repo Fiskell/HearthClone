@@ -37,7 +37,8 @@ class HearthCloneTest extends TestCase
     /**
      * Battlecry Minions
      */
-    public $houndmaster_name = 'Houndmaster';
+    public $houndmaster_name       = 'Houndmaster';
+    public $guardian_of_kings_name = 'Guardian of Kings';
 
     /**
      * Spells
