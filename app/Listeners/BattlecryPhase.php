@@ -75,6 +75,9 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
 
                 $targets = $this->event->getTargets();
                 break;
+            case TargetTypes::$FRIENDLY_HERO:
+                $targets = [$player->getHero()];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
@@ -124,6 +127,5 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $target->setHealth($target->getHealth() + $delta_health);
             }
         }
-
     }
 }
