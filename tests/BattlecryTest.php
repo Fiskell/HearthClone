@@ -111,4 +111,12 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Darkscale Healer', 1);
         $this->assertEquals(27, $player1->getHero()->getHealth());
     }
+
+    public function test_darkscale_healer_heals_damaged_chillwind_yeti() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(2);
+        $this->assertEquals(3, $chillwind_yeti->getHealth());
+        $this->playCard('Darkscale Healer', 1);
+        $this->assertEquals(5, $chillwind_yeti->getHealth());
+    }
 }
