@@ -1,5 +1,6 @@
 <?php
 use App\Models\HearthCloneTest;
+use App\Models\HeroClass;
 use App\Models\Mechanics;
 
 /**
@@ -91,5 +92,14 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(29, $this->game->getPlayer1()->getHero()->getHealth());
         $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
         $this->assertEquals(6, $dread_infernal->getHealth());
+    }
+
+    /* Acidic Swamp Ooze */
+    public function test_acidic_swamp_ooze_destroys_enemy_weapon_when_played() {
+        $this->initPlayers(HeroClass::$PALADIN);
+        $this->playWeaponCard($this->lights_justice_name, 1);
+        $this->assertTrue(!!$this->game->getPlayer1()->getHero()->getWeapon());
+        $this->playCard('Acidic Swamp Ooze', 2);
+        $this->assertFalse(!!$this->game->getPlayer1()->getHero()->getWeapon());
     }
 }

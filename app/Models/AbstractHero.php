@@ -129,8 +129,21 @@ abstract class AbstractHero extends Minion
         $this->armor += $armor_gained;
     }
 
+    /**
+     * Equip a weapon to the hero.
+     *
+     * @param $card
+     * @param Minion[] $targets
+     */
     public function equipWeapon($card, $targets=[]) {
         $this->weapon = $card;
+    }
+
+    /**
+     * Remove the weapon from the hero.
+     */
+    public function destroyWeapon() {
+        $this->weapon = null;
     }
 
     /**

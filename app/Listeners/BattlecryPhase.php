@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\BattlecryPhaseEvent;
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
+use App\Models\AbstractHero;
 use App\Models\Mechanics;
 use App\Models\Minion;
 use App\Models\Player;
@@ -49,7 +50,6 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
         $player_minions   = $player->getMinionsInPlay();
         $opponent         = $player->getOtherPlayer();
         $opponent_minions = $opponent->getMinionsInPlay();
-        $hero_id          = $opponent->getHero()->getId();
 
         // todo assumes we only have one trigger.
         $trigger = array_get($trigger_array, $this->event->getSummonedMinion()->getName() . '.triggers.0.' . TriggerTypes::$BATTLECRY);
@@ -88,9 +88,13 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $targets = $opponent_minions + $player_minions;
                 unset($targets[$summoned_minion->getId()]);
                 break;
+            case TargetTypes::$OPPONENT_HERO:
+                $targets = [$opponent->getHero()];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
+
 
         /* Check if race is correct */
         $required_race = array_get($trigger, 'targets.race');
@@ -113,6 +117,16 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             /** @var Minion $target */
             foreach ($targets as $target) {
                 $target->takeDamage($damage);
+            }
+        }
+
+        /* Destroy */
+        $destroy = array_get($trigger, 'destroy');
+        if (!is_null($destroy)) {
+            /** @var AbstractHero $target */
+            foreach ($targets as $target) {
+                // todo may need to have other types of things to destroy.
+                $target->destroyWeapon();
             }
         }
 

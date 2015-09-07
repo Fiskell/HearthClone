@@ -1,4 +1,16 @@
 {
+  "Acidic Swamp Ooze": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "opponent_hero"
+          },
+          "destroy": true
+        }
+      }
+    ]
+  },
   "Dread Infernal": {
     "triggers": [
       {
