@@ -102,4 +102,13 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Acidic Swamp Ooze', 2);
         $this->assertFalse(!!$this->game->getPlayer1()->getHero()->getWeapon());
     }
+
+    /* Darkscale Healer*/
+    public function test_darkscale_healer_heals_hero_by_2() {
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(5);
+        $this->assertEquals(25, $player1->getHero()->getHealth());
+        $this->playCard('Darkscale Healer', 1);
+        $this->assertEquals(27, $player1->getHero()->getHealth());
+    }
 }

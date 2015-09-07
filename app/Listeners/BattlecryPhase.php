@@ -91,6 +91,10 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             case TargetTypes::$OPPONENT_HERO:
                 $targets = [$opponent->getHero()];
                 break;
+            case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
+                $player_minions[$player->getHero()->getId()] = $player->getHero();
+                $targets = $player_minions;
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
@@ -149,8 +153,6 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
 
                 $delta_health = array_get($enchantment, 'health', 0);
                 $target->setHealth($target->getHealth() + $delta_health);
-
-
             }
         }
 

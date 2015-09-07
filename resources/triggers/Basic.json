@@ -11,6 +11,20 @@
       }
     ]
   },
+  "Darkscale Healer": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "all_friendly_characters"
+          },
+          "enchantment": {
+            "health": 2
+          }
+        }
+      }
+    ]
+  },
   "Dread Infernal": {
     "triggers": [
       {
