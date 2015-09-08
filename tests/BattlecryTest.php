@@ -187,6 +187,16 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(27, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
+    /* Murloc Tidehunter */
+    public function test_murlock_tidehunter_plays_boar_when_not_max_minions() {
+        $this->playCard('Murloc Tidehunter', 1);
+        $player = $this->game->getPlayer1();
+        $this->assertEquals(2, count($player->getMinionsInPlay()));
+    }
+    
+
+
+
 
 
 }

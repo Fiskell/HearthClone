@@ -130,6 +130,18 @@
       }
     ]
   },
+  "Murloc Tidehunter": {
+    "triggers": [
+      {
+        "battlecry": {
+          "summon": {
+            "name": "Murloc Scout",
+            "quantity": 1
+          }
+        }
+      }
+    ]
+  },
   "Nightblade": {
     "triggers": [
       {
