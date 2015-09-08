@@ -174,5 +174,12 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(2, count($player->getMinionsInPlay()));
     }
 
+    /* Ironforge Rifleman */
+    public function test_ironforge_rifleman_deals_2_damage_to_minion_when_played() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Ironforge Rifleman', 2, [$chillwind_yeti]);
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
+
 
 }
