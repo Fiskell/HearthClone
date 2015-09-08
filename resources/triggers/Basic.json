@@ -143,6 +143,21 @@
       }
     ]
   },
+  "Stormpike Commando": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "quantity": 1
+          },
+          "enchantment": {
+            "health": -2
+          }
+        }
+      }
+    ]
+  },
   "Succubus": {
     "triggers": [
       {

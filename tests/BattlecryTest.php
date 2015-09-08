@@ -159,4 +159,12 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Gnomish Inventor', 1);
         $this->assertEquals(1, $player->getHandSize());
     }
+
+    /* Stormpike Commando */
+    public function test_stormpike_commando_deals_2_damage_to_minion_when_played() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Stormpike Commando', 2, [$chillwind_yeti]);
+        $this->assertEquals(3, $chillwind_yeti->getHealth());
+    }
+
 }
