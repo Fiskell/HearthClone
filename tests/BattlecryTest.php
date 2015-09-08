@@ -167,4 +167,12 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(3, $chillwind_yeti->getHealth());
     }
 
+    /* Razorfen Hunter */
+    public function test_razorfen_hunter_plays_boar_when_not_max_minions() {
+        $this->playCard('Razorfen Hunter', 1);
+        $player = $this->game->getPlayer1();
+        $this->assertEquals(2, count($player->getMinionsInPlay()));
+    }
+
+
 }

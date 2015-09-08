@@ -127,6 +127,18 @@
       }
     ]
   },
+  "Razorfen Hunter": {
+    "triggers": [
+      {
+        "battlecry": {
+          "summon": {
+            "name": "Boar",
+            "quantity": 1
+          }
+        }
+      }
+    ]
+  },
   "Shattered Sun Cleric": {
     "triggers": [
       {

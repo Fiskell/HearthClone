@@ -46,10 +46,6 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
     public function resolve() {
         $trigger_array    = $this->getSetTriggers();
         $summoned_minion  = $this->event->getSummonedMinion();
-        $player           = $summoned_minion->getOwner();
-        $player_minions   = $player->getMinionsInPlay();
-        $opponent         = $player->getOtherPlayer();
-        $opponent_minions = $opponent->getMinionsInPlay();
 
         // todo assumes we only have one trigger.
         $trigger = array_get($trigger_array, $this->event->getSummonedMinion()->getName() . '.triggers.0.' . TriggerTypes::$BATTLECRY);
@@ -58,48 +54,10 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->event->getSummonedMinion()->getName());
         }
 
-
-        $target_type = array_get($trigger, 'targets.type');
-        if (is_null($target_type)) {
-            throw new DumbassDeveloperException('Missing target type for ' . $this->event->getSummonedMinion()->getName());
+        $targets = [];
+        if(array_get($trigger, 'targets')) {
+            $targets = $this->getTargets($trigger, $summoned_minion);
         }
-
-        switch ($target_type) {
-            case TargetTypes::$PROVIDED_MINION:
-                $num_targets = array_get($trigger, 'targets.quantity');
-
-                // todo some battlecry may require a minimum number of targets.
-//                if(count($this->event->getTargets()) < $num_targets) {
-//                    throw new InvalidTargetException(count($this->event->getTargets()) . ' targets passed in, expected ' . $num_targets);
-//                }
-
-                $targets = $this->event->getTargets();
-                break;
-            case TargetTypes::$FRIENDLY_HERO:
-                $targets = [$player->getHero()];
-                break;
-
-            case TargetTypes::$FRIENDLY_PLAYER:
-                $targets = [$player];
-                break;
-            case TargetTypes::$ALL_OTHER_CHARACTERS:
-                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $player_minions[$player->getHero()->getId()]     = $player->getHero();
-
-                $targets = $opponent_minions + $player_minions;
-                unset($targets[$summoned_minion->getId()]);
-                break;
-            case TargetTypes::$OPPONENT_HERO:
-                $targets = [$opponent->getHero()];
-                break;
-            case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
-                $player_minions[$player->getHero()->getId()] = $player->getHero();
-                $targets = $player_minions;
-                break;
-            default:
-                throw new DumbassDeveloperException('Unknown target type ' . $target_type);
-        }
-
 
         /* Check if race is correct */
         $required_race = array_get($trigger, 'targets.race');
@@ -184,5 +142,74 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 }
             }
         }
+
+        /* Summon */
+        $summon_name = array_get($trigger, 'summon.name');
+        $summon_quantity = array_get($trigger, 'summon.quantity');
+        if(!is_null($summon_name)) {
+            /** @var Player $target */
+            for($i = 0; $i < $summon_quantity; $i++) {
+                $tmp_minion = app('Minion', [$summoned_minion->getOwner()]);
+                $tmp_minion->load($summon_name);
+                $this->event->getSummonedMinion()->getOwner()->play($tmp_minion);
+            }
+        }
+    }
+
+    /**
+     * @param $trigger
+     * @param Minion $summoned_minion
+     * @return array
+     * @throws DumbassDeveloperException
+     */
+    private function getTargets($trigger, $summoned_minion) {
+
+        $player           = $summoned_minion->getOwner();
+        $player_minions   = $player->getMinionsInPlay();
+        $opponent         = $player->getOtherPlayer();
+        $opponent_minions = $opponent->getMinionsInPlay();
+
+        $target_type = array_get($trigger, 'targets.type');
+        if (is_null($target_type)) {
+            throw new DumbassDeveloperException('Missing target type for ' . $this->event->getSummonedMinion()->getName());
+        }
+
+        switch ($target_type) {
+            case TargetTypes::$PROVIDED_MINION:
+                $num_targets = array_get($trigger, 'targets.quantity');
+
+                // todo some battlecry may require a minimum number of targets.
+//                if(count($this->event->getTargets()) < $num_targets) {
+//                    throw new InvalidTargetException(count($this->event->getTargets()) . ' targets passed in, expected ' . $num_targets);
+//                }
+
+                $targets = $this->event->getTargets();
+                break;
+            case TargetTypes::$FRIENDLY_HERO:
+                $targets = [$player->getHero()];
+                break;
+
+            case TargetTypes::$FRIENDLY_PLAYER:
+                $targets = [$player];
+                break;
+            case TargetTypes::$ALL_OTHER_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $player_minions[$player->getHero()->getId()]     = $player->getHero();
+
+                $targets = $opponent_minions + $player_minions;
+                unset($targets[$summoned_minion->getId()]);
+                break;
+            case TargetTypes::$OPPONENT_HERO:
+                $targets = [$opponent->getHero()];
+                break;
+            case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
+                $player_minions[$player->getHero()->getId()] = $player->getHero();
+                $targets                                     = $player_minions;
+                break;
+            default:
+                throw new DumbassDeveloperException('Unknown target type ' . $target_type);
+        }
+
+        return $targets;
     }
 }

@@ -27,8 +27,8 @@ class TriggerQueue
      */
     public function resolveQueue() {
         foreach($this->queue as $key => $trigger) {
-            $trigger->resolve();
             unset($this->queue[$key]);
+            $trigger->resolve();
         }
     }
 
