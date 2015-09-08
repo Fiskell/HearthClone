@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Listeners;
+<?php namespace App\Listeners;
 
 use App\Events\BattlecryPhaseEvent;
 use App\Exceptions\DumbassDeveloperException;
@@ -23,7 +21,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
      * Handle the event.
      *
      * @param BattlecryPhaseEvent $event
-     * @return void
+     * @throws InvalidTargetException
      */
     public function handle(BattlecryPhaseEvent $event) {
         $this->event = $event;

@@ -370,6 +370,9 @@ class Player
      * @throws \App\Exceptions\DumbassDeveloperException
      */
     public function playMinion(Minion $card, array $targets = [], $choose_mechanic = null) {
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+
         $count_minions = count($this->getMinionsInPlay());
         if ($count_minions == Player::$MAX_MINIONS) {
             throw new BattlefieldFullException();
@@ -408,18 +411,12 @@ class Player
 
         /* Battlecry Phase */
         event(new BattlecryPhaseEvent($card, $targets));
-
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
         $trigger_queue->resolveQueue();
 
         /* Secret Activation Phase */
 
         /* After Summon Phase */
         event(new AfterSummonPhaseEvent($card, $targets));
-
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
         $trigger_queue->resolveQueue();
 
         /* Check Game Over Phase */
