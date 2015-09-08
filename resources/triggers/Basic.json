@@ -130,6 +130,20 @@
       }
     ]
   },
+  "Nightblade": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "opponent_hero"
+          },
+          "enchantment": {
+            "health": -3
+          }
+        }
+      }
+    ]
+  },
   "Novice Engineer": {
     "triggers": [
       {

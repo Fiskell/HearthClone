@@ -175,11 +175,18 @@ class BattlecryTest extends HearthCloneTest
     }
 
     /* Ironforge Rifleman */
-    public function test_ironforge_rifleman_deals_2_damage_to_minion_when_played() {
+    public function test_ironforge_rifleman_deals_1_damage_to_minion_when_played() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
         $this->playCard('Ironforge Rifleman', 2, [$chillwind_yeti]);
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
+
+    /* Nightblade */
+    public function test_nightblade_deals_3_damage_to_minion_when_played() {
+        $this->playCard('Nightblade', 1);
+        $this->assertEquals(27, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
 
 
 }
