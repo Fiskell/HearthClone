@@ -39,6 +39,21 @@
       }
     ]
   },
+  "Elven Archer": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "quantity": 1
+          },
+          "enchantment": {
+            "health": -1
+          }
+        }
+      }
+    ]
+  },
   "Fire Elemental": {
     "triggers": [
       {

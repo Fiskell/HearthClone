@@ -119,4 +119,10 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Darkscale Healer', 1);
         $this->assertEquals(5, $chillwind_yeti->getHealth());
     }
+
+    public function test_elven_archer_kills_wisp_when_played() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Elven Archer', 2, [$wisp]);
+        $this->assertFalse($wisp->isAlive());
+    }
 }
