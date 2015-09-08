@@ -103,6 +103,22 @@
       }
     ]
   },
+  "Shattered Sun Cleric": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "provided_minion",
+            "quantity": 1
+          },
+          "enchantment": {
+            "attack": 1,
+            "health": 1
+          }
+        }
+      }
+    ]
+  },
   "Succubus": {
     "triggers": [
       {

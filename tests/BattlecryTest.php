@@ -126,7 +126,7 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Elven Archer', 2, [$wisp]);
         $this->assertFalse($wisp->isAlive());
     }
-    
+
     /* Voodoo Doctor */
     public function test_voodoo_doctor_heals_friendly_hero_by_2() {
         $hero = $this->game->getPlayer1()->getHero();
@@ -135,4 +135,13 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Voodoo Doctor', 1);
         $this->assertEquals(30, $hero->getHealth());
     }
+
+    /* Shattered Sun Cleric */
+    public function test_shattered_sun_cleric_gives_wisp_1_1() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Shattered Sun Cleric', 1, [$wisp]);
+        $this->assertEquals(2, $wisp->getAttack());
+        $this->assertEquals(2, $wisp->getAttack());
+    }
+    
 }
