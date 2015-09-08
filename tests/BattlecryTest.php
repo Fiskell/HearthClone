@@ -120,9 +120,19 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(5, $chillwind_yeti->getHealth());
     }
 
+    /* Elven Archer */
     public function test_elven_archer_kills_wisp_when_played() {
         $wisp = $this->playCard('Wisp', 1);
         $this->playCard('Elven Archer', 2, [$wisp]);
         $this->assertFalse($wisp->isAlive());
+    }
+    
+    /* Voodoo Doctor */
+    public function test_voodoo_doctor_heals_friendly_hero_by_2() {
+        $hero = $this->game->getPlayer1()->getHero();
+        $hero->takeDamage(2);
+        $this->assertEquals(28, $hero->getHealth());
+        $this->playCard('Voodoo Doctor', 1);
+        $this->assertEquals(30, $hero->getHealth());
     }
 }

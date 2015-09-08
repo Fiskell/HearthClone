@@ -118,6 +118,20 @@
       }
     ]
   },
+  "Voodoo Doctor": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "friendly_hero"
+          },
+          "enchantment": {
+            "health": 2
+          }
+        }
+      }
+    ]
+  },
   "Windspeaker": {
     "triggers": [
       {

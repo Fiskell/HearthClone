@@ -78,6 +78,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             case TargetTypes::$FRIENDLY_HERO:
                 $targets = [$player->getHero()];
                 break;
+
             case TargetTypes::$FRIENDLY_PLAYER:
                 $targets = [$player];
                 break;
