@@ -151,4 +151,12 @@ class BattlecryTest extends HearthCloneTest
         $this->playCard('Novice Engineer', 1);
         $this->assertEquals(1, $player->getHandSize());
     }
+
+    /* Gnomish Inventor */
+    public function test_gnomish_inventor_draws_card_when_played() {
+        $player = $this->game->getPlayer1();
+        $this->assertEquals(0, $player->getHandSize());
+        $this->playCard('Gnomish Inventor', 1);
+        $this->assertEquals(1, $player->getHandSize());
+    }
 }

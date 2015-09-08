@@ -69,6 +69,18 @@
       }
     ]
   },
+  "Gnomish Inventor": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "friendly_player"
+          },
+          "draw": 1
+        }
+      }
+    ]
+  },
   "Guardian of Kings": {
     "triggers": [
       {
