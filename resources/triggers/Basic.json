@@ -25,6 +25,18 @@
       }
     ]
   },
+  "Dragonling Mechanic": {
+    "triggers": [
+      {
+        "battlecry": {
+          "summon": {
+            "name": "Mechanical Dragonling",
+            "quantity": 1
+          }
+        }
+      }
+    ]
+  },
   "Dread Infernal": {
     "triggers": [
       {

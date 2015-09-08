@@ -188,15 +188,18 @@ class BattlecryTest extends HearthCloneTest
     }
 
     /* Murloc Tidehunter */
-    public function test_murlock_tidehunter_plays_boar_when_not_max_minions() {
+    public function test_murlock_tidehunter_plays_murloc_scout_when_not_max_minions() {
         $this->playCard('Murloc Tidehunter', 1);
         $player = $this->game->getPlayer1();
         $this->assertEquals(2, count($player->getMinionsInPlay()));
     }
-    
 
-
-
+    /* Dragonling Mechanic */
+    public function test_dragonling_mechanic_plays_mechanical_dragonling_when_not_max_minions() {
+        $this->playCard('Dragonling Mechanic', 1);
+        $player = $this->game->getPlayer1();
+        $this->assertEquals(2, count($player->getMinionsInPlay()));
+    }
 
 
 }
