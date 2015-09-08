@@ -56,7 +56,12 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
 
         $targets = [];
         if(array_get($trigger, 'targets')) {
-            $targets = $this->getTargets($trigger, $summoned_minion);
+            $target_type = array_get($trigger, 'targets.type');
+            if (is_null($target_type)) {
+                throw new DumbassDeveloperException('Missing target type for ' . $summoned_minion->getName());
+            }
+
+            $targets = $this->getTargets($trigger, $summoned_minion, $target_type);
         }
 
         /* Check if race is correct */
@@ -113,6 +118,18 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $delta_health = array_get($enchantment, 'health', 0);
                 $target->setHealth($target->getHealth() + $delta_health);
             }
+
+            $attack_by_count = array_get($enchantment, 'attack_by_count');
+            if(!is_null($attack_by_count)) {
+                $delta_attack = count($this->getTargets($trigger, $summoned_minion, $attack_by_count));
+                $summoned_minion->setAttack($summoned_minion->getAttack() + $delta_attack);
+            }
+
+            $health_by_count = array_get($enchantment, 'health_by_count');
+            if(!is_null($health_by_count)) {
+                $delta_health = count($this->getTargets($trigger, $summoned_minion, $health_by_count));
+                $summoned_minion->setHealth($summoned_minion->getHealth() + $delta_health);
+            }
         }
 
         /* Discard */
@@ -162,17 +179,11 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
      * @return array
      * @throws DumbassDeveloperException
      */
-    private function getTargets($trigger, $summoned_minion) {
-
+    private function getTargets($trigger, $summoned_minion, $target_type) {
         $player           = $summoned_minion->getOwner();
         $player_minions   = $player->getMinionsInPlay();
         $opponent         = $player->getOtherPlayer();
         $opponent_minions = $opponent->getMinionsInPlay();
-
-        $target_type = array_get($trigger, 'targets.type');
-        if (is_null($target_type)) {
-            throw new DumbassDeveloperException('Missing target type for ' . $this->event->getSummonedMinion()->getName());
-        }
 
         switch ($target_type) {
             case TargetTypes::$PROVIDED_MINION:
@@ -205,6 +216,10 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
                 $player_minions[$player->getHero()->getId()] = $player->getHero();
                 $targets                                     = $player_minions;
+                break;
+            case TargetTypes::$OTHER_FRIENDLY_MINIONS:
+                unset($player_minions[$summoned_minion->getId()]);
+                $targets = $player_minions;
                 break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);

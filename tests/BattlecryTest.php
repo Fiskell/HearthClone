@@ -201,5 +201,19 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(2, count($player->getMinionsInPlay()));
     }
 
+    /* Frostwolf Warlord */
+    public function test_frostwolf_warlord_gains_no_health_with_empty_board() {
+        $frostwolf_warlord = $this->playCard('Frostwolf Warlord', 1);
+        $this->assertEquals(4, $frostwolf_warlord->getAttack());
+        $this->assertEquals(4, $frostwolf_warlord->getHealth());
+    }
+
+    public function test_frostwolf_warlord_gains_2_2_when_2_minions_on_field() {
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
+        $frostwolf_warlord = $this->playCard('Frostwolf Warlord', 1);
+        $this->assertEquals(6, $frostwolf_warlord->getAttack());
+        $this->assertEquals(6, $frostwolf_warlord->getHealth());
+    }
 
 }

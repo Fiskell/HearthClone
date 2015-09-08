@@ -81,6 +81,18 @@
       }
     ]
   },
+  "Frostwolf Warlord": {
+    "triggers": [
+      {
+        "battlecry": {
+          "enchantment": {
+            "attack_by_count": "other_friendly_minions",
+            "health_by_count": "other_friendly_minions"
+          }
+        }
+      }
+    ]
+  },
   "Gnomish Inventor": {
     "triggers": [
       {
