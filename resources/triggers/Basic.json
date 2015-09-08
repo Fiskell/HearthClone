@@ -103,6 +103,18 @@
       }
     ]
   },
+  "Novice Engineer": {
+    "triggers": [
+      {
+        "battlecry": {
+          "targets": {
+            "type": "friendly_player"
+          },
+          "draw": 1
+        }
+      }
+    ]
+  },
   "Shattered Sun Cleric": {
     "triggers": [
       {

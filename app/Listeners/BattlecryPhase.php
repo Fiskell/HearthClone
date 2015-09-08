@@ -173,5 +173,16 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 }
             }
         }
+
+        /* Draw */
+        $draw = array_get($trigger, 'draw');
+        if(!is_null($draw)) {
+            /** @var Player $target */
+            foreach($targets as $target) {
+                for($i = 0; $i < $draw; $i++) {
+                    $target->drawCard();
+                }
+            }
+        }
     }
 }

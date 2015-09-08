@@ -143,5 +143,12 @@ class BattlecryTest extends HearthCloneTest
         $this->assertEquals(2, $wisp->getAttack());
         $this->assertEquals(2, $wisp->getAttack());
     }
-    
+
+    /* Novice Engineer */
+    public function test_novice_engineer_draws_card_when_played() {
+        $player = $this->game->getPlayer1();
+        $this->assertEquals(0, $player->getHandSize());
+        $this->playCard('Novice Engineer', 1);
+        $this->assertEquals(1, $player->getHandSize());
+    }
 }
