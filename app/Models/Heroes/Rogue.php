@@ -14,7 +14,7 @@ use App\Models\Weapon;
  */
 class Rogue extends AbstractHero
 {
-    private $hero_weapon_name       = "Dagger";
+    private $hero_weapon_name       = "Wicked Knife";
     private $hero_weapon_attack     = 1;
     private $hero_weapon_durability = 2;
 

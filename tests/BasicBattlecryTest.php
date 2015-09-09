@@ -9,7 +9,7 @@ use App\Models\Mechanics;
  * Date: 9/5/15
  * Time: 7:00 PM
  */
-class BattlecryTest extends HearthCloneTest
+class BasicBattlecryTest extends HearthCloneTest
 {
     /* Houndmaster */
 

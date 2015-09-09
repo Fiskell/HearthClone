@@ -13,7 +13,7 @@ use App\Models\Minion;
  * Date: 8/23/15
  * Time: 3:01 PM
  */
-class CardTest extends HearthCloneTest
+class MiscCardTest extends HearthCloneTest
 {
     /** @expectedException \App\Exceptions\MissingCardNameException */
     public function test_card_load_throws_when_no_card_name_specified() {
@@ -611,12 +611,12 @@ class CardTest extends HearthCloneTest
         $this->assertEquals($this->lights_justice_name, $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
-    public function test_rogue_ability_epuips_a_1_2_dagger() {
+    public function test_rogue_ability_epuips_a_1_2_wicked_knife() {
         $this->initPlayers(HeroClass::$ROGUE);
         $this->game->getPlayer1()->useAbility();
         $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
         $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getWeapon()->getDurability());
-        $this->assertEquals('Dagger', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
+        $this->assertEquals('Wicked Knife', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
     public function test_druid_ability_adds_one_attack_and_one_armor() {
