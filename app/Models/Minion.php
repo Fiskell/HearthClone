@@ -18,6 +18,7 @@ class Minion extends Card
 {
     protected $attack;
     protected $health;
+    protected $max_health;
     protected $race;
     protected $alive;
     protected $sleeping;
@@ -35,8 +36,9 @@ class Minion extends Card
         $this->health = array_get($this->card_json, 'health', 0);
         $this->race   = array_get($this->card_json, 'race');
 
-        $this->sleeping = !$this->hasMechanic(Mechanics::$CHARGE);
-        $this->alive    = true;
+        $this->max_health = $this->health;
+        $this->sleeping   = !$this->hasMechanic(Mechanics::$CHARGE);
+        $this->alive      = true;
     }
 
     /**
@@ -64,7 +66,23 @@ class Minion extends Card
      * @param mixed $new_health
      */
     public function setHealth($new_health) {
-        $this->health = $new_health;
+        $this->health = ($new_health > $this->max_health) ? $this->max_health : $new_health;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxHealth() {
+        return $this->max_health;
+    }
+
+    /**
+     * Set upper bound for health.
+     *
+     * @param $new_health
+     */
+    public function setMaxHealth($new_health) {
+        $this->max_health = $new_health;
     }
 
     /**

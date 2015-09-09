@@ -655,6 +655,14 @@ class MiscCardTest extends HearthCloneTest
         $this->assertTrue(in_array($minion->getName(), $player1_hero->getTotems()));
     }
 
+    public function test_priest_can_not_overheal_a_minion_past_max_hp() {
+        $this->initPlayers(HeroClass::$PRIEST);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(1);
+        $this->game->getPlayer1()->useAbility([$chillwind_yeti]);
+        $this->assertEquals(5, $chillwind_yeti->getHealth());
+    }
+
 //    public function test_shaman_ability_summons_wrath_of_air_totem() {
 //        $this->initPlayers(HeroClass::$SHAMAN);
 //

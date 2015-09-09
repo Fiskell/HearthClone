@@ -18,7 +18,7 @@
           "targets": {
             "type": "all_friendly_characters"
           },
-          "enchantment": {
+          "spell": {
             "health": 2
           }
         }

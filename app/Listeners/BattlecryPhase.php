@@ -104,6 +104,32 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             }
         }
 
+        /* Spell */
+        $spell = array_get($trigger, 'spell');
+        if (!is_null($spell)) {
+            foreach ($targets as $target) {
+                $target->setMechanics(array_get($spell, 'mechanics', []));
+
+                $delta_attack = array_get($spell, 'attack', 0);
+                $target->setAttack($target->getAttack() + $delta_attack);
+
+                $delta_health = array_get($spell, 'health', 0);
+                $target->setHealth($target->getHealth() + $delta_health);
+            }
+
+            $attack_by_count = array_get($spell, 'attack_by_count');
+            if(!is_null($attack_by_count)) {
+                $delta_attack = count($this->getTargets($trigger, $summoned_minion, $attack_by_count));
+                $summoned_minion->setAttack($summoned_minion->getAttack() + $delta_attack);
+            }
+
+            $health_by_count = array_get($spell, 'health_by_count');
+            if(!is_null($health_by_count)) {
+                $delta_health = count($this->getTargets($trigger, $summoned_minion, $health_by_count));
+                $summoned_minion->setHealth($summoned_minion->getHealth() + $delta_health);
+            }
+        }
+
         /* Enchantment */
         $enchantment = array_get($trigger, 'enchantment');
         if (!is_null($enchantment)) {
@@ -114,6 +140,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
                 $target->setAttack($target->getAttack() + $delta_attack);
 
                 $delta_health = array_get($enchantment, 'health', 0);
+                $target->setMaxHealth($target->getHealth() + $delta_health);
                 $target->setHealth($target->getHealth() + $delta_health);
             }
 
@@ -126,6 +153,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             $health_by_count = array_get($enchantment, 'health_by_count');
             if(!is_null($health_by_count)) {
                 $delta_health = count($this->getTargets($trigger, $summoned_minion, $health_by_count));
+                $summoned_minion->setMaxHealth($summoned_minion->getHealth() + $delta_health);
                 $summoned_minion->setHealth($summoned_minion->getHealth() + $delta_health);
             }
         }
