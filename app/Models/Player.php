@@ -351,7 +351,18 @@ class Player
     }
 
     public function playSpell(Card $card, array $targets = [], $choose_mechanic = null) {
-        // Todo
+        /* On Play Phase */
+
+        /* Dragonkin Sorcerer Phase */
+
+        /* Spellbender Phase */
+
+        /* Spell Text Phase */
+
+        /* After Spell Phase */
+
+
+        /* Check Game Over*/
     }
 
     public function playWeapon(Card $card, array $targets = []) {

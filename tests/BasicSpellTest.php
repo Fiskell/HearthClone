@@ -9,6 +9,11 @@ use App\Models\HearthCloneTest;
  */
 class BasicSpellTest extends HearthCloneTest
 {
-    public function test_ancestral_healing_gives_max_health_minion_no_hp_and_taunt() {
+    /* Arcane Shot */
+    public function test_arcane_shot_does_two_damage_when_played() {
+        $player2 = $this->game->getPlayer2();
+        $this->playCard('Arcane Shot', 1, [$player2]);
+        $this->assertEquals(28, $player2->getHero()->getHealth());
+
     }
 }

@@ -7,6 +7,16 @@
       "destroy": true
     }
   },
+  "Arcane Shot": {
+    "spell_text_phase": {
+      "targets": {
+        "type": "provided_minion"
+      },
+      "spell": {
+        "health": -2
+      }
+    }
+  },
   "Darkscale Healer": {
     "battlecry": {
       "targets": {
