@@ -2,6 +2,7 @@
 
 use App\Events\AfterSummonPhaseEvent;
 use App\Events\BattlecryPhaseEvent;
+use App\Events\SpellTextPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
@@ -350,7 +351,10 @@ class Player
         $this->game->resolveDeaths();
     }
 
-    public function playSpell(Card $card, array $targets = [], $choose_mechanic = null) {
+    public function playSpell(Minion $card, array $targets = [], $choose_mechanic = null) {
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+
         /* On Play Phase */
 
         /* Dragonkin Sorcerer Phase */
@@ -358,6 +362,8 @@ class Player
         /* Spellbender Phase */
 
         /* Spell Text Phase */
+        event(new SpellTextPhaseEvent($card, $targets));
+        $trigger_queue->resolveQueue();
 
         /* After Spell Phase */
 

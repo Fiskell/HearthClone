@@ -17,7 +17,6 @@ use App\Models\Minion;
 use App\Models\Player;
 use App\Models\TriggerableInterface;
 use App\Models\Triggers\TargetTypes;
-use App\Models\Triggers\TriggerTypes;
 
 abstract class AbstractTrigger implements TriggerableInterface
 {
@@ -229,7 +228,7 @@ abstract class AbstractTrigger implements TriggerableInterface
 //                    throw new InvalidTargetException(count($this->event->getTargets()) . ' targets passed in, expected ' . $num_targets);
 //                }
 
-                $targets = $this->event->getTargets();
+                $targets = $this->trigger_card_targets;
                 break;
             case TargetTypes::$FRIENDLY_HERO:
                 $targets = [$player->getHero()];
