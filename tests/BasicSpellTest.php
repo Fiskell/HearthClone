@@ -1,5 +1,6 @@
 <?php
 use App\Models\HearthCloneTest;
+use App\Models\Mechanics;
 
 /**
  * Created by PhpStorm.
@@ -9,6 +10,16 @@ use App\Models\HearthCloneTest;
  */
 class BasicSpellTest extends HearthCloneTest
 {
+    /* Ancestral Healing */
+    public function test_ancestral_healing_heals_minion_to_full_and_gives_taunt() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(4);
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+        $this->playCard('Ancestral Healing', 1, [$chillwind_yeti]);
+        $this->assertEquals(5, $chillwind_yeti->getHealth());
+        $this->assertTrue($chillwind_yeti->hasMechanic(Mechanics::$TAUNT));
+    }
+
     /* Arcane Explosion */
     public function test_arcane_explosion_deals_one_damage_to_all_enemy_minions() {
         $wisp1 = $this->playCard('Wisp', 1);
@@ -35,7 +46,7 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Arcane Shot', 1, [$player2->getHero()]);
         $this->assertEquals(28, $player2->getHero()->getHealth());
     }
-    
+
     public function test_arcane_shot_does_two_damage_to_minion_when_played() {
         $knife_juggler = $this->playCard('Knife Juggler', 1);
         $this->playCard('Arcane Shot', 2, [$knife_juggler]);

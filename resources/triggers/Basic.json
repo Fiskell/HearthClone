@@ -7,6 +7,20 @@
       "destroy": true
     }
   },
+  "Ancestral Healing": {
+    "spell_text_phase": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "spell": {
+        "full_health": true,
+        "mechanics": [
+          "Taunt"
+        ]
+      }
+    }
+  },
   "Arcane Explosion": {
     "spell_text_phase": {
       "targets": {

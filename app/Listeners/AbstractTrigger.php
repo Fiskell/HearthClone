@@ -122,6 +122,11 @@ abstract class AbstractTrigger implements TriggerableInterface
 
                 $delta_health = array_get($spell, 'health', 0);
                 $target->setHealth($target->getHealth() + $delta_health);
+
+                $full_health = array_get($spell, 'full_health');
+                if($full_health) {
+                    $target->setHealth($target->getMaxHealth());
+                }
             }
 
             $attack_by_count = array_get($spell, 'attack_by_count');
