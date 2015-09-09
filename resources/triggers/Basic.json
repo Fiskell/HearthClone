@@ -17,6 +17,14 @@
       }
     }
   },
+  "Arcane Intellect": {
+    "spell_text_phase": {
+      "targets": {
+        "type": "friendly_player"
+      },
+      "draw": 2
+    }
+  },
   "Arcane Shot": {
     "spell_text_phase": {
       "targets": {

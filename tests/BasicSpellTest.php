@@ -22,13 +22,20 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
     }
 
+    /* Arcane Intellect */
+    public function test_arcane_intellect_draws_two_cards() {
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $this->playCard('Arcane Intellect', 1);
+        $this->assertEquals(2, $this->game->getPlayer1()->getHandSize());
+    }
+
     /* Arcane Shot */
     public function test_arcane_shot_does_two_damage_to_hero_when_played() {
         $player2 = $this->game->getPlayer2();
         $this->playCard('Arcane Shot', 1, [$player2->getHero()]);
         $this->assertEquals(28, $player2->getHero()->getHealth());
     }
-
+    
     public function test_arcane_shot_does_two_damage_to_minion_when_played() {
         $knife_juggler = $this->playCard('Knife Juggler', 1);
         $this->playCard('Arcane Shot', 2, [$knife_juggler]);
