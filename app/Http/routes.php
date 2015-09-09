@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('card_json');
-});
+Route::get('/', 'CardJsonController@index');
