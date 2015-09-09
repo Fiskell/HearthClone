@@ -9,6 +9,19 @@ use App\Models\HearthCloneTest;
  */
 class BasicSpellTest extends HearthCloneTest
 {
+    /* Arcane Explosion */
+    public function test_arcane_explosion_deals_one_damage_to_all_enemy_minions() {
+        $wisp1 = $this->playCard('Wisp', 1);
+        $wisp2 = $this->playCard('Wisp', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 1);
+
+        $this->playCard('Arcane Explosion', 2);
+        $this->assertFalse($wisp1->isAlive());
+        $this->assertFalse($wisp2->isAlive());
+        $this->assertEquals(1, $knife_juggler->getHealth());
+        $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
+    }
+
     /* Arcane Shot */
     public function test_arcane_shot_does_two_damage_to_hero_when_played() {
         $player2 = $this->game->getPlayer2();
@@ -21,4 +34,5 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Arcane Shot', 2, [$knife_juggler]);
         $this->assertFalse($knife_juggler->isAlive());
     }
+
 }

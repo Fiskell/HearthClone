@@ -259,6 +259,9 @@ abstract class AbstractTrigger implements TriggerableInterface
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
                 $targets = $opponent_minions;
                 break;
+            case TargetTypes::$ALL_OPPONENT_MINIONS:
+                $targets = $opponent_minions;
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }

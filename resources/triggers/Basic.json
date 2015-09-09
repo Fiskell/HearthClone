@@ -7,6 +7,16 @@
       "destroy": true
     }
   },
+  "Arcane Explosion": {
+    "spell_text_phase": {
+      "targets": {
+        "type": "all_opponent_minions"
+      },
+      "spell": {
+        "health": -1
+      }
+    }
+  },
   "Arcane Shot": {
     "spell_text_phase": {
       "targets": {
