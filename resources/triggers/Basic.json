@@ -1,284 +1,204 @@
 {
   "Acidic Swamp Ooze": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "opponent_hero"
-          },
-          "destroy": true
-        }
-      }
-    ]
+    "battlecry": {
+      "targets": {
+        "type": "opponent_hero"
+      },
+      "destroy": true
+    }
   },
   "Darkscale Healer": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "all_friendly_characters"
-          },
-          "spell": {
-            "health": 2
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "all_friendly_characters"
+      },
+      "spell": {
+        "health": 2
       }
-    ]
+    }
   },
   "Dragonling Mechanic": {
-    "triggers": [
-      {
-        "battlecry": {
-          "summon": {
-            "name": "Mechanical Dragonling",
-            "quantity": 1
-          }
-        }
+    "battlecry": {
+      "summon": {
+        "name": "Mechanical Dragonling",
+        "quantity": 1
       }
-    ]
+    }
   },
   "Dread Infernal": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "all_other_characters"
-          },
-          "spell": {
-            "health": -1
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "all_other_characters"
+      },
+      "spell": {
+        "health": -1
       }
-    ]
+    }
   },
   "Elven Archer": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "spell": {
-            "health": -1
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "spell": {
+        "health": -1
       }
-    ]
+    }
   },
   "Fire Elemental": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "spell": {
-            "health": -3
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "spell": {
+        "health": -3
       }
-    ]
+    }
   },
   "Frostwolf Warlord": {
-    "triggers": [
-      {
-        "battlecry": {
-          "enchantment": {
-            "attack_by_count": "other_friendly_minions",
-            "health_by_count": "other_friendly_minions"
-          }
-        }
+    "battlecry": {
+      "enchantment": {
+        "attack_by_count": "other_friendly_minions",
+        "health_by_count": "other_friendly_minions"
       }
-    ]
+    }
   },
   "Gnomish Inventor": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "friendly_player"
-          },
-          "draw": 1
-        }
-      }
-    ]
+    "battlecry": {
+      "targets": {
+        "type": "friendly_player"
+      },
+      "draw": 1
+    }
   },
   "Guardian of Kings": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "friendly_hero"
-          },
-          "spell": {
-            "health": 6
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "friendly_hero"
+      },
+      "spell": {
+        "health": 6
       }
-    ]
+    }
   },
   "Houndmaster": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "race": "beast",
-            "quantity": 1
-          },
-          "enchantment": {
-            "mechanics": [
-              "Taunt"
-            ],
-            "attack": 2,
-            "health": 2
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "race": "beast",
+        "quantity": 1
+      },
+      "enchantment": {
+        "mechanics": [
+          "Taunt"
+        ],
+        "attack": 2,
+        "health": 2
       }
-    ]
+    }
   },
   "Ironforge Rifleman": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "spell": {
-            "health": -1
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "spell": {
+        "health": -1
       }
-    ]
+    }
   },
   "Murloc Tidehunter": {
-    "triggers": [
-      {
-        "battlecry": {
-          "summon": {
-            "name": "Murloc Scout",
-            "quantity": 1
-          }
-        }
+    "battlecry": {
+      "summon": {
+        "name": "Murloc Scout",
+        "quantity": 1
       }
-    ]
+    }
   },
   "Nightblade": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "opponent_hero"
-          },
-          "spell": {
-            "health": -3
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "opponent_hero"
+      },
+      "spell": {
+        "health": -3
       }
-    ]
+    }
   },
   "Novice Engineer": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "friendly_player"
-          },
-          "draw": 1
-        }
-      }
-    ]
+    "battlecry": {
+      "targets": {
+        "type": "friendly_player"
+      },
+      "draw": 1
+    }
   },
   "Razorfen Hunter": {
-    "triggers": [
-      {
-        "battlecry": {
-          "summon": {
-            "name": "Boar",
-            "quantity": 1
-          }
-        }
+    "battlecry": {
+      "summon": {
+        "name": "Boar",
+        "quantity": 1
       }
-    ]
+    }
   },
   "Shattered Sun Cleric": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "enchantment": {
-            "attack": 1,
-            "health": 1
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "enchantment": {
+        "attack": 1,
+        "health": 1
       }
-    ]
+    }
   },
   "Stormpike Commando": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "spell": {
-            "health": -2
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "spell": {
+        "health": -2
       }
-    ]
+    }
   },
   "Succubus": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "friendly_player"
-          },
-          "discard": {
-            "type": "random",
-            "quantity": 1
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "friendly_player"
+      },
+      "discard": {
+        "type": "random",
+        "quantity": 1
       }
-    ]
+    }
   },
   "Voodoo Doctor": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "friendly_hero"
-          },
-          "spell": {
-            "health": 2
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "friendly_hero"
+      },
+      "spell": {
+        "health": 2
       }
-    ]
+    }
   },
   "Windspeaker": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "enchantment": {
-            "mechanics": [
-              "Windfury"
-            ]
-          }
-        }
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "enchantment": {
+        "mechanics": [
+          "Windfury"
+        ]
       }
-    ]
+    }
   }
 }

@@ -15,16 +15,12 @@
     ]
   },
   "Spellbreaker": {
-    "triggers": [
-      {
-        "battlecry": {
-          "targets": {
-            "type": "provided_minion",
-            "quantity": 1
-          },
-          "silence": true
-        }
-      }
-    ]
+    "battlecry": {
+      "targets": {
+        "type": "provided_minion",
+        "quantity": 1
+      },
+      "silence": true
+    }
   }
 }

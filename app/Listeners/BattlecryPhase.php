@@ -45,8 +45,8 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
         $trigger_array    = $this->getSetTriggers();
         $summoned_minion  = $this->event->getSummonedMinion();
 
-        // todo assumes we only have one trigger.
-        $trigger = array_get($trigger_array, $this->event->getSummonedMinion()->getName() . '.triggers.0.' . TriggerTypes::$BATTLECRY);
+        $trigger = array_get($trigger_array, $this->event->getSummonedMinion()->getName() . '.' . TriggerTypes::$BATTLECRY);
+
 
         if (is_null($trigger)) {
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->event->getSummonedMinion()->getName());
@@ -250,7 +250,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
-        
+
         return $targets;
     }
 }
