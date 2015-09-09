@@ -1,18 +1,14 @@
 {
   "Knife Juggler": {
-    "triggers": [
-      {
-        "after_summon_phase": {
-          "targets": {
-            "type": "random_opponent_character",
-            "required_quantity": 1
-          },
-          "damage": {
-            "value": 1
-          }
-        }
+    "after_summon_phase": {
+      "targets": {
+        "type": "random_opponent_character",
+        "required_quantity": 1
+      },
+      "spell": {
+        "health": -1
       }
-    ]
+    }
   },
   "Spellbreaker": {
     "battlecry": {

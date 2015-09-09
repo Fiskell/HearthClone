@@ -1,88 +1,49 @@
 <?php namespace App\Listeners;
 
-use App\Events\AfterSummonPhaseEvent;
-use App\Exceptions\DumbassDeveloperException;
-use App\Exceptions\InvalidTargetException;
-use App\Models\Minion;
-use App\Models\TriggerableInterface;
+use App\Events\SummonEvent;
 use App\Models\TriggerQueue;
 
-class AfterSummonPhase extends SummonListener implements TriggerableInterface
+class AfterSummonPhase extends AbstractTrigger
 {
-    /** @var  AfterSummonPhaseEvent $event */
-    private $event;
+    public $event_name = "after_summon_phase";
 
     /**
      * Handle the event.
      *
-     * @param  AfterSummonPhaseEvent $event
+     * @param  SummonEvent $event
      * @return void
      */
-    public function handle(AfterSummonPhaseEvent $event) {
-        $this->event = $event;
+    public function handle(SummonEvent $event) {
+        $this->event      = $event;
+        $summoned_minion  = $this->event->getSummonedMinion();
+        $player           = $summoned_minion->getOwner();
+        $player_minions   = $player->getMinionsInPlay();
+        $opponent         = $player->getOtherPlayer();
+        $opponent_minions = $opponent->getMinionsInPlay();
 
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
-        $trigger_queue->queue($this);
-    }
-
-    public function resolve() {
-        $summoned_minion            = $this->event->getSummonedMinion();
-        $player                     = $summoned_minion->getOwner();
-        $player_minions             = $player->getMinionsInPlay();
-        $opponent                   = $player->getOtherPlayer();
-        $opponent_minions           = $opponent->getMinionsInPlay();
-        $hero_id                    = $opponent->getHero()->getId();
-        $opponent_minions[$hero_id] = $opponent->getHero();
 
         $trigger_array = $this->getSetTriggers();
 
-        foreach ($player_minions as $minion) {
-            // todo may change depending on card
+        $all_minions = $player_minions + $opponent_minions;
+
+        foreach ($all_minions as $minion) {
+            // todo, don't believe that it can immediately go over, probably wrong.
             if ($minion->getId() == $summoned_minion->getId()) {
                 continue;
             }
 
-            // todo assumes we only have one trigger.
-            $trigger = array_get($trigger_array, $minion->getName() . '.triggers.0.after_summon_phase');
-
-            if (is_null($trigger)) {
+            $trigger = array_get($trigger_array, $minion->getName() . '.' . $this->event_name);
+            if(is_null($trigger)) {
                 continue;
             }
 
-            $target_type = array_get($trigger, 'targets.type');
-            if (is_null($target_type)) {
-                throw new DumbassDeveloperException('Missing target type for ' . $minion->getName());
-            }
+            $tmp_trigger = new AfterSummonPhase();
+            $tmp_trigger->trigger_card = $minion;
+            $tmp_trigger->trigger_card_targets = $event->getTargets();
 
-            switch ($target_type) {
-                case 'random_opponent_character':
-                    // todo fix random numbers using ioc
-                    $opponent_minion_keys = array_keys(
-                        array_sort($opponent_minions, function (Minion $value) {
-                            return $value->getId();
-                        })
-                    );
-
-                    $random_key = $minion->getRandomNumber();
-                    $targets    = [$opponent_minions[$opponent_minion_keys[$random_key]]];
-                    break;
-                default:
-                    throw new DumbassDeveloperException('Unknown target type ' . $target_type);
-            }
-
-            // Should take damage.
-            $damage = array_get($trigger, 'damage.value');
-            if (!is_null($damage)) {
-                if (!count($targets)) {
-                    throw new InvalidTargetException('You must have at least one target');
-                }
-
-                /** @var Minion $target */
-                foreach ($targets as $target) {
-                    $target->takeDamage($damage);
-                }
-            }
+            /** @var TriggerQueue $trigger_queue */
+            $trigger_queue = app('TriggerQueue');
+            $trigger_queue->queue($tmp_trigger);
         }
     }
 }
