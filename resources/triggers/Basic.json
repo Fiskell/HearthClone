@@ -44,7 +44,7 @@
           "targets": {
             "type": "all_other_characters"
           },
-          "enchantment": {
+          "spell": {
             "health": -1
           }
         }
@@ -59,7 +59,7 @@
             "type": "provided_minion",
             "quantity": 1
           },
-          "enchantment": {
+          "spell": {
             "health": -1
           }
         }
@@ -74,7 +74,7 @@
             "type": "provided_minion",
             "quantity": 1
           },
-          "enchantment": {
+          "spell": {
             "health": -3
           }
         }
@@ -112,7 +112,7 @@
           "targets": {
             "type": "friendly_hero"
           },
-          "enchantment": {
+          "spell": {
             "health": 6
           }
         }
@@ -147,7 +147,7 @@
             "type": "provided_minion",
             "quantity": 1
           },
-          "enchantment": {
+          "spell": {
             "health": -1
           }
         }
@@ -173,7 +173,7 @@
           "targets": {
             "type": "opponent_hero"
           },
-          "enchantment": {
+          "spell": {
             "health": -3
           }
         }
@@ -228,7 +228,7 @@
             "type": "provided_minion",
             "quantity": 1
           },
-          "enchantment": {
+          "spell": {
             "health": -2
           }
         }
@@ -257,7 +257,7 @@
           "targets": {
             "type": "friendly_hero"
           },
-          "enchantment": {
+          "spell": {
             "health": 2
           }
         }

@@ -250,7 +250,7 @@ class BattlecryPhase extends SummonListener implements TriggerableInterface
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
-
+        
         return $targets;
     }
 }
