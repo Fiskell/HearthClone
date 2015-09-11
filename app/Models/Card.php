@@ -14,6 +14,8 @@ class Card
 {
     protected $id;
 
+    protected $set;
+
     protected $name;
 
     protected $cost;
@@ -23,7 +25,7 @@ class Card
     protected $mechanics = [];
 
     protected $sub_mechanics = [];
-    
+
     protected $card_json;
 
     /** @var  Game $game */
@@ -54,14 +56,14 @@ class Card
         }
 
         /** @var CardSets $card_sets */
-        $card_sets = app('CardSets');
+        $card_sets       = app('CardSets');
         $this->card_json = $card_sets->findCard($name);
 
         $this->owner->getGame()->incrementCardsPlayedThisGame();
         $this->play_order_id = $this->owner->getGame()->getCardsPlayedThisGame();
-        $this->id = $this->play_order_id;
+        $this->id            = $this->play_order_id;
+        $this->set           = array_get($this->card_json, 'set');
 
-//        $this->id        = rand(1, 1000000);
         $this->name      = $name;
         $this->cost      = array_get($this->card_json, 'cost', 0);
         $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
@@ -147,6 +149,7 @@ class Card
     public function setPlayOrderId($play_order_id) {
         $this->play_order_id = $play_order_id;
     }
+
     /**
      * @return array
      */
@@ -154,7 +157,7 @@ class Card
         return $this->mechanics;
     }
 
-    public function setMechanics($mechanics=[]) {
+    public function setMechanics($mechanics = []) {
         $this->mechanics = array_merge($this->mechanics, $mechanics);
     }
 
@@ -193,6 +196,13 @@ class Card
      */
     public function setRandomNumber($random_number) {
         $this->random_number = $random_number;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSet() {
+        return $this->set;
     }
 
 }
