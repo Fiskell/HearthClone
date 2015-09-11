@@ -39,7 +39,7 @@ class CardSets
             foreach ($tmp_set_cards as $tmp_set_card) {
                 $tmp_set_card['set']      = $set;
                 $tmp_set_card['set_abbr'] = $set_abbr;
-                
+
                 $cards_in_set[$tmp_set_card['name']] = $tmp_set_card;
             }
 
