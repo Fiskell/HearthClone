@@ -30,13 +30,16 @@ class CardSets
     public function __construct() {
         // Load card sets into memory.
         $sets = self::$set_names;
-        foreach ($sets as $set) {
+        foreach ($sets as $set_abbr => $set) {
             $cards_in_set = [];
 
             $tmp_set_cards = file_get_contents(__DIR__ . '/../../resources/sets/' . $set . '.enUS.json');
             $tmp_set_cards = json_decode($tmp_set_cards, true);
 
             foreach ($tmp_set_cards as $tmp_set_card) {
+                $tmp_set_card['set']      = $set;
+                $tmp_set_card['set_abbr'] = $set_abbr;
+                
                 $cards_in_set[$tmp_set_card['name']] = $tmp_set_card;
             }
 
