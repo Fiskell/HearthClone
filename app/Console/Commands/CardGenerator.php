@@ -108,15 +108,21 @@ class CardGenerator extends Command
             $action_array = $this->buildActionArray($action, $action_value);
 
             $json[$card_name][$trigger][$action] = $action_array;
+            $json_formatted = json_encode($json, JSON_PRETTY_PRINT);
+            $this->info($json_formatted);
 
-            $this->info(json_encode($json, JSON_PRETTY_PRINT));
+            if($this->confirm('Is the above card correct?')) {
+                $this->writeCard($card, $json);
 
-            return true;
+                $filename = $this->getCardFilename($card);
+                $this->info($card->getName() . ' has been added to file ' . $filename);
+                return true;
+            }
+            $this->error('Abort! Abort!  Whew, that was a close one.');
         } catch (Exception $ex) {
             $this->error($ex->getMessage());
-
-            return false;
         }
+        return false;
     }
 
     private function requestTrigger() {
@@ -294,5 +300,21 @@ class CardGenerator extends Command
         $set_file_name = str_replace(' ', '_', $set);
 
         return $set_file_name . '.json';
+    }
+
+    /**
+     * Write json to correct set file.
+     *
+     * @param $card
+     * @param $card_trigger_info_array
+     */
+    private function writeCard($card, $card_trigger_info_array) {
+        $filename = $this->getCardFilename($card);
+        $filepath = __DIR__ . '/../../../resources/triggers/' . $filename;
+        $json     = @file_get_contents($filepath);
+        $array    = json_decode($json, true);
+        $array = array_merge($array, $card_trigger_info_array);
+        $new_json = json_encode($array, JSON_PRETTY_PRINT);
+        @file_put_contents($filepath, $new_json);
     }
 }

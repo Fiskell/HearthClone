@@ -1,22 +1,22 @@
 {
-  "Knife Juggler": {
-    "after_summon_phase": {
-      "targets": {
-        "type": "random_opponent_character",
-        "required_quantity": 1
-      },
-      "spell": {
-        "health": -1
-      }
+    "Knife Juggler": {
+        "after_summon_phase": {
+            "targets": {
+                "type": "random_opponent_character",
+                "required_quantity": 1
+            },
+            "spell": {
+                "health": -1
+            }
+        }
+    },
+    "Spellbreaker": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "silence": true
+        }
     }
-  },
-  "Spellbreaker": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "silence": true
-    }
-  }
 }
