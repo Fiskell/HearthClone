@@ -68,6 +68,8 @@ class CardGenerator extends Command
             $card = app('Card', [$game->getPlayer1()]);
             $card->load($card_name);
 
+            $this->checkCardDoesNotExist($card);
+
             /* Triggers */
             $trigger = $this->requestTrigger();
             $this->info("Trigger: " . $trigger);
@@ -276,5 +278,21 @@ class CardGenerator extends Command
         }
 
         return $action_array;
+    }
+
+    private function checkCardDoesNotExist(Card $card) {
+        $filename = $this->getCardFilename($card);
+        $json     = @file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
+        $array    = json_decode($json, true);
+        if (array_get($array, $card->getName())) {
+            throw new Exception('Card ' . $card->getName() . ' already exists in class ' . $filename);
+        }
+    }
+
+    private function getCardFilename(Card $card) {
+        $set           = $card->getSet();
+        $set_file_name = str_replace(' ', '_', $set);
+
+        return $set_file_name . '.json';
     }
 }
