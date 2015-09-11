@@ -25,6 +25,5 @@ class ClassicBattlecryTest extends HearthCloneTest
         $this->playCard('Argent Protector', 1, [$wisp]);
         $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
-
     
 }

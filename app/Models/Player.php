@@ -216,6 +216,7 @@ class Player
                 $this->spell_power_modifier++;
             }
         }
+        // todo does not recalculate opponent spell power.
     }
 
     /**

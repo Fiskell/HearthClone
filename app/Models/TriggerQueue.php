@@ -1,4 +1,5 @@
 <?php namespace App\Models;
+use App\Listeners\AbstractTrigger;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@
 class TriggerQueue
 {
 
-    /** @var TriggerableInterface[] $queue */
+    /** @var AbstractTrigger[] $queue */
     private $queue = [];
 
     /**
