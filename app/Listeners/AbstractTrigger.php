@@ -80,19 +80,6 @@ abstract class AbstractTrigger implements TriggerableInterface
             }
         }
 
-        /* Damage */
-        $damage = array_get($trigger, 'damage.value');
-        if (!is_null($damage)) {
-            if (!count($targets)) {
-                throw new InvalidTargetException('You must have at least one target');
-            }
-
-            /** @var Minion $target */
-            foreach ($targets as $target) {
-                $target->takeDamage($damage);
-            }
-        }
-
         /* Destroy */
         $destroy = array_get($trigger, 'destroy');
         if (!is_null($destroy)) {
