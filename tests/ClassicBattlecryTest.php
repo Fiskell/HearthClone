@@ -1,5 +1,6 @@
 <?php
 use App\Models\HearthCloneTest;
+use App\Models\Mechanics;
 
 /**
  * Created by PhpStorm.
@@ -16,6 +17,13 @@ class ClassicBattlecryTest extends HearthCloneTest
         $this->assertEquals(3, $wisp->getAttack());
         $this->assertEquals(1, $wisp->getHealth());
         $this->assertTrue($wisp->isAlive());
+    }
+
+    /* Argent Protector */
+    public function test_argent_protector_gives_wisp_divine_shield() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Argent Protector', 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
 
     

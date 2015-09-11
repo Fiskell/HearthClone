@@ -1,4 +1,26 @@
 {
+    "Abusive Sergeant": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "spell": {
+                "attack": "2"
+            }
+        }
+    },
+    "Argent Protector": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Divine Shield"
+                ]
+            }
+        }
+    },
     "Knife Juggler": {
         "after_summon_phase": {
             "targets": {
@@ -17,16 +39,6 @@
                 "quantity": 1
             },
             "silence": true
-        }
-    },
-    "Abusive Sergeant": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "spell": {
-                "attack": "2"
-            }
         }
     }
 }

@@ -314,6 +314,7 @@ class CardGenerator extends Command
         $json     = @file_get_contents($filepath);
         $array    = json_decode($json, true);
         $array = array_merge($array, $card_trigger_info_array);
+        ksort($array);
         $new_json = json_encode($array, JSON_PRETTY_PRINT);
         @file_put_contents($filepath, $new_json);
     }
