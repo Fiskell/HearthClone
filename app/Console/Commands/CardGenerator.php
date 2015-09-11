@@ -80,6 +80,7 @@ class CardGenerator extends Command
             /* Action */
             $action = $this->requestAction();
             $this->info("Action: " . $action);
+            // todo attack_by_count, health_by_count, full_health
 
             $action_value       = true;
             $no_additional_info = ["silence", "destroy"];
