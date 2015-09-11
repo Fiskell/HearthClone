@@ -18,5 +18,15 @@
             },
             "silence": true
         }
+    },
+    "Abusive Sergeant": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "spell": {
+                "attack": "2"
+            }
+        }
     }
 }
