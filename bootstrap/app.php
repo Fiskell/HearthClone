@@ -46,6 +46,7 @@ $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\GameServiceProvider::class);
 $app->register(App\Providers\HeroServiceProvider::class);
 $app->register(App\Providers\TriggerQueueServiceProvider::class);
+$app->register(App\Providers\SequenceServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
