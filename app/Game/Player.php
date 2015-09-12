@@ -351,10 +351,7 @@ class Player
      * @param array $targets
      */
     public function useAbility($targets = []) {
-        $this->flipHeroPower();
-        $this->resolveHeroPower($targets);
-        $this->game->resolveDeaths();
-        $this->game->checkForGameOver();
+        App('HeroPowerSequence')->resolve($this->getHero(), $targets);
     }
     /* ---------------------------------- */
 
@@ -406,33 +403,6 @@ class Player
      */
     private function resetTurnCounters() {
         $this->resetCardsPlayedThisTurn();
-    }
-
-    /**
-     * @param $targets
-     */
-    private function resolveHeroPower($targets) {
-        $defending_player = $this->getOtherPlayer();
-        $this->hero->useAbility($this, $defending_player, $targets);
-        if (!$defending_player->getHero()->isAlive()) {
-            $defending_player->killed();
-        }
-
-        if (!$this->getHero()->isAlive()) {
-            $this->killed();
-        }
-    }
-
-    /**
-     * Phase which flips the hero power so it cannot be used again
-     * @throws HeroPowerAlreadyFlippedException
-     */
-    private function flipHeroPower() {
-        if ($this->getHero()->powerIsFlipped()) {
-            throw new HeroPowerAlreadyFlippedException('You have already used your ability this turn');
-        }
-
-        $this->getHero()->flipHeroPower();
     }
 
     /**
