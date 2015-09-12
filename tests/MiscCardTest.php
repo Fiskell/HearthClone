@@ -1,11 +1,11 @@
 <?php
-use App\Models\Card;
-use App\Models\CardType;
+use App\Game\Card\Heroes\HeroClass;
+use App\Game\Card\Heroes\Shaman;
+use App\Game\Cards\Card;
+use App\Game\Cards\CardType;
+use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
-use App\Models\HeroClass;
-use App\Models\Heroes\Shaman;
-use App\Models\Mechanics;
-use App\Models\Minion;
+
 
 /**
  * Created by PhpStorm.

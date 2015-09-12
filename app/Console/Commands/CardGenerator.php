@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Card;
-use App\Models\CardSets;
-use App\Models\Game;
-use App\Models\Triggers\TargetTypes;
-use App\Models\Triggers\TriggerTypes;
+use App\Game\Cards\Card;
+use App\Game\Cards\Triggers\TargetTypes;
+use App\Game\Cards\Triggers\TriggerTypes;
+use App\Game\CardSets\CardSets;
+use App\Game\Game;
 use Exception;
 use Illuminate\Console\Command;
 
@@ -73,6 +73,23 @@ class CardGenerator extends Command
             /* Triggers */
             $trigger = $this->requestTrigger();
             $this->info("Trigger: " . $trigger);
+
+            // todo fix, don't be a dick
+            if($trigger == 'spellpower') {
+                $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
+
+                $json = [
+                    $card_name => [
+                        $trigger => $spell_power
+                    ]
+                ];
+
+                $this->writeCard($card, $json);
+
+                $filename = $this->getCardFilename($card);
+                $this->info($card->getName() . ' has been added to file ' . $filename);
+                return true;
+            }
 
             /* Targets */
             $target_info = $this->requestTarget();

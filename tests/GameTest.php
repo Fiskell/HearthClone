@@ -1,8 +1,6 @@
 <?php
-use App\Models\Game;
+use App\Game\Card\Heroes\HeroClass;
 use App\Models\HearthCloneTest;
-use App\Models\HeroClass;
-use App\Models\Heroes\Hunter;
 
 /**
  * Created by PhpStorm.

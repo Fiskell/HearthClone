@@ -2,8 +2,8 @@
 
 use App\Events\SummonEvent;
 use App\Exceptions\InvalidTargetException;
-use App\Models\Mechanics;
-use App\Models\Minion;
+use App\Game\Cards\Mechanics;
+use App\Game\Cards\Minion;
 use App\Models\TriggerQueue;
 
 class BattlecryPhase extends AbstractTrigger

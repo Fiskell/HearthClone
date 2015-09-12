@@ -1,4 +1,4 @@
-<?php namespace App\Models\Triggers;
+<?php namespace App\Game\Cards\Triggers;
 
 /**
  * Created by PhpStorm.
@@ -10,4 +10,5 @@ class TriggerTypes
 {
     public static $AFTER_SUMMON_PHASE = 'after_summon_phase';
     public static $BATTLECRY          = 'battlecry';
+    public static $SPELLPOWER         = 'spellpower';
 }

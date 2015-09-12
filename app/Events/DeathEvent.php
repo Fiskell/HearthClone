@@ -1,9 +1,8 @@
 <?php namespace App\Events;
 
-use App\Models\Card;
-use App\Models\HearthStoneEvent;
+use App\Game\Cards\Card;
 
-class DeathEvent extends Event implements HearthStoneEvent
+class DeathEvent extends Event
 {
     /** @var  Card $killed_card */
     protected $killed_card;

@@ -6,8 +6,7 @@
  * Time: 3:39 PM
  */
 
-namespace App\Models;
-
+namespace App\Game\Cards;
 
 interface CardInterface
 {

@@ -1,9 +1,7 @@
-<?php namespace App\Models\Heroes;
+<?php namespace App\Game\Card\Heroes;
+use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Player;
 
-use App\Models\AbstractHero;
-use App\Models\HeroClass;
-use App\Models\HeroPower;
-use App\Models\Player;
 
 /**
  * Created by PhpStorm.
@@ -21,6 +19,7 @@ class Hunter extends AbstractHero
         $this->hero_class = HeroClass::$HUNTER;
         $this->hero_power = HeroPower::$HUNTER;
     }
+
 
     /**
      * Use the heroes ability

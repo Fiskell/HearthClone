@@ -8,7 +8,7 @@
 
 namespace App\Events;
 
-use App\Models\Minion;
+use App\Game\Cards\Minion;
 
 class SummonEvent extends Event
 {

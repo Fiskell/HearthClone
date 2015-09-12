@@ -1,16 +1,14 @@
-<?php
+<?php namespace App\Providers;
 
-namespace App\Providers;
-
-use App\Models\Heroes\Druid;
-use App\Models\Heroes\Hunter;
-use App\Models\Heroes\Mage;
-use App\Models\Heroes\Paladin;
-use App\Models\Heroes\Priest;
-use App\Models\Heroes\Rogue;
-use App\Models\Heroes\Shaman;
-use App\Models\Heroes\Warlock;
-use App\Models\Heroes\Warrior;
+use App\Game\Card\Heroes\Hunter;
+use App\Game\Card\Heroes\Mage;
+use App\Game\Card\Heroes\Paladin;
+use App\Game\Card\Heroes\Priest;
+use App\Game\Card\Heroes\Rogue;
+use App\Game\Card\Heroes\Shaman;
+use App\Game\Card\Heroes\Warlock;
+use App\Game\Card\Heroes\Warrior;
+use App\Game\Cards\Heroes\Druid;
 use Illuminate\Support\ServiceProvider;
 
 class HeroServiceProvider extends ServiceProvider
@@ -57,6 +55,5 @@ class HeroServiceProvider extends ServiceProvider
         $this->app->bind('Warrior', function($app, $params) {
             return new Warrior(array_get($params, 0));
         });
-
     }
 }

@@ -6,7 +6,7 @@
  * Time: 6:56 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 class CardType
 {

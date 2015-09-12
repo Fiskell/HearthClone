@@ -6,9 +6,12 @@
  * Time: 9:36 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 use App\Exceptions\MissingCardNameException;
+use App\Game\CardSets\CardSets;
+use App\Game\Game;
+use App\Game\Player;
 use App\Listeners\BattlecryPhase;
 
 class Card
@@ -211,6 +214,13 @@ class Card
      */
     public function getSet() {
         return $this->set;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrigger() {
+        return $this->trigger;
     }
 
 }

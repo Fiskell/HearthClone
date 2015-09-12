@@ -6,7 +6,7 @@
  * Time: 3:16 PM
  */
 
-namespace App\Models;
+namespace App\Game\CardSets;
 
 use App\Exceptions\UnknownCardNameException;
 
@@ -69,13 +69,6 @@ class CardSets
      */
     public function getSets() {
         return $this->sets;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSetsNames() {
-        return $this->sets_names;
     }
 
 }

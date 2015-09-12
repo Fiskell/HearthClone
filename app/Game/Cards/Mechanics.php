@@ -6,7 +6,7 @@
  * Time: 12:21 AM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 class Mechanics
 {

@@ -6,8 +6,10 @@
  * Time: 1:28 AM
  */
 
-namespace App\Models;
+namespace App\Game;
 
+use App\Game\Cards\Minion;
+use App\Models\TriggerQueue;
 use Illuminate\Support\Facades\App;
 
 class Game

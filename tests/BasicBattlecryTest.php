@@ -1,7 +1,7 @@
 <?php
+use App\Game\Card\Heroes\HeroClass;
+use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
-use App\Models\HeroClass;
-use App\Models\Mechanics;
 
 /**
  * Created by PhpStorm.

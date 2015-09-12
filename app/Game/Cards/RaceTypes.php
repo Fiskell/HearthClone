@@ -6,7 +6,7 @@
  * Time: 8:41 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 class RaceTypes
 {

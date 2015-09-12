@@ -1,4 +1,4 @@
-<?php namespace App\Models\Triggers;
+<?php namespace App\Game\Cards\Triggers;
 
 /**
  * Created by PhpStorm.

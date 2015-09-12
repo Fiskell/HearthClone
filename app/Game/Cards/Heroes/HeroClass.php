@@ -6,7 +6,7 @@
  * Time: 3:08 PM
  */
 
-namespace App\Models;
+namespace App\Game\Card\Heroes;
 
 class HeroClass
 {

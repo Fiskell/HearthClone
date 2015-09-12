@@ -8,9 +8,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Card;
-use App\Models\CardSets;
-use App\Models\Game;
+use App\Game\Cards\Card;
+use App\Game\CardSets\CardSets;
+use App\Game\Game;
 use Exception;
 use Illuminate\Console\Command;
 

@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace App\Game;
 
 use App\Events\AfterSummonPhaseEvent;
 use App\Events\BattlecryPhaseEvent;
@@ -7,6 +7,12 @@ use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
+use App\Game\Cards\Card;
+use App\Game\Cards\CardType;
+use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Cards\Mechanics;
+use App\Game\Cards\Minion;
+use App\Models\TriggerQueue;
 use Exceptions\UndefinedBattleCryMechanicException;
 
 class Player
@@ -212,9 +218,7 @@ class Player
     private function recalculateSpellPower() {
         $this->spell_power_modifier = 0;
         foreach ($this->minions_in_play as $minion) {
-            if ($minion->hasMechanic(Mechanics::$SPELL_POWER)) {
-                $this->spell_power_modifier++;
-            }
+            $this->spell_power_modifier += array_get($minion->getTrigger(), 'spellpower');
         }
         // todo does not recalculate opponent spell power.
     }

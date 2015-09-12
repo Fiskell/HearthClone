@@ -6,7 +6,11 @@
  * Time: 3:34 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards\Heroes;
+
+use App\Game\Cards\Minion;
+use App\Game\Cards\Weapon;
+use App\Game\Player;
 
 abstract class AbstractHero extends Minion
 {

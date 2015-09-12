@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Card;
-use App\Models\CardSets;
-use App\Models\CardType;
-use App\Models\Minion;
-use App\Models\Weapon;
+use App\Game\Cards\Card;
+use App\Game\Cards\Minion;
+use App\Game\Cards\Weapon;
+use App\Game\CardSets\CardSets;
 use Illuminate\Support\ServiceProvider;
 
 class CardServiceProvider extends ServiceProvider

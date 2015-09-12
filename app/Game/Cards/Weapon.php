@@ -6,7 +6,7 @@
  * Time: 11:12 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 class Weapon extends Card
 {

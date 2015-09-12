@@ -6,13 +6,14 @@
  * Time: 9:49 PM
  */
 
-namespace App\Models;
+namespace App\Game\Cards;
 
 use App\Events\DeathEvent;
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
-use Exceptions\UndefinedBattleCryMechanicException;
+use App\Game\CardSets\CardSets;
+use App\Game\Player;
 
 class Minion extends Card
 {

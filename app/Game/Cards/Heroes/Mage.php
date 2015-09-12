@@ -1,11 +1,9 @@
-<?php namespace App\Models\Heroes;
+<?php namespace App\Game\Card\Heroes;
 
 use App\Exceptions\InvalidTargetException;
-use App\Models\AbstractHero;
-use App\Models\HeroClass;
-use App\Models\HeroPower;
-use App\Models\Minion;
-use App\Models\Player;
+use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Cards\Minion;
+use App\Game\Player;
 
 /**
  * Created by PhpStorm.

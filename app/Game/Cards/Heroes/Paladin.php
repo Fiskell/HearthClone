@@ -1,9 +1,7 @@
-<?php namespace App\Models\Heroes;
-use App\Models\AbstractHero;
-use App\Models\Card;
-use App\Models\HeroClass;
-use App\Models\HeroPower;
-use App\Models\Player;
+<?php namespace App\Game\Card\Heroes;
+use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Cards\Minion;
+use App\Game\Player;
 
 /**
  * Created by PhpStorm.

@@ -11,19 +11,25 @@ namespace App\Listeners;
 use App\Events\SummonEvent;
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
-use App\Models\AbstractHero;
-use App\Models\CardSets;
-use App\Models\Minion;
-use App\Models\Player;
+use App\Game\Cards\Card;
+use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Cards\Minion;
+use App\Game\Cards\Triggers\TargetTypes;
+use App\Game\CardSets\CardSets;
+use App\Game\Player;
 use App\Models\TriggerableInterface;
-use App\Models\Triggers\TargetTypes;
 
 abstract class AbstractTrigger implements TriggerableInterface
 {
     public $event                = null;
+
     public $event_name           = null;
+
+    /** @var Card $trigger_card */
     public $trigger_card         = null;
+
     public $trigger_card_targets = [];
+
     public $set_triggers         = [];
 
     public function __construct() {

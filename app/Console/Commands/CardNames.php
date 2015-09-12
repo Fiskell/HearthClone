@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\CardSets;
+use App\Game\CardSets\CardSets;
 use Illuminate\Console\Command;
 
 class CardNames extends Command

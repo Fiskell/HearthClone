@@ -1,5 +1,9 @@
 <?php namespace App\Models;
 
+use App\Game\Cards\Card;
+use App\Game\Cards\Minion;
+use App\Game\Game;
+use App\Game\Player;
 use TestCase;
 
 /**

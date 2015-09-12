@@ -1,6 +1,6 @@
 <?php
+use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
-use App\Models\Mechanics;
 
 /**
  * Created by PhpStorm.

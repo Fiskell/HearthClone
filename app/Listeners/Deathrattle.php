@@ -9,7 +9,7 @@
 namespace App\Listeners;
 
 use App\Events\DeathEvent;
-use App\Models\Mechanics;
+use App\Game\Cards\Mechanics;
 use App\Models\TriggerableInterface;
 use App\Models\TriggerQueue;
 

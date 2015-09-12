@@ -6,7 +6,11 @@
  * Time: 3:16 PM
  */
 
-namespace App\Models;
+namespace App\Game;
+
+use App\Game\Card\Heroes\HeroClass;
+use App\Game\Cards\Card;
+use App\Game\Cards\Heroes\AbstractHero;
 
 class Deck
 {

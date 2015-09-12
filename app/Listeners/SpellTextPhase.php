@@ -1,12 +1,7 @@
-<?php
+<?php namespace App\Listeners;
 
-namespace App\Listeners;
-
-use App\Events\SpellTextPhaseEvent;
 use App\Events\SummonEvent;
 use App\Models\TriggerQueue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SpellTextPhase extends AbstractTrigger
 {
