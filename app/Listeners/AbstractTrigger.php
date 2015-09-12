@@ -207,12 +207,13 @@ abstract class AbstractTrigger implements TriggerableInterface
 
     /**
      * @param $trigger
-     * @param Minion $trigger_card
+     * @param Card $trigger_card
      * @param $target_type
      * @return array
      * @throws DumbassDeveloperException
      */
-    private function getTargets($trigger, $trigger_card, $target_type) {
+    private function getTargets($trigger, Card $trigger_card, $target_type) {
+
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();
         $opponent         = $player->getOtherPlayer();
@@ -220,13 +221,7 @@ abstract class AbstractTrigger implements TriggerableInterface
 
         switch ($target_type) {
             case TargetTypes::$PROVIDED_MINION:
-                $num_targets = array_get($trigger, 'targets.quantity');
-
                 // todo some battlecry may require a minimum number of targets.
-//                if(count($this->event->getTargets()) < $num_targets) {
-//                    throw new InvalidTargetException(count($this->event->getTargets()) . ' targets passed in, expected ' . $num_targets);
-//                }
-
                 $targets = $this->trigger_card_targets;
                 break;
             case TargetTypes::$FRIENDLY_HERO:
