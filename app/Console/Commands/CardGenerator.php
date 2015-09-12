@@ -86,11 +86,18 @@ class CardGenerator extends Command
                     ]
                 ];
 
-                $this->writeCard($card, $json);
+                $json_formatted = json_encode($json, JSON_PRETTY_PRINT);
+                $this->info($json_formatted);
 
-                $filename = $this->getCardFilename($card);
-                $this->info($card->getName() . ' has been added to file ' . $filename);
-                return true;
+                if($this->confirm('Is the above card correct?')) {
+                    $this->writeCard($card, $json);
+
+                    $filename = $this->getCardFilename($card);
+                    $this->info($card->getName() . ' has been added to file ' . $filename);
+                    return true;
+                }
+                $this->error('Abort! Abort!  Whew, that was a close one.');
+                return false;
             }
 
             /* Targets */
