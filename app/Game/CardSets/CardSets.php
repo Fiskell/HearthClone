@@ -33,7 +33,7 @@ class CardSets
         foreach ($sets as $set_abbr => $set) {
             $cards_in_set = [];
 
-            $tmp_set_cards = file_get_contents(__DIR__ . '/../../../resources/sets/' . $set . '.enUS.json');
+            $tmp_set_cards = file_get_contents(base_path() . '/resources/sets/' . $set . '.enUS.json');
             $tmp_set_cards = json_decode($tmp_set_cards, true);
 
             foreach ($tmp_set_cards as $tmp_set_card) {
