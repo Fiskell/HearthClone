@@ -284,6 +284,29 @@ class Player
     public function resetManaCrystalsUsed() {
         $this->setManaCrystalsUsed(0);
     }
+
+
+    /**
+     * @param Card $card
+     */
+    public function enterBattlefield(Card $card) {
+        $this->minions_in_play[$card->getId()] = $card;
+    }
+
+    /**
+     * @return array
+     */
+    public function getActiveMechanics() {
+        return $this->active_mechanics;
+    }
+
+    /**
+     * @param array $active_mechanics
+     */
+    public function setActiveMechanics($active_mechanics) {
+        $this->active_mechanics = $active_mechanics;
+    }
+    
     /* ---------------------------------- */
 
 
@@ -360,26 +383,5 @@ class Player
         if($this->hand_size < 0) {
             $this->hand_size = 0;
         }
-    }
-
-    /**
-     * @param Card $card
-     */
-    public function enterBattlefield(Card $card) {
-        $this->minions_in_play[$card->getId()] = $card;
-    }
-
-    /**
-     * @return array
-     */
-    public function getActiveMechanics() {
-        return $this->active_mechanics;
-    }
-
-    /**
-     * @param array $active_mechanics
-     */
-    public function setActiveMechanics($active_mechanics) {
-        $this->active_mechanics = $active_mechanics;
     }
 }
