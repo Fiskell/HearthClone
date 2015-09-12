@@ -332,32 +332,7 @@ class Player
      * @throws NotEnoughManaCrystalsException
      */
     public function play(Card $card, array $targets = [], $choose_mechanic = null) {
-//        App('CardSequence')->play($card, $targets);
-
-        $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
-        if (($remaining_mana_crystals - $card->getCost()) < 0) {
-            throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
-        }
-
-        $this->setManaCrystalsUsed($this->getManaCrystalsUsed() + $card->getCost());
-
-        switch ($card->getType()) {
-            case CardType::$MINION:
-//                PlayMinionSequence::resolve($card, $targets, $choose_mechanic);
-                /** @var Minion $card */
-                $this->playMinion($card, $targets, $choose_mechanic);
-                break;
-            case CardType::$SPELL:
-                $this->playSpell($card, $targets, $choose_mechanic);
-                break;
-            case CardType::$WEAPON:
-                $this->playWeapon($card, $targets);
-                break;
-        }
-
-        $this->incrementCardsPlayedThisTurn();
-
-        $this->game->resolveDeaths();
+        App('CardSequence')->play($card, $targets, $choose_mechanic);
     }
 
     public function playSpell(Minion $card, array $targets = [], $choose_mechanic = null) {
