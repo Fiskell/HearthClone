@@ -6,7 +6,7 @@
  * Time: 2:20 PM
  */
 
-namespace app\Game\Sequences;
+namespace App\Game\Sequences;
 
 class CombatSequence extends AbstractSequence
 {

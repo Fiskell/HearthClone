@@ -6,7 +6,7 @@
  * Time: 2:12 PM
  */
 
-namespace app\Game\Sequences;
+namespace App\Game\Sequences;
 
 
 class PlayWeaponSequence extends CardSequence

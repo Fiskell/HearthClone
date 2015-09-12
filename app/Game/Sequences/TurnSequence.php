@@ -6,8 +6,7 @@
  * Time: 2:17 PM
  */
 
-namespace app\Game\Sequences;
-
+namespace App\Game\Sequences;
 
 class TurnSequence extends AbstractSequence
 {

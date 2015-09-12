@@ -6,7 +6,7 @@
  * Time: 2:18 PM
  */
 
-namespace app\Game\Sequences;
+namespace App\Game\Sequences;
 
 class HeroPowerSequence extends AbstractSequence
 {

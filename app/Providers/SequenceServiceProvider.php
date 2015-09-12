@@ -1,13 +1,13 @@
-<?php namespace app\Providers;
+<?php namespace App\Providers;
 
 use App\Game\Sequences\CardSequence;
-use app\Game\Sequences\CombatSequence;
-use app\Game\Sequences\HeroPowerSequence;
+use App\Game\Sequences\CombatSequence;
+use App\Game\Sequences\HeroPowerSequence;
 use App\Game\Sequences\PlayMinionSequence;
-use app\Game\Sequences\PlaySpellSequence;
-use app\Game\Sequences\PlayWeaponSequence;
-use app\Game\Sequences\SummonMinionSequence;
-use app\Game\Sequences\TurnSequence;
+use App\Game\Sequences\PlaySpellSequence;
+use App\Game\Sequences\PlayWeaponSequence;
+use App\Game\Sequences\SummonMinionSequence;
+use App\Game\Sequences\TurnSequence;
 use Illuminate\Support\ServiceProvider;
 
 class SequenceServiceProvider extends ServiceProvider

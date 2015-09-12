@@ -24,13 +24,12 @@ class CardSequence extends AbstractSequence
 
         $player->setManaCrystalsUsed($player->getManaCrystalsUsed() + $card->getCost());
 
-
         switch ($card->getType()) {
             case CardType::$MINION:
                 App('PlayMinionSequence')->resolve($card, $targets, $choose_mechanic);
                 break;
             case CardType::$SPELL:
-                $player->playSpell($card, $targets, $choose_mechanic);
+                App('PlaySpellSequence')->resolve($card, $targets, $choose_mechanic);
                 break;
             case CardType::$WEAPON:
                 $player->playWeapon($card, $targets);
