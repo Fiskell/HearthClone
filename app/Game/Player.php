@@ -335,10 +335,6 @@ class Player
         App('CardSequence')->play($card, $targets, $choose_mechanic);
     }
 
-    public function playWeapon(Card $card, array $targets = []) {
-        $this->getHero()->equipWeapon($card, $targets);
-    }
-
     /**
      * Player initiated attack sequence.
      *

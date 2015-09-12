@@ -8,8 +8,12 @@
 
 namespace App\Game\Sequences;
 
+use App\Game\Cards\Card;
 
 class PlayWeaponSequence extends CardSequence
 {
-
+    public function resolve(Card $card, array $targets = []) {
+        $player = $card->getOwner();
+        $player->getHero()->equipWeapon($card, $targets);
+    }
 }

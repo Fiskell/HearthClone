@@ -32,7 +32,7 @@ class CardSequence extends AbstractSequence
                 App('PlaySpellSequence')->resolve($card, $targets, $choose_mechanic);
                 break;
             case CardType::$WEAPON:
-                $player->playWeapon($card, $targets);
+                App('PlayWeaponSequence')->resolve($card, $targets);
                 break;
         }
 
