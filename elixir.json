@@ -1,0 +1,9 @@
+{
+  "watchers": {
+    "default": {
+      "tdd": [
+        "resources/**/*.json"
+      ]
+    }
+  }
+}
