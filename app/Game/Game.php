@@ -10,7 +10,6 @@ namespace App\Game;
 
 use App\Game\Cards\Minion;
 use App\Models\TriggerQueue;
-use Illuminate\Support\Facades\App;
 
 class Game
 {
@@ -38,12 +37,13 @@ class Game
         $this->player1 = $player1;
         $this->player1->setPlayerId(1);
         $this->player1->setGame($this);
-        App::instance('Player1', $this->getPlayer1());
+        $app = app();
+        $app->instance('Player1', $this->getPlayer1());
 
         $this->player2 = $player2;
         $this->player2->setPlayerId(2);
         $this->player2->setGame($this);
-        App::instance('Player2', $this->getPlayer2());
+        $app->instance('Player2', $this->getPlayer2());
 
         //TODO for now hard coding player 1 as default active player
         $this->active_player    = $this->player1;
@@ -55,7 +55,7 @@ class Game
         $this->getPlayer1()->setDeck($player1);
         $this->getPlayer2()->setDeck($player2);
 
-        $this->active_player->startTurn();
+        App('TurnSequence')->resolveTurnOne($this->getPlayer1());
     }
 
     /**

@@ -1,20 +1,11 @@
 <?php namespace App\Game;
 
-use App\Events\AfterSummonPhaseEvent;
-use App\Events\BattlecryPhaseEvent;
-use App\Events\OnPlayPhaseEvent;
-use App\Events\SpellTextPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
-use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
 use App\Game\Cards\Card;
-use App\Game\Cards\CardType;
 use App\Game\Cards\Heroes\AbstractHero;
-use App\Game\Cards\Mechanics;
 use App\Game\Cards\Minion;
-use App\Models\TriggerQueue;
-use Exceptions\UndefinedBattleCryMechanicException;
 
 class Player
 {
@@ -290,7 +281,7 @@ class Player
     /**
      * Reset mana crystals to 0
      */
-    private function resetManaCrystalsUsed() {
+    public function resetManaCrystalsUsed() {
         $this->setManaCrystalsUsed(0);
     }
     /* ---------------------------------- */
@@ -298,28 +289,12 @@ class Player
 
     /* ----- Player Action Sequences ----- */
 
-    /**
-     * Start of a players turn
-     */
-    public function startTurn() {
-        $this->incrementManaCrystalCount();
-        $this->resetManaCrystalsUsed();
-        $this->setManaCrystalsUsed($this->getLockedManaCrystalCount());
-        $this->resetLockedManaCrystalCount();
-        $this->getHero()->resetHeroPower();
-    }
 
     /**
      * Pass the turn to the other player and resolve any end of turn effects.
      */
     public function passTurn() {
-        $this->updateBoardStates();
-
-        $this->resetTurnCounters();
-
-        $this->game->toggleActivePlayer();
-
-        $this->game->getActivePlayer()->startTurn();
+        App('TurnSequence')->resolve($this);
     }
 
     /**
@@ -385,24 +360,6 @@ class Player
         if($this->hand_size < 0) {
             $this->hand_size = 0;
         }
-    }
-
-    /**
-     * Update minions and character states
-     */
-    private function updateBoardStates() {
-        foreach ($this->minions_in_play as $minion) {
-            $minion->wakeUp();
-            $minion->thaw();
-            $minion->resetTimesAttackedThisTurn();
-        }
-    }
-
-    /**
-     * Reset the turn counters
-     */
-    private function resetTurnCounters() {
-        $this->resetCardsPlayedThisTurn();
     }
 
     /**
