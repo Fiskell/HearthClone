@@ -1,16 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 2:18 PM
- */
-
-namespace App\Game\Sequences;
+<?php namespace App\Game\Sequences;
 
 use App\Exceptions\HeroPowerAlreadyFlippedException;
 use App\Game\Cards\Heroes\AbstractHero;
-use App\Game\Cards\Minion;
 use App\Game\Game;
 use App\Game\Player;
 
@@ -21,9 +12,6 @@ class HeroPowerSequence extends AbstractSequence
 
     /** @var  AbstractHero $hero */
     private $hero;
-
-    /** @var  Minion[] $targets */
-    private $targets;
 
     /** @var Game $game */
     private $game;
@@ -44,7 +32,9 @@ class HeroPowerSequence extends AbstractSequence
      */
     private function resolveHeroPower($targets) {
         $defending_player = $this->player->getOtherPlayer();
+
         $this->hero->useAbility($targets);
+
         if (!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();
         }
