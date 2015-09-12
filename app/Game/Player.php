@@ -360,57 +360,6 @@ class Player
     }
 
     /**
-     * Player initiated sequence of summoning a minion.
-     * @param Minion $card
-     * @param array $targets
-     * @param null $choose_mechanic
-     * @throws BattlefieldFullException
-     * @throws InvalidTargetException
-     * @throws NotEnoughManaCrystalsException
-     * @throws UndefinedBattleCryMechanicException
-     * @throws \App\Exceptions\DumbassDeveloperException
-     */
-    public function playMinion(Minion $card, array $targets = [], $choose_mechanic = null) {
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
-
-        $count_minions = count($this->getMinionsInPlay());
-        if ($count_minions == Player::$MAX_MINIONS) {
-            throw new BattlefieldFullException();
-        }
-
-        /* Remove from hand and enter battlefield */
-        $this->minions_in_play[$card->getId()] = $card;
-
-        $this->active_mechanics = array_merge($this->active_mechanics, $card->getMechanics());
-
-
-        /* Early on Summon Phase */
-        // todo
-
-        /* On Play Phase */
-        event(new OnPlayPhaseEvent($card, $targets, $choose_mechanic));
-        $trigger_queue->resolveQueue();
-
-        /* Late On Summon Phase */
-        // todo
-
-        /* Battlecry Phase */
-        event(new BattlecryPhaseEvent($card, $targets));
-        $trigger_queue->resolveQueue();
-
-        /* Secret Activation Phase */
-        // todo
-
-        /* After Summon Phase */
-        event(new AfterSummonPhaseEvent($card, $targets));
-        $trigger_queue->resolveQueue();
-
-        /* Check Game Over Phase */
-        // todo
-    }
-
-    /**
      * Player initiated attack sequence.
      *
      * @param Minion $attacker
@@ -519,5 +468,24 @@ class Player
         $this->game->checkForGameOver();
     }
 
-    /* ---------------------------------- */
+    /**
+     * @param Card $card
+     */
+    public function enterBattlefield(Card $card) {
+        $this->minions_in_play[$card->getId()] = $card;
+    }
+
+    /**
+     * @return array
+     */
+    public function getActiveMechanics() {
+        return $this->active_mechanics;
+    }
+
+    /**
+     * @param array $active_mechanics
+     */
+    public function setActiveMechanics($active_mechanics) {
+        $this->active_mechanics = $active_mechanics;
+    }
 }

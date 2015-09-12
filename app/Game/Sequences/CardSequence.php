@@ -11,7 +11,6 @@ namespace App\Game\Sequences;
 use App\Exceptions\NotEnoughManaCrystalsException;
 use App\Game\Cards\Card;
 use App\Game\Cards\CardType;
-use App\Game\Cards\Minion;
 
 class CardSequence extends AbstractSequence
 {
@@ -28,9 +27,7 @@ class CardSequence extends AbstractSequence
 
         switch ($card->getType()) {
             case CardType::$MINION:
-//                PlayMinionSequence::resolve($card, $targets, $choose_mechanic);
-                /** @var Minion $card */
-                $player->playMinion($card, $targets, $choose_mechanic);
+                App('PlayMinionSequence')->resolve($card, $targets, $choose_mechanic);
                 break;
             case CardType::$SPELL:
                 $player->playSpell($card, $targets, $choose_mechanic);
