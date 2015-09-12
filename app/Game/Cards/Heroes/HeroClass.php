@@ -6,7 +6,7 @@
  * Time: 3:08 PM
  */
 
-namespace App\Game\Card\Heroes;
+namespace App\Game\Cards\Heroes;
 
 class HeroClass
 {

@@ -1,4 +1,4 @@
-<?php namespace App\Game\Card\Heroes;
+<?php namespace App\Game\Cards\Heroes;
 
 use App\Game\Cards\Heroes\AbstractHero;
 use App\Game\Cards\Weapon;

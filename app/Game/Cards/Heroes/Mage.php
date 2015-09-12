@@ -1,7 +1,6 @@
-<?php namespace App\Game\Card\Heroes;
+<?php namespace App\Game\Cards\Heroes;
 
 use App\Exceptions\InvalidTargetException;
-use App\Game\Cards\Heroes\AbstractHero;
 use App\Game\Cards\Minion;
 use App\Game\Player;
 

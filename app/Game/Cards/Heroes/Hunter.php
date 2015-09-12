@@ -1,7 +1,6 @@
-<?php namespace App\Game\Card\Heroes;
-use App\Game\Cards\Heroes\AbstractHero;
-use App\Game\Player;
+<?php namespace App\Game\Cards\Heroes;
 
+use App\Game\Player;
 
 /**
  * Created by PhpStorm.

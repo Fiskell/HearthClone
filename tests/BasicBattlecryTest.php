@@ -1,5 +1,5 @@
 <?php
-use App\Game\Card\Heroes\HeroClass;
+use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
 

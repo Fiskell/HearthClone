@@ -8,7 +8,7 @@
 
 namespace App\Game;
 
-use App\Game\Card\Heroes\HeroClass;
+use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\AbstractHero;
 

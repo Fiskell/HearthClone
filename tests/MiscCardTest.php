@@ -1,6 +1,6 @@
 <?php
-use App\Game\Card\Heroes\HeroClass;
-use App\Game\Card\Heroes\Shaman;
+use App\Game\Cards\Heroes\HeroClass;
+use App\Game\Cards\Heroes\Shaman;
 use App\Game\Cards\Card;
 use App\Game\Cards\CardType;
 use App\Game\Cards\Mechanics;

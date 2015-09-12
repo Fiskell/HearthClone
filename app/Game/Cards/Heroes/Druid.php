@@ -1,6 +1,6 @@
 <?php namespace App\Game\Cards\Heroes;
-use App\Game\Card\Heroes\HeroClass;
-use App\Game\Card\Heroes\HeroPower;
+use App\Game\Cards\Heroes\HeroClass;
+use App\Game\Cards\Heroes\HeroPower;
 use App\Game\Cards\Weapon;
 use App\Game\Player;
 

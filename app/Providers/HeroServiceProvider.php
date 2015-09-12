@@ -1,13 +1,13 @@
 <?php namespace App\Providers;
 
-use App\Game\Card\Heroes\Hunter;
-use App\Game\Card\Heroes\Mage;
-use App\Game\Card\Heroes\Paladin;
-use App\Game\Card\Heroes\Priest;
-use App\Game\Card\Heroes\Rogue;
-use App\Game\Card\Heroes\Shaman;
-use App\Game\Card\Heroes\Warlock;
-use App\Game\Card\Heroes\Warrior;
+use App\Game\Cards\Heroes\Hunter;
+use App\Game\Cards\Heroes\Mage;
+use App\Game\Cards\Heroes\Paladin;
+use App\Game\Cards\Heroes\Priest;
+use App\Game\Cards\Heroes\Rogue;
+use App\Game\Cards\Heroes\Shaman;
+use App\Game\Cards\Heroes\Warlock;
+use App\Game\Cards\Heroes\Warrior;
 use App\Game\Cards\Heroes\Druid;
 use Illuminate\Support\ServiceProvider;
 
