@@ -12,7 +12,6 @@ use App\Events\DeathEvent;
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
-use App\Game\CardSets\CardSets;
 use App\Game\Player;
 
 class Minion extends Card
@@ -23,7 +22,6 @@ class Minion extends Card
     protected $race;
     protected $alive;
     protected $sleeping;
-    /** @var CardSets $card_sets */
     protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
 

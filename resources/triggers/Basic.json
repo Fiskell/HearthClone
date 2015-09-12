@@ -49,6 +49,9 @@
             }
         }
     },
+    "Archmage": {
+        "spellpower": "1"
+    },
     "Darkscale Healer": {
         "battlecry": {
             "targets": {

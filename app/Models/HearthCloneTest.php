@@ -28,7 +28,6 @@ class HearthCloneTest extends TestCase
     public $keeper_of_the_grove_name = 'Keeper of the Grove';
     public $knife_juggler_name       = 'Knife Juggler';
     public $loot_hoarder_name        = 'Loot Hoarder';
-    public $ogre_magi_name           = 'Ogre Magi';
     public $si7_agent                = 'SI:7 Agent';
     public $silver_hand_recruit_name = 'Silver Hand Recruit';
     public $spellbreaker_name        = 'Spellbreaker';

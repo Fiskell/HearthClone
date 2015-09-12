@@ -216,11 +216,6 @@ class MiscCardTest extends HearthCloneTest
         $this->assertTrue(!$has_taunt);
     }
 
-    public function test_ogre_magi_increases_spell_power_by_one() {
-        $this->playCard($this->ogre_magi_name, 1);
-        $this->assertTrue($this->game->getPlayer1()->getSpellPowerModifier() == 1);
-    }
-
     public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
         $water_elemental = $this->playCard($this->water_elemental_name, 1);
         $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, 2);
