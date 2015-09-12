@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\BattlecryPhaseEvent' => [
             'App\Listeners\BattlecryPhase'
         ],
+        'App\Events\OnPlayPhaseEvent' => [
+            'App\Listeners\OnPlayPhase'
+        ],
         'App\Events\SpellTextPhaseEvent' => [
             'App\Listeners\SpellTextPhase'
         ]
