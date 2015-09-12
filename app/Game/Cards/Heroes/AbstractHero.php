@@ -86,11 +86,9 @@ abstract class AbstractHero extends Minion
     /**
      * Use the heroes ability
      *
-     * @param Player $active_player
-     * @param Player $defending_player
      * @param array $targets
      */
-    abstract function useAbility(Player $active_player, Player $defending_player, array $targets);
+    abstract function useAbility(array $targets);
 
     /**
      * @return int

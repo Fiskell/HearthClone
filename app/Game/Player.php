@@ -306,13 +306,10 @@ class Player
     public function setActiveMechanics($active_mechanics) {
         $this->active_mechanics = $active_mechanics;
     }
-    
     /* ---------------------------------- */
 
 
     /* ----- Player Action Sequences ----- */
-
-
     /**
      * Pass the turn to the other player and resolve any end of turn effects.
      */

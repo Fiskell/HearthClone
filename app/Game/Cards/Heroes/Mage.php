@@ -24,12 +24,10 @@ class Mage extends AbstractHero
     /**
      * Use the heroes ability
      *
-     * @param Player $active_player
-     * @param Player $defending_player
-     * @param Minion[] $targets
+     * @param array $targets
      * @throws InvalidTargetException
      */
-    function useAbility(Player $active_player, Player $defending_player, array $targets) {
+    function useAbility(array $targets) {
         if (count($targets) != 1) {
             throw new InvalidTargetException('Must select one target');
         }

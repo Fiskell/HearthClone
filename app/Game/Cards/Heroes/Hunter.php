@@ -23,11 +23,10 @@ class Hunter extends AbstractHero
     /**
      * Use the heroes ability
      *
-     * @param Player $active_player
-     * @param Player $defending_player
      * @param array $targets
      */
-    function useAbility(Player $active_player, Player $defending_player, array $targets) {
+    function useAbility(array $targets) {
+        $defending_player = $this->getOwner()->getOtherPlayer();
         $defending_player->getHero()->takeDamage($this->hero_damage);
     }
 }

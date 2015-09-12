@@ -24,11 +24,10 @@ class Paladin extends AbstractHero
     /**
      * Use the heroes ability
      *
-     * @param Player $active_player
-     * @param Player $defending_player
      * @param array $targets
      */
-    function useAbility(Player $active_player, Player $defending_player, array $targets) {
+    function useAbility(array $targets) {
+        $active_player = $this->getOwner();
         /** @var Minion $card */
         $card = app('Minion', [$active_player]);
         $card->load($this->hero_power_minion_name);

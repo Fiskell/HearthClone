@@ -44,7 +44,7 @@ class HeroPowerSequence extends AbstractSequence
      */
     private function resolveHeroPower($targets) {
         $defending_player = $this->player->getOtherPlayer();
-        $this->hero->useAbility($this->player, $defending_player, $targets);
+        $this->hero->useAbility($targets);
         if (!$defending_player->getHero()->isAlive()) {
             $defending_player->killed();
         }

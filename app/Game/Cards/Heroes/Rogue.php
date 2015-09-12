@@ -24,14 +24,14 @@ class Rogue extends AbstractHero
         $this->hero_power = HeroPower::$ROGUE;
     }
 
+
     /**
      * Use the heroes ability
      *
-     * @param Player $active_player
-     * @param Player $defending_player
      * @param array $targets
      */
-    function useAbility(Player $active_player, Player $defending_player, array $targets) {
+    function useAbility(array $targets) {
+        $active_player = $this->getOwner();
         /** @var Weapon $weapon */
         $weapon = app('Weapon', [$active_player]);
         $weapon->setName($this->hero_weapon_name);
