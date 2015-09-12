@@ -344,11 +344,7 @@ class Player
      * @throws \App\Exceptions\MinionAlreadyAttackedException
      */
     public function attack(Minion $attacker, Minion $target) {
-        $attacker->resolvePreparationPhase($target);
-        $this->game->checkForGameOver();
-        $attacker->resolveCombatPhase($target);
-        $this->game->resolveDeaths();
-        $this->endSequence();
+        App('CombatSequence')->resolve($attacker, $target);
     }
 
     /**
@@ -437,11 +433,6 @@ class Player
         }
 
         $this->getHero()->flipHeroPower();
-    }
-
-    private function endSequence() {
-        $this->game->resolveDeaths();
-        $this->game->checkForGameOver();
     }
 
     /**
