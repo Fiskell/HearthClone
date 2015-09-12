@@ -332,6 +332,8 @@ class Player
      * @throws NotEnoughManaCrystalsException
      */
     public function play(Card $card, array $targets = [], $choose_mechanic = null) {
+//        App('CardSequence')->play($card, $targets);
+
         $remaining_mana_crystals = $this->getManaCrystalCount() - $this->getManaCrystalsUsed();
         if (($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
@@ -341,6 +343,7 @@ class Player
 
         switch ($card->getType()) {
             case CardType::$MINION:
+//                PlayMinionSequence::resolve($card, $targets, $choose_mechanic);
                 /** @var Minion $card */
                 $this->playMinion($card, $targets, $choose_mechanic);
                 break;
@@ -408,25 +411,28 @@ class Player
 
 
         /* Early on Summon Phase */
+        // todo
 
         /* On Play Phase */
-
         event(new OnPlayPhaseEvent($card, $targets, $choose_mechanic));
         $trigger_queue->resolveQueue();
 
         /* Late On Summon Phase */
+        // todo
 
         /* Battlecry Phase */
         event(new BattlecryPhaseEvent($card, $targets));
         $trigger_queue->resolveQueue();
 
         /* Secret Activation Phase */
+        // todo
 
         /* After Summon Phase */
         event(new AfterSummonPhaseEvent($card, $targets));
         $trigger_queue->resolveQueue();
 
         /* Check Game Over Phase */
+        // todo
     }
 
     /**
