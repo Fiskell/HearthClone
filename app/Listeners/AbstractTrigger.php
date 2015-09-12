@@ -54,7 +54,6 @@ abstract class AbstractTrigger implements TriggerableInterface
 
         $trigger = array_get($trigger_array, $trigger_card->getName() . '.' . $this->event_name);
 
-
         if (is_null($trigger)) {
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->trigger_card->getName());
         }

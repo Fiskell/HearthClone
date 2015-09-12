@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use App\Exceptions\MissingCardNameException;
+use App\Listeners\BattlecryPhase;
 
 class Card
 {
@@ -27,6 +28,8 @@ class Card
     protected $sub_mechanics = [];
 
     protected $card_json;
+
+    protected $trigger;
 
     /** @var  Game $game */
     protected $game;
@@ -64,6 +67,12 @@ class Card
         $this->id            = $this->play_order_id;
         $this->set           = array_get($this->card_json, 'set');
 
+        $trigger       = new BattlecryPhase();
+        $trigger_array = $trigger->getSetTriggers();
+
+        $trigger       = array_get($trigger_array, $name);
+        $this->trigger = $trigger;
+
         $this->name      = $name;
         $this->cost      = array_get($this->card_json, 'cost', 0);
         $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
@@ -92,7 +101,6 @@ class Card
     public function getName() {
         return $this->name;
     }
-
 
     /**
      * @return mixed
