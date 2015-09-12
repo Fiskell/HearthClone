@@ -1,31 +1,52 @@
-<?php
+<?php namespace App\Listeners;
 
-namespace App\Listeners;
+use App\Events\SummonEvent;
+use App\Game\Cards\Mechanics;
+use App\Game\Cards\Minion;
+use App\Models\TriggerQueue;
 
-use App\Events\OnPlayPhaseEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
-class OnPlayPhase
+class OnPlayPhase extends AbstractTrigger
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
-     * @param  OnPlayPhaseEvent  $event
+     * @param  SummonEvent $event
      * @return void
      */
-    public function handle(OnPlayPhaseEvent $event)
-    {
-        //
+    public function handle(SummonEvent $event) {
+        $this->event = $event;
+
+        $this->trigger_card            = $event->getSummonedMinion();
+        $this->trigger_card_targets    = $event->getTargets();
+        $this->trigger_choose_mechanic = $event->getChooseMechanic();
+
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+        $trigger_queue->queue($this);
+    }
+
+    public function resolve() {
+        $player = $this->trigger_card->getOwner();
+        /** @var Minion $card */
+        $card    = $this->trigger_card;
+        $targets = $this->trigger_card_targets;
+        $choose_mechanic = $this->trigger_choose_mechanic;
+
+        if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
+            // todo I hate this
+            $player->addLockedManaCrystalCount($card->getOverloadValue());
+        }
+
+        if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
+            $player->recalculateSpellPower();
+        }
+
+        if ($card->hasMechanic(Mechanics::$CHOOSE)) {
+            $card->resolveChoose($targets, $choose_mechanic);
+        }
+
+        if ($card->hasMechanic(Mechanics::$COMBO) && $player->getCardsPlayedThisTurn() > 0) {
+            $card->resolveCombo($targets);
+        }
     }
 }

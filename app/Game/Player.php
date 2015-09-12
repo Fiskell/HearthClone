@@ -2,6 +2,7 @@
 
 use App\Events\AfterSummonPhaseEvent;
 use App\Events\BattlecryPhaseEvent;
+use App\Events\OnPlayPhaseEvent;
 use App\Events\SpellTextPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\HeroPowerAlreadyFlippedException;
@@ -215,7 +216,7 @@ class Player
     /**
      * Recalculates the spell damage modifier based on the board
      */
-    private function recalculateSpellPower() {
+    public function recalculateSpellPower() {
         $this->spell_power_modifier = 0;
         foreach ($this->minions_in_play as $minion) {
             $this->spell_power_modifier += array_get($minion->getTrigger(), 'spellpower');
@@ -410,24 +411,8 @@ class Player
 
         /* On Play Phase */
 
-        // todo not all of these are right.
-
-        if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
-            // todo I hate this
-            $this->addLockedManaCrystalCount($card->getOverloadValue());
-        }
-
-        if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
-            $this->recalculateSpellPower();
-        }
-
-        if ($card->hasMechanic(Mechanics::$CHOOSE)) {
-            $card->resolveChoose($targets, $choose_mechanic);
-        }
-
-        if ($card->hasMechanic(Mechanics::$COMBO) && $this->getCardsPlayedThisTurn() > 0) {
-            $card->resolveCombo($targets);
-        }
+        event(new OnPlayPhaseEvent($card, $targets, $choose_mechanic));
+        $trigger_queue->resolveQueue();
 
         /* Late On Summon Phase */
 

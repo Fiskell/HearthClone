@@ -21,16 +21,18 @@ use App\Models\TriggerableInterface;
 
 abstract class AbstractTrigger implements TriggerableInterface
 {
-    public $event                = null;
+    public $event = null;
 
-    public $event_name           = null;
+    public $event_name = null;
 
     /** @var Card $trigger_card */
-    public $trigger_card         = null;
+    public $trigger_card = null;
 
     public $trigger_card_targets = [];
 
-    public $set_triggers         = [];
+    public $trigger_choose_mechanic = null;
+
+    public $set_triggers = [];
 
     public function __construct() {
         foreach (CardSets::$set_names as $set_name) {
@@ -116,7 +118,7 @@ abstract class AbstractTrigger implements TriggerableInterface
                 $target->setHealth($target->getHealth() + $delta_health);
 
                 $full_health = array_get($spell, 'full_health');
-                if($full_health) {
+                if ($full_health) {
                     $target->setHealth($target->getMaxHealth());
                 }
             }
@@ -254,7 +256,7 @@ abstract class AbstractTrigger implements TriggerableInterface
                 break;
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $targets = $opponent_minions;
+                $targets                                         = $opponent_minions;
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
