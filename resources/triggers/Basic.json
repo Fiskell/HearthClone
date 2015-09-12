@@ -52,6 +52,9 @@
     "Archmage": {
         "spellpower": "1"
     },
+    "Dalaran Mage": {
+        "spellpower": "1"
+    },
     "Darkscale Healer": {
         "battlecry": {
             "targets": {
@@ -155,6 +158,9 @@
             }
         }
     },
+    "Kobold Geomancer": {
+        "spellpower": "1"
+    },
     "Murloc Tidehunter": {
         "battlecry": {
             "summon": {
@@ -248,5 +254,8 @@
                 ]
             }
         }
+    },
+    "Wrath of Air Totem": {
+        "spellpower": "1"
     }
 }
