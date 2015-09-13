@@ -12,7 +12,10 @@ use App\Events\OnPlayPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
+use App\Game\Cards\Card;
+use App\Game\Cards\Mechanics;
 use App\Game\Cards\Minion;
+use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
 use App\Models\TriggerQueue;
 use Exceptions\UndefinedBattleCryMechanicException;
@@ -49,8 +52,7 @@ class PlayMinionSequence extends SummonMinionSequence
         // todo
 
         /* On Play Phase */
-        event(new OnPlayPhaseEvent($card, $targets));
-        $trigger_queue->resolveQueue();
+        $this->resolveOnPlayPhase($card, $targets);
 
         /* Late On Summon Phase */
         // todo
@@ -69,5 +71,27 @@ class PlayMinionSequence extends SummonMinionSequence
 
         /* Check Game Over Phase */
         // todo
+    }
+
+    private function resolveOnPlayPhase(Card $card, $targets) {
+        $player = $card->getOwner();
+
+        /** @var Minion $card */
+        if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
+
+            $player->addLockedManaCrystalCount($card->getOverloadValue());
+        }
+
+        if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
+            $player->recalculateSpellPower();
+        }
+
+        if (array_get($card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
+            $card->resolveChoose($targets);
+        }
+
+        if ($card->hasMechanic(Mechanics::$COMBO) && $player->getCardsPlayedThisTurn() > 0) {
+            $card->resolveCombo($targets);
+        }
     }
 }

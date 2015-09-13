@@ -15,9 +15,6 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\DeathEvent' => [
             'App\Listeners\Deathrattle'
         ],
-        'App\Events\OnPlayPhaseEvent' => [
-            'App\Listeners\OnPlayPhase'
-        ],
         'App\Events\SpellTextPhaseEvent' => [
             'App\Listeners\SpellTextPhase'
         ]
