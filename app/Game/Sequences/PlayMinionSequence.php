@@ -25,14 +25,13 @@ class PlayMinionSequence extends SummonMinionSequence
      * Player initiated sequence of summoning a minion.
      * @param Minion $card
      * @param array $targets
-     * @param null $choose_mechanic
      * @throws BattlefieldFullException
      * @throws InvalidTargetException
      * @throws NotEnoughManaCrystalsException
      * @throws UndefinedBattleCryMechanicException
      * @throws \App\Exceptions\DumbassDeveloperException
      */
-    public function resolve(Minion $card, array $targets = [], $choose_mechanic = null) {
+    public function resolve(Minion $card, array $targets = []) {
         /** @var TriggerQueue $trigger_queue */
         $trigger_queue = app('TriggerQueue');
         $player = $card->getOwner();
@@ -52,7 +51,7 @@ class PlayMinionSequence extends SummonMinionSequence
         // todo
 
         /* On Play Phase */
-        event(new OnPlayPhaseEvent($card, $targets, $choose_mechanic));
+        event(new OnPlayPhaseEvent($card, $targets));
         $trigger_queue->resolveQueue();
 
         /* Late On Summon Phase */

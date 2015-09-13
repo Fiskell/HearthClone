@@ -322,12 +322,11 @@ class Player
      *
      * @param Card $card
      * @param Minion[] $targets
-     * @param null $choose_mechanic
      * @throws BattlefieldFullException
      * @throws NotEnoughManaCrystalsException
      */
-    public function play(Card $card, array $targets = [], $choose_mechanic = null) {
-        App('CardSequence')->play($card, $targets, $choose_mechanic);
+    public function play(Card $card, array $targets = []) {
+        App('CardSequence')->play($card, $targets);
     }
 
     /**

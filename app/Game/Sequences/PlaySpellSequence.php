@@ -14,7 +14,7 @@ use App\Models\TriggerQueue;
 
 class PlaySpellSequence extends CardSequence
 {
-    public function resolve(Minion $card, array $targets = [], $choose_mechanic = null) {
+    public function resolve(Minion $card, array $targets = []) {
         /** @var TriggerQueue $trigger_queue */
         $trigger_queue = app('TriggerQueue');
 

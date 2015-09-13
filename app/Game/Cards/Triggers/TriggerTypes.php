@@ -11,4 +11,5 @@ class TriggerTypes
     public static $AFTER_SUMMON_PHASE = 'after_summon_phase';
     public static $BATTLECRY          = 'battlecry';
     public static $SPELLPOWER         = 'spellpower';
+    public static $CHOOSE_ONE         = 'choose_one';
 }

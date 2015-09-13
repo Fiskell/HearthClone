@@ -17,12 +17,9 @@ class SummonEvent extends Event
 
     protected $targets;
 
-    protected $choose_mechanic;
-
-    public function __construct(Minion $summoned_minion, array $targets = [], $choose_mechanic=null) {
+    public function __construct(Minion $summoned_minion, array $targets = []) {
         $this->summoned_minion = $summoned_minion;
         $this->targets         = $targets;
-        $this->choose_mechanic = $choose_mechanic;
     }
 
     /**
@@ -39,10 +36,4 @@ class SummonEvent extends Event
         return $this->targets;
     }
 
-    /**
-     * @return null
-     */
-    public function getChooseMechanic() {
-        return $this->choose_mechanic;
-    }
 }

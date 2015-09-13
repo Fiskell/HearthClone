@@ -15,6 +15,7 @@ use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\AbstractHero;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Triggers\TargetTypes;
+use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\CardSets\CardSets;
 use App\Game\Player;
 use App\Models\TriggerableInterface;
@@ -29,8 +30,6 @@ abstract class AbstractTrigger implements TriggerableInterface
     public $trigger_card = null;
 
     public $trigger_card_targets = [];
-
-    public $trigger_choose_mechanic = null;
 
     public $set_triggers = [];
 
@@ -61,6 +60,10 @@ abstract class AbstractTrigger implements TriggerableInterface
         $trigger_card  = $this->trigger_card;
 
         $trigger = array_get($trigger_array, $trigger_card->getName() . '.' . $this->event_name);
+
+        if(is_null($trigger)) {
+            $trigger = array_get($trigger_array, $trigger_card->getName() . '.' . TriggerTypes::$CHOOSE_ONE . '.' . ($trigger_card->getChooseOption() - 1));
+        }
 
         if (is_null($trigger)) {
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->trigger_card->getName());

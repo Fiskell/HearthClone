@@ -25,7 +25,6 @@ class HearthCloneTest extends TestCase
     public $dread_corsair_name       = 'Dread Corsair';
     public $earth_elemental_name     = 'Earth Elemental';
     public $fire_elemental_name      = 'Fire Elemental';
-    public $keeper_of_the_grove_name = 'Keeper of the Grove';
     public $knife_juggler_name       = 'Knife Juggler';
     public $loot_hoarder_name        = 'Loot Hoarder';
     public $si7_agent                = 'SI:7 Agent';
@@ -90,12 +89,13 @@ class HearthCloneTest extends TestCase
         /** @var Card $card */
         $card = app('Minion', [$player]);
         $card->load($name);
+        $card->setChooseOption($choose_mechanic);
 
         $this->game->getPlayer1()->setManaCrystalCount(1000);
         $this->game->getPlayer2()->setManaCrystalCount(1000);
 
 
-        $player->play($card, $targets, $choose_mechanic);
+        $player->play($card, $targets);
 
         if (!$summoning_sickness) {
             $active_player = $this->game->getActivePlayer();
@@ -112,6 +112,7 @@ class HearthCloneTest extends TestCase
         /** @var Card $card */
         $card = app('Minion', [$this->game->getPlayer1()]);
         $card->load($name);
+        $card->setChooseOption($choose_mechanic);
 
         /** @var Player $player */
         $player = $this->game->getPlayer1();
@@ -129,7 +130,7 @@ class HearthCloneTest extends TestCase
             }
         }
 
-        $player->play($card, $targets, $choose_mechanic);
+        $player->play($card, $targets);
 
         return $card;
     }

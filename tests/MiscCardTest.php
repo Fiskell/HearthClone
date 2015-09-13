@@ -374,14 +374,14 @@ class MiscCardTest extends HearthCloneTest
 
     public function test_keeper_of_the_grove_kills_wisp_when_damage_is_chosen() {
         $wisp = $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->keeper_of_the_grove_name, 2, [$wisp], false, 1);
+        $this->playCard('Keeper of the Grove', 2, [$wisp], false, 1);
 
         $this->assertFalse($wisp->isAlive());
     }
 
     public function test_keeper_of_the_grove_silences_argent_squire_when_silence_is_chosen() {
         $argent_squire = $this->playCard($this->argent_squire_name, 1);
-        $this->playCard($this->keeper_of_the_grove_name, 2, [$argent_squire], false, 2);
+        $this->playCard('Keeper of the Grove', 2, [$argent_squire], false, 2);
 
         $this->assertFalse($argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }

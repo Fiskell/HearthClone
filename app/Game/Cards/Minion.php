@@ -13,6 +13,8 @@ use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
 use App\Game\Player;
+use App\Listeners\ChooseOne;
+use App\Models\TriggerQueue;
 
 class Minion extends Card
 {
@@ -266,28 +268,17 @@ class Minion extends Card
 
     /**
      * @param Minion[] $targets
-     * @param $chosen_value
      * @throws InvalidTargetException
      */
-    public function resolveChoose(array $targets, $chosen_value) {
-        switch ($this->getName()) {
-            case 'Keeper of the Grove':
-                if (count($targets) != 1) {
-                    throw new InvalidTargetException('Must choose a target to apply combo to');
-                }
+    public function resolveChoose(array $targets) {
+        $tmp_trigger = new ChooseOne();
+        $tmp_trigger->trigger_card = $this;
+        $tmp_trigger->trigger_card_targets = $targets;
 
-                /** @var Minion $target */
-                $target = current($targets);
-                if ($chosen_value == 1) {
-                    $target->takeDamage(2);
-                }
-
-                if ($chosen_value == 2) {
-                    $target->removeAllMechanics();
-                }
-
-                break;
-        }
+        /** @var TriggerQueue $trigger_queue */
+        $trigger_queue = app('TriggerQueue');
+        $trigger_queue->queue($tmp_trigger);
+        $trigger_queue->resolveQueue();
     }
 
     public function getOverloadValue() {

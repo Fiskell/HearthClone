@@ -14,9 +14,9 @@ use App\Game\Cards\CardType;
 
 class CardSequence extends AbstractSequence
 {
-    public function play(Card $card, array $targets=[], $choose_mechanic=null) {
-
+    public function play(Card $card, array $targets = []) {
         $player = $card->getOwner();
+
         $remaining_mana_crystals = $player->getManaCrystalCount() - $player->getManaCrystalsUsed();
         if (($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
@@ -26,10 +26,10 @@ class CardSequence extends AbstractSequence
 
         switch ($card->getType()) {
             case CardType::$MINION:
-                App('PlayMinionSequence')->resolve($card, $targets, $choose_mechanic);
+                App('PlayMinionSequence')->resolve($card, $targets);
                 break;
             case CardType::$SPELL:
-                App('PlaySpellSequence')->resolve($card, $targets, $choose_mechanic);
+                App('PlaySpellSequence')->resolve($card, $targets);
                 break;
             case CardType::$WEAPON:
                 App('PlayWeaponSequence')->resolve($card, $targets);

@@ -34,6 +34,8 @@ class Card
 
     protected $trigger;
 
+    protected $choose_option;
+
     /** @var  Game $game */
     protected $game;
 
@@ -80,11 +82,6 @@ class Card
         $this->cost      = array_get($this->card_json, 'cost', 0);
         $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
         $this->mechanics = array_get($this->card_json, 'mechanics', []);
-
-        // TODO fix this jank
-        if (strpos(array_get($this->card_json, 'text', ''), 'Choose One')) {
-            $this->mechanics[] = Mechanics::$CHOOSE;
-        }
 
         if (strpos(array_get($this->card_json, 'text', ''), 'Overload')) {
             $this->mechanics[] = Mechanics::$OVERLOAD;
@@ -221,6 +218,20 @@ class Card
      */
     public function getTrigger() {
         return $this->trigger;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChooseOption() {
+        return $this->choose_option;
+    }
+
+    /**
+     * @param mixed $choose_option
+     */
+    public function setChooseOption($choose_option) {
+        $this->choose_option = $choose_option;
     }
 
 }

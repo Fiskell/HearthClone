@@ -21,6 +21,24 @@
             }
         }
     },
+    "Keeper of the Grove": {
+        "choose_one": [
+            {
+                "targets": {
+                    "type": "provided_minion"
+                },
+                "spell": {
+                    "health": "-2"
+                }
+            },
+            {
+                "targets": {
+                    "type": "provided_minion"
+                },
+                "silence": true
+            }
+        ]
+    },
     "Knife Juggler": {
         "after_summon_phase": {
             "targets": {
