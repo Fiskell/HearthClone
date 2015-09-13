@@ -230,4 +230,5 @@ abstract class CardPhase extends AbstractPhase
 
         return $targets;
     }
+
 }

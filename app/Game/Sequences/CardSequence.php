@@ -11,6 +11,8 @@ namespace App\Game\Sequences;
 use App\Exceptions\NotEnoughManaCrystalsException;
 use App\Game\Cards\Card;
 use App\Game\Cards\CardType;
+use App\Game\Cards\Minion;
+use App\Game\Sequences\Phases\SubCardPhase;
 
 class CardSequence extends AbstractSequence
 {
@@ -39,5 +41,19 @@ class CardSequence extends AbstractSequence
         $player->incrementCardsPlayedThisTurn();
 
         $player->getGame()->resolveDeaths();
+    }
+
+    /**
+     * @param Minion $minion
+     * @param $targets
+     * @param $sub_phase_type
+     * @return SubCardPhase
+     */
+    public function resolveSubPhase(Minion $minion, $targets, $sub_phase_type) {
+        /** @var SubCardPhase $choose_one_sub_phase */
+        $choose_one_sub_phase = App('SubCardPhase');
+        $choose_one_sub_phase->queue($minion, $targets);
+        $choose_one_sub_phase->setPhaseName($sub_phase_type);
+        App('TriggerQueue')->resolveQueue();
     }
 }

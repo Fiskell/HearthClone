@@ -91,17 +91,4 @@ class PlayMinionSequence extends SummonMinionSequence
         }
     }
 
-    /**
-     * @param Minion $minion
-     * @param $targets
-     * @param $sub_phase_type
-     * @return SubCardPhase
-     */
-    private function resolveSubPhase(Minion $minion, $targets, $sub_phase_type) {
-        /** @var SubCardPhase $choose_one_sub_phase */
-        $choose_one_sub_phase = App('SubCardPhase');
-        $choose_one_sub_phase->queue($minion, $targets);
-        $choose_one_sub_phase->setPhaseName($sub_phase_type);
-        App('TriggerQueue')->resolveQueue();
-    }
 }
