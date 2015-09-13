@@ -35,8 +35,15 @@ abstract class CardPhase extends AbstractPhase
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
         }
 
-        /* Get Targets */
-        $targets = $this->getTargets($this->card, $trigger);
+        $targets = [];
+        if (array_get($trigger, 'targets')) {
+            $target_type = array_get($trigger, 'targets.type');
+            if (is_null($target_type)) {
+                throw new DumbassDeveloperException('Missing target type for ' . $this->card->getName());
+            }
+
+            $targets = $this->getTargets($this->card, $target_type);
+        }
 
         /* Check if race is correct */
         $this->validateRace($trigger, $targets);
@@ -65,20 +72,11 @@ abstract class CardPhase extends AbstractPhase
 
     /**
      * @param Card $trigger_card
-     * @param $trigger
+     * @param $target_type
      * @return array
      * @throws DumbassDeveloperException
      */
-    private function getTargets(Card $trigger_card, $trigger) {
-        $trigger_targets = array_get($trigger, 'targets');
-        if (!$trigger_targets) {
-            return [];
-        }
-
-        $target_type = array_get($trigger, 'targets.type');
-        if (is_null($target_type)) {
-            throw new DumbassDeveloperException('Missing target type for ' . $this->card->getName());
-        }
+    private function getTargets(Card $trigger_card, $target_type) {
 
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();
@@ -321,6 +319,24 @@ abstract class CardPhase extends AbstractPhase
             if (strtolower($target->getRace()) != strtolower($required_race)) {
                 throw new InvalidTargetException('Target must be a ' . $required_race . ' ' . $target->getRace() . ' given');
             }
+        }
+    }
+
+    public function recalculateAura() {
+        $trigger = array_get($this->card->getTrigger(), $this->phase_name);
+
+        if (is_null($trigger)) {
+            throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
+        }
+
+        $targets = [];
+        if (array_get($trigger, 'targets')) {
+            $target_type = array_get($trigger, 'targets.type');
+            if (is_null($target_type)) {
+                throw new DumbassDeveloperException('Missing target type for ' . $this->card->getName());
+            }
+
+            $targets = $this->getTargets($this->card, $target_type);
         }
     }
 

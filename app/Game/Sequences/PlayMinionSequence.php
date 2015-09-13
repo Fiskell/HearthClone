@@ -8,7 +8,6 @@ use App\Game\Cards\Mechanics;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
-use App\Game\Sequences\Phases\SubCardPhase;
 use App\Models\TriggerQueue;
 use Exceptions\UndefinedBattleCryMechanicException;
 
@@ -48,6 +47,14 @@ class PlayMinionSequence extends SummonMinionSequence
 
         /* Late On Summon Phase */
         // todo
+
+        /* Initial Aura Queue */
+//        App('AuraHealth')->queue($card, $targets);
+//        $trigger_queue->resolveQueue();
+
+
+        App('AuraOther')->queue($card, $targets);
+        $trigger_queue->resolveQueue();
 
         /* Battlecry Phase */
         App('Battlecry')->queue($card, $targets);

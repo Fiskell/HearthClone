@@ -1,22 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/1/15
- * Time: 9:49 PM
- */
+<?php namespace App\Game\Cards;
 
-namespace App\Game\Cards;
-
-use App\Events\DeathEvent;
-use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
-use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
-use App\Game\Sequences\Phases\SubCardPhase;
-use App\Listeners\ChooseOne;
-use App\Models\TriggerQueue;
 
 class Minion extends Card
 {
@@ -28,6 +14,7 @@ class Minion extends Card
     protected $sleeping;
     protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
+    protected $enchantments = [];
 
     public function __construct(Player $player) {
         parent::__construct($player);
