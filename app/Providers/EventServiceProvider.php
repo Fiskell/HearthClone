@@ -14,9 +14,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\DeathEvent' => [
             'App\Listeners\Deathrattle'
-        ],
-        'App\Events\SpellTextPhaseEvent' => [
-            'App\Listeners\SpellTextPhase'
         ]
     ];
 }
