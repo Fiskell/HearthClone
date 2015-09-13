@@ -280,14 +280,6 @@ class Minion extends Card
         App('TriggerQueue')->resolveQueue();
     }
 
-    public function getOverloadValue() {
-        switch ($this->getName()) {
-            case 'Earth Elemental':
-                return 3;
-        }
-        throw new DumbassDeveloperException('Card ' . $this->getName() . ' does not have an overload value');
-    }
-
     /**
      * Resolve the preparation phase of the player initiated attack sequence.
      *

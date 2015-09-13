@@ -17,6 +17,7 @@ use App\Game\Cards\Mechanics;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
+use App\Game\Sequences\Phases\SubCardPhase;
 use App\Models\TriggerQueue;
 use Exceptions\UndefinedBattleCryMechanicException;
 
@@ -76,10 +77,12 @@ class PlayMinionSequence extends SummonMinionSequence
     private function resolveOnPlayPhase(Card $card, $targets) {
         $player = $card->getOwner();
 
-        /** @var Minion $card */
-        if ($card->hasMechanic(Mechanics::$OVERLOAD)) {
-
-            $player->addLockedManaCrystalCount($card->getOverloadValue());
+        if (array_get($card->getTrigger(), TriggerTypes::$OVERLOAD)) {
+            /** @var SubCardPhase $choose_one_sub_phase */
+            $choose_one_sub_phase = App('SubCardPhase');
+            $choose_one_sub_phase->queue($card, $targets);
+            $choose_one_sub_phase->setPhaseName(TriggerTypes::$OVERLOAD);
+            App('TriggerQueue')->resolveQueue();
         }
 
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {

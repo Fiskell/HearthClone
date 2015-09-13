@@ -21,6 +21,9 @@
             }
         }
     },
+    "Earth Elemental": {
+        "overload": "3"
+    },
     "Keeper of the Grove": {
         "choose_one": [
             {

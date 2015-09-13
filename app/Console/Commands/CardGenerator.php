@@ -301,10 +301,16 @@ class CardGenerator extends Command
         /* Spell Power */
         if ($trigger == TriggerTypes::$SPELLPOWER) {
             $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
-
             return [TriggerTypes::$SPELLPOWER => $spell_power];
         }
 
+        /* Overload */
+        if ($trigger == TriggerTypes::$OVERLOAD) {
+            $overload_quantity = $this->ask('How many mana crystals does ' . $card_name . ' overload?');
+            return [TriggerTypes::$OVERLOAD => $overload_quantity];
+        }
+
+        /* Choose One */
         if ($trigger == TriggerTypes::$CHOOSE_ONE) {
             $number_of_options = $this->ask('How many choose options do you have?');
 

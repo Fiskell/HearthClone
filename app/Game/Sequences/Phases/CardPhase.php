@@ -26,6 +26,11 @@ abstract class CardPhase extends AbstractPhase
             $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.' . ($this->card->getChooseOption() - 1));
         }
 
+        if(array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD)) {
+            $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
+            $this->card->getOwner()->addLockedManaCrystalCount($overload_value);
+        }
+
         if (is_null($trigger)) {
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
         }

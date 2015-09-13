@@ -81,10 +81,6 @@ class Card
         $this->cost      = array_get($this->card_json, 'cost', 0);
         $this->type      = array_get($this->card_json, 'type', CardType::$MINION);
         $this->mechanics = array_get($this->card_json, 'mechanics', []);
-
-        if (strpos(array_get($this->card_json, 'text', ''), 'Overload')) {
-            $this->mechanics[] = Mechanics::$OVERLOAD;
-        }
     }
 
     /**
