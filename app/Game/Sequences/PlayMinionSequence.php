@@ -8,8 +8,6 @@
 
 namespace App\Game\Sequences;
 
-use App\Events\AfterSummonPhaseEvent;
-use App\Events\BattlecryPhaseEvent;
 use App\Events\OnPlayPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\InvalidTargetException;
@@ -58,14 +56,15 @@ class PlayMinionSequence extends SummonMinionSequence
         // todo
 
         /* Battlecry Phase */
-        event(new BattlecryPhaseEvent($card, $targets));
+        App('Battlecry')->queue($card, $targets);
         $trigger_queue->resolveQueue();
 
         /* Secret Activation Phase */
         // todo
 
         /* After Summon Phase */
-        event(new AfterSummonPhaseEvent($card, $targets));
+
+        App('AfterSummon')->queue($card, $targets);
         $trigger_queue->resolveQueue();
 
         /* Check Game Over Phase */

@@ -15,12 +15,6 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\DeathEvent' => [
             'App\Listeners\Deathrattle'
         ],
-        'App\Events\AfterSummonPhaseEvent' => [
-            'App\Listeners\AfterSummonPhase'
-        ],
-        'App\Events\BattlecryPhaseEvent' => [
-            'App\Listeners\BattlecryPhase'
-        ],
         'App\Events\OnPlayPhaseEvent' => [
             'App\Listeners\OnPlayPhase'
         ],

@@ -201,6 +201,7 @@ class BasicBattlecryTest extends HearthCloneTest
         $this->assertEquals(2, count($player->getMinionsInPlay()));
     }
 
+
     /* Frostwolf Warlord */
     public function test_frostwolf_warlord_gains_no_health_with_empty_board() {
         $frostwolf_warlord = $this->playCard('Frostwolf Warlord', 1);

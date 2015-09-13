@@ -72,8 +72,7 @@ class Card
         $this->id            = $this->play_order_id;
         $this->set           = array_get($this->card_json, 'set');
 
-        $trigger       = new BattlecryPhase();
-        $trigger_array = $trigger->getSetTriggers();
+        $trigger_array = App('CardSetTriggers')->getSetTriggers();
 
         $trigger       = array_get($trigger_array, $name);
         $this->trigger = $trigger;

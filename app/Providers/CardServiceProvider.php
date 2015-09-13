@@ -6,6 +6,7 @@ use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Weapon;
 use App\Game\CardSets\CardSets;
+use App\Game\CardSets\CardSetTriggers;
 use Illuminate\Support\ServiceProvider;
 
 class CardServiceProvider extends ServiceProvider
@@ -31,6 +32,10 @@ class CardServiceProvider extends ServiceProvider
 
         $this->app->singleton('CardSets', function () {
             return new CardSets();
+        });
+
+        $this->app->singleton('CardSetTriggers', function () {
+            return new CardSetTriggers();
         });
     }
 }

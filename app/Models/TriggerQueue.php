@@ -17,9 +17,9 @@ class TriggerQueue
     /**
      * Queue triggers so that we can parse them later in the right order.
      *
-     * @param TriggerableInterface $trigger
+     * @param $trigger
      */
-    public function queue(TriggerableInterface $trigger) {
+    public function queue($trigger) {
         $this->queue[] = $trigger;
     }
 

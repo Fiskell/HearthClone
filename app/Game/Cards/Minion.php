@@ -275,6 +275,7 @@ class Minion extends Card
         $tmp_trigger->trigger_card = $this;
         $tmp_trigger->trigger_card_targets = $targets;
 
+
         /** @var TriggerQueue $trigger_queue */
         $trigger_queue = app('TriggerQueue');
         $trigger_queue->queue($tmp_trigger);
