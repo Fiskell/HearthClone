@@ -74,78 +74,26 @@ class CardGenerator extends Command
             $trigger = $this->requestTrigger();
             $this->info("Trigger: " . $trigger);
 
-            // todo fix, don't be a dick
-            if($trigger == 'spellpower') {
-                $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
+            $trigger_json = $this->buildTriggerJson($card_name, $trigger);
 
-                $json = [
-                    $card_name => [
-                        $trigger => $spell_power
-                    ]
-                ];
+            $json = [$card_name => $trigger_json];
 
-                $json_formatted = json_encode($json, JSON_PRETTY_PRINT);
-                $this->info($json_formatted);
-
-                if($this->confirm('Is the above card correct?')) {
-                    $this->writeCard($card, $json);
-
-                    $filename = $this->getCardFilename($card);
-                    $this->info($card->getName() . ' has been added to file ' . $filename);
-                    return true;
-                }
-                $this->error('Abort! Abort!  Whew, that was a close one.');
-                return false;
-            }
-
-            /* Targets */
-            $target_info = $this->requestTarget();
-            $this->info("Target: " . $target_info);
-            // todo quantity, race
-
-            /* Action */
-            $action = $this->requestAction();
-            $this->info("Action: " . $action);
-            // todo attack_by_count, health_by_count, full_health
-
-            $action_value       = true;
-            $no_additional_info = ["silence", "destroy"];
-            if (!in_array($action, $no_additional_info)) {
-                $action_value = $this->requestActionValue($action);
-                $this->info("Action Value: " . $action_value);
-            }
-
-            $json = [
-                $card_name => [
-                    $trigger => [
-                    ]
-                ]
-            ];
-
-            if ($target_info != 'None') {
-                // todo quantity and race
-                $json[$card_name][$trigger]['targets'] = [
-                    'type' => $target_info
-                ];
-            }
-
-            $action_array = $this->buildActionArray($action, $action_value);
-
-            $json[$card_name][$trigger][$action] = $action_array;
             $json_formatted = json_encode($json, JSON_PRETTY_PRINT);
             $this->info($json_formatted);
 
-            if($this->confirm('Is the above card correct?')) {
+            if ($this->confirm('Is the above card correct?')) {
                 $this->writeCard($card, $json);
 
                 $filename = $this->getCardFilename($card);
                 $this->info($card->getName() . ' has been added to file ' . $filename);
+
                 return true;
             }
             $this->error('Abort! Abort!  Whew, that was a close one.');
         } catch (Exception $ex) {
             $this->error($ex->getMessage());
         }
+
         return false;
     }
 
@@ -337,9 +285,73 @@ class CardGenerator extends Command
         $filepath = __DIR__ . '/../../../resources/triggers/' . $filename;
         $json     = @file_get_contents($filepath);
         $array    = json_decode($json, true);
-        $array = array_merge($array, $card_trigger_info_array);
+        $array    = array_merge($array, $card_trigger_info_array);
         ksort($array);
         $new_json = json_encode($array, JSON_PRETTY_PRINT);
         @file_put_contents($filepath, $new_json);
+    }
+
+    /**
+     * @param $card_name
+     * @param $trigger
+     * @return array
+     * @throws Exception
+     */
+    private function buildTriggerJson($card_name, $trigger) {
+        /* Spell Power */
+        if ($trigger == TriggerTypes::$SPELLPOWER) {
+            $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
+
+            return [TriggerTypes::$SPELLPOWER => $spell_power];
+        }
+
+        if ($trigger == TriggerTypes::$CHOOSE_ONE) {
+            $number_of_options = $this->ask('How many choose options do you have?');
+
+            $choose_json = [];
+            for($i = 0; $i < $number_of_options; $i++) {
+                $this->info('Choose card option ' . ($i + 1) . '...');
+
+                $choose_json[] = $this->buildTriggerJson($card_name, 'temp')['temp'];
+            }
+
+            return [TriggerTypes::$CHOOSE_ONE => $choose_json];
+        }
+
+        /* Targets */
+        $target_info = $this->requestTarget();
+        $this->info("Target: " . $target_info);
+        // todo quantity, race
+
+        /* Action */
+        $action = $this->requestAction();
+        $this->info("Action: " . $action);
+        // todo attack_by_count, health_by_count, full_health
+
+        /* Action Values */
+        $action_value       = true;
+        $no_additional_info = ["silence", "destroy"];
+        if (!in_array($action, $no_additional_info)) {
+            $action_value = $this->requestActionValue($action);
+            $this->info("Action Value: " . $action_value);
+        }
+
+        /* Build the trigger json*/
+        $trigger_json = [
+            $trigger => []
+        ];
+
+        if ($target_info != 'None') {
+            // todo quantity and race
+            $trigger_json[$trigger]['targets'] = [
+                'type' => $target_info
+            ];
+        }
+
+        $action_array = $this->buildActionArray($action, $action_value);
+
+        $trigger_json[$trigger][$action] = $action_array;
+
+        return $trigger_json;
     }
 }
