@@ -2,6 +2,7 @@
 
 use App\Game\Sequences\Phases\AfterSummon;
 use App\Game\Sequences\Phases\Battlecry;
+use App\Game\Sequences\Phases\DeathProcessing;
 use App\Game\Sequences\Phases\SpellText;
 use App\Game\Sequences\Phases\SubCardPhase;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,10 @@ class PhaseServiceProvider extends ServiceProvider
 
         $this->app->bind('SpellText', function() {
             return new SpellText();
+        });
+
+        $this->app->bind('DeathProcessing', function() {
+            return new DeathProcessing();
         });
     }
 }

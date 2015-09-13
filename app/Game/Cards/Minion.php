@@ -108,7 +108,7 @@ class Minion extends Card
     public function killed() {
         $this->alive = false;
         $this->getOwner()->removeFromBoard($this->getId());
-        event(new DeathEvent($this));
+        App('DeathProcessing')->queue($this);
     }
 
     /**
