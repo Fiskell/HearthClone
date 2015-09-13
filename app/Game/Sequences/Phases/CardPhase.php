@@ -22,7 +22,7 @@ abstract class CardPhase extends AbstractPhase
 
         $trigger = array_get($this->card->getTrigger(), $this->phase_name);
 
-        if (is_null($trigger)) {
+        if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
             $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.' . ($this->card->getChooseOption() - 1));
         }
 
@@ -175,8 +175,7 @@ abstract class CardPhase extends AbstractPhase
      * @return array
      * @throws DumbassDeveloperException
      */
-    private
-    function getTargets(Card $trigger_card, $target_type) {
+    private function getTargets(Card $trigger_card, $target_type) {
 
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();

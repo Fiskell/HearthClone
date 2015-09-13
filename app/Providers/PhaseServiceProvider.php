@@ -2,6 +2,7 @@
 
 use App\Game\Sequences\Phases\AfterSummon;
 use App\Game\Sequences\Phases\Battlecry;
+use App\Game\Sequences\Phases\SubCardPhase;
 use Illuminate\Support\ServiceProvider;
 
 class PhaseServiceProvider extends ServiceProvider
@@ -18,6 +19,10 @@ class PhaseServiceProvider extends ServiceProvider
 
         $this->app->bind('Battlecry', function() {
             return new Battlecry();
+        });
+
+        $this->app->bind('SubCardPhase', function() {
+            return new SubCardPhase();
         });
     }
 }

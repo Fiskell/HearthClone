@@ -12,7 +12,9 @@ use App\Events\DeathEvent;
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
+use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
+use App\Game\Sequences\Phases\SubCardPhase;
 use App\Listeners\ChooseOne;
 use App\Models\TriggerQueue;
 
@@ -271,15 +273,11 @@ class Minion extends Card
      * @throws InvalidTargetException
      */
     public function resolveChoose(array $targets) {
-        $tmp_trigger = new ChooseOne();
-        $tmp_trigger->trigger_card = $this;
-        $tmp_trigger->trigger_card_targets = $targets;
-
-
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
-        $trigger_queue->queue($tmp_trigger);
-        $trigger_queue->resolveQueue();
+        /** @var SubCardPhase $choose_one_sub_phase */
+        $choose_one_sub_phase = App('SubCardPhase');
+        $choose_one_sub_phase->queue($this, $targets);
+        $choose_one_sub_phase->setPhaseName(TriggerTypes::$CHOOSE_ONE);
+        App('TriggerQueue')->resolveQueue();
     }
 
     public function getOverloadValue() {
