@@ -269,18 +269,6 @@ class Minion extends Card
     }
 
     /**
-     * @param Minion[] $targets
-     * @throws InvalidTargetException
-     */
-    public function resolveChoose(array $targets) {
-        /** @var SubCardPhase $choose_one_sub_phase */
-        $choose_one_sub_phase = App('SubCardPhase');
-        $choose_one_sub_phase->queue($this, $targets);
-        $choose_one_sub_phase->setPhaseName(TriggerTypes::$CHOOSE_ONE);
-        App('TriggerQueue')->resolveQueue();
-    }
-
-    /**
      * Resolve the preparation phase of the player initiated attack sequence.
      *
      * @param $target

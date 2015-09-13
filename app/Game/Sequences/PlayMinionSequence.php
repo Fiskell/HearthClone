@@ -1,14 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 2:11 PM
- */
+<?php namespace App\Game\Sequences;
 
-namespace App\Game\Sequences;
-
-use App\Events\OnPlayPhaseEvent;
 use App\Exceptions\BattlefieldFullException;
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\NotEnoughManaCrystalsException;
@@ -75,26 +66,42 @@ class PlayMinionSequence extends SummonMinionSequence
     }
 
     private function resolveOnPlayPhase(Card $card, $targets) {
+        /** @var Minion $card */
+
         $player = $card->getOwner();
 
+        /* Overload */
         if (array_get($card->getTrigger(), TriggerTypes::$OVERLOAD)) {
-            /** @var SubCardPhase $choose_one_sub_phase */
-            $choose_one_sub_phase = App('SubCardPhase');
-            $choose_one_sub_phase->queue($card, $targets);
-            $choose_one_sub_phase->setPhaseName(TriggerTypes::$OVERLOAD);
-            App('TriggerQueue')->resolveQueue();
+            $this->resolveSubPhase($card, $targets, TriggerTypes::$OVERLOAD);
         }
 
+        /* Spell Power */
         if ($card->hasMechanic(Mechanics::$SPELL_POWER)) {
             $player->recalculateSpellPower();
         }
 
+        /* Choose One */
         if (array_get($card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
-            $card->resolveChoose($targets);
+            $this->resolveSubPhase($card, $targets, TriggerTypes::$CHOOSE_ONE);
         }
 
+        /* Combo */
         if ($card->hasMechanic(Mechanics::$COMBO) && $player->getCardsPlayedThisTurn() > 0) {
             $card->resolveCombo($targets);
         }
+    }
+
+    /**
+     * @param Minion $minion
+     * @param $targets
+     * @param $sub_phase_type
+     * @return SubCardPhase
+     */
+    private function resolveSubPhase(Minion $minion, $targets, $sub_phase_type) {
+        /** @var SubCardPhase $choose_one_sub_phase */
+        $choose_one_sub_phase = App('SubCardPhase');
+        $choose_one_sub_phase->queue($minion, $targets);
+        $choose_one_sub_phase->setPhaseName($sub_phase_type);
+        App('TriggerQueue')->resolveQueue();
     }
 }
