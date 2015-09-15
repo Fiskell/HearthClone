@@ -380,4 +380,19 @@ class Player
             $this->hand_size = 0;
         }
     }
+
+    /**
+     * Return all the minions on the board.
+     *
+     * @param Minion $minion
+     * @return \App\Game\Cards\Minion[]
+     */
+    public function getAllMinions(Minion $minion) {
+        $player_minions   = $minion->getOwner()->getMinionsInPlay();
+        $opponent_minions = $minion->getOwner()->getOtherPlayer()->getMinionsInPlay();
+        $all_minions      = $player_minions + $opponent_minions;
+
+        return $all_minions;
+    }
+
 }

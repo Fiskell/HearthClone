@@ -15,6 +15,21 @@ class Minion extends Card
     protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
     protected $enchantments = [];
+    protected $auras = [];
+
+    /**
+     * @return array
+     */
+    public function getAuras() {
+        return $this->auras;
+    }
+
+    /**
+     * @param array $auras
+     */
+    public function setAuras($auras) {
+        $this->auras = $auras;
+    }
 
     public function __construct(Player $player) {
         parent::__construct($player);
