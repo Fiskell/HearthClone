@@ -259,9 +259,14 @@
     "spellpower": "1"
   },
   "Leokk": {
-    "aura_name": "Eye In The Sky",
     "aura": {
-      "attack": 1
+      "targets": {
+        "type": "other_friendly_minions"
+      },
+      "enchantment": {
+        "name": "Eye In The Sky",
+        "attack": 1
+      }
     }
   }
 }

@@ -15,8 +15,8 @@ class Aura extends Enchantment
         $aura                  = $card->getTrigger();
         $this->id              = $card->getId();
         $this->source_card     = $card;
-        $this->name            = array_get($aura, 'aura.name');
-        $this->modified_attack = array_get($aura, 'aura.attack');
-        $this->modified_health = array_get($aura, 'aura.health');
+        $this->name            = array_get($aura, 'aura.name', 'No Name');
+        $this->modified_attack = array_get($aura, 'aura.enchantment.attack', 0);
+        $this->modified_health = array_get($aura, 'aura.enchantment.health', 0);
     }
 }

@@ -76,7 +76,7 @@ abstract class CardPhase extends AbstractPhase
      * @return array
      * @throws DumbassDeveloperException
      */
-    private function getTargets(Card $trigger_card, $target_type) {
+    protected function getTargets(Card $trigger_card, $target_type) {
 
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();

@@ -302,4 +302,8 @@ class Minion extends Card
         $this->race = $race;
     }
 
+    public function addAura(Aura $aura) {
+        $this->setAttack($this->getAttack() + $aura->getModifiedAttack());
+    }
+
 }
