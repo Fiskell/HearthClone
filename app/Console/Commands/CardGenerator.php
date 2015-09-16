@@ -219,16 +219,16 @@ class CardGenerator extends Command
                 return true;
             case "discard":
             case "draw":
-                return $action_value;
+                return (int)$action_value;
             case "spell":
             case "enchantment":
                 $parts  = explode(':', $action_value);
-                $attack = array_get($parts, 0);
+                $attack = (int)array_get($parts, 0);
                 if ($attack) {
                     $action_array['attack'] = $attack;
                 }
 
-                $health = array_get($parts, 1);
+                $health = (int)array_get($parts, 1);
                 if ($health) {
                     $action_array['health'] = $health;
                 }
@@ -247,7 +247,7 @@ class CardGenerator extends Command
                     $action_array['name'] = $minion_name;
                 }
 
-                $quantity                 = array_get($parts, 1, 1);
+                $quantity                 = (int)array_get($parts, 1, 1);
                 $action_array['quantity'] = $quantity;
 
                 break;
@@ -355,6 +355,13 @@ class CardGenerator extends Command
         }
 
         $action_array = $this->buildActionArray($action, $action_value);
+
+        // todo this sucks
+        /* Aura */
+        if($trigger == TriggerTypes::$AURA) {
+            $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
+            // todo validation on aura name
+        }
 
         $trigger_json[$trigger][$action] = $action_array;
 
