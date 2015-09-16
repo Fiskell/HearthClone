@@ -11,6 +11,10 @@ class BasicAuraTest extends HearthCloneTest
         $this->assertEquals(2, $wisp->getAttack());
 
         $wisp2 = $this->playCard('Wisp', 1);
+
+        // Make sure wisp 1 is still buffed
+        $this->assertEquals(2, $wisp->getAttack());
+
         $this->assertEquals(2, $wisp2->getAttack());
     }
 }
