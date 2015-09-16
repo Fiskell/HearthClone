@@ -1,7 +1,6 @@
-<?php
+<?php namespace App\Providers;
 
-namespace App\Providers;
-
+use App\Game\Cards\Aura;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Weapon;
@@ -28,6 +27,10 @@ class CardServiceProvider extends ServiceProvider
 
         $this->app->bind('Weapon', function ($app, $params) {
             return new Weapon(array_get($params, 0));
+        });
+
+        $this->app->bind('Aura', function ($app, $params) {
+            return new Aura();
         });
 
         $this->app->singleton('CardSets', function () {
