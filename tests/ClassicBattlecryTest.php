@@ -25,5 +25,14 @@ class ClassicBattlecryTest extends HearthCloneTest
         $this->playCard('Argent Protector', 1, [$wisp]);
         $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
+
+    /* Earthen Ring Farseer */
+    public function test_earthen_ring_farseer_heals_minion_by_3() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(4);
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+        $this->playCard('Earthen Ring Farseer', 1, [$chillwind_yeti]);
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
     
 }

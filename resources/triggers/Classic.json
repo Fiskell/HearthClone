@@ -24,6 +24,16 @@
     "Earth Elemental": {
         "overload": "3"
     },
+    "Earthen Ring Farseer": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "spell": {
+                "health": "3"
+            }
+        }
+    },
     "Keeper of the Grove": {
         "choose_one": [
             {
