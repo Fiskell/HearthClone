@@ -6,7 +6,7 @@
  * Time: 2:21 PM
  */
 
-namespace app\Game\Cards;
+namespace App\Game\Cards;
 
 
 class Aura extends Enchantment
