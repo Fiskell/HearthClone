@@ -26,33 +26,33 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_card_name_is_set_when_name_passed_into_load() {
-        $this->card->load($this->wisp_name);
-        $this->assertTrue($this->card->getName() == $this->wisp_name);
+        $this->card->load('Wisp');
+        $this->assertEquals('Wisp', $this->card->getName());
     }
 
     public function test_card_attack_is_set_on_load_wisp() {
-        $this->card->load($this->wisp_name);
-        $this->assertTrue($this->card->getAttack() == 1);
+        $this->card->load('Wisp');
+        $this->assertEquals(1, $this->card->getAttack());
     }
 
     public function test_card_health_is_set_on_load_wisp() {
-        $this->card->load($this->wisp_name);
-        $this->assertTrue($this->card->getHealth() == 1);
+        $this->card->load('Wisp');
+        $this->assertEquals(1, $this->card->getHealth());
     }
 
     public function test_card_attack_is_set_on_load_knife_juggler() {
-        $this->card->load($this->knife_juggler_name);
-        $this->assertTrue($this->card->getAttack() == 3);
+        $this->card->load('Knife Juggler');
+        $this->assertEquals(3, $this->card->getAttack());
     }
 
     public function test_card_health_is_set_on_load_knife_juggler() {
-        $this->card->load($this->knife_juggler_name);
-        $this->assertTrue($this->card->getHealth() == 2);
+        $this->card->load('Knife Juggler');
+        $this->assertEquals(2, $this->card->getHealth());
     }
 
     public function test_wisp_is_a_minion() {
-        $this->card->load($this->wisp_name);
-        $this->assertTrue($this->card->getType() == CardType::$MINION);
+        $this->card->load('Wisp');
+        $this->assertTrue(CardType::$MINION, $this->card->getType());
     }
 
     public function test_consecrate_is_a_spell() {
