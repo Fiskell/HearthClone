@@ -9,6 +9,7 @@
 class TriggerTypes
 {
     public static $AFTER_SUMMON_PHASE = 'after_summon_phase';
+    public static $AURA               = 'aura';
     public static $BATTLECRY          = 'battlecry';
     public static $CHOOSE_ONE         = 'choose_one';
     public static $OVERLOAD           = 'overload';
