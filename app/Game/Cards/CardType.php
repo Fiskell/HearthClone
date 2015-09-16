@@ -10,7 +10,9 @@ namespace App\Game\Cards;
 
 class CardType
 {
-    public static $MINION = "Minion";
-    public static $SPELL  = "Spell";
-    public static $WEAPON = "Weapon";
+    public static $AURA        = "Aura";
+    public static $ENCHANTMENT = "Enchantment";
+    public static $MINION      = "Minion";
+    public static $SPELL       = "Spell";
+    public static $WEAPON      = "Weapon";
 }
