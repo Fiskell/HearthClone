@@ -201,6 +201,17 @@
     "Ogre Magi": {
         "spellpower": "1"
     },
+    "Raid Leader": {
+        "aura": {
+            "targets": {
+                "type": "other_friendly_minions"
+            },
+            "enchantment": {
+                "attack": 1,
+                "name": "Enhanced"
+            }
+        }
+    },
     "Razorfen Hunter": {
         "battlecry": {
             "summon": {
