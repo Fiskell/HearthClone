@@ -5,7 +5,7 @@
                 "type": "provided_minion"
             },
             "spell": {
-                "attack": "2"
+                "attack": 2
             }
         }
     },
@@ -22,7 +22,7 @@
         }
     },
     "Earth Elemental": {
-        "overload": "3"
+        "overload": 3
     },
     "Earthen Ring Farseer": {
         "battlecry": {
@@ -30,7 +30,7 @@
                 "type": "provided_minion"
             },
             "spell": {
-                "health": "3"
+                "health": 3
             }
         }
     },
@@ -41,7 +41,7 @@
                     "type": "provided_minion"
                 },
                 "spell": {
-                    "health": "-2"
+                    "health": -2
                 }
             },
             {
