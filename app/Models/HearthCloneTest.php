@@ -46,11 +46,6 @@ class HearthCloneTest extends TestCase
     public $windspeaker_name       = 'Windspeaker';
 
     /**
-     * Spells
-     */
-    public $consecrate_name = 'Consecration';
-
-    /**
      * Weapons
      */
     public $lights_justice_name = "Light's Justice";

@@ -52,12 +52,12 @@ class MiscCardTest extends HearthCloneTest
 
     public function test_wisp_is_a_minion() {
         $this->card->load('Wisp');
-        $this->assertTrue(CardType::$MINION, $this->card->getType());
+        $this->assertEquals(CardType::$MINION, $this->card->getType());
     }
 
     public function test_consecrate_is_a_spell() {
-        $this->card->load($this->consecrate_name);
-        $this->assertTrue($this->card->getType() == CardType::$SPELL);
+        $this->card->load('Consecration');
+        $this->assertEquals(CardType::$SPELL, $this->card->getType());
     }
 
     public function test_knife_juggler_attack_kills_wisp_without_divine_shield() {
