@@ -1,272 +1,272 @@
 {
-  "Acidic Swamp Ooze": {
-    "battlecry": {
-      "targets": {
-        "type": "opponent_hero"
-      },
-      "destroy": true
+    "Acidic Swamp Ooze": {
+        "battlecry": {
+            "targets": {
+                "type": "opponent_hero"
+            },
+            "destroy": true
+        }
+    },
+    "Ancestral Healing": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "spell": {
+                "full_health": true,
+                "mechanics": [
+                    "Taunt"
+                ]
+            }
+        }
+    },
+    "Arcane Explosion": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "all_opponent_minions"
+            },
+            "spell": {
+                "health": -1
+            }
+        }
+    },
+    "Arcane Intellect": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "draw": 2
+        }
+    },
+    "Arcane Shot": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "spell": {
+                "health": -2
+            }
+        }
+    },
+    "Archmage": {
+        "spellpower": "1"
+    },
+    "Dalaran Mage": {
+        "spellpower": "1"
+    },
+    "Darkscale Healer": {
+        "battlecry": {
+            "targets": {
+                "type": "all_friendly_characters"
+            },
+            "spell": {
+                "health": 2
+            }
+        }
+    },
+    "Dragonling Mechanic": {
+        "battlecry": {
+            "summon": {
+                "name": "Mechanical Dragonling",
+                "quantity": 1
+            }
+        }
+    },
+    "Dread Infernal": {
+        "battlecry": {
+            "targets": {
+                "type": "all_other_characters"
+            },
+            "spell": {
+                "health": -1
+            }
+        }
+    },
+    "Elven Archer": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "spell": {
+                "health": -1
+            }
+        }
+    },
+    "Fire Elemental": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "spell": {
+                "health": -3
+            }
+        }
+    },
+    "Frostwolf Warlord": {
+        "battlecry": {
+            "enchantment": {
+                "attack_by_count": "other_friendly_minions",
+                "health_by_count": "other_friendly_minions"
+            }
+        }
+    },
+    "Gnomish Inventor": {
+        "battlecry": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "draw": 1
+        }
+    },
+    "Guardian of Kings": {
+        "battlecry": {
+            "targets": {
+                "type": "friendly_hero"
+            },
+            "spell": {
+                "health": 6
+            }
+        }
+    },
+    "Houndmaster": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "race": "beast",
+                "quantity": 1
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Taunt"
+                ],
+                "attack": 2,
+                "health": 2
+            }
+        }
+    },
+    "Ironforge Rifleman": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "spell": {
+                "health": -1
+            }
+        }
+    },
+    "Kobold Geomancer": {
+        "spellpower": "1"
+    },
+    "Leokk": {
+        "aura": {
+            "targets": {
+                "type": "other_friendly_minions"
+            },
+            "enchantment": {
+                "attack": 1,
+                "name": "Eye In The Sky"
+            }
+        }
+    },
+    "Murloc Tidehunter": {
+        "battlecry": {
+            "summon": {
+                "name": "Murloc Scout",
+                "quantity": 1
+            }
+        }
+    },
+    "Nightblade": {
+        "battlecry": {
+            "targets": {
+                "type": "opponent_hero"
+            },
+            "spell": {
+                "health": -3
+            }
+        }
+    },
+    "Novice Engineer": {
+        "battlecry": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "draw": 1
+        }
+    },
+    "Ogre Magi": {
+        "spellpower": "1"
+    },
+    "Razorfen Hunter": {
+        "battlecry": {
+            "summon": {
+                "name": "Boar",
+                "quantity": 1
+            }
+        }
+    },
+    "Shattered Sun Cleric": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "enchantment": {
+                "attack": 1,
+                "health": 1
+            }
+        }
+    },
+    "Stormpike Commando": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "spell": {
+                "health": -2
+            }
+        }
+    },
+    "Succubus": {
+        "battlecry": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "discard": {
+                "type": "random",
+                "quantity": 1
+            }
+        }
+    },
+    "Voodoo Doctor": {
+        "battlecry": {
+            "targets": {
+                "type": "friendly_hero"
+            },
+            "spell": {
+                "health": 2
+            }
+        }
+    },
+    "Windspeaker": {
+        "battlecry": {
+            "targets": {
+                "type": "provided_minion",
+                "quantity": 1
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Windfury"
+                ]
+            }
+        }
+    },
+    "Wrath of Air Totem": {
+        "spellpower": "1"
     }
-  },
-  "Ancestral Healing": {
-    "spell_text_phase": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "spell": {
-        "full_health": true,
-        "mechanics": [
-          "Taunt"
-        ]
-      }
-    }
-  },
-  "Arcane Explosion": {
-    "spell_text_phase": {
-      "targets": {
-        "type": "all_opponent_minions"
-      },
-      "spell": {
-        "health": -1
-      }
-    }
-  },
-  "Arcane Intellect": {
-    "spell_text_phase": {
-      "targets": {
-        "type": "friendly_player"
-      },
-      "draw": 2
-    }
-  },
-  "Arcane Shot": {
-    "spell_text_phase": {
-      "targets": {
-        "type": "provided_minion"
-      },
-      "spell": {
-        "health": -2
-      }
-    }
-  },
-  "Archmage": {
-    "spellpower": "1"
-  },
-  "Dalaran Mage": {
-    "spellpower": "1"
-  },
-  "Darkscale Healer": {
-    "battlecry": {
-      "targets": {
-        "type": "all_friendly_characters"
-      },
-      "spell": {
-        "health": 2
-      }
-    }
-  },
-  "Dragonling Mechanic": {
-    "battlecry": {
-      "summon": {
-        "name": "Mechanical Dragonling",
-        "quantity": 1
-      }
-    }
-  },
-  "Dread Infernal": {
-    "battlecry": {
-      "targets": {
-        "type": "all_other_characters"
-      },
-      "spell": {
-        "health": -1
-      }
-    }
-  },
-  "Elven Archer": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "spell": {
-        "health": -1
-      }
-    }
-  },
-  "Fire Elemental": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "spell": {
-        "health": -3
-      }
-    }
-  },
-  "Frostwolf Warlord": {
-    "battlecry": {
-      "enchantment": {
-        "attack_by_count": "other_friendly_minions",
-        "health_by_count": "other_friendly_minions"
-      }
-    }
-  },
-  "Gnomish Inventor": {
-    "battlecry": {
-      "targets": {
-        "type": "friendly_player"
-      },
-      "draw": 1
-    }
-  },
-  "Guardian of Kings": {
-    "battlecry": {
-      "targets": {
-        "type": "friendly_hero"
-      },
-      "spell": {
-        "health": 6
-      }
-    }
-  },
-  "Houndmaster": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "race": "beast",
-        "quantity": 1
-      },
-      "enchantment": {
-        "mechanics": [
-          "Taunt"
-        ],
-        "attack": 2,
-        "health": 2
-      }
-    }
-  },
-  "Ironforge Rifleman": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "spell": {
-        "health": -1
-      }
-    }
-  },
-  "Kobold Geomancer": {
-    "spellpower": "1"
-  },
-  "Murloc Tidehunter": {
-    "battlecry": {
-      "summon": {
-        "name": "Murloc Scout",
-        "quantity": 1
-      }
-    }
-  },
-  "Nightblade": {
-    "battlecry": {
-      "targets": {
-        "type": "opponent_hero"
-      },
-      "spell": {
-        "health": -3
-      }
-    }
-  },
-  "Novice Engineer": {
-    "battlecry": {
-      "targets": {
-        "type": "friendly_player"
-      },
-      "draw": 1
-    }
-  },
-  "Ogre Magi": {
-    "spellpower": "1"
-  },
-  "Razorfen Hunter": {
-    "battlecry": {
-      "summon": {
-        "name": "Boar",
-        "quantity": 1
-      }
-    }
-  },
-  "Shattered Sun Cleric": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "enchantment": {
-        "attack": 1,
-        "health": 1
-      }
-    }
-  },
-  "Stormpike Commando": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "spell": {
-        "health": -2
-      }
-    }
-  },
-  "Succubus": {
-    "battlecry": {
-      "targets": {
-        "type": "friendly_player"
-      },
-      "discard": {
-        "type": "random",
-        "quantity": 1
-      }
-    }
-  },
-  "Voodoo Doctor": {
-    "battlecry": {
-      "targets": {
-        "type": "friendly_hero"
-      },
-      "spell": {
-        "health": 2
-      }
-    }
-  },
-  "Windspeaker": {
-    "battlecry": {
-      "targets": {
-        "type": "provided_minion",
-        "quantity": 1
-      },
-      "enchantment": {
-        "mechanics": [
-          "Windfury"
-        ]
-      }
-    }
-  },
-  "Wrath of Air Totem": {
-    "spellpower": "1"
-  },
-  "Leokk": {
-    "aura": {
-      "targets": {
-        "type": "other_friendly_minions"
-      },
-      "enchantment": {
-        "name": "Eye In The Sky",
-        "attack": 1
-      }
-    }
-  }
 }
