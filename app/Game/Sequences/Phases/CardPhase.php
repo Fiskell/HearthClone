@@ -76,7 +76,7 @@ abstract class CardPhase extends AbstractPhase
      * @return array
      * @throws DumbassDeveloperException
      */
-    protected function getTargets(Card $trigger_card, $target_type) {
+    protected function getTargets(Card $trigger_card, $target_type, $target_race=null) {
 
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();
@@ -118,6 +118,16 @@ abstract class CardPhase extends AbstractPhase
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
+                break;
+            case TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE:
+                unset($player_minions[$trigger_card->getId()]);
+                $targets = [];
+                /** @var Minion $player_minion */
+                foreach($player_minions as $player_minion) {
+                    if($player_minion->getRace() == $target_race) {
+                        $targets[] = $player_minion;
+                    }
+                }
                 break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);

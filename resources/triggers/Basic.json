@@ -254,6 +254,18 @@
             }
         }
     },
+    "Timber Wolf": {
+        "aura": {
+            "targets": {
+                "type": "other_friendly_minions_with_race",
+                "race": "Beast"
+            },
+            "enchantment": {
+                "attack": 1,
+                "name": "Furious Howl"
+            }
+        }
+    },
     "Voodoo Doctor": {
         "battlecry": {
             "targets": {

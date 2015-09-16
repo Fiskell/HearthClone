@@ -40,7 +40,8 @@ class AuraOther extends CardPhase
     public function resolve() {
         $aura_trigger = array_get($this->card->getTrigger(), 'aura');
         $target_type  = array_get($aura_trigger, 'targets.type');
-        $targets      = $this->getTargets($this->card, $target_type);
+        $target_race  = array_get($aura_trigger, 'targets.race');
+        $targets      = $this->getTargets($this->card, $target_type, $target_race);
 
         /** @var Aura $aura */
         $aura         = App('Aura');

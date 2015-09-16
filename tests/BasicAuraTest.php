@@ -33,4 +33,19 @@ class BasicAuraTest extends HearthCloneTest
 
         $this->assertEquals(2, $wisp2->getAttack());
     }
+
+    /* Timber Wolf */
+    public function test_timber_wolf_gives_beast_one_attack() {
+        $leokk = $this->playCard('Leokk', 1);
+        $this->playCard('Timber Wolf', 1);
+        $this->assertEquals(3, $leokk->getAttack());
+    }
+
+    public function test_timber_wolf_does_not_buff_non_wisp() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Timber Wolf', 1);
+        $this->assertEquals(1, $wisp->getAttack());
+
+    }
+
 }

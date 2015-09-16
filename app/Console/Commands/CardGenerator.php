@@ -327,7 +327,10 @@ class CardGenerator extends Command
         /* Targets */
         $target_info = $this->requestTarget();
         $this->info("Target: " . $target_info);
-        // todo quantity, race
+        if($target_info == TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE) {
+            $race = $this->ask('What is ' . $card_name . '\'s target race?');
+        }
+        // todo quantity, ~race
 
         /* Action */
         $action = $this->requestAction();
@@ -347,11 +350,15 @@ class CardGenerator extends Command
             $trigger => []
         ];
 
+        // Build json for targets.
         if ($target_info != 'None') {
-            // todo quantity and race
-            $trigger_json[$trigger]['targets'] = [
-                'type' => $target_info
-            ];
+            // todo quantity and ~race
+            $target_array = ['type' => $target_info];
+            if($target_info == TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE) {
+                $target_array['race'] = $race;// todo don't be a dick
+            }
+
+            $trigger_json[$trigger]['targets'] = $target_array;
         }
 
         $action_array = $this->buildActionArray($action, $action_value);
@@ -362,6 +369,7 @@ class CardGenerator extends Command
             $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
             // todo validation on aura name
         }
+
 
         $trigger_json[$trigger][$action] = $action_array;
 
