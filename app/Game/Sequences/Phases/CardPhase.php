@@ -91,7 +91,6 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$FRIENDLY_HERO:
                 $targets = [$player->getHero()];
                 break;
-
             case TargetTypes::$FRIENDLY_PLAYER:
                 $targets = [$player];
                 break;
