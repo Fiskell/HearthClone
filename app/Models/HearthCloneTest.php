@@ -37,7 +37,7 @@ class HearthCloneTest extends TestCase
      * @throws \App\Exceptions\MissingCardNameException
      * @throws \App\Exceptions\NotEnoughManaCrystalsException
      */
-    public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null) {
+    public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null, $position = 3) {
 
         /** @var Player $player */
         $player = $this->game->getPlayer1();
@@ -54,7 +54,7 @@ class HearthCloneTest extends TestCase
         $this->game->getPlayer2()->setManaCrystalCount(1000);
 
 
-        $player->play($card, $targets);
+        $player->play($card, $targets, $position);
 
         if (!$summoning_sickness) {
             $active_player = $this->game->getActivePlayer();

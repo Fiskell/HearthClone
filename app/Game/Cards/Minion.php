@@ -16,6 +16,7 @@ class Minion extends Card
     protected $times_attacked_this_turn = 0;
     protected $enchantments             = [];
     protected $auras                    = [];
+    protected $position;
 
     /**
      * @return array
@@ -317,6 +318,23 @@ class Minion extends Card
 
         $this->auras[$aura->getSourceCard()->getId()] = $aura;
         $this->setAttack($this->getAttack() + $aura->getModifiedAttack());
+    }
+
+    /**
+     * Set the position of the minion on the board
+     * @param $position
+     */
+    public function setPosition($position) {
+        $this->position = $position;
+    }
+
+    /**
+     * Get the position of the minion on the board.
+     *
+     * @return mixed
+     */
+    public function getPosition() {
+        return $this->position;
     }
 
 }

@@ -16,12 +16,17 @@ use App\Game\Sequences\Phases\SubCardPhase;
 
 class CardSequence extends AbstractSequence
 {
-    public function play(Card $card, array $targets = []) {
+    public function play(Card $card, array $targets = [], $position) {
         $player = $card->getOwner();
 
         $remaining_mana_crystals = $player->getManaCrystalCount() - $player->getManaCrystalsUsed();
         if (($remaining_mana_crystals - $card->getCost()) < 0) {
             throw new NotEnoughManaCrystalsException('Cost of ' . $card->getName() . ' is ' . $card->getCost() . ' you have ' . $remaining_mana_crystals);
+        }
+
+        if($card instanceof Minion) {
+            // todo validation
+            $card->setPosition($position);
         }
 
         $player->setManaCrystalsUsed($player->getManaCrystalsUsed() + $card->getCost());
