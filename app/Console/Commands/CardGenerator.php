@@ -298,6 +298,11 @@ class CardGenerator extends Command
      * @throws Exception
      */
     private function buildTriggerJson($card_name, $trigger) {
+        $race_targets_types = [
+            TargetTypes::$All_OTHER_MINIONS_WITH_RACE,
+            TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE
+        ];
+
         /* Spell Power */
         if ($trigger == TriggerTypes::$SPELLPOWER) {
             $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
@@ -327,7 +332,7 @@ class CardGenerator extends Command
         /* Targets */
         $target_info = $this->requestTarget();
         $this->info("Target: " . $target_info);
-        if($target_info == TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE) {
+        if(in_array($target_info, $race_targets_types)) {
             $race = $this->ask('What is ' . $card_name . '\'s target race?');
         }
         // todo quantity, ~race
@@ -354,7 +359,7 @@ class CardGenerator extends Command
         if ($target_info != 'None') {
             // todo quantity and ~race
             $target_array = ['type' => $target_info];
-            if($target_info == TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE) {
+            if(in_array($target_info, $race_targets_types)) {
                 $target_array['race'] = $race;// todo don't be a dick
             }
 

@@ -4,6 +4,19 @@ use App\Models\HearthCloneTest;
 
 class BasicAuraTest extends HearthCloneTest
 {
+    /* Grimscale Oracle */
+    public function test_grimscale_give_friendly_and_opponent_murloc_1_attack() {
+        $bluegill_warrior1 = $this->playCard('Bluegill Warrior', 1);
+        $bluegill_warrior2 = $this->playCard('Bluegill Warrior', 2);
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Grimscale Oracle', 1);
+        $this->assertEquals(3, $bluegill_warrior1->getAttack());
+        $this->assertEquals(3, $bluegill_warrior2->getAttack());
+
+        // Should not buff the wisp
+        $this->assertEquals(1, $wisp->getAttack());
+    }
+
     /* Leokk */
     public function test_leokk_gives_two_friendly_minions_one_attack() {
         $wisp = $this->playCard('Wisp', 1);

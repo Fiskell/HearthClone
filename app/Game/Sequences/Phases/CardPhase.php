@@ -129,6 +129,20 @@ abstract class CardPhase extends AbstractPhase
                     }
                 }
                 break;
+            case TargetTypes::$All_OTHER_MINIONS_WITH_RACE:
+                unset($player_minions[$trigger_card->getId()]);
+                $targets = [];
+                foreach($player_minions as $player_minion) {
+                    if($player_minion->getRace() == $target_race) {
+                        $targets[] = $player_minion;
+                    }
+                }
+                foreach($opponent_minions as $opponent_minion) {
+                    if($opponent_minion->getRace() == $target_race) {
+                        $targets[] = $opponent_minion;
+                    }
+                }
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }

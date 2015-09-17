@@ -121,6 +121,18 @@
             "draw": 1
         }
     },
+    "Grimscale Oracle": {
+        "aura": {
+            "targets": {
+                "type": "all_other_minions_with_race",
+                "race": "Murloc"
+            },
+            "enchantment": {
+                "attack": 1,
+                "name": "Mlarggragllabl!"
+            }
+        }
+    },
     "Guardian of Kings": {
         "battlecry": {
             "targets": {
