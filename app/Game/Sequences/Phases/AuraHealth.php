@@ -45,7 +45,6 @@ class AuraHealth extends CardPhase
         foreach ($targets as $target) {
             // todo clean up
             $target->setMaxHealth($target->getMaxHealth() + $aura->getModifiedHealth());
-            $target->setHealth($target->getHealth() + $aura->getModifiedHealth());
         }
     }
 

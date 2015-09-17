@@ -14,8 +14,8 @@ class Minion extends Card
     protected $sleeping;
     protected $frozen                   = false;
     protected $times_attacked_this_turn = 0;
-    protected $enchantments = [];
-    protected $auras = [];
+    protected $enchantments             = [];
+    protected $auras                    = [];
 
     /**
      * @return array
@@ -87,7 +87,9 @@ class Minion extends Card
      * @param $new_health
      */
     public function setMaxHealth($new_health) {
+        $health_diff      = ($new_health - $this->max_health);
         $this->max_health = $new_health;
+        $this->setHealth($this->getHealth() + $health_diff);
     }
 
     /**
@@ -309,7 +311,7 @@ class Minion extends Card
      */
     public function addAura(Aura $aura) {
         // An aura from a single minion only targets a minion once.
-        if(isset($this->auras[$aura->getSourceCard()->getId()])) {
+        if (isset($this->auras[$aura->getSourceCard()->getId()])) {
             return;
         }
 
