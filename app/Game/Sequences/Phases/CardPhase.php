@@ -76,7 +76,7 @@ abstract class CardPhase extends AbstractPhase
      * @return array
      * @throws DumbassDeveloperException
      */
-    protected function getTargets(Card $trigger_card, $target_type, $target_race=null) {
+    protected function getTargets(Card $trigger_card, $target_type, $target_race = null) {
 
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();
@@ -123,8 +123,8 @@ abstract class CardPhase extends AbstractPhase
                 unset($player_minions[$trigger_card->getId()]);
                 $targets = [];
                 /** @var Minion $player_minion */
-                foreach($player_minions as $player_minion) {
-                    if($player_minion->getRace() == $target_race) {
+                foreach ($player_minions as $player_minion) {
+                    if ($player_minion->getRace() == $target_race) {
                         $targets[] = $player_minion;
                     }
                 }
@@ -132,13 +132,13 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$All_OTHER_MINIONS_WITH_RACE:
                 unset($player_minions[$trigger_card->getId()]);
                 $targets = [];
-                foreach($player_minions as $player_minion) {
-                    if($player_minion->getRace() == $target_race) {
+                foreach ($player_minions as $player_minion) {
+                    if ($player_minion->getRace() == $target_race) {
                         $targets[] = $player_minion;
                     }
                 }
-                foreach($opponent_minions as $opponent_minion) {
-                    if($opponent_minion->getRace() == $target_race) {
+                foreach ($opponent_minions as $opponent_minion) {
+                    if ($opponent_minion->getRace() == $target_race) {
                         $targets[] = $opponent_minion;
                     }
                 }
