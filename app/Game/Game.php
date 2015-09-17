@@ -194,38 +194,10 @@ class Game
      * Phase which resolves the deaths that may have resulted from damage/triggers.
      */
     public function resolveDeaths() {
-        $recalculate_minion_positions = false;
-        $player1_minions = $this->getPlayer1()->getMinionsInPlay();
-        /** @var Minion $player1_minion */
-        foreach($player1_minions as $player1_minion) {
-            if ($player1_minion->getHealth() <= 0) {
-                $player1_minion->setHealth(0);
-                $player1_minion->killed();
-                $recalculate_minion_positions = true;
-            }
-        }
+        $this->resolveDeathsForPlayer($this->player1);
+        $this->resolveDeathsForPlayer($this->player2);
 
-        $player2_minions = $this->getPlayer2()->getMinionsInPlay();
-        /** @var Minion $player2_minion */
-        foreach($player2_minions as $player2_minion) {
-            if ($player2_minion->getHealth() <= 0) {
-                $player2_minion->setHealth(0);
-                $player2_minion->killed();
-                $recalculate_minion_positions = true;
-            }
-        }
-
-        if($recalculate_minion_positions) {
-            $this->recalculateMinionPositions($this->player1);
-            $this->recalculateMinionPositions($this->player2);
-        }
-
-        $this->getPlayer1()->recalculateActiveMechanics();
-        $this->getPlayer2()->recalculateActiveMechanics();
-
-        /** @var TriggerQueue $trigger_queue */
-        $trigger_queue = app('TriggerQueue');
-        $trigger_queue->resolveQueue();
+        App('TriggerQueue')->resolveQueue();
     }
 
     /**
@@ -241,7 +213,7 @@ class Game
 
         /** @var Minion $player1_minion */
 
-        foreach($player_minions as $player_minion) {
+        foreach ($player_minions as $player_minion) {
             $minion_positions[$player_minion->getPosition()] = $player_minion;
         }
 
@@ -250,10 +222,41 @@ class Game
         $count = 0;
 
         /** @var Minion $minion */
-        foreach($minion_positions as $minion) {
+        foreach ($minion_positions as $minion) {
             $minion->setPosition($count + 1);
             $count++;
         }
+    }
+
+    /**
+     * Resolve the deaths for a specific player.
+     *
+     * @param Player $player
+     * @return bool
+     */
+    private function resolveDeathsForPlayer(Player $player) {
+        $recalculate_minion_positions = false;
+
+        $player_minions = $player->getMinionsInPlay();
+
+        /* Mark minions as killed and remove from board */
+        /** @var Minion $player1_minion */
+        foreach ($player_minions as $player_minion) {
+            if ($player_minion->getHealth() > 0) {
+                continue;
+            }
+
+            $player_minion->setHealth(0);
+            $player_minion->killed();
+            $recalculate_minion_positions = true;
+        }
+
+        /* If minions were killed we need to update positions */
+        if ($recalculate_minion_positions) {
+            $this->recalculateMinionPositions($player);
+        }
+
+        $player->recalculateActiveMechanics();
     }
 
 }
