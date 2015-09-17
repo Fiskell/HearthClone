@@ -34,6 +34,14 @@ class BasicAuraTest extends HearthCloneTest
         $this->assertEquals(2, $wisp2->getAttack());
     }
 
+    /* Stormwind Champion */
+    public function test_stormwind_champion_gives_other_minions_1_1() {
+        $knife_juggler = $this->playCard('Knife Juggler', 1);
+        $this->playCard('Stormwind Champion', 1);
+        $this->assertEquals(4, $knife_juggler->getAttack());
+        $this->assertEquals(3, $knife_juggler->getHealth());
+    }
+
     /* Timber Wolf */
     public function test_timber_wolf_gives_beast_one_attack() {
         $leokk = $this->playCard('Leokk', 1);

@@ -243,6 +243,18 @@
             }
         }
     },
+    "Stormwind Champion": {
+        "aura": {
+            "targets": {
+                "type": "other_friendly_minions"
+            },
+            "enchantment": {
+                "attack": 1,
+                "health": 1,
+                "name": "Might of Stormwind"
+            }
+        }
+    },
     "Succubus": {
         "battlecry": {
             "targets": {

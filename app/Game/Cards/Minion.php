@@ -302,6 +302,11 @@ class Minion extends Card
         $this->race = $race;
     }
 
+    /**
+     * Apply aura to this card.
+     *
+     * @param Aura $aura
+     */
     public function addAura(Aura $aura) {
         // An aura from a single minion only targets a minion once.
         if(isset($this->auras[$aura->getSourceCard()->getId()])) {
@@ -309,7 +314,6 @@ class Minion extends Card
         }
 
         $this->auras[$aura->getSourceCard()->getId()] = $aura;
-
         $this->setAttack($this->getAttack() + $aura->getModifiedAttack());
     }
 

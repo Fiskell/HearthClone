@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use App\Game\Sequences\Phases\AfterSummon;
+use App\Game\Sequences\Phases\AuraHealth;
 use App\Game\Sequences\Phases\AuraOther;
 use App\Game\Sequences\Phases\Battlecry;
 use App\Game\Sequences\Phases\DeathProcessing;
@@ -38,6 +39,10 @@ class PhaseServiceProvider extends ServiceProvider
 
         $this->app->bind('AuraOther', function() {
             return new AuraOther();
+        });
+
+        $this->app->bind('AuraHealth', function() {
+            return new AuraHealth();
         });
     }
 }

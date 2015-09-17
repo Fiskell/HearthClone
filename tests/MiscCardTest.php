@@ -659,14 +659,17 @@ class MiscCardTest extends HearthCloneTest
     }
 
 //    public function test_shaman_ability_summons_wrath_of_air_totem() {
-//        $this->initPlayers(HeroClass::$SHAMAN);
 //
 //        $player1 = $this->game->getPlayer1();
-////        $mock = \Mockery::mock('App\Models\Heroes\Shaman[getRandomTotemName]', 'Wrath of Air Totem');
-////        $mock = \Mockery::mock('App\Models\Heroes\Shaman');
-////        $mock->shouldReceive('getRandomTotemName')->andReturn('Wrath of Air Totem');
-//        $stub = $this->getMockBuilder('App\Models\Heroes\Shaman')
-//            ->getMock();
+//        $mock = \Mockery::mock('App\Models\Heroes\Shaman[getRandomTotemName]', 'Wrath of Air Totem');
+//        $mock = \Mockery::mock('App\Models\Heroes\Shaman');
+//        $mock->shouldReceive('getRandomTotemName')->andReturn('Wrath of Air Totem');
+//
+//        $player1_deck = app('Deck', [app($player1_class, [$this->game->getPlayer1()]), $player1_deck]);
+//        $player2_deck = app('Deck', [app($player2_class, [$this->game->getPlayer2()]), $player2_deck]);
+//
+//        $this->game->init($player1_deck, $player2_deck);
+//        $stub = $this->getMockBuilder('App\Models\Heroes\Shaman')->getMock();
 //        $stub->method('getRandomTotemName')->willReturn('Wrath of Air Totem');
 //
 //        $player1->useAbility();

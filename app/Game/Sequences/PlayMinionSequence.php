@@ -53,6 +53,9 @@ class PlayMinionSequence extends SummonMinionSequence
 //        $trigger_queue->resolveQueue();
 
 
+        App('AuraHealth')->queue($card, $targets);
+        $trigger_queue->resolveQueue();
+
         App('AuraOther')->queue($card, $targets);
         $trigger_queue->resolveQueue();
 
