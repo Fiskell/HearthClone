@@ -14,42 +14,6 @@ use TestCase;
  */
 class HearthCloneTest extends TestCase
 {
-
-    /**
-     * Minions
-     */
-    public $argent_squire_name       = 'Argent Squire';
-    public $amani_berserker_name     = 'Amani Berserker';
-    public $bluegill_warrior_name    = 'Bluegill Warrior';
-    public $chillwind_yeti_name      = 'Chillwind Yeti';
-    public $dread_corsair_name       = 'Dread Corsair';
-    public $earth_elemental_name     = 'Earth Elemental';
-    public $fire_elemental_name      = 'Fire Elemental';
-    public $knife_juggler_name       = 'Knife Juggler';
-    public $loot_hoarder_name        = 'Loot Hoarder';
-    public $si7_agent                = 'SI:7 Agent';
-    public $silver_hand_recruit_name = 'Silver Hand Recruit';
-    public $spellbreaker_name        = 'Spellbreaker';
-    public $succubus_name            = 'Succubus';
-    public $timber_wolf_name         = 'Timber Wolf';
-    public $thrallmar_farseer_name   = 'Thrallmar Farseer';
-    public $water_elemental_name     = 'Water Elemental';
-    public $wisp_name                = 'Wisp';
-    public $worgen_infiltrator_name  = 'Worgen Infiltrator';
-    public $wrath_of_air_totem_name  = 'Wrath of Air Totem';
-
-    /**
-     * Battlecry Minions
-     */
-    public $houndmaster_name       = 'Houndmaster';
-    public $guardian_of_kings_name = 'Guardian of Kings';
-    public $windspeaker_name       = 'Windspeaker';
-
-    /**
-     * Weapons
-     */
-    public $lights_justice_name = "Light's Justice";
-
     /** @var  Minion $card */
     public $card;
 

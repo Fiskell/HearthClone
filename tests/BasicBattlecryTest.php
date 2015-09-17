@@ -15,7 +15,7 @@ class BasicBattlecryTest extends HearthCloneTest
 
     public function test_houndmaster_does_not_target_himself() {
         $this->initPlayers();
-        $houndmaster = $this->playCard($this->houndmaster_name, 1);
+        $houndmaster = $this->playCard('Houndmaster', 1);
         $this->assertEquals(4, $houndmaster->getAttack());
         $this->assertEquals(3, $houndmaster->getHealth());
     }
@@ -23,14 +23,14 @@ class BasicBattlecryTest extends HearthCloneTest
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_houndmaster_fails_when_target_is_not_a_beast() {
         $this->initPlayers();
-        $wisp = $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->houndmaster_name, 1, [$wisp]);
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Houndmaster', 1, [$wisp]);
     }
 
     public function test_houndmaster_adds_2_2_and_taunt_to_valid_beast_target() {
         $this->initPlayers();
-        $timber_wolf = $this->playCard($this->timber_wolf_name, 1);
-        $this->playCard($this->houndmaster_name, 1, [$timber_wolf]);
+        $timber_wolf = $this->playCard('Timber Wolf', 1);
+        $this->playCard('Houndmaster', 1, [$timber_wolf]);
         $this->assertEquals(3, $timber_wolf->getAttack());
         $this->assertEquals(3, $timber_wolf->getHealth());
         $this->assertTrue($timber_wolf->hasMechanic(Mechanics::$TAUNT));
@@ -40,16 +40,16 @@ class BasicBattlecryTest extends HearthCloneTest
     public function test_guardian_of_kings_heals_friendly_hero_by_6() {
         $this->initPlayers();
         $this->game->getPlayer1()->getHero()->takeDamage(20);
-        $this->playCard($this->guardian_of_kings_name, 1);
+        $this->playCard('Guardian of Kings', 1);
         $this->assertEquals(16, $this->game->getPlayer1()->getHero()->getHealth());
     }
 
     /* Windspeaker */
     public function test_windspeaker_gives_friendly_minion_windfury_when_played() {
         $this->initPlayers();
-        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp = $this->playCard('Wisp', 1);
         $this->assertTrue(!$wisp->hasMechanic(Mechanics::$WINDFURY));
-        $this->playCard($this->windspeaker_name, 1, [$wisp]);
+        $this->playCard('Windspeaker', 1, [$wisp]);
         $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
     }
 
@@ -58,7 +58,7 @@ class BasicBattlecryTest extends HearthCloneTest
         $this->initPlayers();
         $player2 = $this->game->getPlayer2();
         $this->assertEquals(30, $player2->getHero()->getHealth());
-        $this->playCard($this->fire_elemental_name, 1, [$player2->getHero()]);
+        $this->playCard('Fire Elemental', 1, [$player2->getHero()]);
         $this->assertEquals(27, $player2->getHero()->getHealth());
     }
 
@@ -69,7 +69,7 @@ class BasicBattlecryTest extends HearthCloneTest
         $player1->drawCard();
         $player1->drawCard();
         $this->assertEquals(2, $player1->getHandSize());
-        $this->playCard($this->succubus_name, 1);
+        $this->playCard('Succubus', 1);
         $this->assertEquals(1, $player1->getHandSize());
     }
 
@@ -77,7 +77,7 @@ class BasicBattlecryTest extends HearthCloneTest
         $this->initPlayers();
         $player1 = $this->game->getPlayer1();
         $this->assertEquals(0, $player1->getHandSize());
-        $this->playCard($this->succubus_name, 1);
+        $this->playCard('Succubus', 1);
         $this->assertEquals(0, $player1->getHandSize());
     }
 
@@ -97,7 +97,7 @@ class BasicBattlecryTest extends HearthCloneTest
     /* Acidic Swamp Ooze */
     public function test_acidic_swamp_ooze_destroys_enemy_weapon_when_played() {
         $this->initPlayers(HeroClass::$PALADIN);
-        $this->playWeaponCard($this->lights_justice_name, 1);
+        $this->playWeaponCard('Light\'s Justice', 1);
         $this->assertTrue(!!$this->game->getPlayer1()->getHero()->getWeapon());
         $this->playCard('Acidic Swamp Ooze', 2);
         $this->assertFalse(!!$this->game->getPlayer1()->getHero()->getWeapon());

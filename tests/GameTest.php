@@ -59,30 +59,30 @@ class GameTest extends HearthCloneTest
     public function test_playing_minion_fails_if_board_already_has_seven_minions() {
         $this->initPlayers();
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
     }
 
     public function test_player_can_have_seven_minions_on_board() {
         $this->initPlayers();
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
 
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
+        $this->playCard('Wisp', 1);
 
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
 
         $this->assertEquals(7, count($this->game->getPlayer1()->getMinionsInPlay()));
     }

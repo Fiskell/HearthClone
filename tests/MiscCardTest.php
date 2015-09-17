@@ -61,8 +61,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_attack_kills_wisp_without_divine_shield() {
-        $wisp          = $this->playCard($this->wisp_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $wisp          = $this->playCard('Wisp', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($wisp);
         $this->assertTrue($wisp->getHealth() == 0);
@@ -70,8 +70,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_health_is_1_after_attacking_wisp() {
-        $wisp          = $this->playCard($this->wisp_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $wisp          = $this->playCard('Wisp', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($wisp);
         $this->assertTrue($knife_juggler->getHealth() == 1);
@@ -79,19 +79,19 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_knife_juggler_cannot_attack_wisp_when_dread_corsair_is_on_the_field() {
-        $wisp = $this->playCard($this->wisp_name, 1);
-        $this->playCard($this->dread_corsair_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Dread Corsair', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($wisp);
     }
 
     public function test_knife_juggler_can_attack_wisp_after_dread_corsair_is_killed() {
-        $wisp          = $this->playCard($this->wisp_name, 1);
-        $dread_corsair = $this->playCard($this->dread_corsair_name, 1);
+        $wisp          = $this->playCard('Wisp', 1);
+        $dread_corsair = $this->playCard('Dread Corsair', 1);
 
-        $knife_juggler  = $this->playCard($this->knife_juggler_name, 2);
-        $knife_juggler2 = $this->playCard($this->knife_juggler_name, 2);
+        $knife_juggler  = $this->playCard('Knife Juggler', 2);
+        $knife_juggler2 = $this->playCard('Knife Juggler', 2);
 
 
         $knife_juggler->attack($dread_corsair);
@@ -99,8 +99,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_wisp_is_added_to_player_1_graveyard() {
-        $wisp          = $this->playCard($this->wisp_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $wisp          = $this->playCard('Wisp', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($wisp);
         $player1_graveyard = $this->game->getPlayer1()->getGraveyard();
@@ -108,12 +108,12 @@ class MiscCardTest extends HearthCloneTest
         /** @var Card $first_dead_card */
         $first_dead_card = array_get($player1_graveyard, '0');
 
-        $this->assertTrue($first_dead_card->getName() === $this->wisp_name);
+        $this->assertTrue($first_dead_card->getName() === 'Wisp');
     }
 
     public function test_argent_squire_does_not_die_from_attack_if_divine_shield_active() {
-        $argent_squire = $this->playCard($this->argent_squire_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $argent_squire = $this->playCard('Argent Squire', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($argent_squire);
 
@@ -122,10 +122,10 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_argent_squire_dies_from_attack_after_being_silenced() {
-        $argent_squire = $this->playCard($this->argent_squire_name, 1);
+        $argent_squire = $this->playCard('Argent Squire', 1);
 
-        $this->playCard($this->spellbreaker_name, 2, [$argent_squire]);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $this->playCard('Spellbreaker', 2, [$argent_squire]);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($argent_squire);
 
@@ -134,20 +134,20 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_attacking_stealth_worgen_infiltrator_throws() {
-        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_name, 1);
-        $knife_juggler      = $this->playCard($this->knife_juggler_name, 2);
+        $worgen_infiltrator = $this->playCard('Worgen Infiltrator', 1);
+        $knife_juggler      = $this->playCard('Knife Juggler', 2);
 
         $knife_juggler->attack($worgen_infiltrator);
     }
 
     public function test_card_played_this_turn_is_sleeping() {
-        $wisp = $this->playCard($this->wisp_name, 1, [], true);
+        $wisp = $this->playCard('Wisp', 1, [], true);
         $this->assertTrue($wisp->isSleeping());
     }
 
     public function test_minion_wakes_up_after_passing_turn() {
         $active_player = $this->game->getActivePlayer();
-        $wisp          = $this->playCard($this->wisp_name, $active_player->getPlayerId(), [], true);
+        $wisp          = $this->playCard('Wisp', $active_player->getPlayerId(), [], true);
 
         $active_player->passTurn();
         $this->assertTrue(!$wisp->isSleeping());
@@ -155,29 +155,29 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_sleeping_minions_attacking_throws() {
-        $wisp  = $this->playCard($this->wisp_name, 1, [], true);
-        $wisp2 = $this->playCard($this->wisp_name, 2, [], true);
+        $wisp  = $this->playCard('Wisp', 1, [], true);
+        $wisp2 = $this->playCard('Wisp', 2, [], true);
         $wisp->attack($wisp2);
     }
 
     public function test_minion_with_charge_does_not_fall_asleep() {
-        $bluegill_warrior = $this->playCard($this->bluegill_warrior_name, 1, [], true);
-        $wisp2            = $this->playCard($this->wisp_name, 2, [], true);
+        $bluegill_warrior = $this->playCard('Bluegill Warrior', 1, [], true);
+        $wisp2            = $this->playCard('Wisp', 2, [], true);
         $bluegill_warrior->attack($wisp2);
     }
 
     public function test_amani_berserker_has_five_attack_after_being_attacked() {
-        $amani_beserker = $this->playCard($this->amani_berserker_name, 1);
-        $wisp           = $this->playCard($this->wisp_name, 2);
+        $amani_berserker = $this->playCard('Amani Berserker', 1);
+        $wisp           = $this->playCard('Wisp', 2);
 
-        $wisp->attack($amani_beserker);
+        $wisp->attack($amani_berserker);
 
-        $this->assertTrue($amani_beserker->getAttack() == 5);
+        $this->assertTrue($amani_berserker->getAttack() == 5);
     }
 
     public function test_amani_berserker_has_five_attack_after_attacking_and_taking_damage() {
-        $amani_berserker = $this->playCard($this->amani_berserker_name, 1);
-        $wisp            = $this->playCard($this->wisp_name, 2);
+        $amani_berserker = $this->playCard('Amani Berserker', 1);
+        $wisp            = $this->playCard('Wisp', 2);
 
         $amani_berserker->attack($wisp);
 
@@ -185,8 +185,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_worgen_infiltrator_loses_stealth_after_attacking() {
-        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_name, 1);
-        $wisp               = $this->playCard($this->wisp_name, 1);
+        $worgen_infiltrator = $this->playCard('Worgen Infiltrator', 1);
+        $wisp               = $this->playCard('Wisp', 1);
         $worgen_infiltrator->attack($wisp);
 
         $has_stealth = $worgen_infiltrator->hasMechanic(Mechanics::$STEALTH);
@@ -194,8 +194,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_argent_squire_loses_divine_shield_after_attacking() {
-        $argent_squire = $this->playCard($this->argent_squire_name, 1);
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $argent_squire = $this->playCard('Argent Squire', 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
         $argent_squire->attack($knife_juggler);
 
         $has_divine_shield = $argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD);
@@ -204,21 +204,21 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_spellbreaker_silencing_worgen_infiltrator_throws() {
-        $worgen_infiltrator = $this->playCard($this->worgen_infiltrator_name, 1);
-        $this->playCard($this->spellbreaker_name, 2, [$worgen_infiltrator]);
+        $worgen_infiltrator = $this->playCard('Worgen Infiltrator', 1);
+        $this->playCard('Spellbreaker', 2, [$worgen_infiltrator]);
     }
 
     public function test_dread_corsair_loses_taunt_when_silenced() {
-        $dread_corsair = $this->playCard($this->dread_corsair_name, 1);
-        $this->playCard($this->spellbreaker_name, 2, [$dread_corsair]);
+        $dread_corsair = $this->playCard('Dread Corsair', 1);
+        $this->playCard('Spellbreaker', 2, [$dread_corsair]);
 
         $has_taunt = $dread_corsair->hasMechanic(Mechanics::$TAUNT);
         $this->assertTrue(!$has_taunt);
     }
 
     public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
-        $water_elemental = $this->playCard($this->water_elemental_name, 1);
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, 2);
+        $water_elemental = $this->playCard('Water Elemental', 1);
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', 2);
 
         $water_elemental->attack($chillwind_yeti);
 
@@ -227,8 +227,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_chillwind_yeti_is_frozen_when_attacking_water_elemental() {
-        $water_elemental = $this->playCard($this->water_elemental_name, 1);
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, 2);
+        $water_elemental = $this->playCard('Water Elemental', 1);
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', 2);
 
         $chillwind_yeti->attack($water_elemental);
 
@@ -238,8 +238,8 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\InvalidTargetException */
     public function test_chillwind_yeti_can_not_attack_when_frozen() {
-        $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, $this->getDefendingPlayerId());
+        $water_elemental = $this->playCard('Water Elemental', $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', $this->getDefendingPlayerId());
 
         $water_elemental->attack($chillwind_yeti);
         $this->game->getActivePlayer()->passTurn();
@@ -247,8 +247,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_chillwind_yeti_is_thawed_after_passing_turn() {
-        $water_elemental = $this->playCard($this->water_elemental_name, $this->getActivePlayerId());
-        $chillwind_yeti  = $this->playCard($this->chillwind_yeti_name, $this->getDefendingPlayerId());
+        $water_elemental = $this->playCard('Water Elemental', $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', $this->getDefendingPlayerId());
 
         $water_elemental->attack($chillwind_yeti);
         $this->game->getActivePlayer()->passTurn();
@@ -258,8 +258,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_loot_hoarder_draws_card_when_killed() {
-        $loot_hoarder = $this->playCard($this->loot_hoarder_name, 1);
-        $wisp         = $this->playCard($this->wisp_name, 2);
+        $loot_hoarder = $this->playCard('Loot Hoarder', 1);
+        $wisp         = $this->playCard('Wisp', 2);
 
         $hand_size = $this->game->getPlayer1()->getHandSize();
 
@@ -271,8 +271,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_both_players_loot_hoarder_will_draw_a_card_when_killed() {
-        $loot_hoarder  = $this->playCard($this->loot_hoarder_name, 1);
-        $loot_hoarder2 = $this->playCard($this->loot_hoarder_name, 2);
+        $loot_hoarder  = $this->playCard('Loot Hoarder', 1);
+        $loot_hoarder2 = $this->playCard('Loot Hoarder', 2);
 
         $hand_size_player1 = $this->game->getPlayer1()->getHandSize();
         $hand_size_player2 = $this->game->getPlayer2()->getHandSize();
@@ -288,18 +288,18 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
     public function test_chillwind_yeti_can_only_attack_once_per_turn() {
-        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
-        $wisp           = $this->playCard($this->wisp_name, 2);
-        $wisp2          = $this->playCard($this->wisp_name, 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $wisp           = $this->playCard('Wisp', 2);
+        $wisp2          = $this->playCard('Wisp', 2);
 
         $chillwind_yeti->attack($wisp);
         $chillwind_yeti->attack($wisp2);
     }
 
     public function test_chillwind_yeti_can_attack_twice_in_two_turns() {
-        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
-        $wisp           = $this->playCard($this->wisp_name, 2);
-        $wisp2          = $this->playCard($this->wisp_name, 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $wisp           = $this->playCard('Wisp', 2);
+        $wisp2          = $this->playCard('Wisp', 2);
 
         $chillwind_yeti->attack($wisp);
         $this->game->getActivePlayer()->passTurn();
@@ -310,9 +310,9 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_thrallmar_farseer_can_attack_twice_per_turn() {
-        $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);
-        $wisp              = $this->playCard($this->wisp_name, 2);
-        $wisp2             = $this->playCard($this->wisp_name, 2);
+        $thrallmar_farseer = $this->playCard('Thrallmar Farseer', 1);
+        $wisp              = $this->playCard('Wisp', 2);
+        $wisp2             = $this->playCard('Wisp', 2);
 
         $thrallmar_farseer->attack($wisp);
         $thrallmar_farseer->attack($wisp2);
@@ -322,8 +322,8 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_thrallmar_farseer_can_still_attack_after_attacking_once() {
-        $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);
-        $wisp              = $this->playCard($this->wisp_name, 2);
+        $thrallmar_farseer = $this->playCard('Thrallmar Farseer', 1);
+        $wisp              = $this->playCard('Wisp', 2);
 
         $thrallmar_farseer->attack($wisp);
 
@@ -333,10 +333,10 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\MinionAlreadyAttackedException */
     public function test_thrallmar_farseer_can_not_attack_more_than_twice_per_turn() {
-        $thrallmar_farseer = $this->playCard($this->thrallmar_farseer_name, 1);
-        $wisp              = $this->playCard($this->wisp_name, 2);
-        $wisp2             = $this->playCard($this->wisp_name, 2);
-        $wisp3             = $this->playCard($this->wisp_name, 2);
+        $thrallmar_farseer = $this->playCard('Thrallmar Farseer', 1);
+        $wisp              = $this->playCard('Wisp', 2);
+        $wisp2             = $this->playCard('Wisp', 2);
+        $wisp3             = $this->playCard('Wisp', 2);
 
         $thrallmar_farseer->attack($wisp);
         $thrallmar_farseer->attack($wisp2);
@@ -344,43 +344,43 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_si7_agent_does_not_combo_if_played_first() {
-        $wisp = $this->playCard($this->wisp_name, 2);
-        $this->playCard($this->si7_agent, 1, [$wisp], true);
+        $wisp = $this->playCard('Wisp', 2);
+        $this->playCard('SI:7 Agent', 1, [$wisp], true);
 
         $this->assertTrue($wisp->isAlive());
     }
 
     public function test_si7_agent_combos_if_not_played_first() {
-        $wisp = $this->playCard($this->wisp_name, 2);
+        $wisp = $this->playCard('Wisp', 2);
 
-        $this->playCard($this->wisp_name, 1, [], true);
-        $this->playCard($this->si7_agent, 1, [$wisp], true);
+        $this->playCard('Wisp', 1, [], true);
+        $this->playCard('SI:7 Agent', 1, [$wisp], true);
 
         $this->assertFalse($wisp->isAlive());
     }
 
     public function test_cards_played_this_turn_is_reset_at_end_of_turn() {
-        $wisp = $this->playCard($this->wisp_name, 2);
+        $wisp = $this->playCard('Wisp', 2);
 
-        $this->playCard($this->wisp_name, 1, [], true);
+        $this->playCard('Wisp', 1, [], true);
 
         $this->game->getPlayer1()->passTurn();
         $this->game->getPlayer2()->passTurn();
 
-        $this->playCard($this->si7_agent, 1, [$wisp], true);
+        $this->playCard('SI:7 Agent', 1, [$wisp], true);
 
         $this->assertTrue($wisp->isAlive());
     }
 
     public function test_keeper_of_the_grove_kills_wisp_when_damage_is_chosen() {
-        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp = $this->playCard('Wisp', 1);
         $this->playCard('Keeper of the Grove', 2, [$wisp], false, 1);
 
         $this->assertFalse($wisp->isAlive());
     }
 
     public function test_keeper_of_the_grove_silences_argent_squire_when_silence_is_chosen() {
-        $argent_squire = $this->playCard($this->argent_squire_name, 1);
+        $argent_squire = $this->playCard('Argent Squire', 1);
         $this->playCard('Keeper of the Grove', 2, [$argent_squire], false, 2);
 
         $this->assertFalse($argent_squire->hasMechanic(Mechanics::$DIVINE_SHIELD));
@@ -400,7 +400,7 @@ class MiscCardTest extends HearthCloneTest
         $player_b = $this->game->getDefendingPlayer();
 
         $this->assertEquals(0, $player_a->getManaCrystalsUsed());
-        $this->playCardStrict($this->argent_squire_name, $player_a->getPlayerId());
+        $this->playCardStrict('Argent Squire', $player_a->getPlayerId());
         $this->assertEquals(1, $player_a->getManaCrystalsUsed());
 
         $player_a->passTurn(); // player a: 1 crystal
@@ -411,19 +411,19 @@ class MiscCardTest extends HearthCloneTest
 
     /** @expectedException \App\Exceptions\NotEnoughManaCrystalsException */
     public function test_knife_juggler_can_not_be_played_turn_one() {
-        $this->playCardStrict($this->knife_juggler_name);
+        $this->playCardStrict('Knife Juggler');
     }
 
     public function test_earth_elemental_locks_three_mana_crystals_when_played() {
         $active_player_id = $this->game->getActivePlayer()->getPlayerId();
-        $this->playCardStrict($this->earth_elemental_name, $active_player_id, 5);
+        $this->playCardStrict('Earth Elemental', $active_player_id, 5);
         $this->assertEquals(3, $this->game->getActivePlayer()->getLockedManaCrystalCount());
     }
 
     public function test_locked_mana_crystals_are_unlocked_at_beginning_of_next_turn() {
         $player_a = $this->game->getActivePlayer();
         $player_b = $this->game->getDefendingPlayer();
-        $this->playCardStrict($this->earth_elemental_name, $player_a->getPlayerId(), 5);
+        $this->playCardStrict('Earth Elemental', $player_a->getPlayerId(), 5);
 
         $player_a->passTurn();
         $this->assertEquals(3, $player_a->getLockedManaCrystalCount());
@@ -435,7 +435,7 @@ class MiscCardTest extends HearthCloneTest
 
     public function test_mage_power_kills_wisp() {
         $this->initPlayers();
-        $wisp = $this->playCard($this->wisp_name, 1);
+        $wisp = $this->playCard('Wisp', 1);
         $this->game->getPlayer2()->useAbility([$wisp]);
 
         $this->assertFalse($wisp->isAlive());
@@ -444,16 +444,16 @@ class MiscCardTest extends HearthCloneTest
     /** @expectedException \App\Exceptions\HeroPowerAlreadyFlippedException */
     public function test_mage_hero_power_can_only_be_played_once_per_turn() {
         $this->initPlayers();
-        $wisp  = $this->playCard($this->wisp_name, 1);
-        $wisp2 = $this->playCard($this->wisp_name, 1);
+        $wisp  = $this->playCard('Wisp', 1);
+        $wisp2 = $this->playCard('Wisp', 1);
         $this->game->getPlayer2()->useAbility([$wisp]);
         $this->game->getPlayer2()->useAbility([$wisp2]);
     }
 
     public function test_mage_can_use_hero_power_twice_in_two_turns() {
         $this->initPlayers();
-        $wisp  = $this->playCard($this->wisp_name, 1);
-        $wisp2 = $this->playCard($this->wisp_name, 1);
+        $wisp  = $this->playCard('Wisp', 1);
+        $wisp2 = $this->playCard('Wisp', 1);
         $this->game->getPlayer2()->useAbility([$wisp]);
 
         $this->game->getPlayer2()->passTurn();
@@ -491,19 +491,19 @@ class MiscCardTest extends HearthCloneTest
 
     public function test_card_order_increments_when_card_is_played() {
         $current_card_counter = $this->game->getCardsPlayedThisGame();
-        $this->playCard($this->wisp_name, 1);
+        $this->playCard('Wisp', 1);
         $this->assertEquals($current_card_counter + 1, $this->game->getCardsPlayedThisGame());
-        $this->playCard($this->wisp_name, 2);
+        $this->playCard('Wisp', 2);
         $this->assertEquals($current_card_counter + 2, $this->game->getCardsPlayedThisGame());
     }
 
     public function test_card_play_order_id_is_set_when_card_is_played() {
         $current_card_counter = $this->game->getCardsPlayedThisGame();
-        $wisp1                = $this->playCard($this->wisp_name, 1);
-        $wisp2                = $this->playCard($this->wisp_name, 1);
+        $wisp1                = $this->playCard('Wisp', 1);
+        $wisp2                = $this->playCard('Wisp', 1);
 
-        $wisp3 = $this->playCard($this->wisp_name, 2);
-        $wisp4 = $this->playCard($this->wisp_name, 2);
+        $wisp3 = $this->playCard('Wisp', 2);
+        $wisp4 = $this->playCard('Wisp', 2);
 
         $this->assertEquals($current_card_counter + 1, $wisp1->getPlayOrderId());
         $this->assertEquals($current_card_counter + 2, $wisp2->getPlayOrderId());
@@ -520,13 +520,13 @@ class MiscCardTest extends HearthCloneTest
 
         /** @var Card $minion_in_play */
         $minion_in_play = current($this->game->getPlayer1()->getMinionsInPlay());
-        $this->assertEquals($this->silver_hand_recruit_name, $minion_in_play->getName());
+        $this->assertEquals('Silver Hand Recruit', $minion_in_play->getName());
     }
 
     public function test_using_priest_power_heals_target_by_two_health() {
         $this->initPlayers(HeroClass::$PRIEST);
-        $chillwind_yeti = $this->playCard($this->chillwind_yeti_name, 1);
-        $knife_juggler  = $this->playCard($this->knife_juggler_name, 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $knife_juggler  = $this->playCard('Knife Juggler', 2);
         $knife_juggler->attack($chillwind_yeti);
 
         $this->assertEquals(2, $chillwind_yeti->getHealth());
@@ -578,7 +578,7 @@ class MiscCardTest extends HearthCloneTest
         $this->initPlayers();
 
         $this->assertEquals(30, $this->game->getPlayer1()->getHero()->getHealth());
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
         $knife_juggler->attack($this->game->getPlayer1()->getHero());
         $this->assertEquals(27, $this->game->getPlayer1()->getHero()->getHealth());
     }
@@ -592,7 +592,7 @@ class MiscCardTest extends HearthCloneTest
         $this->game->getPlayer1()->useAbility();
         $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getArmor());
 
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 2);
+        $knife_juggler = $this->playCard('Knife Juggler', 2);
         $knife_juggler->attack($this->game->getPlayer1()->getHero());
         $this->assertEquals(29, $this->game->getPlayer1()->getHero()->getHealth());
         $this->assertEquals(0, $this->game->getPlayer1()->getHero()->getArmor());
@@ -600,10 +600,10 @@ class MiscCardTest extends HearthCloneTest
 
     public function test_lights_justice_can_be_equipped() {
         $this->initPlayers(HeroClass::$PALADIN);
-        $this->playWeaponCard($this->lights_justice_name, 1);
+        $this->playWeaponCard('Light\'s Justice', 1);
         $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
         $this->assertEquals(4, $this->game->getPlayer1()->getHero()->getWeapon()->getDurability());
-        $this->assertEquals($this->lights_justice_name, $this->game->getPlayer1()->getHero()->getWeapon()->getName());
+        $this->assertEquals('Light\'s Justice', $this->game->getPlayer1()->getHero()->getWeapon()->getName());
     }
 
     public function test_rogue_ability_epuips_a_1_2_wicked_knife() {
@@ -622,17 +622,17 @@ class MiscCardTest extends HearthCloneTest
     }
 
     public function test_knife_juggler_kills_enemy_minion_when_friendly_minion_is_summoned() {
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 1);
         $knife_juggler->setRandomNumber(1);
-        $wisp = $this->playCard($this->wisp_name, 2);
-        $this->playCard($this->argent_squire_name, 1);
+        $wisp = $this->playCard('Wisp', 2);
+        $this->playCard('Argent Squire', 1);
         $this->assertFalse($wisp->isAlive());
     }
 
     public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
-        $knife_juggler = $this->playCard($this->knife_juggler_name, 1);
+        $knife_juggler = $this->playCard('Knife Juggler', 1);
         $knife_juggler->setRandomNumber(0);
-        $this->playCard($this->argent_squire_name, 1);
+        $this->playCard('Argent Squire', 1);
         $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
