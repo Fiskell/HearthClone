@@ -18,7 +18,7 @@ class CardPositionTest extends HearthCloneTest
         $this->assertEquals(2, $wisp2->getPosition());
     }
 
-    public function test_first_minion_dies_moves_second_position_minion_to_position_1() {
+    public function test_first_minion_dies_on_both_sides_moves_second_position_minion_to_position_1() {
         $wisp_player2_1 = $this->playCard('Wisp', 2, [], false, null, 1);
         $wisp_player2_2 = $this->playCard('Wisp', 2, [], false, null, 2);
 
