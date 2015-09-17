@@ -194,12 +194,14 @@ class Game
      * Phase which resolves the deaths that may have resulted from damage/triggers.
      */
     public function resolveDeaths() {
+        $recalculate_minion_positions = false;
         $player1_minions = $this->getPlayer1()->getMinionsInPlay();
         /** @var Minion $player1_minion */
         foreach($player1_minions as $player1_minion) {
             if ($player1_minion->getHealth() <= 0) {
                 $player1_minion->setHealth(0);
                 $player1_minion->killed();
+                $recalculate_minion_positions = true;
             }
         }
 
@@ -209,7 +211,13 @@ class Game
             if ($player2_minion->getHealth() <= 0) {
                 $player2_minion->setHealth(0);
                 $player2_minion->killed();
+                $recalculate_minion_positions = true;
             }
+        }
+
+        if($recalculate_minion_positions) {
+            $this->recalculateMinionPositions($this->player1);
+            $this->recalculateMinionPositions($this->player2);
         }
 
         $this->getPlayer1()->recalculateActiveMechanics();
@@ -218,6 +226,34 @@ class Game
         /** @var TriggerQueue $trigger_queue */
         $trigger_queue = app('TriggerQueue');
         $trigger_queue->resolveQueue();
+    }
+
+    /**
+     * Recalculate minion positions since minions may have been
+     * removed from the board recently.
+     *
+     * @param Player $player
+     */
+    private function recalculateMinionPositions(Player $player) {
+        $minion_positions = [];
+
+        $player_minions = $player->getMinionsInPlay();
+
+        /** @var Minion $player1_minion */
+
+        foreach($player_minions as $player_minion) {
+            $minion_positions[$player_minion->getPosition()] = $player_minion;
+        }
+
+        ksort($minion_positions);
+
+        $count = 0;
+
+        /** @var Minion $minion */
+        foreach($minion_positions as $minion) {
+            $minion->setPosition($count + 1);
+            $count++;
+        }
     }
 
 }
