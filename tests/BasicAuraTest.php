@@ -13,6 +13,17 @@ class BasicAuraTest extends HearthCloneTest
         $this->assertEquals(3, $wisp2->getAttack());
     }
 
+    public function test_flametongue_totem_gives_adjacent_minions_two_attack_after_one_has_been_killed() {
+        $opponent_wisp = $this->playWispAtPosition(2, 1);
+        $wisp1 = $this->playWispAtPosition(1, 1);
+        $wisp2 = $this->playWispAtPosition(1, 2);
+        $wisp3 = $this->playWispAtPosition(1, 3);
+        $this->playCard('Flametongue Totem', 1, [], false, null, 2);
+        $opponent_wisp->attack($wisp2);
+        $this->assertEquals(3, $wisp1->getAttack());
+        $this->assertEquals(3, $wisp3->getAttack());
+    }
+
     /* Grimscale Oracle */
     public function test_grimscale_give_friendly_and_opponent_murloc_one_attack() {
         $bluegill_warrior1 = $this->playCard('Bluegill Warrior', 1);

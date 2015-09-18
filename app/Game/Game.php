@@ -219,11 +219,10 @@ class Game
 
         ksort($minion_positions);
 
-        $count = 0;
-
+        $count = 1;
         /** @var Minion $minion */
         foreach ($minion_positions as $minion) {
-            $minion->setPosition($count + 1);
+            $minion->setPosition($count);
             $count++;
         }
     }
