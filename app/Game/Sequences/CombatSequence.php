@@ -25,13 +25,13 @@ class CombatSequence extends AbstractSequence
         $attacker->resolveCombatPhase($target);
 
 
-        App('AuraHealth')->queue($attacker, []);
+        App('AuraHealth')->queueAllForPlayer($attacker->getOwner());
         App('TriggerQueue')->resolveQueue();
 
         /* Check Win/Loss/Draw */
         $player->getGame()->resolveDeaths();
 
-        App('AuraOther')->queue($attacker, []);
+        App('AuraOther')->queueAllForPlayer($attacker->getOwner());
         App('TriggerQueue')->resolveQueue();
 
         /* Check Win/Loss/Draw */

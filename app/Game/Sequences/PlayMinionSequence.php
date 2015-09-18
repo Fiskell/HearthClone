@@ -49,8 +49,8 @@ class PlayMinionSequence extends SummonMinionSequence
         // todo
 
         /* Initial Aura Queue */
-        App('AuraHealth')->queue($card, $targets);
-        App('AuraOther')->queue($card, $targets);
+        App('AuraHealth')->queueAllForPlayer($card->getOwner());
+        App('AuraOther')->queueAllForPlayer($card->getOwner());
         $trigger_queue->resolveQueue();
 
         /* Battlecry Phase */

@@ -10,13 +10,14 @@ namespace App\Game\Sequences\Phases;
 
 use App\Game\Cards\Aura;
 use App\Game\Cards\Minion;
+use App\Game\Player;
 
 class AuraHealth extends CardPhase
 {
     public $phase_name = 'aura_health';
 
-    public function queue(Minion $minion, array $targets = []) {
-        $all_minions = $minion->getOwner()->getAllMinions($minion);
+    public function queueAllForPlayer(Player $player) {
+        $all_minions = $player->getAllMinions();
 
         foreach ($all_minions as $single_minion) {
 
@@ -26,7 +27,6 @@ class AuraHealth extends CardPhase
 
             $tmp_aura          = App('AuraHealth');
             $tmp_aura->card    = $single_minion;
-            $tmp_aura->targets = $targets;
             App('TriggerQueue')->queue($tmp_aura);
         }
     }
