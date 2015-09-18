@@ -125,4 +125,15 @@ class HearthCloneTest extends TestCase
         return $this->game->getDefendingPlayer()->getPlayerId();
     }
 
+    /**
+     * Helper function to make testing position code easier.
+     *
+     * @param $player_id
+     * @param $position
+     * @return Minion
+     */
+    public function playWispAtPosition($player_id, $position) {
+        return $this->playCard('Wisp', $player_id, [], false, null, $position);
+    }
+
 }
