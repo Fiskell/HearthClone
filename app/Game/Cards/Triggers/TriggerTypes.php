@@ -9,6 +9,7 @@
 class TriggerTypes
 {
     public static $AFTER_SUMMON_PHASE = 'after_summon_phase';
+    public static $SPELL_TEXT_PHASE   = 'spell_text_phase';
     public static $AURA               = 'aura';
     public static $BATTLECRY          = 'battlecry';
     public static $CHOOSE_ONE         = 'choose_one';

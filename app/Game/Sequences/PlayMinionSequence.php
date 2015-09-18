@@ -38,7 +38,6 @@ class PlayMinionSequence extends SummonMinionSequence
 
         $player->setActiveMechanics(array_merge($player->getActiveMechanics(), $card->getMechanics()));
 
-
         /* Early on Summon Phase */
         // todo
 

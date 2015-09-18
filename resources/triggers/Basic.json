@@ -311,6 +311,18 @@
             }
         }
     },
+    "Windfury": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Windfury"
+                ]
+            }
+        }
+    },
     "Windspeaker": {
         "battlecry": {
             "targets": {

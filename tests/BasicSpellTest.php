@@ -53,4 +53,11 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertFalse($knife_juggler->isAlive());
     }
 
+    /* Windfury */
+    public function test_playing_spell_windfury_gives_a_minion_windfury() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Windfury', 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
+    }
+
 }
