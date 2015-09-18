@@ -325,12 +325,26 @@ class Minion extends Card
      * @param $position
      */
     public function setPosition($position) {
-        $minions = $this->getOwner()->getMinionsInPlay();
-        foreach($minions as $minion) {
-            // todo, ps, this sucks
+        $minions        = $this->getOwner()->getMinionsInPlay();
+        $this->position = $position;
+
+        $minion_map = [];
+        // TODO fix, this is lame
+        foreach ($minions as $minion) {
+            if ($minion->getId() == $this->getId()) {
+                continue;
+            }
+            $minion_map[$minion->getPosition()] = $minion;
         }
 
-        $this->position = $position;
+        /** @var Minion $minion */
+        foreach ($minion_map as $minion) {
+            if ($minion->getPosition() < $this->getPosition()) {
+                continue;
+            }
+
+            $minion->position++;
+        }
     }
 
     /**
