@@ -19,17 +19,10 @@ class AuraOther extends CardPhase
         $all_minions = $minion->getOwner()->getAllMinions($minion);
 
         foreach ($all_minions as $single_minion) {
-            // Clear out old auras.
-//            $single_minion->setAuras([]);
-
             if (!array_get($single_minion->getTrigger(), 'aura')) {
                 continue;
             }
 
-            // todo I think I need to queue only auras and then each aura should know how to interact with it's targets.
-            // todo or i could have each aura apply auras and then at the end recalculate for each card.
-            // todo or i could have each aura apply to the 'type' and then figure out the overlap and what stat changes need to happen and apply at one time.
-            // Add card to queue to have aura calculations applied
             $tmp_aura          = App('AuraOther');
             $tmp_aura->card    = $single_minion;
             $tmp_aura->targets = $targets;

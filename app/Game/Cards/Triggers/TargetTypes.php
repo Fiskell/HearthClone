@@ -20,4 +20,5 @@ class TargetTypes
     public static $FRIENDLY_HERO                    = 'friendly_hero';
     public static $OPPONENT_HERO                    = 'opponent_hero';
     public static $OPPONENT_WEAPON                  = 'opponent_weapon';
+    public static $ADJACENT_MINIONS                 = 'adjacent_minions';
 }

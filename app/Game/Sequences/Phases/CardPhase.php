@@ -143,6 +143,21 @@ abstract class CardPhase extends AbstractPhase
                     }
                 }
                 break;
+            case TargetTypes::$ADJACENT_MINIONS:
+                /** @var Minion $trigger_card */
+                $adjacent_positions = [
+                    ($trigger_card->getPosition() - 1),
+                    ($trigger_card->getPosition() + 1)
+                ];
+
+                $targets = [];
+                foreach ($player_minions as $minion) {
+                    if (in_array($minion->getPosition(), $adjacent_positions)) {
+                        $targets[] = $minion;
+                    }
+                }
+
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }

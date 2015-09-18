@@ -105,6 +105,17 @@
             }
         }
     },
+    "Flametongue Totem": {
+        "aura": {
+            "targets": {
+                "type": "adjacent_minions"
+            },
+            "enchantment": {
+                "attack": 2,
+                "name": "Flametongue"
+            }
+        }
+    },
     "Frostwolf Warlord": {
         "battlecry": {
             "enchantment": {

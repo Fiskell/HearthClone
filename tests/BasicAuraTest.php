@@ -4,8 +4,17 @@ use App\Models\HearthCloneTest;
 
 class BasicAuraTest extends HearthCloneTest
 {
+    /* Flametongue Totem */
+    public function test_flametongue_totem_gives_adjacent_minions_two_attack() {
+        $wisp1 = $this->playWispAtPosition(1, 1);
+        $wisp2 = $this->playWispAtPosition(1, 2);
+        $this->playCard('Flametongue Totem', 1, [], false, null, 2);
+        $this->assertEquals(3, $wisp1->getAttack());
+        $this->assertEquals(3, $wisp2->getAttack());
+    }
+
     /* Grimscale Oracle */
-    public function test_grimscale_give_friendly_and_opponent_murloc_1_attack() {
+    public function test_grimscale_give_friendly_and_opponent_murloc_one_attack() {
         $bluegill_warrior1 = $this->playCard('Bluegill Warrior', 1);
         $bluegill_warrior2 = $this->playCard('Bluegill Warrior', 2);
         $wisp = $this->playCard('Wisp', 1);
