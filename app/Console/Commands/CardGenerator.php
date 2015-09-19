@@ -185,10 +185,24 @@ class CardGenerator extends Command
         return $this->ask("What action does your card have?\n" . $available_action_string);
     }
 
+    /**
+     * This function is pretty useless.
+     *
+     * @param $action
+     * @return string
+     * @throws Exception
+     */
     private function requestActionValue($action) {
         return $this->getActionValuePrompt($action);
     }
 
+    /**
+     * Ask for input about the action value.
+     *
+     * @param $action
+     * @return string
+     * @throws Exception
+     */
     private function getActionValuePrompt($action) {
         switch ($action) {
             case "discard":
@@ -211,6 +225,14 @@ class CardGenerator extends Command
         return $this->ask($prompt);
     }
 
+    /**
+     * Parse action value.
+     *
+     * @param $action
+     * @param $action_value
+     * @return array|bool|int
+     * @throws Exception
+     */
     private function buildActionArray($action, $action_value) {
         $action_array = [];
         switch ($action) {
@@ -258,6 +280,12 @@ class CardGenerator extends Command
         return $action_array;
     }
 
+    /**
+     * Verify that the specified card is actually a card.
+     *
+     * @param Card $card
+     * @throws Exception
+     */
     private function checkCardDoesNotExist(Card $card) {
         $filename = $this->getCardFilename($card);
         $json     = @file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
@@ -267,6 +295,12 @@ class CardGenerator extends Command
         }
     }
 
+    /**
+     * Return the filename for the specified card.
+     *
+     * @param Card $card
+     * @return string
+     */
     private function getCardFilename(Card $card) {
         $set           = $card->getSet();
         $set_file_name = str_replace(' ', '_', $set);
@@ -292,6 +326,8 @@ class CardGenerator extends Command
     }
 
     /**
+     * Return a formated json for the trigger selected.
+     *
      * @param $card_name
      * @param $trigger
      * @return array
