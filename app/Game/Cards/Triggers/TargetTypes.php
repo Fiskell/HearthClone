@@ -21,4 +21,5 @@ class TargetTypes
     public static $OPPONENT_HERO                    = 'opponent_hero';
     public static $OPPONENT_WEAPON                  = 'opponent_weapon';
     public static $ADJACENT_MINIONS                 = 'adjacent_minions';
+    public static $SELF                             = 'self';
 }

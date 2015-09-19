@@ -154,6 +154,16 @@
             }
         }
     },
+    "Gurubashi Berserker": {
+        "on_damage": {
+            "targets": {
+                "type": "self"
+            },
+            "enchantment": {
+                "attack": 3
+            }
+        }
+    },
     "Houndmaster": {
         "battlecry": {
             "targets": {

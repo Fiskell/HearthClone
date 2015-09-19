@@ -15,6 +15,9 @@ class SubCardPhase extends CardPhase
     public function setPhaseName($phase_name) {
         $this->phase_name = $phase_name;
     }
+    public function setCard($card) {
+        $this->card = $card;
+    }
 
     function queue(Minion $minion, array $targets = []) {
         $this->card    = $minion;

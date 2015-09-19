@@ -27,7 +27,6 @@ abstract class CardPhase extends AbstractPhase
     public function resolve() {
 
         $trigger = array_get($this->card->getTrigger(), $this->phase_name);
-
         if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
             $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.' . ($this->card->getChooseOption() - 1));
         }
@@ -163,6 +162,9 @@ abstract class CardPhase extends AbstractPhase
                     }
                 }
 
+                break;
+            case TargetTypes::$SELF:
+                $targets = [$trigger_card];
                 break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
@@ -380,6 +382,27 @@ abstract class CardPhase extends AbstractPhase
 
             $targets = $this->getTargets($this->card, $target_type);
         }
+    }
+
+    /**
+     * @param Minion $card
+     */
+    public function setCard($card) {
+        $this->card = $card;
+    }
+
+    /**
+     * @param mixed $targets
+     */
+    public function setTargets($targets) {
+        $this->targets = $targets;
+    }
+
+    /**
+     * @param mixed $phase_name
+     */
+    public function setPhaseName($phase_name) {
+        $this->phase_name = $phase_name;
     }
 
 }

@@ -15,4 +15,5 @@ class TriggerTypes
     public static $CHOOSE_ONE         = 'choose_one';
     public static $OVERLOAD           = 'overload';
     public static $SPELLPOWER         = 'spellpower';
+    public static $ON_DAMAGE          = 'on_damage';
 }

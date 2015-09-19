@@ -2,7 +2,10 @@
 
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
+use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Player;
+use App\Game\Sequences\Phases\CardPhase;
+use App\Game\Sequences\Phases\SubCardPhase;
 
 class Minion extends Card
 {
@@ -97,6 +100,17 @@ class Minion extends Card
      * @param $damage
      */
     public function takeDamage($damage) {
+        if($this->hasTrigger(TriggerTypes::$ON_DAMAGE)) {
+            // TODO check if this is where this happens
+
+            /** @var SubCardPhase $trigger */
+            $trigger = App('SubCardPhase');
+            $trigger->setCard($this);
+
+            $triggerQueue = App('TriggerQueue');
+            $triggerQueue->queue($trigger);
+            $triggerQueue->resolveQueue();
+        }
         $this->setHealth($this->getHealth() - $damage);
     }
 
@@ -354,6 +368,16 @@ class Minion extends Card
      */
     public function getPosition() {
         return $this->position;
+    }
+
+    /**
+     * Returns bool based on if minion has specified trigger.
+     *
+     * @param $trigger_type
+     * @return bool
+     */
+    public function hasTrigger($trigger_type) {
+        return !!array_get($this->getTrigger(), $trigger_type);
     }
 
 }
