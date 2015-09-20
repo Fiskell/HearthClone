@@ -18,6 +18,9 @@ class TurnSequence extends AbstractSequence
     public function resolve(Player $player) {
         $this->player = $player;
 
+        App('EndOfTurn')->queueAllForPlayer($player);
+        App('TriggerQueue')->resolveQueue();
+
         $this->updateBoardStates();
 
         $this->resetTurnCounters();

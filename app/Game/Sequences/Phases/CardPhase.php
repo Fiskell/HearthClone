@@ -167,6 +167,9 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$SELF:
                 $targets = [$trigger_card];
                 break;
+            case TargetTypes::$ALL_FRIENDLY_MINIONS:
+                $targets = $player_minions;
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }

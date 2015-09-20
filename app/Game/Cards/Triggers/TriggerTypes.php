@@ -16,4 +16,5 @@ class TriggerTypes
     public static $OVERLOAD           = 'overload';
     public static $SPELLPOWER         = 'spellpower';
     public static $ON_DAMAGE          = 'on_damage';
+    public static $END_OF_TURN        = 'end_of_turn';
 }

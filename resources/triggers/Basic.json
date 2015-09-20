@@ -164,6 +164,16 @@
             }
         }
     },
+    "Healing Totem": {
+        "end_of_turn": {
+            "targets": {
+                "type": "all_friendly_minions"
+            },
+            "enchantment": {
+                "health": 1
+            }
+        }
+    },
     "Houndmaster": {
         "battlecry": {
             "targets": {

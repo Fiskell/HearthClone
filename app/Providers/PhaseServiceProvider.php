@@ -5,6 +5,7 @@ use App\Game\Sequences\Phases\AuraHealth;
 use App\Game\Sequences\Phases\AuraOther;
 use App\Game\Sequences\Phases\Battlecry;
 use App\Game\Sequences\Phases\DeathProcessing;
+use App\Game\Sequences\Phases\EndOfTurn;
 use App\Game\Sequences\Phases\SpellText;
 use App\Game\Sequences\Phases\SubCardPhase;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +44,10 @@ class PhaseServiceProvider extends ServiceProvider
 
         $this->app->bind('AuraHealth', function() {
             return new AuraHealth();
+        });
+
+        $this->app->bind('EndOfTurn', function() {
+            return new EndOfTurn();
         });
     }
 }
