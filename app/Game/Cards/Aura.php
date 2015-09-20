@@ -17,6 +17,6 @@ class Aura extends Enchantment
         $this->source_card     = $card;
         $this->name            = array_get($aura, 'aura.name', 'No Name');
         $this->modified_attack = array_get($aura, 'aura.enchantment.attack', 0);
-        $this->modified_health = array_get($aura, 'aura.enchantment.health', 0);
+        $this->modified_health = array_get($aura, 'aura.enchantment.max_health', 0);
     }
 }

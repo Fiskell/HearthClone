@@ -186,7 +186,7 @@
                     "Taunt"
                 ],
                 "attack": 2,
-                "health": 2
+                "max_health": 2
             }
         }
     },
@@ -271,7 +271,7 @@
             },
             "enchantment": {
                 "attack": 1,
-                "health": 1
+                "max_health": 1
             }
         }
     },
@@ -293,7 +293,7 @@
             },
             "enchantment": {
                 "attack": 1,
-                "health": 1,
+                "max_health": 1,
                 "name": "Might of Stormwind"
             }
         }

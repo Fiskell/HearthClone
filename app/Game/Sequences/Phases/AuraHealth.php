@@ -21,7 +21,7 @@ class AuraHealth extends CardPhase
 
         foreach ($all_minions as $single_minion) {
 
-            if (!array_get($single_minion->getTrigger(), 'aura.enchantment.health')) {
+            if (!array_get($single_minion->getTrigger(), 'aura.enchantment.max_health')) {
                 continue;
             }
 
@@ -43,7 +43,6 @@ class AuraHealth extends CardPhase
 
         /** @var Minion $target */
         foreach ($targets as $target) {
-            // todo clean up
             $target->setMaxHealth($target->getMaxHealth() + $aura->getModifiedHealth());
         }
     }

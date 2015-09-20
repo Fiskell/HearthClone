@@ -259,8 +259,11 @@ abstract class CardPhase extends AbstractPhase
             $delta_attack = array_get($enchantment, 'attack', 0);
             $target->setAttack($target->getAttack() + $delta_attack);
 
+            $delta_max_health = array_get($enchantment, 'max_health', 0);
+            $target->setMaxHealth($target->getMaxHealth() + $delta_max_health);
+
             $delta_health = array_get($enchantment, 'health', 0);
-            $target->setMaxHealth($target->getMaxHealth() + $delta_health);
+            $target->setHealth($target->getHealth() + $delta_health);
         }
 
         $attack_by_count = array_get($enchantment, 'attack_by_count');
