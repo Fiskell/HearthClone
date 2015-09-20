@@ -106,6 +106,7 @@ class Minion extends Card
             /** @var SubCardPhase $trigger */
             $trigger = App('SubCardPhase');
             $trigger->setCard($this);
+            $trigger->setPhaseName('on_damage');
 
             $triggerQueue = App('TriggerQueue');
             $triggerQueue->queue($trigger);

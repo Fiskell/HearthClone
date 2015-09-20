@@ -18,5 +18,7 @@ class BasicMiscMinionTest extends HearthCloneTest
         $gurubashi_berserker = $this->playCard('Gurubashi Berserker', 1);
         $gurubashi_berserker->takeDamage(1);
         $this->assertEquals(5, $gurubashi_berserker->getAttack());
+        $gurubashi_berserker->takeDamage(1);
+        $this->assertEquals(8, $gurubashi_berserker->getAttack());
     }
 }
