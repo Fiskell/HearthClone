@@ -24,10 +24,9 @@ class BasicMiscMinionTest extends HearthCloneTest
 
     /* Healing Totem */
     public function test_healing_totem_heals_damaged_minion_when_pass_turn() {
-        $chillwind_yet = $this->playCardStrict('Chillwind Yeti', 1);
-        $this->playCard('Healing Totem', 1);
+        $chillwind_yet = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Healing Totem', 1, [], true);
         $chillwind_yet->takeDamage(2);
-        dd($chillwind_yet);
         $this->assertEquals(3, $chillwind_yet->getHealth());
         $chillwind_yet->getOwner()->passTurn();
         $this->assertEquals(4, $chillwind_yet->getHealth());

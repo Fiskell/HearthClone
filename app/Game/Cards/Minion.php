@@ -92,7 +92,6 @@ class Minion extends Card
      */
     public function setMaxHealth($new_health) {
         $health_diff      = ($new_health - $this->max_health);
-        dd($this->health);
         $this->max_health = $new_health;
         $this->setHealth($this->getHealth() + $health_diff);
 
