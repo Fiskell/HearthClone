@@ -45,7 +45,8 @@ class PlayMinionSequence extends SummonMinionSequence
         $this->resolveOnPlayPhase($card, $targets);
 
         /* Late On Summon Phase */
-        // todo
+        App('LateOnSummon')->queue($card, $targets);
+        $trigger_queue->resolveQueue();
 
         /* Initial Aura Queue */
         App('AuraHealth')->queueAllForPlayer($card->getOwner());

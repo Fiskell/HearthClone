@@ -49,4 +49,12 @@ class BasicMiscMinionTest extends HearthCloneTest
         $chillwind_yeti->heal(2);
         $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
     }
+
+    /* Starving Buzzard */
+    public function test_starving_buzzard_draws_card_when_beast_is_played() {
+        $this->playCard('Starving Buzzard', 1);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $this->playCard('Timber Wolf', 1);
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+    }
 }

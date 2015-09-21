@@ -283,6 +283,14 @@
             }
         }
     },
+    "Starving Buzzard": {
+        "late_on_summon_phase": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "draw": 1
+        }
+    },
     "Stormpike Commando": {
         "battlecry": {
             "targets": {

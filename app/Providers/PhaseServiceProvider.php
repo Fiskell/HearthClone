@@ -6,6 +6,7 @@ use App\Game\Sequences\Phases\AuraOther;
 use App\Game\Sequences\Phases\Battlecry;
 use App\Game\Sequences\Phases\DeathProcessing;
 use App\Game\Sequences\Phases\EndOfTurn;
+use App\Game\Sequences\Phases\LateOnSummon;
 use App\Game\Sequences\Phases\SpellText;
 use App\Game\Sequences\Phases\SubCardPhase;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,10 @@ class PhaseServiceProvider extends ServiceProvider
     public function register() {
         $this->app->bind('AfterSummon', function() {
             return new AfterSummon();
+        });
+
+        $this->app->bind('LateOnSummon', function() {
+            return new LateOnSummon();
         });
 
         $this->app->bind('Battlecry', function() {
