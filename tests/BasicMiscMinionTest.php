@@ -41,4 +41,12 @@ class BasicMiscMinionTest extends HearthCloneTest
         $chillwind_yeti->heal(2);
         $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
     }
+
+    public function test_northshire_cleric_will_not_draw_card_when_minion_healed_is_at_full_health() {
+        $this->playCard('Northshire Cleric', 1);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $chillwind_yeti->heal(2);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+    }
 }

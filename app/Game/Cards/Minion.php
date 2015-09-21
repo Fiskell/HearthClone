@@ -311,6 +311,10 @@ class Minion extends Card
                 continue;
             }
 
+            if($this->getHealth() == $this->getMaxHealth()) {
+                continue;
+            }
+
             /** @var SubCardPhase $phase */
             $phase = App('SubCardPhase');
             $phase->setCard($minion);
