@@ -304,6 +304,23 @@ class Minion extends Card
      * @param $heal_value
      */
     public function heal($heal_value) {
+        // todo this is stupid, make it a phase
+        $player_minions = $this->getOwner()->getMinionsInPlay();
+        foreach($player_minions as $minion) {
+            if(!$minion->hasTrigger(TriggerTypes::$ON_MINION_HEALED)) {
+                continue;
+            }
+
+            /** @var SubCardPhase $phase */
+            $phase = App('SubCardPhase');
+            $phase->setCard($minion);
+            $phase->setPhaseName(TriggerTypes::$ON_MINION_HEALED);
+
+            $triggerQueue = App('TriggerQueue');
+            $triggerQueue->queue($phase);
+            $triggerQueue->resolveQueue();
+        }
+
         $this->setHealth($this->getHealth() + $heal_value);
     }
 

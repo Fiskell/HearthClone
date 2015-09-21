@@ -17,4 +17,5 @@ class TriggerTypes
     public static $SPELLPOWER         = 'spellpower';
     public static $ON_DAMAGE          = 'on_damage';
     public static $END_OF_TURN        = 'end_of_turn';
+    public static $ON_MINION_HEALED   = 'on_minion_healed';
 }

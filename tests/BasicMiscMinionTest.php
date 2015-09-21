@@ -31,4 +31,14 @@ class BasicMiscMinionTest extends HearthCloneTest
         $chillwind_yet->getOwner()->passTurn();
         $this->assertEquals(4, $chillwind_yet->getHealth());
     }
+
+    /* Northshire Cleric */
+    public function test_northshire_cleric_will_draw_card_when_damaged_minion_is_healed() {
+        $this->playCard('Northshire Cleric', 1);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(3);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $chillwind_yeti->heal(2);
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+    }
 }

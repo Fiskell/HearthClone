@@ -233,6 +233,14 @@
             }
         }
     },
+    "Northshire Cleric": {
+        "on_minion_healed": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "draw": 1
+        }
+    },
     "Novice Engineer": {
         "battlecry": {
             "targets": {
