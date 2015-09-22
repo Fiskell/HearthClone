@@ -1,5 +1,6 @@
 <?php namespace tests;
 
+use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
 
 class BasicAuraTest extends HearthCloneTest
@@ -86,6 +87,15 @@ class BasicAuraTest extends HearthCloneTest
         $wisp = $this->playCard('Wisp', 1);
         $this->playCard('Timber Wolf', 1);
         $this->assertEquals(1, $wisp->getAttack());
+    }
+
+    /* Tundra Rhino */
+    public function test_tundra_rhino_gives_other_beasts_charge() {
+        $this->playCard('Tundra Rhino', 1);
+        $wisp = $this->playCard('Wisp', 1);
+        $timber_wolf = $this->playCard('Timber Wolf', 1);
+        $this->assertFalse($wisp->hasMechanic(Mechanics::$CHARGE));
+        $this->assertTrue($timber_wolf->hasMechanic(Mechanics::$CHARGE));
     }
 
 }

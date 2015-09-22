@@ -355,6 +355,10 @@ class Minion extends Card
 
         $this->auras[$aura->getSourceCard()->getId()] = $aura;
         $this->setAttack($this->getAttack() + $aura->getModifiedAttack());
+
+        // todo this won't work for non-charge mechanics
+        $modified_mechanics = $aura->getModifiedMechanics();
+        $this->mechanics = array_merge($this->mechanics, $modified_mechanics);
     }
 
     /**

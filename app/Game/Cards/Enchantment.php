@@ -15,6 +15,7 @@ class Enchantment
     protected $source_card;
     protected $modified_attack;
     protected $modified_health;
+    protected $modified_mechanics;
 
     /**
      * @return mixed
@@ -49,5 +50,12 @@ class Enchantment
      */
     public function getModifiedHealth() {
         return $this->modified_health;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModifiedMechanics() {
+        return $this->modified_mechanics;
     }
 }

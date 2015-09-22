@@ -338,6 +338,20 @@
             }
         }
     },
+    "Tundra Rhino": {
+        "aura": {
+            "targets": {
+                "type": "other_friendly_minions_with_race",
+                "race": "Beast"
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Charge"
+                ],
+                "name": "Charge"
+            }
+        }
+    },
     "Voodoo Doctor": {
         "battlecry": {
             "targets": {
