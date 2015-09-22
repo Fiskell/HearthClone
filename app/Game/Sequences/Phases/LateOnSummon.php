@@ -20,6 +20,11 @@ class LateOnSummon extends CardPhase
                 continue;
             }
 
+            $summon_race = array_get($tmp_minion->getTrigger(), TriggerTypes::$LATE_ON_SUMMON_PHASE . '.race');
+            if(!is_null($summon_race) && $minion->getRace() != $summon_race) {
+                return;
+            }
+
             $tmp_trigger          = App('LateOnSummon');
             $tmp_trigger->card    = $tmp_minion;
             App('TriggerQueue')->queue($tmp_trigger);

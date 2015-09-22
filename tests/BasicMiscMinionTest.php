@@ -57,4 +57,11 @@ class BasicMiscMinionTest extends HearthCloneTest
         $this->playCard('Timber Wolf', 1);
         $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
     }
+
+    public function test_starving_buzzard_does_not_draw_card_when_non_beast_is_played() {
+        $this->playCard('Starving Buzzard', 1);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+        $this->playCard('Wisp', 1);
+        $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+    }
 }

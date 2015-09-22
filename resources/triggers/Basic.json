@@ -285,6 +285,7 @@
     },
     "Starving Buzzard": {
         "late_on_summon_phase": {
+            "race": "Beast",
             "targets": {
                 "type": "friendly_player"
             },
