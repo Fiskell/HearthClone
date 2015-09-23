@@ -53,6 +53,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertFalse($knife_juggler->isAlive());
     }
 
+    /* Wild Growth */
+    public function test_playing_wild_growth_adds_one_mana_crystal() {
+        $this->playCardStrict('Wild Growth', 1, 2, []);
+        $this->assertEquals(3, $this->game->getPlayer1()->getManaCrystalCount());
+    }
+
     /* Windfury */
     public function test_playing_spell_windfury_gives_a_minion_windfury() {
         $wisp = $this->playCard('Wisp', 1);

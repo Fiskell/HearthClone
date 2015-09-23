@@ -33,6 +33,8 @@ class CardGenerator extends Command
         "destroy",
         "discard",
         "draw",
+        "destroy_mana_crystals",
+        "create_mana_crystals",
         "enchantment",
         "silence",
         "spell",
@@ -211,6 +213,12 @@ class CardGenerator extends Command
             case "draw":
                 $prompt = "The number of cards to draw";
                 break;
+            case "destroy_mana_crystals":
+                $prompt = "The number of mana crystals to destroy";
+                break;
+            case "create_mana_crystals":
+                $prompt = "The number of mana crystals to create";
+                break;
             case "spell":
             case "enchantment":
                 $prompt = $action . " format is - Attack:Health:Taunt,Silence,Charge,...";
@@ -241,6 +249,8 @@ class CardGenerator extends Command
                 return true;
             case "discard":
             case "draw":
+            case "destroy_mana_crystals":
+            case "create_mana_crystals":
                 return (int)$action_value;
             case "spell":
             case "enchantment":

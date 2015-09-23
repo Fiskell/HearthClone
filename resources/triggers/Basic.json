@@ -376,6 +376,14 @@
             }
         }
     },
+    "Wild Growth": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "friendly_player"
+            },
+            "create_mana_crystals": 1
+        }
+    },
     "Windfury": {
         "spell_text_phase": {
             "targets": {

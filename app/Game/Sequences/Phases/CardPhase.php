@@ -74,6 +74,13 @@ abstract class CardPhase extends AbstractPhase
 
         /* Summon */
         $this->resolveSummonTrigger($trigger);
+
+        /* Modify Mana Crystals */
+        $create_mana_crystals = array_get($trigger, 'create_mana_crystals');
+        if($create_mana_crystals) {
+            $player = $this->card->getOwner();
+            $player->setManaCrystalCount($player->getManaCrystalCount() + $create_mana_crystals);
+        }
     }
 
     /**
