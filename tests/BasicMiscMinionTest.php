@@ -9,6 +9,7 @@
 namespace tests;
 
 
+use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
 
 class BasicMiscMinionTest extends HearthCloneTest
@@ -63,5 +64,47 @@ class BasicMiscMinionTest extends HearthCloneTest
         $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
         $this->playCard('Wisp', 1);
         $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
+    }
+
+    /* Water Elemental */
+    public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
+        $water_elemental = $this->playCard('Water Elemental', 1);
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', 2);
+
+        $water_elemental->attack($chillwind_yeti);
+
+        $is_frozen = $chillwind_yeti->isFrozen();
+        $this->assertTrue($is_frozen);
+    }
+
+    public function test_chillwind_yeti_is_frozen_when_attacking_water_elemental() {
+        $water_elemental = $this->playCard('Water Elemental', 1);
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', 2);
+
+        $chillwind_yeti->attack($water_elemental);
+
+        $is_frozen = $chillwind_yeti->isFrozen();
+        $this->assertTrue($is_frozen);
+    }
+
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_chillwind_yeti_can_not_attack_when_frozen() {
+        $water_elemental = $this->playCard('Water Elemental', $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', $this->getDefendingPlayerId());
+
+        $water_elemental->attack($chillwind_yeti);
+        $this->game->getActivePlayer()->passTurn();
+        $chillwind_yeti->attack($water_elemental);
+    }
+
+    public function test_chillwind_yeti_is_thawed_after_passing_turn() {
+        $water_elemental = $this->playCard('Water Elemental', $this->getActivePlayerId());
+        $chillwind_yeti  = $this->playCard('Chillwind Yeti', $this->getDefendingPlayerId());
+
+        $water_elemental->attack($chillwind_yeti);
+        $this->game->getActivePlayer()->passTurn();
+        $this->assertTrue($chillwind_yeti->isFrozen());
+        $this->game->getActivePlayer()->passTurn();
+        $this->assertTrue(!$chillwind_yeti->isFrozen());
     }
 }
