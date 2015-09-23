@@ -73,6 +73,12 @@ class BasicMiscMinionTest extends HearthCloneTest
         $this->assertTrue($wisp->hasMechanic(Mechanics::$CHARGE));
     }
 
+    public function test_warsong_commander_does_not_give_chillwind_yeti_charge_when_summoned() {
+        $this->playCard('Warsong Commander', 1);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->assertFalse($chillwind_yeti->hasMechanic(Mechanics::$CHARGE));
+    }
+
     /* Water Elemental */
     public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
         $water_elemental = $this->playCard('Water Elemental', 1);

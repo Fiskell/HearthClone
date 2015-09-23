@@ -8,6 +8,7 @@
 
 namespace App\Game\Sequences\Phases;
 
+use App\Exceptions\DumbassDeveloperException;
 use App\Game\Cards\Minion;
 use App\Models\TriggerQueue;
 
@@ -33,6 +34,23 @@ class AfterSummon extends CardPhase
             $trigger = array_get($tmp_minion->getTrigger(), $this->phase_name);
             if (is_null($trigger)) {
                 continue;
+            }
+
+            $trigger_cost      = array_get($trigger, 'cost');
+            $trigger_operation = array_get($trigger, 'operation');
+            if ($trigger_cost && $trigger_operation) {
+                // todo not all statements implemented
+                switch ($trigger_operation) {
+                    case "<=":
+                        $valid_cost = $minion->getCost() <= $trigger_cost;
+                        break;
+                    default:
+                        throw new DumbassDeveloperException('Trigger cost operation ' . $trigger_operation . ' not implemented for after summon phase.');
+                }
+
+                if (!$valid_cost) {
+                    return;
+                }
             }
 
             $tmp_trigger          = new AfterSummon();
