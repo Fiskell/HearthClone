@@ -362,6 +362,20 @@
             }
         }
     },
+    "Warsong Commander": {
+        "after_summon_phase": {
+            "cost": "3",
+            "operation": "<=",
+            "targets": {
+                "type": "provided_minion"
+            },
+            "enchantment": {
+                "mechanics": [
+                    "Charge"
+                ]
+            }
+        }
+    },
     "Windfury": {
         "spell_text_phase": {
             "targets": {

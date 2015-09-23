@@ -37,7 +37,7 @@ class AfterSummon extends CardPhase
 
             $tmp_trigger          = new AfterSummon();
             $tmp_trigger->card    = $tmp_minion;
-            $tmp_trigger->targets = $targets;
+            $tmp_trigger->targets = [$minion];
 
             /** @var TriggerQueue $trigger_queue */
             $trigger_queue = app('TriggerQueue');

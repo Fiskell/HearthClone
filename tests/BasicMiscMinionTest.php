@@ -66,6 +66,13 @@ class BasicMiscMinionTest extends HearthCloneTest
         $this->assertEquals(0, $this->game->getPlayer1()->getHandSize());
     }
 
+    /* Warsong Commander */
+    public function test_warsong_commander_gives_wisp_charge_when_summoned() {
+        $this->playCard('Warsong Commander', 1);
+        $wisp = $this->playCard('Wisp', 1);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$CHARGE));
+    }
+
     /* Water Elemental */
     public function test_chillwind_yeti_is_frozen_when_attacked_by_water_elemental() {
         $water_elemental = $this->playCard('Water Elemental', 1);
