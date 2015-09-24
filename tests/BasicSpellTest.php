@@ -65,6 +65,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Assassinate', 2, [$this->game->getPlayer1()->getHero()]);
     }
 
+    /* Backstab */
+    public function test_backstab_deals_two_damage_to_an_undamaged_minion() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Backstab', 2, [$chillwind_yeti]);
+        $this->assertEquals(3, $chillwind_yeti->getHealth());
+    }
+
 
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {

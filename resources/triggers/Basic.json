@@ -60,6 +60,16 @@
             "destroy": true
         }
     },
+    "Backstab": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "undamaged_provided_minion"
+            },
+            "spell": {
+                "health": -2
+            }
+        }
+    },
     "Dalaran Mage": {
         "spellpower": 1
     },

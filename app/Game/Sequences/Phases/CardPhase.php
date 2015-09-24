@@ -9,6 +9,7 @@ use App\Game\Cards\Triggers\TargetTypes;
 use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Cards\Weapon;
 use App\Game\Player;
+use Mockery\CountValidator\Exception;
 
 abstract class CardPhase extends AbstractPhase
 {
@@ -180,6 +181,15 @@ abstract class CardPhase extends AbstractPhase
                 break;
             case TargetTypes::$OPPONENT_WEAPON:
                 $targets = [$opponent->getHero()->getWeapon()];
+                break;
+            case TargetTypes::$UNDAMAGED_PROVIDED_MINION:
+                /** @var Minion[] $targets */
+                $targets = $this->targets;
+                foreach($targets as $target) {
+                    if($target->getHealth() < $target->getMaxHealth()) {
+                        throw new InvalidTargetException('Target must be undamaged');
+                    }
+                }
                 break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
