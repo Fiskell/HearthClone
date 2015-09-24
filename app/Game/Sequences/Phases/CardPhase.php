@@ -7,6 +7,7 @@ use App\Game\Cards\Heroes\AbstractHero;
 use App\Game\Cards\Minion;
 use App\Game\Cards\Triggers\TargetTypes;
 use App\Game\Cards\Triggers\TriggerTypes;
+use App\Game\Cards\Weapon;
 use App\Game\Player;
 
 abstract class CardPhase extends AbstractPhase
@@ -355,8 +356,13 @@ abstract class CardPhase extends AbstractPhase
 
         /** @var AbstractHero $target */
         foreach ($targets as $target) {
-            // todo may need to have other types of things to destroy.
-            $target->destroyWeapon();
+            if($target instanceof AbstractHero) {
+                $target->destroyWeapon();
+            }
+
+            if($target instanceof Minion) {
+                $target->killed();
+            }
         }
     }
 
