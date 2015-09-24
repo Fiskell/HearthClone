@@ -72,6 +72,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(3, $chillwind_yeti->getHealth());
     }
 
+    /** @expectedException App\Exceptions\InvalidTargetException */
+    public function test_backstab_throws_when_targeting_damaged_minion() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(1);
+        $this->playCard('Backstab', 2, [$chillwind_yeti]);
+    }
 
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
