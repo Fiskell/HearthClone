@@ -88,6 +88,17 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(5, $wisp->getHealth());
     }
 
+    /* Bloodlust */
+    public function test_bloodlust_gives_friendly_minions_three_attack() {
+        $wisp1 = $this->playCard('Wisp', 1);
+        $wisp2 = $this->playCard('Wisp', 1);
+        $this->playCard('Bloodlust', 1);
+        $this->assertEquals(4, $wisp1->getAttack());
+        $this->assertEquals(4, $wisp2->getAttack());
+    }
+
+    // TODO test bloodlust wears off at end of turn
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

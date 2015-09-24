@@ -82,6 +82,17 @@
             }
         }
     },
+    "Bloodlust": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "all_friendly_minions"
+            },
+            "spell": {
+                "attack": 3,
+                "name": "Bloodlust"
+            }
+        }
+    },
     "Dalaran Mage": {
         "spellpower": 1
     },
