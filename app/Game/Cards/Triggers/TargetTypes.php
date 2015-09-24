@@ -16,6 +16,7 @@ class TargetTypes
     public static $ALL_OTHER_CHARACTERS             = 'all_other_characters';
     public static $All_OTHER_MINIONS_WITH_RACE      = 'all_other_minions_with_race';
     public static $ALL_OPPONENT_MINIONS             = 'all_opponent_minions';
+    public static $ALL_OPPONENT_CHARACTERS          = 'all_opponent_characters';
     public static $OTHER_FRIENDLY_MINIONS_WITH_RACE = 'other_friendly_minions_with_race';
     public static $OTHER_FRIENDLY_MINIONS           = 'other_friendly_minions';
     public static $FRIENDLY_PLAYER                  = 'friendly_player';
