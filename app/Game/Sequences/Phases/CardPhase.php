@@ -9,7 +9,6 @@ use App\Game\Cards\Triggers\TargetTypes;
 use App\Game\Cards\Triggers\TriggerTypes;
 use App\Game\Cards\Weapon;
 use App\Game\Player;
-use Mockery\CountValidator\Exception;
 
 abstract class CardPhase extends AbstractPhase
 {
@@ -27,12 +26,10 @@ abstract class CardPhase extends AbstractPhase
     }
 
     public function resolve() {
-
         $trigger = array_get($this->card->getTrigger(), $this->phase_name);
         if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
             $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.' . ($this->card->getChooseOption() - 1));
         }
-
 
         if (array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD)) {
             $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
@@ -88,8 +85,10 @@ abstract class CardPhase extends AbstractPhase
     /**
      * @param Card $trigger_card
      * @param $target_type
+     * @param null $target_race
      * @return array
      * @throws DumbassDeveloperException
+     * @throws InvalidTargetException
      */
     protected function getTargets(Card $trigger_card, $target_type, $target_race = null) {
 

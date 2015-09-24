@@ -37,6 +37,10 @@ class CardSets
             $tmp_set_cards = json_decode($tmp_set_cards, true);
 
             foreach ($tmp_set_cards as $tmp_set_card) {
+                if($tmp_set_card['type'] == "Enchantment") {
+                    continue;
+                }
+
                 $tmp_set_card['set']      = $set;
                 $tmp_set_card['set_abbr'] = $set_abbr;
 

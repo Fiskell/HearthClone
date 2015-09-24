@@ -79,6 +79,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Backstab', 2, [$chillwind_yeti]);
     }
 
+    /* Blessing of Kings */
+    public function test_blessing_of_kings_gives_wisp_4_4() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Blessing of Kings', 1, [$wisp]);
+        $this->assertEquals(5, $wisp->getAttack());
+        $this->assertEquals(5, $wisp->getMaxHealth());
+        $this->assertEquals(5, $wisp->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

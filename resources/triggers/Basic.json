@@ -70,6 +70,18 @@
             }
         }
     },
+    "Blessing of Kings": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "enchantment": {
+                "attack": 4,
+                "max_health": 4,
+                "name": "Blessing of Kings"
+            }
+        }
+    },
     "Dalaran Mage": {
         "spellpower": 1
     },
