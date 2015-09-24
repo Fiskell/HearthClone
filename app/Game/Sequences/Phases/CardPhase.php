@@ -403,24 +403,6 @@ abstract class CardPhase extends AbstractPhase
         }
     }
 
-    public function recalculateAura() {
-        $trigger = array_get($this->card->getTrigger(), $this->phase_name);
-
-        if (is_null($trigger)) {
-            throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
-        }
-
-        $targets = [];
-        if (array_get($trigger, 'targets')) {
-            $target_type = array_get($trigger, 'targets.type');
-            if (is_null($target_type)) {
-                throw new DumbassDeveloperException('Missing target type for ' . $this->card->getName());
-            }
-
-            $targets = $this->getTargets($this->card, $target_type);
-        }
-    }
-
     /**
      * @param Minion $card
      */
