@@ -5,3 +5,4 @@ Homestead.json
 .env
 /.idea/
 .idea/workspace.xml
+tests/coverage
