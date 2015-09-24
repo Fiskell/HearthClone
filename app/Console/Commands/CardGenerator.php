@@ -270,6 +270,12 @@ class CardGenerator extends Command
                     $mechanic_parts            = explode(',', $mechanics);
                     $action_array['mechanics'] = $mechanic_parts;
                 }
+
+                if($action == "enchantment") {
+                    if($this->confirm('Does your enchantment have a name?')) {
+                        $action_array['name'] = $this->ask('What is your enchantment name?');
+                    }
+                }
                 break;
             case "summon":
                 $parts       = explode(':', $action_value);
