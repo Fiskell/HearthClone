@@ -93,6 +93,16 @@
             }
         }
     },
+    "Consecration": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "all_opponent_characters"
+            },
+            "spell": {
+                "health": -2
+            }
+        }
+    },
     "Dalaran Mage": {
         "spellpower": 1
     },
@@ -103,6 +113,17 @@
             },
             "spell": {
                 "health": 2
+            }
+        }
+    },
+    "Divine Spirit": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "provided_minion"
+            },
+            "enchantment": {
+                "max_health": "double",
+                "name": "Divine Spirit"
             }
         }
     },

@@ -89,6 +89,7 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Bloodlust */
+    // TODO test bloodlust wears off at end of turn
     public function test_bloodlust_gives_friendly_minions_three_attack() {
         $wisp1 = $this->playCard('Wisp', 1);
         $wisp2 = $this->playCard('Wisp', 1);
@@ -97,7 +98,24 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $wisp2->getAttack());
     }
 
-    // TODO test bloodlust wears off at end of turn
+    /* Consecration */
+    public function test_consecration_deals_two_damage_to_all_enemies() {
+        $wisp = $this->playCard('Wisp', 1);
+        $wisp1 = $this->playCard('Wisp', 2);
+        $chillwind_yei = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Consecration', 1);
+        $this->assertEquals(28, $this->game->getPlayer2()->getHero()->getHealth());
+        $this->assertFalse($wisp1->isAlive());
+        $this->assertEquals(3, $chillwind_yei->getHealth());
+        $this->assertTrue($wisp->isAlive());
+    }
+
+    /* Divine Spirit */
+    public function test_divine_spirit_doubles_targets_health() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Divine Spirit', 1, [$chillwind_yeti]);
+        $this->assertEquals(10, $chillwind_yeti->getHealth());
+    }
 
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {

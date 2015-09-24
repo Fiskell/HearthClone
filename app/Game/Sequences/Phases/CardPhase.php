@@ -190,6 +190,10 @@ abstract class CardPhase extends AbstractPhase
                     }
                 }
                 break;
+            case TargetTypes::$ALL_OPPONENT_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $targets                                         = $opponent_minions;
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
@@ -280,7 +284,13 @@ abstract class CardPhase extends AbstractPhase
             $target->setAttack($target->getAttack() + $delta_attack);
 
             $delta_max_health = array_get($enchantment, 'max_health', 0);
-            $target->setMaxHealth($target->getMaxHealth() + $delta_max_health);
+            if($delta_max_health) {
+                if($delta_max_health == 'double') {
+                    $target->setMaxHealth($target->getMaxHealth() + $target->getMaxHealth());
+                } else {
+                    $target->setMaxHealth($target->getMaxHealth() + $delta_max_health);
+                }
+            }
 
             $delta_health = array_get($enchantment, 'health', 0);
             $target->setHealth($target->getHealth() + $delta_health);
@@ -318,6 +328,7 @@ abstract class CardPhase extends AbstractPhase
             $target->setAttack($target->getAttack() + $delta_attack);
 
             $delta_health = array_get($spell, 'health', 0);
+            var_dump($target->getName());
             $target->setHealth($target->getHealth() + $delta_health);
 
             $full_health = array_get($spell, 'full_health');
