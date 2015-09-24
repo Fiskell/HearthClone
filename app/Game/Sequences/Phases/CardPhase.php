@@ -178,6 +178,9 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$ALL_FRIENDLY_MINIONS:
                 $targets = $player_minions;
                 break;
+            case TargetTypes::$OPPONENT_WEAPON:
+                $targets = [$opponent->getHero()->getWeapon()];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
@@ -346,6 +349,7 @@ abstract class CardPhase extends AbstractPhase
     /**
      * @param $trigger
      * @param $targets
+     * @throws InvalidTargetException
      */
     private function resolveDestroyTrigger($trigger, $targets) {
         $destroy = array_get($trigger, 'destroy');
@@ -354,10 +358,13 @@ abstract class CardPhase extends AbstractPhase
             return;
         }
 
-        /** @var AbstractHero $target */
         foreach ($targets as $target) {
             if($target instanceof AbstractHero) {
-                $target->destroyWeapon();
+                throw new InvalidTargetException('You are not allowed to directly destroy a hero');
+            }
+
+            if($target instanceof Weapon) {
+                $target->getHero()->destroyWeapon();
             }
 
             if($target instanceof Minion) {

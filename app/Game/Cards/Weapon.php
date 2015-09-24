@@ -8,10 +8,15 @@
 
 namespace App\Game\Cards;
 
+use App\Game\Cards\Heroes\AbstractHero;
+
 class Weapon extends Card
 {
     public $attack;
     public $durability;
+
+    /** @var AbstractHero $hero */
+    public $hero;
 
     public function load($name = null) {
         parent::load($name);
@@ -59,6 +64,20 @@ class Weapon extends Card
      */
     public function setName($name) {
         $this->name = $name;
+    }
+
+    /**
+     * @return AbstractHero
+     */
+    public function getHero() {
+        return $this->hero;
+    }
+
+    /**
+     * @param AbstractHero $hero
+     */
+    public function setHero($hero) {
+        $this->hero = $hero;
     }
 
 }

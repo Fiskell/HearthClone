@@ -2,7 +2,7 @@
     "Acidic Swamp Ooze": {
         "battlecry": {
             "targets": {
-                "type": "opponent_hero"
+                "type": "opponent_weapon"
             },
             "destroy": true
         }

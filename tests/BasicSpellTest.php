@@ -60,6 +60,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertFalse($wisp->isAlive());
     }
 
+    /** @expectedException App\Exceptions\InvalidTargetException */
+    public function test_assassinate_throws_when_targeting_hero() {
+        $this->playCard('Assassinate', 2, [$this->game->getPlayer1()->getHero()]);
+    }
+
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);
