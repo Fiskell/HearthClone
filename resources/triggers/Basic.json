@@ -1,486 +1,442 @@
 {
     "Acidic Swamp Ooze": {
-        "battlecry": {
-            "targets": {
-                "type": "opponent_weapon"
-            },
-            "destroy": true
-        }
+        "battlecry": [
+            {
+                "destroy": true,
+                "target_type": "opponent_weapon"
+            }
+        ]
     },
     "Ancestral Healing": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "spell": {
+        "spell_text_phase": [
+            {
+                "buff": "spell",
                 "full_health": true,
                 "mechanics": [
                     "Taunt"
-                ]
+                ],
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Arcane Explosion": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "all_opponent_minions"
-            },
-            "spell": {
-                "health": -1
+        "spell_text_phase": [
+            {
+                "damage": 1,
+                "target_type": "all_opponent_minions"
             }
-        }
+        ]
     },
     "Arcane Intellect": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "draw": 2
-        }
+        "spell_text_phase": [
+            {
+                "draw": 2,
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Arcane Shot": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "spell": {
-                "health": -2
+        "spell_text_phase": [
+            {
+                "damage": 2,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Archmage": {
         "spellpower": 1
     },
     "Assassinate": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "destroy": true
-        }
+        "spell_text_phase": [
+            {
+                "destroy": true,
+                "target_type": "provided_minion"
+            }
+        ]
     },
     "Backstab": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "undamaged_provided_minion"
-            },
-            "spell": {
-                "health": -2
+        "spell_text_phase": [
+            {
+                "damage": 2,
+                "target_type": "undamaged_provided_minion"
             }
-        }
+        ]
     },
     "Blessing of Kings": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "enchantment": {
+        "spell_text_phase": [
+            {
                 "attack": 4,
+                "buff": "enchantment",
+                "buff_name": "Blessing of Kings",
                 "max_health": 4,
-                "name": "Blessing of Kings"
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Bloodlust": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "all_friendly_minions"
-            },
-            "spell": {
+        "spell_text_phase": [
+            {
                 "attack": 3,
-                "name": "Bloodlust"
+                "buff": "spell",
+                "buff_name": "Bloodlust",
+                "target_type": "all_friendly_minions"
             }
-        }
+        ]
     },
     "Consecration": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "all_opponent_characters"
-            },
-            "spell": {
-                "health": -2
+        "spell_text_phase": [
+            {
+                "damage": 2,
+                "target_type": "all_opponent_characters"
             }
-        }
+        ]
     },
     "Dalaran Mage": {
         "spellpower": 1
     },
     "Darkscale Healer": {
-        "battlecry": {
-            "targets": {
-                "type": "all_friendly_characters"
-            },
-            "spell": {
-                "health": 2
+        "battlecry": [
+            {
+                "buff": "spell",
+                "health": 2,
+                "target_type": "all_friendly_characters"
             }
-        }
+        ]
     },
     "Divine Spirit": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "enchantment": {
+        "spell_text_phase": [
+            {
+                "buff": "enchantment",
+                "buff_name": "Divine Spirit",
                 "max_health": "double",
-                "name": "Divine Spirit"
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Dragonling Mechanic": {
-        "battlecry": {
-            "summon": {
-                "name": "Mechanical Dragonling",
-                "quantity": 1
+        "battlecry": [
+            {
+                "summon": {
+                    "name": "Mechanical Dragonling",
+                    "quantity": 1
+                }
             }
-        }
+        ]
     },
     "Dread Infernal": {
-        "battlecry": {
-            "targets": {
-                "type": "all_other_characters"
-            },
-            "spell": {
-                "health": -1
+        "battlecry": [
+            {
+                "damage": 1,
+                "target_type": "all_other_characters"
             }
-        }
+        ]
     },
     "Elven Archer": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "spell": {
-                "health": -1
+        "battlecry": [
+            {
+                "damage": 1,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Fan of Knives": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "all_opponent_minions"
-            },
-            "spell": {
-                "health": -1
-            },
-            "draw": 1
-        }
+        "spell_text_phase": [
+            {
+                "damage": 1,
+                "draw": 1,
+                "target_type": "all_opponent_minions"
+            }
+        ]
     },
     "Fire Elemental": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "spell": {
-                "health": -3
+        "battlecry": [
+            {
+                "damage": 3,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Flametongue Totem": {
-        "aura": {
-            "targets": {
-                "type": "adjacent_minions"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 2,
-                "name": "Flametongue"
+                "buff": "enchantment",
+                "buff_name": "Flametongue",
+                "target_type": "adjacent_minions"
             }
-        }
+        ]
     },
     "Frostwolf Warlord": {
-        "battlecry": {
-            "enchantment": {
+        "battlecry": [
+            {
                 "attack_by_count": "other_friendly_minions",
+                "buff": "enchantment",
                 "health_by_count": "other_friendly_minions"
             }
-        }
+        ]
     },
     "Gnomish Inventor": {
-        "battlecry": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "draw": 1
-        }
+        "battlecry": [
+            {
+                "draw": 1,
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Grimscale Oracle": {
-        "aura": {
-            "targets": {
-                "type": "all_other_minions_with_race",
-                "race": "Murloc"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 1,
-                "name": "Mlarggragllabl!"
+                "buff": "enchantment",
+                "buff_name": "Mlarggragllabl!",
+                "target_race": "Murloc",
+                "target_type": "all_other_minions_with_race"
             }
-        }
+        ]
     },
     "Guardian of Kings": {
-        "battlecry": {
-            "targets": {
-                "type": "friendly_hero"
-            },
-            "spell": {
-                "health": 6
+        "battlecry": [
+            {
+                "buff": "spell",
+                "health": 6,
+                "target_type": "friendly_hero"
             }
-        }
+        ]
     },
     "Gurubashi Berserker": {
-        "on_damage": {
-            "targets": {
-                "type": "self"
-            },
-            "enchantment": {
-                "attack": 3
+        "on_damage": [
+            {
+                "attack": 3,
+                "buff": "enchantment",
+                "target_type": "self"
             }
-        }
+        ]
     },
     "Healing Totem": {
-        "end_of_turn": {
-            "targets": {
-                "type": "all_friendly_minions"
-            },
-            "enchantment": {
-                "health": 1
+        "end_of_turn": [
+            {
+                "buff": "enchantment",
+                "health": 1,
+                "target_type": "all_friendly_minions"
             }
-        }
+        ]
     },
     "Houndmaster": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "race": "beast",
-                "quantity": 1
-            },
-            "enchantment": {
+        "battlecry": [
+            {
+                "attack": 2,
+                "buff": "enchantment",
+                "max_health": 2,
                 "mechanics": [
                     "Taunt"
                 ],
-                "attack": 2,
-                "max_health": 2
+                "target_race": "beast",
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Ironforge Rifleman": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "spell": {
-                "health": -1
+        "battlecry": [
+            {
+                "damage": 1,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Kobold Geomancer": {
         "spellpower": 1
     },
     "Leokk": {
-        "aura": {
-            "targets": {
-                "type": "other_friendly_minions"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 1,
-                "name": "Eye In The Sky"
+                "buff": "enchantment",
+                "buff_name": "Eye In The Sky",
+                "target_type": "other_friendly_minions"
             }
-        }
+        ]
     },
     "Murloc Tidehunter": {
-        "battlecry": {
-            "summon": {
-                "name": "Murloc Scout",
-                "quantity": 1
+        "battlecry": [
+            {
+                "summon": {
+                    "name": "Murloc Scout",
+                    "quantity": 1
+                }
             }
-        }
+        ]
     },
     "Nightblade": {
-        "battlecry": {
-            "targets": {
-                "type": "opponent_hero"
-            },
-            "spell": {
-                "health": -3
+        "battlecry": [
+            {
+                "damage": 3,
+                "target_type": "opponent_hero"
             }
-        }
+        ]
     },
     "Northshire Cleric": {
-        "on_minion_healed": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "draw": 1
-        }
+        "on_minion_healed": [
+            {
+                "draw": 1,
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Novice Engineer": {
-        "battlecry": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "draw": 1
-        }
+        "battlecry": [
+            {
+                "draw": 1,
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Ogre Magi": {
         "spellpower": 1
     },
     "Raid Leader": {
-        "aura": {
-            "targets": {
-                "type": "other_friendly_minions"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 1,
-                "name": "Enhanced"
+                "buff": "enchantment",
+                "buff_name": "Enhanced",
+                "target_type": "other_friendly_minions"
             }
-        }
+        ]
     },
     "Razorfen Hunter": {
-        "battlecry": {
-            "summon": {
-                "name": "Boar",
-                "quantity": 1
+        "battlecry": [
+            {
+                "summon": {
+                    "name": "Boar",
+                    "quantity": 1
+                }
             }
-        }
+        ]
     },
     "Shattered Sun Cleric": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "enchantment": {
+        "battlecry": [
+            {
                 "attack": 1,
-                "max_health": 1
+                "buff": "enchantment",
+                "max_health": 1,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Starving Buzzard": {
-        "late_on_summon_phase": {
-            "race": "Beast",
-            "targets": {
-                "type": "friendly_player"
-            },
-            "draw": 1
-        }
+        "late_on_summon_phase": [
+            {
+                "draw": 1,
+                "race": "Beast",
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Stormpike Commando": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "spell": {
-                "health": -2
+        "battlecry": [
+            {
+                "damage": 2,
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Stormwind Champion": {
-        "aura": {
-            "targets": {
-                "type": "other_friendly_minions"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 1,
+                "buff": "enchantment",
+                "buff_name": "Might of Stormwind",
                 "max_health": 1,
-                "name": "Might of Stormwind"
+                "target_type": "other_friendly_minions"
             }
-        }
+        ]
     },
     "Succubus": {
-        "battlecry": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "discard": {
-                "type": "random",
-                "quantity": 1
+        "battlecry": [
+            {
+                "discard": {
+                    "type": "random",
+                    "quantity": 1
+                },
+                "target_type": "friendly_player"
             }
-        }
+        ]
     },
     "Timber Wolf": {
-        "aura": {
-            "targets": {
-                "type": "other_friendly_minions_with_race",
-                "race": "Beast"
-            },
-            "enchantment": {
+        "aura": [
+            {
                 "attack": 1,
-                "name": "Furious Howl"
+                "buff": "enchantment",
+                "buff_name": "Furious Howl",
+                "target_race": "Beast",
+                "target_type": "other_friendly_minions_with_race"
             }
-        }
+        ]
     },
     "Tundra Rhino": {
-        "aura": {
-            "targets": {
-                "type": "other_friendly_minions_with_race",
-                "race": "Beast"
-            },
-            "enchantment": {
+        "aura": [
+            {
+                "buff": "enchantment",
+                "buff_name": "Charge",
                 "mechanics": [
                     "Charge"
                 ],
-                "name": "Charge"
+                "target_race": "Beast",
+                "target_type": "other_friendly_minions_with_race"
             }
-        }
+        ]
     },
     "Voodoo Doctor": {
-        "battlecry": {
-            "targets": {
-                "type": "friendly_hero"
-            },
-            "spell": {
-                "health": 2
+        "battlecry": [
+            {
+                "buff": "spell",
+                "health": 2,
+                "target_type": "friendly_hero"
             }
-        }
+        ]
     },
     "Warsong Commander": {
-        "after_summon_phase": {
-            "cost": "3",
-            "operation": "<=",
-            "targets": {
-                "type": "provided_minion"
-            },
-            "enchantment": {
+        "after_summon_phase": [
+            {
+                "buff": "enchantment",
+                "cost": "3",
                 "mechanics": [
                     "Charge"
-                ]
+                ],
+                "operation": "<=",
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Wild Growth": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "friendly_player"
-            },
-            "create_mana_crystals": 1
-        }
+        "spell_text_phase": [
+            {
+                "create_mana_crystals": 1,
+                "target_type": "friendly_player"
+            }
+        ]
     },
     "Windfury": {
-        "spell_text_phase": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "enchantment": {
+        "spell_text_phase": [
+            {
+                "buff": "enchantment",
                 "mechanics": [
                     "Windfury"
-                ]
+                ],
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Windspeaker": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "enchantment": {
+        "battlecry": [
+            {
+                "buff": "enchantment",
                 "mechanics": [
                     "Windfury"
-                ]
+                ],
+                "target_type": "provided_minion"
             }
-        }
+        ]
     },
     "Wrath of Air Totem": {
         "spellpower": 1
