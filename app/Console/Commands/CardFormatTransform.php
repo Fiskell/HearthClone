@@ -23,12 +23,12 @@ class CardFormatTransform extends Command
     }
 
     public function handle() {
-        $cards     = json_decode(file_get_contents(base_path() . '/resources/triggers/Basic.json'), true);
+        $cards     = json_decode(file_get_contents(base_path() . '/resources/triggers/Classic.json'), true);
         $new_cards = [];
         foreach ($cards as $card_name => $card) {
             $top_key = array_keys($card)[0];
 
-            if ($top_key == "spellpower") {
+            if ($top_key == "spellpower" || $top_key == "overload") {
                 $new_cards[$card_name] = $card;
                 continue;
             }
