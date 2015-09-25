@@ -156,6 +156,17 @@
             }
         }
     },
+    "Fan of Knives": {
+        "spell_text_phase": {
+            "targets": {
+                "type": "all_opponent_minions"
+            },
+            "spell": {
+                "health": -1
+            },
+            "draw": 1
+        }
+    },
     "Fire Elemental": {
         "battlecry": {
             "targets": {
