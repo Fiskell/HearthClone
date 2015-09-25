@@ -22,8 +22,8 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Arcane Explosion */
     public function test_arcane_explosion_deals_one_damage_to_all_enemy_minions() {
-        $wisp1 = $this->playCard('Wisp', 1);
-        $wisp2 = $this->playCard('Wisp', 1);
+        $wisp1         = $this->playCard('Wisp', 1);
+        $wisp2         = $this->playCard('Wisp', 1);
         $knife_juggler = $this->playCard('Knife Juggler', 1);
 
         $this->playCard('Arcane Explosion', 2);
@@ -100,8 +100,8 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Consecration */
     public function test_consecration_deals_two_damage_to_all_enemies() {
-        $wisp = $this->playCard('Wisp', 1);
-        $wisp1 = $this->playCard('Wisp', 2);
+        $wisp          = $this->playCard('Wisp', 1);
+        $wisp1         = $this->playCard('Wisp', 2);
         $chillwind_yei = $this->playCard('Chillwind Yeti', 2);
         $this->playCard('Consecration', 1);
         $this->assertEquals(28, $this->game->getPlayer2()->getHero()->getHealth());
