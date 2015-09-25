@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\CardNames::class,
         \App\Console\Commands\CardGenerator::class,
         \App\Console\Commands\CardRemove::class,
+        \App\Console\Commands\CardFormatTransform::class,
     ];
 
     /**
