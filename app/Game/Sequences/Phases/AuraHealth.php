@@ -21,7 +21,7 @@ class AuraHealth extends CardPhase
 
         foreach ($all_minions as $single_minion) {
 
-            if (!array_get($single_minion->getTrigger(), 'aura.enchantment.max_health')) {
+            if (!array_get($single_minion->getTrigger(), 'aura.0.max_health')) {
                 continue;
             }
 
@@ -32,9 +32,9 @@ class AuraHealth extends CardPhase
     }
 
     public function resolve() {
-        $aura_trigger = array_get($this->card->getTrigger(), 'aura');
-        $target_type  = array_get($aura_trigger, 'targets.type');
-        $target_race  = array_get($aura_trigger, 'targets.race');
+        $aura_trigger = array_get($this->card->getTrigger(), 'aura.0');
+        $target_type  = array_get($aura_trigger, 'target_type');
+        $target_race  = array_get($aura_trigger, 'target_race');
         $targets      = $this->getTargets($this->card, $target_type, $target_race);
 
         /** @var Aura $aura */

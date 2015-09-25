@@ -24,20 +24,20 @@ class AuraOther extends CardPhase
                 continue;
             }
 
-            $tmp_aura          = App('AuraOther');
-            $tmp_aura->card    = $single_minion;
+            $tmp_aura       = App('AuraOther');
+            $tmp_aura->card = $single_minion;
             App('TriggerQueue')->queue($tmp_aura);
         }
     }
 
     public function resolve() {
-        $aura_trigger = array_get($this->card->getTrigger(), 'aura');
-        $target_type  = array_get($aura_trigger, 'targets.type');
-        $target_race  = array_get($aura_trigger, 'targets.race');
-        $targets      = $this->getTargets($this->card, $target_type, $target_race);
+        $aura_trigger = array_get($this->card->getTrigger(), 'aura.0');
+        $target_type = array_get($aura_trigger, 'target_type');
+        $target_race = array_get($aura_trigger, 'target_race');
+        $targets     = $this->getTargets($this->card, $target_type, $target_race);
 
         /** @var Aura $aura */
-        $aura         = App('Aura');
+        $aura = App('Aura');
         $aura->load($this->card);
 
         /** @var Minion $target */

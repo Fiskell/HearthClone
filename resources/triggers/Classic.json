@@ -34,10 +34,12 @@
   "Keeper of the Grove": {
     "choose_one": [
       {
+        "0": {
+          "target_type": "provided_minion",
+          "damage": 2
+        },
         "1": {
-          "targets": {
-            "type": "provided_minion"
-          },
+          "target_type": "provided_minion",
           "silence": true
         }
       }

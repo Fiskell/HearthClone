@@ -26,12 +26,14 @@ abstract class CardPhase extends AbstractPhase
     }
 
     public function resolve() {
-        $trigger = array_get($this->card->getTrigger(), $this->phase_name);
-        if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
-            $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.' . ($this->card->getChooseOption() - 1));
+        $trigger = array_get($this->card->getTrigger(), $this->phase_name . '.0');
+        if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0')) {
+            $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0.' . ($this->card->getChooseOption() - 1));
         }
 
-        if (array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD)) {
+        $overload_trigger = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
+        if ($overload_trigger) {
+            $trigger = $overload_trigger;
             $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
             $this->card->getOwner()->addLockedManaCrystalCount($overload_value);
         }
@@ -41,12 +43,8 @@ abstract class CardPhase extends AbstractPhase
         }
 
         $targets = [];
-        if (array_get($trigger, 'targets')) {
-            $target_type = array_get($trigger, 'targets.type');
-            if (is_null($target_type)) {
-                throw new DumbassDeveloperException('Missing target type for ' . $this->card->getName());
-            }
-
+        $target_type = array_get($trigger, 'target_type');
+        if ($target_type) {
             $targets = $this->getTargets($this->card, $target_type);
         }
 
@@ -58,6 +56,9 @@ abstract class CardPhase extends AbstractPhase
 
         /* Silence */
         $this->resolveSilenceTrigger($trigger, $targets);
+
+        /* Damage */
+        $this->resolveDamageTrigger($trigger, $targets);
 
         /* Spell */
         $this->resolveSpellTrigger($trigger, $targets);
@@ -91,7 +92,6 @@ abstract class CardPhase extends AbstractPhase
      * @throws InvalidTargetException
      */
     protected function getTargets(Card $trigger_card, $target_type, $target_race = null) {
-
         $player           = $trigger_card->getOwner();
         $player_minions   = $player->getMinionsInPlay();
         $opponent         = $player->getOtherPlayer();
@@ -272,18 +272,17 @@ abstract class CardPhase extends AbstractPhase
      * @throws DumbassDeveloperException
      */
     private function resolveEnchantmentTrigger($trigger, $targets) {
-        $enchantment = array_get($trigger, 'enchantment');
-        if (is_null($enchantment)) {
+        if(array_get($trigger, 'buff') != 'enchantment') {
             return;
         }
 
         foreach ($targets as $target) {
-            $target->setMechanics(array_get($enchantment, 'mechanics', []));
+            $target->setMechanics(array_get($trigger, 'mechanics', []));
 
-            $delta_attack = array_get($enchantment, 'attack', 0);
+            $delta_attack = array_get($trigger, 'attack', 0);
             $target->setAttack($target->getAttack() + $delta_attack);
 
-            $delta_max_health = array_get($enchantment, 'max_health', 0);
+            $delta_max_health = array_get($trigger, 'max_health', 0);
             if($delta_max_health) {
                 if($delta_max_health == 'double') {
                     $target->setMaxHealth($target->getMaxHealth() + $target->getMaxHealth());
@@ -292,17 +291,17 @@ abstract class CardPhase extends AbstractPhase
                 }
             }
 
-            $delta_health = array_get($enchantment, 'health', 0);
+            $delta_health = array_get($trigger, 'health', 0);
             $target->setHealth($target->getHealth() + $delta_health);
         }
 
-        $attack_by_count = array_get($enchantment, 'attack_by_count');
+        $attack_by_count = array_get($trigger, 'attack_by_count');
         if (!is_null($attack_by_count)) {
             $delta_attack = count($this->getTargets($this->card, $attack_by_count));
             $this->card->setAttack($this->card->getAttack() + $delta_attack);
         }
 
-        $health_by_count = array_get($enchantment, 'health_by_count');
+        $health_by_count = array_get($trigger, 'health_by_count');
         if (!is_null($health_by_count)) {
             $delta_health = count($this->getTargets($this->card, $health_by_count));
             $this->card->setMaxHealth($this->card->getHealth() + $delta_health);
@@ -315,35 +314,33 @@ abstract class CardPhase extends AbstractPhase
      * @throws DumbassDeveloperException
      */
     private function resolveSpellTrigger($trigger, $targets) {
-        $spell = array_get($trigger, 'spell');
-
-        if (is_null($spell)) {
+        if (array_get($trigger, 'buff') != 'spell') {
             return;
         }
 
         foreach ($targets as $target) {
-            $target->setMechanics(array_get($spell, 'mechanics', []));
+            $target->setMechanics(array_get($trigger, 'mechanics', []));
 
-            $delta_attack = array_get($spell, 'attack', 0);
+            $delta_attack = array_get($trigger, 'attack', 0);
             $target->setAttack($target->getAttack() + $delta_attack);
 
-            $delta_health = array_get($spell, 'health', 0);
+            $delta_health = array_get($trigger, 'health', 0);
             var_dump($target->getName());
             $target->setHealth($target->getHealth() + $delta_health);
 
-            $full_health = array_get($spell, 'full_health');
+            $full_health = array_get($trigger, 'full_health');
             if ($full_health) {
                 $target->setHealth($target->getMaxHealth());
             }
         }
 
-        $attack_by_count = array_get($spell, 'attack_by_count');
+        $attack_by_count = array_get($trigger, 'attack_by_count');
         if (!is_null($attack_by_count)) {
             $delta_attack = count($this->getTargets($this->card, $attack_by_count));
             $this->card->setAttack($this->card->getAttack() + $delta_attack);
         }
 
-        $health_by_count = array_get($spell, 'health_by_count');
+        $health_by_count = array_get($trigger, 'health_by_count');
         if (!is_null($health_by_count)) {
             $delta_health = count($this->getTargets($this->card, $health_by_count));
             $this->card->setHealth($this->card->getHealth() + $delta_health);
@@ -399,7 +396,7 @@ abstract class CardPhase extends AbstractPhase
      * @throws InvalidTargetException
      */
     private function validateRace($trigger, $targets) {
-        $required_race = array_get($trigger, 'targets.race');
+        $required_race = array_get($trigger, 'target_race');
 
         if (!$required_race) {
             return;
@@ -432,6 +429,24 @@ abstract class CardPhase extends AbstractPhase
      */
     public function setPhaseName($phase_name) {
         $this->phase_name = $phase_name;
+    }
+
+    /**
+     * Damage a given target.
+     *
+     * @param $trigger
+     * @param $targets
+     */
+    private function resolveDamageTrigger($trigger, $targets) {
+        $damage = array_get($trigger, 'damage');
+        if(!$damage) {
+            return;
+        }
+
+        /** @var Minion $target */
+        foreach($targets as $target) {
+            $target->takeDamage($damage);
+        }
     }
 
 }

@@ -31,7 +31,7 @@ class AfterSummon extends CardPhase
                 continue;
             }
 
-            $trigger = array_get($tmp_minion->getTrigger(), $this->phase_name);
+            $trigger = array_get($tmp_minion->getTrigger(), $this->phase_name . '.0');
             if (is_null($trigger)) {
                 continue;
             }

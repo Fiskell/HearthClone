@@ -85,7 +85,7 @@ class PlayMinionSequence extends SummonMinionSequence
         }
 
         /* Choose One */
-        if (array_get($card->getTrigger(), TriggerTypes::$CHOOSE_ONE)) {
+        if (array_get($card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0')) {
             $this->resolveSubPhase($card, $targets, TriggerTypes::$CHOOSE_ONE);
         }
 
