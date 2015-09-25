@@ -1,75 +1,62 @@
 {
-    "Abusive Sergeant": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "spell": {
-                "attack": 2
-            }
+  "Abusive Sergeant": {
+    "battlecry": [
+      {
+        "attack": 2,
+        "buff": "spell",
+        "target_type": "provided_minion"
+      }
+    ]
+  },
+  "Argent Protector": {
+    "battlecry": [
+      {
+        "buff": "enchantment",
+        "mechanics": [
+          "Divine Shield"
+        ],
+        "target_type": "provided_minion"
+      }
+    ]
+  },
+  "Earth Elemental": {
+    "overload": 3
+  },
+  "Earthen Ring Farseer": {
+    "battlecry": [
+      {
+        "buff": "spell",
+        "health": 3,
+        "target_type": "provided_minion"
+      }
+    ]
+  },
+  "Keeper of the Grove": {
+    "choose_one": [
+      {
+        "1": {
+          "targets": {
+            "type": "provided_minion"
+          },
+          "silence": true
         }
-    },
-    "Argent Protector": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "enchantment": {
-                "mechanics": [
-                    "Divine Shield"
-                ]
-            }
-        }
-    },
-    "Earth Elemental": {
-        "overload": 3
-    },
-    "Earthen Ring Farseer": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion"
-            },
-            "spell": {
-                "health": 3
-            }
-        }
-    },
-    "Keeper of the Grove": {
-        "choose_one": [
-            {
-                "targets": {
-                    "type": "provided_minion"
-                },
-                "spell": {
-                    "health": -2
-                }
-            },
-            {
-                "targets": {
-                    "type": "provided_minion"
-                },
-                "silence": true
-            }
-        ]
-    },
-    "Knife Juggler": {
-        "after_summon_phase": {
-            "targets": {
-                "type": "random_opponent_character",
-                "required_quantity": 1
-            },
-            "spell": {
-                "health": -1
-            }
-        }
-    },
-    "Spellbreaker": {
-        "battlecry": {
-            "targets": {
-                "type": "provided_minion",
-                "quantity": 1
-            },
-            "silence": true
-        }
-    }
+      }
+    ]
+  },
+  "Knife Juggler": {
+    "after_summon_phase": [
+      {
+        "damage": 1,
+        "target_type": "random_opponent_character"
+      }
+    ]
+  },
+  "Spellbreaker": {
+    "battlecry": [
+      {
+        "silence": true,
+        "target_type": "provided_minion"
+      }
+    ]
+  }
 }
