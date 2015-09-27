@@ -27,6 +27,7 @@ class CardGenerator extends Command
     protected $description = 'Generates the trigger action json for a specified card.';
 
     protected $card_sets;
+    protected $card_name;
     protected $available_triggers;
     protected $available_target_types;
     protected $available_actions = [
@@ -39,6 +40,18 @@ class CardGenerator extends Command
         "silence",
         "spell",
         "summon"
+    ];
+
+    protected $buffs = [
+        "Aura",
+        "Enchantment",
+        "Spell"
+    ];
+
+    protected $buff_attributes = [
+        "attack",
+        "health",
+        "max_health"
     ];
 
     /**
@@ -61,6 +74,7 @@ class CardGenerator extends Command
      */
     public function handle() {
         $card_name = $this->ask('What is the card\'s name?');
+        $this->card_name = $card_name;
 
         try {
             /** @var Game $game */
@@ -142,6 +156,12 @@ class CardGenerator extends Command
         return $this->ask("What target type would you like to add?\n" . $available_target_string);
     }
 
+    private function getArrayPrompt($question, $optionArray) {
+        $option_string = $this->buildOptionString($optionArray);
+
+        return $this->ask($question . "\n" . $option_string);
+    }
+
     /**
      * @param array $available_options
      * @return string
@@ -194,18 +214,7 @@ class CardGenerator extends Command
      * @return string
      * @throws Exception
      */
-    private function requestActionValue($action) {
-        return $this->getActionValuePrompt($action);
-    }
-
-    /**
-     * Ask for input about the action value.
-     *
-     * @param $action
-     * @return string
-     * @throws Exception
-     */
-    private function getActionValuePrompt($action) {
+    private function requestSimpleActionValue($action) {
         switch ($action) {
             case "discard":
                 $prompt = "The number of cards to discard";
@@ -218,10 +227,6 @@ class CardGenerator extends Command
                 break;
             case "create_mana_crystals":
                 $prompt = "The number of mana crystals to create";
-                break;
-            case "spell":
-            case "enchantment":
-                $prompt = $action . " format is - Attack:Health:Taunt,Silence,Charge,...";
                 break;
             case "summon":
                 $prompt = "The minion to summon and how many. [name:quantity]";
@@ -254,26 +259,21 @@ class CardGenerator extends Command
                 return (int)$action_value;
             case "spell":
             case "enchantment":
-                $parts  = explode(':', $action_value);
-                $attack = (int)array_get($parts, 0);
-                if ($attack) {
-                    $action_array['attack'] = $attack;
+                $number_of_buffs = $this->ask("How many buffs does " . $this->card_name . " give?");
+                $action_array    = [];
+                for ($i = 0; $i < $number_of_buffs; $i++) {
+                    $buff_attribute                = array_get($this->buff_attributes, $this->getArrayPrompt(($i + 1) . "a) Choose a buff attribute:", $this->buff_attributes));
+                    $buff_attribute_value          = $this->ask(($i + 1) . "v) What is the " . $buff_attribute . " value?");
+                    if($buff_attribute == "mechanics") {
+                        $buff_attribute_value = explode(',', $buff_attribute_value);
+                    }
+                    $action_array[$buff_attribute] = $buff_attribute_value;
                 }
 
-                $health = (int)array_get($parts, 1);
-                if ($health) {
-                    $action_array['health'] = $health;
-                }
-
-                $mechanics = array_get($parts, 2);
-                if ($mechanics) {
-                    $mechanic_parts            = explode(',', $mechanics);
-                    $action_array['mechanics'] = $mechanic_parts;
-                }
-
-                if($this->confirm('Does your enchantment have a name?')) {
+                if ($this->confirm('Does your buff have a name?')) {
                     $action_array['name'] = $this->ask('What is your enchantment name?');
                 }
+
                 break;
             case "summon":
                 $parts       = explode(':', $action_value);
@@ -356,12 +356,14 @@ class CardGenerator extends Command
         /* Spell Power */
         if ($trigger == TriggerTypes::$SPELLPOWER) {
             $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
+
             return [TriggerTypes::$SPELLPOWER => $spell_power];
         }
 
         /* Overload */
         if ($trigger == TriggerTypes::$OVERLOAD) {
             $overload_quantity = $this->ask('How many mana crystals does ' . $card_name . ' overload?');
+
             return [TriggerTypes::$OVERLOAD => $overload_quantity];
         }
 
@@ -370,7 +372,7 @@ class CardGenerator extends Command
             $number_of_options = $this->ask('How many choose options do you have?');
 
             $choose_json = [];
-            for($i = 0; $i < $number_of_options; $i++) {
+            for ($i = 0; $i < $number_of_options; $i++) {
                 $this->info('Choose card option ' . ($i + 1) . '...');
 
                 $choose_json[] = $this->buildTriggerJson($card_name, 'temp')['temp'];
@@ -382,7 +384,7 @@ class CardGenerator extends Command
         /* Targets */
         $target_info = $this->requestTarget();
         $this->info("Target: " . $target_info);
-        if(in_array($target_info, $race_targets_types)) {
+        if (in_array($target_info, $race_targets_types)) {
             $race = $this->ask('What is ' . $card_name . '\'s target race?');
         }
         // todo quantity, ~race
@@ -394,9 +396,9 @@ class CardGenerator extends Command
 
         /* Action Values */
         $action_value       = true;
-        $no_additional_info = ["silence", "destroy"];
+        $no_additional_info = ["silence", "destroy", "enchantment", "spell", "aura"];
         if (!in_array($action, $no_additional_info)) {
-            $action_value = $this->requestActionValue($action);
+            $action_value = $this->requestSimpleActionValue($action);
             $this->info("Action Value: " . $action_value);
         }
 
@@ -409,7 +411,7 @@ class CardGenerator extends Command
         if ($target_info != 'None') {
             // todo quantity and ~race
             $target_array = ['type' => $target_info];
-            if(in_array($target_info, $race_targets_types)) {
+            if (in_array($target_info, $race_targets_types)) {
                 $target_array['race'] = $race;// todo don't be a dick
             }
 
@@ -420,7 +422,7 @@ class CardGenerator extends Command
 
         // todo this sucks
         /* Aura */
-        if($trigger == TriggerTypes::$AURA) {
+        if ($trigger == TriggerTypes::$AURA) {
             $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
             // todo validation on aura name
         }
