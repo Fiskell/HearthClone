@@ -73,7 +73,7 @@ class CardGenerator extends Command
      * @return mixed
      */
     public function handle() {
-        $card_name = $this->ask('What is the card\'s name?');
+        $card_name       = $this->ask('What is the card\'s name?');
         $this->card_name = $card_name;
 
         try {
@@ -113,6 +113,101 @@ class CardGenerator extends Command
         return false;
     }
 
+
+    /**
+     * Return a formated json for the trigger selected.
+     *
+     * @param $card_name
+     * @param $trigger
+     * @return array
+     * @throws Exception
+     */
+    private function buildTriggerJson($card_name, $trigger) {
+        $race_targets_types = [
+            TargetTypes::$All_OTHER_MINIONS_WITH_RACE,
+            TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE
+        ];
+
+        /* Spell Power */
+        if ($trigger == TriggerTypes::$SPELLPOWER) {
+            $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
+
+            return [TriggerTypes::$SPELLPOWER => $spell_power];
+        }
+
+        /* Overload */
+        if ($trigger == TriggerTypes::$OVERLOAD) {
+            $overload_quantity = $this->ask('How many mana crystals does ' . $card_name . ' overload?');
+
+            return [TriggerTypes::$OVERLOAD => $overload_quantity];
+        }
+
+        /* Choose One */
+        if ($trigger == TriggerTypes::$CHOOSE_ONE) {
+            $number_of_options = $this->ask('How many choose options do you have?');
+
+            $choose_json = [];
+            for ($i = 0; $i < $number_of_options; $i++) {
+                $this->info('Choose card option ' . ($i + 1) . '...');
+
+                $choose_json[] = $this->buildTriggerJson($card_name, 'temp')['temp'];
+            }
+
+            return [TriggerTypes::$CHOOSE_ONE => $choose_json];
+        }
+
+        /* Targets */
+        $target_info = $this->requestTarget();
+        $this->info("Target: " . $target_info);
+        if (in_array($target_info, $race_targets_types)) {
+            $race = $this->ask('What is ' . $card_name . '\'s target race?');
+        }
+        // todo quantity, ~race
+
+        /* Action */
+        $action = $this->requestAction();
+        $this->info("Action: " . $action);
+        // todo attack_by_count, health_by_count, full_health
+
+        /* Action Values */
+        $action_value       = true;
+        $no_additional_info = ["silence", "destroy", "enchantment", "spell", "aura"];
+        if (!in_array($action, $no_additional_info)) {
+            $action_value = $this->requestSimpleActionValue($action);
+            $this->info("Action Value: " . $action_value);
+        }
+
+        /* Build the trigger json*/
+        $trigger_json = [
+            $trigger => []
+        ];
+
+        // Build json for targets.
+        if ($target_info != 'None') {
+            // todo quantity and ~race
+            $target_array = ['type' => $target_info];
+            if (in_array($target_info, $race_targets_types)) {
+                $target_array['race'] = $race;// todo don't be a dick
+            }
+
+            $trigger_json[$trigger]['targets'] = $target_array;
+        }
+
+        $action_array = $this->buildActionArray($action, $action_value);
+
+        // todo this sucks
+        /* Aura */
+        if ($trigger == TriggerTypes::$AURA) {
+            $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
+            // todo validation on aura name
+        }
+
+
+        $trigger_json[$trigger][$action] = $action_array;
+
+        return $trigger_json;
+    }
+
     private function requestTrigger() {
         $trigger_input = $this->getTriggerPrompt();
 
@@ -137,7 +232,7 @@ class CardGenerator extends Command
     }
 
     private function requestTarget() {
-        $target_type_input = $this->getTargetPrompt();
+        $target_type_input = $this->getArrayPrompt("What target type would you like to add", $this->available_target_types);
 
         $target_type_value = array_get($this->available_target_types, $target_type_input);
 
@@ -148,12 +243,6 @@ class CardGenerator extends Command
         }
 
         return $target_type_value;
-    }
-
-    private function getTargetPrompt() {
-        $available_target_string = $this->buildOptionString($this->available_target_types);
-
-        return $this->ask("What target type would you like to add?\n" . $available_target_string);
     }
 
     private function getArrayPrompt($question, $optionArray) {
@@ -262,9 +351,9 @@ class CardGenerator extends Command
                 $number_of_buffs = $this->ask("How many buffs does " . $this->card_name . " give?");
                 $action_array    = [];
                 for ($i = 0; $i < $number_of_buffs; $i++) {
-                    $buff_attribute                = array_get($this->buff_attributes, $this->getArrayPrompt(($i + 1) . "a) Choose a buff attribute:", $this->buff_attributes));
-                    $buff_attribute_value          = $this->ask(($i + 1) . "v) What is the " . $buff_attribute . " value?");
-                    if($buff_attribute == "mechanics") {
+                    $buff_attribute       = array_get($this->buff_attributes, $this->getArrayPrompt(($i + 1) . "a) Choose a buff attribute:", $this->buff_attributes));
+                    $buff_attribute_value = $this->ask(($i + 1) . "v) What is the " . $buff_attribute . " value?");
+                    if ($buff_attribute == "mechanics") {
                         $buff_attribute_value = explode(',', $buff_attribute_value);
                     }
                     $action_array[$buff_attribute] = $buff_attribute_value;
@@ -339,97 +428,4 @@ class CardGenerator extends Command
         @file_put_contents($filepath, $new_json);
     }
 
-    /**
-     * Return a formated json for the trigger selected.
-     *
-     * @param $card_name
-     * @param $trigger
-     * @return array
-     * @throws Exception
-     */
-    private function buildTriggerJson($card_name, $trigger) {
-        $race_targets_types = [
-            TargetTypes::$All_OTHER_MINIONS_WITH_RACE,
-            TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE
-        ];
-
-        /* Spell Power */
-        if ($trigger == TriggerTypes::$SPELLPOWER) {
-            $spell_power = $this->ask('How much spell power does ' . $card_name . ' have?');
-
-            return [TriggerTypes::$SPELLPOWER => $spell_power];
-        }
-
-        /* Overload */
-        if ($trigger == TriggerTypes::$OVERLOAD) {
-            $overload_quantity = $this->ask('How many mana crystals does ' . $card_name . ' overload?');
-
-            return [TriggerTypes::$OVERLOAD => $overload_quantity];
-        }
-
-        /* Choose One */
-        if ($trigger == TriggerTypes::$CHOOSE_ONE) {
-            $number_of_options = $this->ask('How many choose options do you have?');
-
-            $choose_json = [];
-            for ($i = 0; $i < $number_of_options; $i++) {
-                $this->info('Choose card option ' . ($i + 1) . '...');
-
-                $choose_json[] = $this->buildTriggerJson($card_name, 'temp')['temp'];
-            }
-
-            return [TriggerTypes::$CHOOSE_ONE => $choose_json];
-        }
-
-        /* Targets */
-        $target_info = $this->requestTarget();
-        $this->info("Target: " . $target_info);
-        if (in_array($target_info, $race_targets_types)) {
-            $race = $this->ask('What is ' . $card_name . '\'s target race?');
-        }
-        // todo quantity, ~race
-
-        /* Action */
-        $action = $this->requestAction();
-        $this->info("Action: " . $action);
-        // todo attack_by_count, health_by_count, full_health
-
-        /* Action Values */
-        $action_value       = true;
-        $no_additional_info = ["silence", "destroy", "enchantment", "spell", "aura"];
-        if (!in_array($action, $no_additional_info)) {
-            $action_value = $this->requestSimpleActionValue($action);
-            $this->info("Action Value: " . $action_value);
-        }
-
-        /* Build the trigger json*/
-        $trigger_json = [
-            $trigger => []
-        ];
-
-        // Build json for targets.
-        if ($target_info != 'None') {
-            // todo quantity and ~race
-            $target_array = ['type' => $target_info];
-            if (in_array($target_info, $race_targets_types)) {
-                $target_array['race'] = $race;// todo don't be a dick
-            }
-
-            $trigger_json[$trigger]['targets'] = $target_array;
-        }
-
-        $action_array = $this->buildActionArray($action, $action_value);
-
-        // todo this sucks
-        /* Aura */
-        if ($trigger == TriggerTypes::$AURA) {
-            $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
-            // todo validation on aura name
-        }
-
-
-        $trigger_json[$trigger][$action] = $action_array;
-
-        return $trigger_json;
-    }
 }
