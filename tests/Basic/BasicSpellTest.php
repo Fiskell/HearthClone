@@ -166,6 +166,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($chillwind_yeti->isFrozen());
     }
 
+    /* Hand of Protection */
+    public function test_hand_of_protection_gives_minion_divine_shield() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Hand of Protection', 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

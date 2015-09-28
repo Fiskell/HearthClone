@@ -244,6 +244,17 @@
             }
         ]
     },
+    "Hand of Protection": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "mechanics": [
+                    "Divine Shield"
+                ],
+                "buff": "spell"
+            }
+        ]
+    },
     "Healing Totem": {
         "end_of_turn": [
             {
