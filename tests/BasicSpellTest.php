@@ -117,6 +117,14 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(10, $chillwind_yeti->getHealth());
     }
 
+    /* Execute */
+    public function test_execute_kills_damaged_minion () {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(2);
+        $this->playCard('Execute', 1, [$chillwind_yeti]);
+        $this->assertFalse($chillwind_yeti->isAlive());
+    }
+
     /* Fan of Knives */
     //Todo must wait until we can have multiple abilities associated to a target
 //    public function test_fan_of_knives_deals_1_damage_to_all_enemy_minions_and_player_draws_card() {
