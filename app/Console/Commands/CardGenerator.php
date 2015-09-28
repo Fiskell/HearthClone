@@ -42,10 +42,11 @@ class CardGenerator extends Command
         "summon"
     ];
 
+
     protected $buffs = [
-        "Aura",
-        "Enchantment",
-        "Spell"
+        "aura",
+        "enchantment",
+        "spell"
     ];
 
     protected $buff_attributes = [
@@ -182,28 +183,32 @@ class CardGenerator extends Command
             $trigger => []
         ];
 
+        $trigger_obj = [];
+
         // Build json for targets.
         if ($target_info != 'None') {
-            // todo quantity and ~race
-            $target_array = ['type' => $target_info];
-            if (in_array($target_info, $race_targets_types)) {
-                $target_array['race'] = $race;// todo don't be a dick
+
+            if (in_array($target_info, $race_targets_types) && isset($race)) {
+                $trigger_obj['target_race'] = $race;
             }
 
-            $trigger_json[$trigger]['targets'] = $target_array;
+            $trigger_obj['target_type'] = $target_info;
         }
 
         $action_array = $this->buildActionArray($action, $action_value);
+        $trigger_obj += $action_array;
 
-        // todo this sucks
         /* Aura */
         if ($trigger == TriggerTypes::$AURA) {
             $action_array['name'] = $this->ask('What is the name of the aura applied by ' . $card_name);
             // todo validation on aura name
         }
 
-
-        $trigger_json[$trigger][$action] = $action_array;
+        if(in_array($action, $this->buffs)) {
+            $trigger_json[$trigger][] = $trigger_obj;
+        } else {
+            $trigger_json[$trigger][][$action] = $trigger_obj;
+        }
 
         return $trigger_json;
     }
@@ -348,6 +353,7 @@ class CardGenerator extends Command
                 return (int)$action_value;
             case "spell":
             case "enchantment":
+            case "aura":
                 $number_of_buffs = $this->ask("How many buffs does " . $this->card_name . " give?");
                 $action_array    = [];
                 for ($i = 0; $i < $number_of_buffs; $i++) {
@@ -362,6 +368,7 @@ class CardGenerator extends Command
                 if ($this->confirm('Does your buff have a name?')) {
                     $action_array['name'] = $this->ask('What is your enchantment name?');
                 }
+                $action_array['buff'] = $action;
 
                 break;
             case "summon":
