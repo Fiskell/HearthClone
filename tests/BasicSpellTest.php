@@ -118,11 +118,17 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Execute */
-    public function test_execute_kills_damaged_minion () {
+    public function test_execute_kills_provided_damaged_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
         $chillwind_yeti->takeDamage(2);
         $this->playCard('Execute', 1, [$chillwind_yeti]);
         $this->assertFalse($chillwind_yeti->isAlive());
+    }
+
+    /** @expectedException App\Exceptions\InvalidTargetException */
+    public function test_execute_throws_when_target_is_not_damaged() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Execute', 1, [$chillwind_yeti]);
     }
 
     /* Fan of Knives */
