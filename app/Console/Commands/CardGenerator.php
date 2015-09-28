@@ -196,7 +196,6 @@ class CardGenerator extends Command
         }
 
         $action_array = $this->buildActionArray($action, $action_value);
-        $trigger_obj += $action_array;
 
         /* Aura */
         if ($trigger == TriggerTypes::$AURA) {
@@ -204,11 +203,13 @@ class CardGenerator extends Command
             // todo validation on aura name
         }
 
-        if(in_array($action, $this->buffs)) {
-            $trigger_json[$trigger][] = $trigger_obj;
+        if (in_array($action, $this->buffs)) {
+            $trigger_obj += $action_array;
         } else {
-            $trigger_json[$trigger][][$action] = $trigger_obj;
+            $trigger_obj[$action] = $action_array;
         }
+
+        $trigger_json[$trigger][] = $trigger_obj;
 
         return $trigger_json;
     }
