@@ -54,6 +54,9 @@ abstract class CardPhase extends AbstractPhase
         /* Destroy */
         $this->resolveDestroyTrigger($trigger, $targets);
 
+        /* Freeze */
+        $this->resolveFreezeTrigger($trigger, $targets);
+
         /* Silence */
         $this->resolveSilenceTrigger($trigger, $targets);
 
@@ -334,7 +337,6 @@ abstract class CardPhase extends AbstractPhase
             $target->setAttack($target->getAttack() + $delta_attack);
 
             $delta_health = array_get($trigger, 'health', 0);
-            var_dump($target->getName());
             $target->setHealth($target->getHealth() + $delta_health);
 
             $full_health = array_get($trigger, 'full_health');
@@ -455,6 +457,18 @@ abstract class CardPhase extends AbstractPhase
         /** @var Minion $target */
         foreach($targets as $target) {
             $target->takeDamage($damage);
+        }
+    }
+
+    private function resolveFreezeTrigger($trigger, $targets) {
+        $freeze = array_get($trigger, 'freeze');
+        if(!$freeze) {
+            return;
+        }
+
+        /** @var Minion $target */
+        foreach($targets as $target) {
+            $target->freeze();
         }
     }
 
