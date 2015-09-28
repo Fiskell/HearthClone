@@ -31,13 +31,14 @@ class CardGenerator extends Command
     protected $available_triggers;
     protected $available_target_types;
     protected $available_actions = [
+        "create_mana_crystals",
         "damage",
         "destroy",
+        "destroy_mana_crystals",
         "discard",
         "draw",
-        "destroy_mana_crystals",
-        "create_mana_crystals",
         "enchantment",
+        "freeze",
         "silence",
         "spell",
         "summon"
@@ -51,6 +52,7 @@ class CardGenerator extends Command
     ];
 
     protected $buff_attributes = [
+        "mechanics",
         "attack",
         "health",
         "max_health"
@@ -164,8 +166,6 @@ class CardGenerator extends Command
         if (in_array($target_info, $race_targets_types)) {
             $race = $this->ask('What is ' . $card_name . '\'s target race?');
         }
-        // todo quantity, ~race
-
         /* Action */
         $action = $this->requestAction();
         $this->info("Action: " . $action);
@@ -173,7 +173,7 @@ class CardGenerator extends Command
 
         /* Action Values */
         $action_value       = true;
-        $no_additional_info = ["silence", "destroy", "enchantment", "spell", "aura"];
+        $no_additional_info = ["silence", "destroy", "freeze", "enchantment", "spell", "aura"];
         if (!in_array($action, $no_additional_info)) {
             $action_value = $this->requestSimpleActionValue($action);
             $this->info("Action Value: " . $action_value);
@@ -312,6 +312,9 @@ class CardGenerator extends Command
      */
     private function requestSimpleActionValue($action) {
         switch ($action) {
+            case "create_mana_crystals":
+                $prompt = "The number of mana crystals to create";
+                break;
             case "damage":
                 $prompt = "The amount of damage to deal";
                 break;
@@ -323,9 +326,6 @@ class CardGenerator extends Command
                 break;
             case "destroy_mana_crystals":
                 $prompt = "The number of mana crystals to destroy";
-                break;
-            case "create_mana_crystals":
-                $prompt = "The number of mana crystals to create";
                 break;
             case "summon":
                 $prompt = "The minion to summon and how many. [name:quantity]";
@@ -350,6 +350,7 @@ class CardGenerator extends Command
         switch ($action) {
             case "destroy":
             case "silence":
+            case "freeze":
                 return true;
             case "damage":
             case "discard":
