@@ -190,6 +190,15 @@ abstract class CardPhase extends AbstractPhase
                     }
                 }
                 break;
+            case TargetTypes::$DAMAGED_PROVIDED_MINION:
+                /** @var Minion[] $targets */
+                $targets = $this->targets;
+                foreach($targets as $target) {
+                    if($target->getHealth() == $target->getMaxHealth()) {
+                        throw new InvalidTargetException('Target must be damaged');
+                    }
+                }
+                break;
             case TargetTypes::$ALL_OPPONENT_CHARACTERS:
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
                 $targets                                         = $opponent_minions;

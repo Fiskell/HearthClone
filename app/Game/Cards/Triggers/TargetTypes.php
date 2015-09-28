@@ -9,6 +9,7 @@
 class TargetTypes
 {
     public static $PROVIDED_MINION                  = 'provided_minion';
+    public static $DAMAGED_PROVIDED_MINION          = 'damaged_provided_minion';
     public static $UNDAMAGED_PROVIDED_MINION        = 'undamaged_provided_minion';
     public static $RANDOM_OPPONENT_CHARACTER        = 'random_opponent_character';
     public static $ALL_FRIENDLY_CHARACTERS          = 'all_friendly_characters';
