@@ -132,9 +132,18 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Fireball */
-    public function test_fireball_does_6_damage() {
+    public function test_fireball_does_six_damage() {
         $this->playCard('Fireball', 1, [$this->game->getPlayer2()->getHero()]);
         $this->assertEquals(24, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
+    /* Flamestrike */
+    public function test_flamestrike_deals_four_damage_to_all_enemy_minions() {
+        $wisp           = $this->playCard('Wisp', 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Flamestrike', 1);
+        $this->assertFalse($wisp->isAlive());
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
     /* Fan of Knives */

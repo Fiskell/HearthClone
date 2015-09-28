@@ -172,6 +172,14 @@
             }
         ]
     },
+    "Flamestrike": {
+        "spell_text_phase": [
+            {
+                "target_type": "all_opponent_minions",
+                "damage": 4
+            }
+        ]
+    },
     "Flametongue Totem": {
         "aura": [
             {
