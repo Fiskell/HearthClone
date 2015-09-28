@@ -164,6 +164,14 @@
             }
         ]
     },
+    "Fireball": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 6
+            }
+        ]
+    },
     "Flametongue Totem": {
         "aura": [
             {

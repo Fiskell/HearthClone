@@ -131,6 +131,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Execute', 1, [$chillwind_yeti]);
     }
 
+    /* Fireball */
+    public function test_fireball_does_6_damage() {
+        $this->playCard('Fireball', 1, [$this->game->getPlayer2()->getHero()]);
+        $this->assertEquals(24, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
     /* Fan of Knives */
     //Todo must wait until we can have multiple abilities associated to a target
 //    public function test_fan_of_knives_deals_1_damage_to_all_enemy_minions_and_player_draws_card() {
