@@ -273,6 +273,14 @@
             }
         ]
     },
+    "Hellfire": {
+        "spell_text_phase": [
+            {
+                "target_type": "all_characters",
+                "damage": 3
+            }
+        ]
+    },
     "Houndmaster": {
         "battlecry": [
             {

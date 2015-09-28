@@ -188,6 +188,19 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(30, $player1->getHero()->getHealth());
     }
 
+    /* Hellfire */
+    public function test_hellfire_deals_three_damage_to_all_characters() {
+        $player1 = $this->game->getPlayer1();
+        $player2 = $this->game->getPlayer2();
+        $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti2 = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Hellfire', 1);
+        $this->assertEquals(27, $player1->getHero()->getHealth());
+        $this->assertEquals(27, $player2->getHero()->getHealth());
+        $this->assertEquals(2, $chillwind_yeti1->getHealth());
+        $this->assertEquals(2, $chillwind_yeti2->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);
