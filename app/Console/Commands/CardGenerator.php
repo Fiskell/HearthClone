@@ -31,6 +31,7 @@ class CardGenerator extends Command
     protected $available_triggers;
     protected $available_target_types;
     protected $available_actions = [
+        "damage",
         "destroy",
         "discard",
         "draw",
@@ -311,6 +312,9 @@ class CardGenerator extends Command
      */
     private function requestSimpleActionValue($action) {
         switch ($action) {
+            case "damage":
+                $prompt = "The amount of damage to deal";
+                break;
             case "discard":
                 $prompt = "The number of cards to discard";
                 break;
@@ -347,6 +351,7 @@ class CardGenerator extends Command
             case "destroy":
             case "silence":
                 return true;
+            case "damage":
             case "discard":
             case "draw":
             case "destroy_mana_crystals":
