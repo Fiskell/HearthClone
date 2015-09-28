@@ -264,6 +264,15 @@
             }
         ]
     },
+    "Healing Touch": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "health": "8",
+                "buff": "spell"
+            }
+        ]
+    },
     "Houndmaster": {
         "battlecry": [
             {

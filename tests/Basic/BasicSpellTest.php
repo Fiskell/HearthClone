@@ -173,6 +173,21 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
     }
 
+    /* Healing Touch */
+    public function test_healing_touch_heals_eight_health_to_friendly_hero() {
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(10);
+        $this->playCard('Healing Touch', 1);
+        $this->assertEquals(28, $player1->getHero()->getHealth());
+    }
+
+    public function test_healing_touch_can_only_heal_up_to_thirty_life() {
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(5);
+        $this->playCard('Healing Touch', 1);
+        $this->assertEquals(30, $player1->getHero()->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);
