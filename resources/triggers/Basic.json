@@ -190,6 +190,14 @@
             }
         ]
     },
+    "Frost Nova": {
+        "spell_text_phase": [
+            {
+                "target_type": "all_opponent_minions",
+                "freeze": true
+            }
+        ]
+    },
     "Frostwolf Warlord": {
         "battlecry": [
             {

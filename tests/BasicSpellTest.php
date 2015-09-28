@@ -131,21 +131,6 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Execute', 1, [$chillwind_yeti]);
     }
 
-    /* Fireball */
-    public function test_fireball_does_six_damage() {
-        $this->playCard('Fireball', 1, [$this->game->getPlayer2()->getHero()]);
-        $this->assertEquals(24, $this->game->getPlayer2()->getHero()->getHealth());
-    }
-
-    /* Flamestrike */
-    public function test_flamestrike_deals_four_damage_to_all_enemy_minions() {
-        $wisp           = $this->playCard('Wisp', 2);
-        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
-        $this->playCard('Flamestrike', 1);
-        $this->assertFalse($wisp->isAlive());
-        $this->assertEquals(1, $chillwind_yeti->getHealth());
-    }
-
     /* Fan of Knives */
     //Todo must wait until we can have multiple abilities associated to a target
 //    public function test_fan_of_knives_deals_1_damage_to_all_enemy_minions_and_player_draws_card() {
@@ -156,6 +141,30 @@ class BasicSpellTest extends HearthCloneTest
 //        $this->assertFalse($wisp1->isAlive());
 //        $this->assertEquals(4, $chillwind_yeti->getHealth());
 //    }
+
+    /* Fireball */
+    public function test_fireball_does_six_damage() {
+        $this->playCard('Fireball', 1, [$this->game->getPlayer2()->getHero()]);
+        $this->assertEquals(24, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
+    /* Flamestrike */
+    public function test_flamestrike_deals_four_damage_to_all_opponent_minions() {
+        $wisp           = $this->playCard('Wisp', 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Flamestrike', 1);
+        $this->assertFalse($wisp->isAlive());
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+    }
+
+    /* Frost Nova */
+    public function test_frost_nova_freezes_all_opponent_minions() {
+        $wisp           = $this->playCard('Wisp', 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Frost Nova', 1, [], true);
+        $this->assertTrue($wisp->isFrozen());
+        $this->assertTrue($chillwind_yeti->isFrozen());
+    }
 
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
