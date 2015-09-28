@@ -201,6 +201,21 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(2, $chillwind_yeti2->getHealth());
     }
 
+    /* Holy Light */
+    public function test_holy_light_heals_six_health_to_friendly_hero() {
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(10);
+        $this->playCard('Holy Light', 1);
+        $this->assertEquals(26, $player1->getHero()->getHealth());
+    }
+
+    public function test_holy_light_can_only_heal_up_to_thirty_life() {
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(3);
+        $this->playCard('Holy Light', 1);
+        $this->assertEquals(30, $player1->getHero()->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

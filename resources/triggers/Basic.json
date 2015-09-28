@@ -281,6 +281,15 @@
             }
         ]
     },
+    "Holy Light": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "health": "6",
+                "buff": "spell"
+            }
+        ]
+    },
     "Houndmaster": {
         "battlecry": [
             {
