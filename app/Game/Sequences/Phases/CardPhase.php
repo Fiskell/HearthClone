@@ -212,6 +212,9 @@ abstract class CardPhase extends AbstractPhase
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
                 $targets                                         = $opponent_minions;
                 break;
+            case TargetTypes::$ALL_MINIONS:
+                $targets = $opponent_minions + $player_minions;
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
