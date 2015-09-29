@@ -287,13 +287,6 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(3, $this->game->getPlayer1()->getManaCrystalCount());
     }
 
-    /* Windfury */
-    public function test_playing_spell_windfury_gives_a_minion_windfury() {
-        $wisp = $this->playCard('Wisp', 1);
-        $this->playCard('Windfury', 1, [$wisp]);
-        $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
-    }
-
     /* Whirlwind */
     public function test_whirlwind_deals_one_damage_to_all_minions() {
         $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
@@ -301,6 +294,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Whirlwind', 1);
         $this->assertEquals(4, $chillwind_yeti1->getHealth());
         $this->assertEquals(4, $chillwind_yeti2->getHealth());
+    }
+
+    /* Windfury */
+    public function test_playing_spell_windfury_gives_a_minion_windfury() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Windfury', 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
     }
 
 }
