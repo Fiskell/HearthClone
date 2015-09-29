@@ -275,6 +275,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(27, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
+    /* Sprint */
+    public function test_sprint_draws_four_cards() {
+        $this->playCard('Sprint', 1);
+        $this->assertEquals(4, $this->game->getPlayer1()->getHandSize());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

@@ -461,6 +461,14 @@
             }
         ]
     },
+    "Sprint": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_player",
+                "draw": 4
+            }
+        ]
+    },
     "Starving Buzzard": {
         "late_on_summon_phase": [
             {
