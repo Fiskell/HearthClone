@@ -269,6 +269,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
+    /* Sinister Strike */
+    public function test_sinister_strike_deals_three_damage_to_opponent_hero() {
+        $this->playCard('Sinister Strike', 1);
+        $this->assertEquals(27, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

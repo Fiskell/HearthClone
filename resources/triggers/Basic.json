@@ -453,6 +453,14 @@
             }
         ]
     },
+    "Sinister Strike": {
+        "spell_text_phase": [
+            {
+                "target_type": "opponent_hero",
+                "damage": 3
+            }
+        ]
+    },
     "Starving Buzzard": {
         "late_on_summon_phase": [
             {
