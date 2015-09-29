@@ -56,7 +56,8 @@ class CardGenerator extends Command
         "attack",
         "health",
         "max_health",
-        "set_attack"
+        "set_attack",
+        "set_health"
     ];
 
     /**
