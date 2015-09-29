@@ -294,4 +294,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($wisp->hasMechanic(Mechanics::$WINDFURY));
     }
 
+    /* Whirlwind */
+    public function test_whirlwind_deals_one_damage_to_all_minions() {
+        $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti2 = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Whirlwind', 1);
+        $this->assertEquals(4, $chillwind_yeti1->getHealth());
+        $this->assertEquals(4, $chillwind_yeti2->getHealth());
+    }
+
 }
