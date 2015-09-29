@@ -342,6 +342,11 @@ abstract class CardPhase extends AbstractPhase
             $delta_attack = array_get($trigger, 'attack', 0);
             $target->setAttack($target->getAttack() + $delta_attack);
 
+            $set_attack = array_get($trigger, 'set_attack');
+            if($set_attack) {
+                $target->setAttack($set_attack);
+            }
+
             $delta_health = array_get($trigger, 'health', 0);
             $target->setHealth($target->getHealth() + $delta_health);
 
