@@ -229,6 +229,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getAttack());
     }
 
+    /* Hunters Mark */
+    public function test_hunters_mark_sets_target_health_to_one() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Hunter\'s Mark', 2, [$chillwind_yeti]);
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

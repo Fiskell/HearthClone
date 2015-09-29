@@ -321,6 +321,16 @@
             }
         ]
     },
+    "Hunter's Mark": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "set_health": "1",
+                "name": "Hunter's Mark",
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Ironforge Rifleman": {
         "battlecry": [
             {
