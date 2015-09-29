@@ -243,6 +243,25 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(25, $player2->getHero()->getHealth());
     }
 
+    /* Mirror Image */
+    // todo recursion due to spell and minion named the same
+//    public function test_mirror_image_summons_two_mirror_image_minions() {
+//        $this->playCard('Mirror Image', 1);
+//        $minions = $this->game->getPlayer1()->getMinionsInPlay();
+//        $this->assertEquals(2, count($minions));
+//        $this->assertEquals('Mirror Image', $minions[0]->getName());
+//        $this->assertTrue($minions[0]->hasMechanic(Mechanics::$TAUNT));
+//        $this->assertEquals('Mirror Image', $minions[1]->getName());
+//        $this->assertTrue($minions[1]->hasMechanic(Mechanics::$TAUNT));
+//    }
+
+    /* Moonfire */
+    public function test_moonfire_deals_one_damage_to_target_character() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Moonfire', 1, [$chillwind_yeti]);
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

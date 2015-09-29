@@ -360,6 +360,24 @@
             }
         ]
     },
+    "Mirror Image": {
+        "spell_text_phase": [
+            {
+                "summon": {
+                    "name": "Mirror Image",
+                    "quantity": 2
+                }
+            }
+        ]
+    },
+    "Moonfire": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 1
+            }
+        ]
+    },
     "Murloc Tidehunter": {
         "battlecry": [
             {
