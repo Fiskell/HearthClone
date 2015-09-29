@@ -216,6 +216,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(30, $player1->getHero()->getHealth());
     }
 
+    /* Holy Smite */
+    public function test_holy_smite_deals_two_damage() {
+        $this->playCard('Holy Smite', 1, [$this->game->getPlayer2()->getHero()]);
+        $this->assertEquals(28, $this->game->getPlayer2()->getHero()->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

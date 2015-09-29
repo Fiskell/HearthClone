@@ -290,6 +290,14 @@
             }
         ]
     },
+    "Holy Smite": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 2
+            }
+        ]
+    },
     "Houndmaster": {
         "battlecry": [
             {
