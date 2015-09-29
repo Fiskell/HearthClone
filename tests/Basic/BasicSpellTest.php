@@ -236,6 +236,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
+    /* Mind Blast */
+    public function test_mind_blast_deals_five_damage_to_opponent_hero() {
+        $player2 = $this->game->getPlayer2();
+        $this->playCard('Mind Blast', 1);
+        $this->assertEquals(25, $player2->getHero()->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

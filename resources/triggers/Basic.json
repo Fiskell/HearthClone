@@ -352,6 +352,14 @@
             }
         ]
     },
+    "Mind Blast": {
+        "spell_text_phase": [
+            {
+                "target_type": "opponent_hero",
+                "damage": 5
+            }
+        ]
+    },
     "Murloc Tidehunter": {
         "battlecry": [
             {
