@@ -13,6 +13,7 @@ class TargetTypes
     public static $UNDAMAGED_PROVIDED_MINION        = 'undamaged_provided_minion';
     public static $RANDOM_OPPONENT_CHARACTER        = 'random_opponent_character';
     public static $ALL_CHARACTERS                   = 'all_characters';
+    public static $ALL_MINIONS                      = 'all_minions';
     public static $ALL_FRIENDLY_CHARACTERS          = 'all_friendly_characters';
     public static $ALL_FRIENDLY_MINIONS             = 'all_friendly_minions';
     public static $ALL_OTHER_CHARACTERS             = 'all_other_characters';
