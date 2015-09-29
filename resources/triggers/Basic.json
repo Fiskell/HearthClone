@@ -312,6 +312,15 @@
             }
         ]
     },
+    "Humility": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "set_attack": "1",
+                "buff": "spell"
+            }
+        ]
+    },
     "Ironforge Rifleman": {
         "battlecry": [
             {
