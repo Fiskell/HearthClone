@@ -281,11 +281,7 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $this->game->getPlayer1()->getHandSize());
     }
 
-    /* Wild Growth */
-    public function test_playing_wild_growth_adds_one_mana_crystal() {
-        $this->playCardStrict('Wild Growth', 1, 2, []);
-        $this->assertEquals(3, $this->game->getPlayer1()->getManaCrystalCount());
-    }
+
 
     /* Whirlwind */
     public function test_whirlwind_deals_one_damage_to_all_minions() {
@@ -294,6 +290,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Whirlwind', 1);
         $this->assertEquals(4, $chillwind_yeti1->getHealth());
         $this->assertEquals(4, $chillwind_yeti2->getHealth());
+    }
+
+    /* Wild Growth */
+    public function test_playing_wild_growth_adds_one_mana_crystal() {
+        $this->playCardStrict('Wild Growth', 1, 2, []);
+        $this->assertEquals(3, $this->game->getPlayer1()->getManaCrystalCount());
     }
 
     /* Windfury */
