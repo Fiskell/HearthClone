@@ -262,6 +262,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
 
+    /* Shadow Bolt */
+    public function test_shadow_bolt_deals_four_damage_to_target_minion() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Shadow Bolt', 1, [$chillwind_yeti]);
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+    }
+
     /* Wild Growth */
     public function test_playing_wild_growth_adds_one_mana_crystal() {
         $this->playCardStrict('Wild Growth', 1, 2, []);

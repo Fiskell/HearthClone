@@ -435,6 +435,14 @@
             }
         ]
     },
+    "Shadow Bolt": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 4
+            }
+        ]
+    },
     "Shattered Sun Cleric": {
         "battlecry": [
             {
