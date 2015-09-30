@@ -280,6 +280,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $this->game->getPlayer1()->getHandSize());
     }
 
+    /* Totemic Might */
+    public function test_totemic_might_gives_all_totems_two_health() {
+        $healing_totem = $this->playCard('Healing Totem', 1);
+        $wrath_of_air_totem = $this->playCard('Wrath of Air Totem', 1);
+        $this->playCard('Totemic Might', 1);
+        $this->assertEquals(4, $healing_totem->getHealth());
+        $this->assertEquals(4, $wrath_of_air_totem->getHealth());
+    }
+
     /* Whirlwind */
     public function test_whirlwind_deals_one_damage_to_all_minions() {
         $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);

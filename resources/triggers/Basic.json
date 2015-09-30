@@ -522,6 +522,17 @@
             }
         ]
     },
+    "Totemic Might": {
+        "spell_text_phase": [
+            {
+                "target_race": "Totem",
+                "target_type": "other_friendly_minions_with_race",
+                "max_health": "2",
+                "name": "Totemic Might",
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Tundra Rhino": {
         "aura": [
             {
