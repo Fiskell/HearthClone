@@ -284,6 +284,18 @@
             }
         ]
     },
+    "Hammer of Wrath": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 3
+            },
+            {
+                "target_type": "friendly_player",
+                "draw": 1
+            }
+        ]
+    },
     "Hand of Protection": {
         "spell_text_phase": [
             {

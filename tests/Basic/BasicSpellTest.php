@@ -191,6 +191,14 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($chillwind_yeti->isFrozen());
     }
 
+    /* Hammer of Wrath */
+    public function test_hammer_of_wrath_deals_three_damage_and_draws_one_card() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCardStrict('Hammer of Wrath', 2, 2, [$chillwind_yeti]);
+        $this->assertEquals(2, $chillwind_yeti->getHealth());
+        $this->assertEquals(1, $this->game->getPlayer2()->getHandSize());
+    }
+
     /* Hand of Protection */
     public function test_hand_of_protection_gives_minion_divine_shield() {
         $wisp = $this->playCard('Wisp', 1);
