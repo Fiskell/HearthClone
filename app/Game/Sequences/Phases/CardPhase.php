@@ -49,8 +49,9 @@ abstract class CardPhase extends AbstractPhase
         foreach($triggers as $trigger) {
             $targets     = [];
             $target_type = array_get($trigger, 'target_type');
+            $target_race = array_get($trigger, 'target_race');
             if ($target_type) {
-                $targets = $this->getTargets($this->card, $target_type);
+                $targets = $this->getTargets($this->card, $target_type, $target_race);
             }
 
             /* Check if race is correct */
