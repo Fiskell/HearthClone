@@ -12,7 +12,6 @@ use App\Exceptions\MissingCardNameException;
 use App\Game\CardSets\CardSets;
 use App\Game\Game;
 use App\Game\Player;
-use App\Listeners\BattlecryPhase;
 
 class Card
 {
@@ -35,6 +34,8 @@ class Card
     protected $trigger;
 
     protected $choose_option;
+
+    protected $text;
 
     /** @var  Game $game */
     protected $game;
@@ -71,6 +72,7 @@ class Card
         $this->play_order_id = $this->owner->getGame()->getCardsPlayedThisGame();
         $this->id            = $this->play_order_id;
         $this->set           = array_get($this->card_json, 'set');
+        $this->text          = array_get($this->card_json, 'text');
 
         $trigger_array = App('CardSetTriggers')->getSetTriggers();
 
@@ -227,6 +229,13 @@ class Card
      */
     public function setChooseOption($choose_option) {
         $this->choose_option = $choose_option;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getText() {
+        return $this->text;
     }
 
 }
