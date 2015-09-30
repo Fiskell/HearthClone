@@ -302,6 +302,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
+    /* Shield Block */
+    public function test_shield_block_gains_five_armor_and_draws_one_card() {
+        $this->playCard('Shield Block', 1);
+        $this->assertEquals(5, $this->game->getPlayer1()->getHero()->getArmor());
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+    }
+
     /* Sinister Strike */
     public function test_sinister_strike_deals_three_damage_to_opponent_hero() {
         $this->playCard('Sinister Strike', 1);

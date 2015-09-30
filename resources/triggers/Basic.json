@@ -505,6 +505,19 @@
             }
         ]
     },
+    "Shield Block": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "armor": "5",
+                "buff": "enchantment"
+            },
+            {
+                "target_type": "friendly_player",
+                "draw": 1
+            }
+        ]
+    },
     "Sinister Strike": {
         "spell_text_phase": [
             {
