@@ -132,15 +132,14 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Fan of Knives */
-    //Todo must wait until we can have multiple abilities associated to a target
-//    public function test_fan_of_knives_deals_1_damage_to_all_enemy_minions_and_player_draws_card() {
-//        $wisp1          = $this->playCard('Wisp', 2);
-//        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
-//        $this->playCard('Fan of Knives', 1);
-//        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
-//        $this->assertFalse($wisp1->isAlive());
-//        $this->assertEquals(4, $chillwind_yeti->getHealth());
-//    }
+    public function test_fan_of_knives_deals_1_damage_to_all_enemy_minions_and_player_draws_card() {
+        $wisp1          = $this->playCard('Wisp', 2);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Fan of Knives', 1);
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+        $this->assertFalse($wisp1->isAlive());
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
 
     /* Fireball */
     public function test_fireball_does_six_damage() {
@@ -280,8 +279,6 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Sprint', 1);
         $this->assertEquals(4, $this->game->getPlayer1()->getHandSize());
     }
-
-
 
     /* Whirlwind */
     public function test_whirlwind_deals_one_damage_to_all_minions() {

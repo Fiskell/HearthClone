@@ -151,8 +151,11 @@
         "spell_text_phase": [
             {
                 "damage": 1,
-                "draw": 1,
                 "target_type": "all_opponent_minions"
+            },
+            {
+                "draw": 1,
+                "target_type": "friendly_player"
             }
         ]
     },
