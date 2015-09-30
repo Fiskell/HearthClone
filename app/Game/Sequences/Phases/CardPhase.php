@@ -334,6 +334,11 @@ abstract class CardPhase extends AbstractPhase
             if($set_health) {
                 $target->setHealth($set_health);
             }
+
+            $armor = array_get($trigger, 'armor');
+            if($armor && $target instanceof AbstractHero) {
+                $target->gainArmor(5);
+            }
         }
 
         $attack_by_count = array_get($trigger, 'attack_by_count');
