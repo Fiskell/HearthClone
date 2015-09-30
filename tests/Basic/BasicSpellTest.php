@@ -117,6 +117,16 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(10, $chillwind_yeti->getHealth());
     }
 
+    /* Drain Life */
+    public function test_drain_life_deals_two_damage_to_a_character_and_heals_friendly_hero_for_2() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
+        $player1 = $this->game->getPlayer1();
+        $player1->getHero()->takeDamage(5);
+        $this->playCard('Drain Life', 1, [$chillwind_yeti]);
+        $this->assertEquals(3, $chillwind_yeti->getHealth());
+        $this->assertEquals(27, $player1->getHero()->getHealth());
+    }
+
     /* Execute */
     public function test_execute_kills_provided_damaged_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);

@@ -123,6 +123,19 @@
             }
         ]
     },
+    "Drain Life": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 2
+            },
+            {
+                "target_type": "friendly_hero",
+                "health": "2",
+                "buff": "spell"
+            }
+        ]
+    },
     "Dread Infernal": {
         "battlecry": [
             {
