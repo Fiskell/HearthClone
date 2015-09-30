@@ -105,6 +105,7 @@ class CardGenerator extends Command
 
             $trigger_json = [];
             for($i = 0; $i < $num_actions; $i++) {
+                $this->info('Card action ' . ($i + 1));
                 $this->info($card->getText());
 
                 $trigger_obj = $this->buildTriggerJson($card_name, $trigger);
