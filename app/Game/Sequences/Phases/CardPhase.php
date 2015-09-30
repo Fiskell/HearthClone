@@ -26,64 +26,69 @@ abstract class CardPhase extends AbstractPhase
     }
 
     public function resolve() {
-        $trigger = array_get($this->card->getTrigger(), $this->phase_name . '.0');
+
+        // todo clean up this mess
+        $triggers = array_get($this->card->getTrigger(), $this->phase_name);
+        $trigger = null;
         if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0')) {
             $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0.' . ($this->card->getChooseOption() - 1));
+            $triggers = [$trigger];
         }
 
         $overload_trigger = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
         if ($overload_trigger) {
-            $trigger = $overload_trigger;
             $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
             $this->card->getOwner()->addLockedManaCrystalCount($overload_value);
             return;
         }
 
-        if (is_null($trigger)) {
+        if (is_null($triggers)) {
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
         }
 
-        $targets = [];
-        $target_type = array_get($trigger, 'target_type');
-        if ($target_type) {
-            $targets = $this->getTargets($this->card, $target_type);
-        }
+        foreach($triggers as $trigger) {
+            $targets     = [];
+            $target_type = array_get($trigger, 'target_type');
+            if ($target_type) {
+                $targets = $this->getTargets($this->card, $target_type);
+            }
 
-        /* Check if race is correct */
-        $this->validateRace($trigger, $targets);
+            /* Check if race is correct */
+            $this->validateRace($trigger, $targets);
 
-        /* Destroy */
-        $this->resolveDestroyTrigger($trigger, $targets);
+            /* Destroy */
+            $this->resolveDestroyTrigger($trigger, $targets);
 
-        /* Freeze */
-        $this->resolveFreezeTrigger($trigger, $targets);
+            /* Freeze */
+            $this->resolveFreezeTrigger($trigger, $targets);
 
-        /* Silence */
-        $this->resolveSilenceTrigger($trigger, $targets);
+            /* Silence */
+            $this->resolveSilenceTrigger($trigger, $targets);
 
-        /* Damage */
-        $this->resolveDamageTrigger($trigger, $targets);
+            /* Damage */
+            $this->resolveDamageTrigger($trigger, $targets);
 
-        /* Spell */
-        $this->resolveSpellTrigger($trigger, $targets);
+            /* Spell */
+            $this->resolveSpellTrigger($trigger, $targets);
 
-        /* Enchantment */
-        $this->resolveEnchantmentTrigger($trigger, $targets);
+            /* Enchantment */
+            $this->resolveEnchantmentTrigger($trigger, $targets);
 
-        /* Discard */
-        $this->resolveDiscardTrigger($trigger, $targets);
+            /* Discard */
+            $this->resolveDiscardTrigger($trigger, $targets);
 
-        /* Draw */
-        $this->resolveDrawTrigger($trigger, $targets);
+            /* Draw */
+            $this->resolveDrawTrigger($trigger, $targets);
 
-        /* Summon */
-        $this->resolveSummonTrigger($trigger);
+            /* Summon */
+            $this->resolveSummonTrigger($trigger);
 
-        /* Modify Mana Crystals */
-        $create_mana_crystals = array_get($trigger, 'create_mana_crystals');
-        if($create_mana_crystals) {
-            $player = $this->card->getOwner();
-            $player->setManaCrystalCount($player->getManaCrystalCount() + $create_mana_crystals);
+            /* Modify Mana Crystals */
+            $create_mana_crystals = array_get($trigger, 'create_mana_crystals');
+            if ($create_mana_crystals) {
+                $player = $this->card->getOwner();
+                $player->setManaCrystalCount($player->getManaCrystalCount() + $create_mana_crystals);
+            }
         }
     }
 
