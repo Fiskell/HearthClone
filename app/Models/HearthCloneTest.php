@@ -68,16 +68,16 @@ class HearthCloneTest extends TestCase
     }
 
     public function playCardStrict($name, $player_id = 1, $turn = 1, $targets = [], $choose_mechanic = null) {
-        /** @var Card $card */
-        $card = app('Minion', [$this->game->getPlayer1()]);
-        $card->load($name);
-        $card->setChooseOption($choose_mechanic);
-
         /** @var Player $player */
         $player = $this->game->getPlayer1();
         if ($player_id == 2) {
             $player = $this->game->getPlayer2();
         }
+
+        /** @var Card $card */
+        $card = app('Minion', [$player]);
+        $card->load($name);
+        $card->setChooseOption($choose_mechanic);
 
         if ($turn > 1) {
             $player_a = $this->game->getActivePlayer();
