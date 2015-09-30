@@ -17,7 +17,7 @@ class CardGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'card:generate';
+    protected $signature = 'card:generate {num_actions?}';
 
     /**
      * The console command description.
@@ -92,11 +92,22 @@ class CardGenerator extends Command
 
             $this->checkCardDoesNotExist($card);
 
+            $num_actions = $this->argument('num_actions');
+            if(!$num_actions) {
+                $num_actions = 1;
+            }
+
             /* Triggers */
             $trigger = $this->requestTrigger();
             $this->info("Trigger: " . $trigger);
 
-            $trigger_json = $this->buildTriggerJson($card_name, $trigger);
+            $trigger_json = [];
+            for($i = 0; $i < $num_actions; $i++) {
+
+                $trigger_obj = $this->buildTriggerJson($card_name, $trigger);
+
+                $trigger_json[$trigger][] = $trigger_obj;
+            }
 
             $json = [$card_name => $trigger_json];
 
@@ -212,9 +223,7 @@ class CardGenerator extends Command
             $trigger_obj[$action] = $action_array;
         }
 
-        $trigger_json[$trigger][] = $trigger_obj;
-
-        return $trigger_json;
+        return $trigger_obj;
     }
 
     private function requestTrigger() {
