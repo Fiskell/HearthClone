@@ -222,6 +222,14 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$ALL_MINIONS:
                 $targets = $opponent_minions + $player_minions;
                 break;
+            case TargetTypes::$PROVIDED_ENEMY_MINION:
+                /** @var Minion $target */
+                $target = current($this->targets);
+                if(!array_get($opponent_minions, $target->getId())) {
+                    throw new InvalidTargetException('Target must belong to opponent');
+                }
+                $targets = [$target];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
