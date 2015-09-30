@@ -217,11 +217,11 @@
     "Frost Shock": {
         "spell_text_phase": [
             {
-                "target_type": "provided_minion",
+                "target_type": "provided_enemy_minion",
                 "damage": 1
             },
             {
-                "target_type": "provided_minion",
+                "target_type": "provided_enemy_minion",
                 "freeze": true
             }
         ]
