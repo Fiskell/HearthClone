@@ -176,7 +176,7 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Frost Shock */
-    public function test_frost_shock_deals_one_damage_and_freezes_target_minion() {
+    public function test_frost_shock_deals_one_damage_and_freezes_target_enemy_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
         $this->playCardStrict('Frost Shock', 2, 2, [$chillwind_yeti]);
         $this->assertEquals(4, $chillwind_yeti->getHealth());
@@ -184,12 +184,12 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Frostbolt */
-//    public function test_frostbolt_deals_one_damage_and_freezes_target_minion() {
-//        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
-//        $this->playCardStrict('Frost Shock', 2, 2, [$chillwind_yeti]);
-//        $this->assertEquals(4, $chillwind_yeti->getHealth());
-//        $this->assertTrue($chillwind_yeti->isFrozen());
-//    }
+    public function test_frostbolt_deals_three_damage_and_freezes_target_minion() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCardStrict('Frostbolt', 2, 2, [$chillwind_yeti]);
+        $this->assertEquals(2, $chillwind_yeti->getHealth());
+        $this->assertTrue($chillwind_yeti->isFrozen());
+    }
 
     /* Hand of Protection */
     public function test_hand_of_protection_gives_minion_divine_shield() {

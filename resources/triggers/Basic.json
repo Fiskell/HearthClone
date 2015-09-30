@@ -226,6 +226,18 @@
             }
         ]
     },
+    "Frostbolt": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 3
+            },
+            {
+                "target_type": "provided_minion",
+                "freeze": true
+            }
+        ]
+    },
     "Frostwolf Warlord": {
         "battlecry": [
             {
