@@ -36,6 +36,7 @@ abstract class CardPhase extends AbstractPhase
             $trigger = $overload_trigger;
             $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
             $this->card->getOwner()->addLockedManaCrystalCount($overload_value);
+            return;
         }
 
         if (is_null($trigger)) {
