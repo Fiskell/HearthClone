@@ -2,7 +2,27 @@
 
 An attempt at an exact copy of the mechanics in hearthstone.  The project is written with full TDD and uses Laravel 5.1
 
+The application is currently only runnable from unit tests.
+There will eventually be routes exposed to start a game, but wowza that is far away.
+
+## Setup
+
+Install laravel homestead
+
+Composer install
+
+npm install
+
 ## Hearthstone API
 
 Coming soon
+
+
+## Next Steps
+
+- Finish functionality for all current sets.
+- Hook in a datastore (most likely mongo)
+- Stateful API
+- Hearthstone from CLI application
+
 
