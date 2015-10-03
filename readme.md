@@ -21,6 +21,12 @@ Coming soon
 ## Next Steps
 
 - Finish functionality for all current sets.
+    -- basic
+    -- classic
+    -- gvg
+    -- tgt
+    -- naxx
+    -- black rock
 - Hook in a datastore (most likely mongo)
 - Stateful API
 - Hearthstone from CLI application
