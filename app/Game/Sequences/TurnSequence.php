@@ -66,5 +66,9 @@ class TurnSequence extends AbstractSequence
      */
     private function resetTurnCounters() {
         $this->player->resetCardsPlayedThisTurn();
+
+        // Reset any temporary attack.
+        $this->player->getHero()->setAttack(0);
+        $this->player->getOtherPlayer()->getHero()->setAttack(0);
     }
 }
