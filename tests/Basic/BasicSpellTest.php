@@ -98,6 +98,16 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $wisp2->getAttack());
     }
 
+    /* Claw */
+    public function test_claw_gives_friendly_hero_two_attack_and_two_armor() {
+        $this->playCardStrict('Claw', 1, 1);
+        $player1 = $this->game->getPlayer1();
+        $this->assertEquals(2, $player1->getHero()->getAttack());
+        $this->assertEquals(2, $player1->getHero()->getArmor());
+        $player1->passTurn();
+        $this->assertEquals(0, $player1->getHero()->getAttack());
+    }
+
     /* Consecration */
     public function test_consecration_deals_two_damage_to_all_enemies() {
         $wisp          = $this->playCard('Wisp', 1);

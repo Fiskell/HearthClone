@@ -83,6 +83,17 @@
             }
         ]
     },
+    "Claw": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "attack": "2",
+                "armor": "2",
+                "name": "Claw",
+                "buff": "spell"
+            }
+        ]
+    },
     "Consecration": {
         "spell_text_phase": [
             {
