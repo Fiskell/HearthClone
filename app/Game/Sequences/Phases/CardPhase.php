@@ -337,7 +337,7 @@ abstract class CardPhase extends AbstractPhase
 
             $armor = array_get($trigger, 'armor');
             if($armor && $target instanceof AbstractHero) {
-                $target->gainArmor(5);
+                $target->gainArmor($armor);
             }
         }
 
@@ -381,6 +381,11 @@ abstract class CardPhase extends AbstractPhase
             $full_health = array_get($trigger, 'full_health');
             if ($full_health) {
                 $target->setHealth($target->getMaxHealth());
+            }
+
+            $armor = array_get($trigger, 'armor');
+            if($armor && $target instanceof AbstractHero) {
+                $target->gainArmor($armor);
             }
         }
 
