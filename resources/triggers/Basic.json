@@ -556,6 +556,16 @@
             }
         ]
     },
+    "Rockbiter Weapon": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "attack": "3",
+                "name": "Rockbiter Weapon",
+                "buff": "spell"
+            }
+        ]
+    },
     "Shadow Bolt": {
         "spell_text_phase": [
             {

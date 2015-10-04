@@ -345,6 +345,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
     }
 
+    /* Rockbiter Weapon */
+    public function test_rockbiter_weapon_gives_friendly_hero_three_attack() {
+        $this->playCardStrict('Rockbiter Weapon', 1, 1);
+        $player1 = $this->game->getPlayer1();
+        $this->assertEquals(3, $player1->getHero()->getAttack());
+        $player1->passTurn();
+        $this->assertEquals(0, $player1->getHero()->getAttack());
+    }
+
     /* Shadow Bolt */
     public function test_shadow_bolt_deals_four_damage_to_target_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
