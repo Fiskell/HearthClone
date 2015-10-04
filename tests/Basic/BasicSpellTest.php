@@ -88,6 +88,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(5, $wisp->getHealth());
     }
 
+    /* Blessing of Might */
+    public function test_blessing_of_might_gives_target_minion_three_attack() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Blessing of Might', 1, [$chillwind_yeti]);
+        $this->assertEquals(7, $chillwind_yeti->getAttack());
+    }
+
     /* Bloodlust */
     // TODO test bloodlust wears off at end of turn
     public function test_bloodlust_gives_friendly_minions_three_attack() {

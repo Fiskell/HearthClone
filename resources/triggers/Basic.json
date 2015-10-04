@@ -73,6 +73,16 @@
             }
         ]
     },
+    "Blessing of Might": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "attack": "3",
+                "name": "Blessing of Might",
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Bloodlust": {
         "spell_text_phase": [
             {
