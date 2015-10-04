@@ -337,6 +337,14 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
 
+    /* Power Word: Shield */
+    public function test_power_word_shield_gives_target_minion_two_health_and_draws_one_card() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Power Word: Shield', 1, [$chillwind_yeti]);
+        $this->assertEquals(7, $chillwind_yeti->getHealth());
+        $this->assertEquals(1, $this->game->getPlayer1()->getHandSize());
+    }
+
     /* Shadow Bolt */
     public function test_shadow_bolt_deals_four_damage_to_target_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);

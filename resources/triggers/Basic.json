@@ -522,6 +522,20 @@
     "Ogre Magi": {
         "spellpower": 1
     },
+    "Power Word: Shield": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "max_health": "2",
+                "name": "Power Word: Shield",
+                "buff": "enchantment"
+            },
+            {
+                "target_type": "friendly_player",
+                "draw": 1
+            }
+        ]
+    },
     "Raid Leader": {
         "aura": [
             {
