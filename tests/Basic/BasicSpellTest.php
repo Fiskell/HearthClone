@@ -20,6 +20,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($chillwind_yeti->hasMechanic(Mechanics::$TAUNT));
     }
 
+    /* Animal Companion */
+    // todo
+
     /* Arcane Explosion */
     public function test_arcane_explosion_deals_one_damage_to_all_enemy_minions() {
         $wisp1         = $this->playCard('Wisp', 1);
@@ -39,6 +42,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Arcane Intellect', 1);
         $this->assertEquals(2, $this->game->getPlayer1()->getHandSize());
     }
+
+    /* Arcane Missiles */
+    // todo
 
     /* Arcane Shot */
     public function test_arcane_shot_does_two_damage_to_hero_when_played() {
@@ -115,6 +121,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(0, $player1->getHero()->getAttack());
     }
 
+    /* Cleave */
+    // todo
+
     /* Consecration */
     public function test_consecration_deals_two_damage_to_all_enemies() {
         $wisp          = $this->playCard('Wisp', 1);
@@ -126,6 +135,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(3, $chillwind_yei->getHealth());
         $this->assertTrue($wisp->isAlive());
     }
+
+    /* Corruption */
+    // todo
 
     /* Deadly Poison */
     public function test_deadly_poison_adds_two_attack_to_friendly_weapon() {
@@ -267,6 +279,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(0, $player1->getHero()->getAttack());
     }
 
+    /* Hex */
+    // todo
+
     /* Holy Light */
     public function test_holy_light_heals_six_health_to_friendly_hero() {
         $player1 = $this->game->getPlayer1();
@@ -281,6 +296,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Holy Light', 1);
         $this->assertEquals(30, $player1->getHero()->getHealth());
     }
+
+    /* Holy Nova */
+    // todo
 
     /* Holy Smite */
     public function test_holy_smite_deals_two_damage() {
@@ -302,6 +320,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
+    /* Innervate */
+    // todo
+
+    /* Kill Command */
+    // todo
+
     /* Mark of the Wild */
     public function test_mark_of_the_wild_gives_target_minion_taunt_and_2_2() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
@@ -317,6 +341,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Mind Blast', 1);
         $this->assertEquals(25, $player2->getHero()->getHealth());
     }
+
+    /* Mind Control */
+    // todo
+
+    /* Mind Vision */
+    // todo
 
     /* Mirror Image */
     // todo recursion due to spell and minion named the same
@@ -337,6 +367,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $chillwind_yeti->getHealth());
     }
 
+    /* Mortal Coil */
+    // todo
+
+    /* Multi-Shot */
+    // todo
+
+    /* Polymorph */
+    // todo
+
     /* Power Word: Shield */
     public function test_power_word_shield_gives_target_minion_two_health_and_draws_one_card() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
@@ -354,6 +393,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(0, $player1->getHero()->getAttack());
     }
 
+    /* Sacrificial Pact */
+    // todo
+
+    /* Sap */
+    // todo
+
     /* Savage Roar */
     public function test_savage_roar_gives_friendly_characters_two_attack_this_turn() {
         $wisp = $this->playCard('Wisp', 1);
@@ -370,6 +415,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->playCard('Shadow Bolt', 1, [$chillwind_yeti]);
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
+
+    /* Shadow Word: Death */
+    // todo
+
+    /* Shadow Word: Pain */
+    // todo
 
     /* Shield Block */
     public function test_shield_block_gains_five_armor_and_draws_one_card() {
@@ -392,6 +443,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(27, $this->game->getPlayer2()->getHero()->getHealth());
     }
 
+    /* Soulfire */
+    // todo
+
     /* Sprint */
     public function test_sprint_draws_four_cards() {
         $this->playCard('Sprint', 1);
@@ -406,6 +460,9 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $this->game->getPlayer2()->getHandSize());
     }
 
+    /* Swipe */
+    // todo
+
     /* Totemic Might */
     public function test_totemic_might_gives_all_totems_two_health() {
         $healing_totem = $this->playCard('Healing Totem', 1);
@@ -414,6 +471,12 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $healing_totem->getHealth());
         $this->assertEquals(4, $wrath_of_air_totem->getHealth());
     }
+
+    /* Tracking */
+    // todo
+
+    /* Vanish */
+    // todo
 
     /* Whirlwind */
     public function test_whirlwind_deals_one_damage_to_all_minions() {
