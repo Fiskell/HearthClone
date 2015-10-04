@@ -518,6 +518,18 @@
             }
         ]
     },
+    "Shiv": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 1
+            },
+            {
+                "target_type": "friendly_player",
+                "draw": 1
+            }
+        ]
+    },
     "Sinister Strike": {
         "spell_text_phase": [
             {
