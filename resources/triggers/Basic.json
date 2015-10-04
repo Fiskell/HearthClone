@@ -445,6 +445,20 @@
             }
         ]
     },
+    "Mark of the Wild": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "mechanics": [
+                    "Taunt"
+                ],
+                "attack": "2",
+                "max_health": "2",
+                "name": "Mark of the Wild",
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Mind Blast": {
         "spell_text_phase": [
             {

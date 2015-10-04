@@ -302,6 +302,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(1, $chillwind_yeti->getHealth());
     }
 
+    /* Mark of the Wild */
+    public function test_mark_of_the_wild_gives_target_minion_taunt_and_2_2() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCard('Mark of the Wild', 1, [$chillwind_yeti]);
+        $this->assertEquals(6, $chillwind_yeti->getAttack());
+        $this->assertEquals(7, $chillwind_yeti->getHealth());
+        $this->assertTrue($chillwind_yeti->hasMechanic(Mechanics::$TAUNT));
+    }
+
     /* Mind Blast */
     public function test_mind_blast_deals_five_damage_to_opponent_hero() {
         $player2 = $this->game->getPlayer2();
