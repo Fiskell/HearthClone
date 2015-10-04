@@ -258,6 +258,15 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(2, $chillwind_yeti2->getHealth());
     }
 
+    /* Heroic Strike */
+    public function test_heroic_strike_gives_friendly_hero_four_attack() {
+        $this->playCardStrict('Heroic Strike', 1, 2);
+        $player1 = $this->game->getPlayer1();
+        $this->assertEquals(4, $player1->getHero()->getAttack());
+        $player1->passTurn();
+        $this->assertEquals(0, $player1->getHero()->getAttack());
+    }
+
     /* Holy Light */
     public function test_holy_light_heals_six_health_to_friendly_hero() {
         $player1 = $this->game->getPlayer1();

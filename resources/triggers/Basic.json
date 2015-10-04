@@ -364,6 +364,16 @@
             }
         ]
     },
+    "Heroic Strike": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_hero",
+                "attack": "4",
+                "name": "Heroic Strike",
+                "buff": "spell"
+            }
+        ]
+    },
     "Holy Light": {
         "spell_text_phase": [
             {
