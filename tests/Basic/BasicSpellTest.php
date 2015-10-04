@@ -354,6 +354,16 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(0, $player1->getHero()->getAttack());
     }
 
+    /* Savage Roar */
+    public function test_savage_roar_gives_friendly_characters_two_attack_this_turn() {
+        $wisp = $this->playCard('Wisp', 1);
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $this->playCardStrict('Savage Roar', 1, 3);
+        $this->assertEquals(3, $wisp->getAttack());
+        $this->assertEquals(6, $chillwind_yeti->getAttack());
+        $this->assertEquals(2, $this->game->getPlayer1()->getHero()->getAttack());
+    }
+
     /* Shadow Bolt */
     public function test_shadow_bolt_deals_four_damage_to_target_minion() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);

@@ -566,6 +566,16 @@
             }
         ]
     },
+    "Savage Roar": {
+        "spell_text_phase": [
+            {
+                "target_type": "all_friendly_characters",
+                "attack": "2",
+                "name": "Savage Roar",
+                "buff": "spell"
+            }
+        ]
+    },
     "Shadow Bolt": {
         "spell_text_phase": [
             {
