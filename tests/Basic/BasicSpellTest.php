@@ -329,6 +329,14 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(4, $this->game->getPlayer1()->getHandSize());
     }
 
+    /* Starfire */
+    public function test_starfire_deals_five_damage_and_draws_one_card() {
+        $archmage = $this->playCard('Archmage', 1);
+        $this->playCard('Starfire', 2, [$archmage]);
+        $this->assertEquals(2, $archmage->getHealth());
+        $this->assertEquals(1, $this->game->getPlayer2()->getHandSize());
+    }
+
     /* Totemic Might */
     public function test_totemic_might_gives_all_totems_two_health() {
         $healing_totem = $this->playCard('Healing Totem', 1);

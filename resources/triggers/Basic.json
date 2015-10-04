@@ -546,6 +546,18 @@
             }
         ]
     },
+    "Starfire": {
+        "spell_text_phase": [
+            {
+                "target_type": "provided_minion",
+                "damage": 5
+            },
+            {
+                "target_type": "friendly_player",
+                "draw": 1
+            }
+        ]
+    },
     "Starving Buzzard": {
         "late_on_summon_phase": [
             {
