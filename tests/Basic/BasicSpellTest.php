@@ -120,6 +120,13 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertTrue($wisp->isAlive());
     }
 
+    /* Deadly Poison */
+    public function test_deadly_poison_adds_two_attack_to_friendly_weapon() {
+        $this->playWeaponCard('Light\'s Justice', 1);
+        $this->playCard('Deadly Poison', 1);
+        $this->assertEquals(3, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
+    }
+
     /* Divine Spirit */
     public function test_divine_spirit_doubles_targets_health() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);

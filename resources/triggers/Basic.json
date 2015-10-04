@@ -114,6 +114,16 @@
             }
         ]
     },
+    "Deadly Poison": {
+        "spell_text_phase": [
+            {
+                "target_type": "friendly_weapon",
+                "attack": "2",
+                "name": "Deadly Poison",
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Divine Spirit": {
         "spell_text_phase": [
             {
