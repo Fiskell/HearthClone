@@ -25,6 +25,7 @@ class TargetTypes
     public static $OTHER_FRIENDLY_MINIONS           = 'other_friendly_minions';
     public static $FRIENDLY_PLAYER                  = 'friendly_player';
     public static $FRIENDLY_HERO                    = 'friendly_hero';
+    public static $FRIENDLY_WEAPON                  = 'friendly_weapon';
     public static $OPPONENT_HERO                    = 'opponent_hero';
     public static $OPPONENT_WEAPON                  = 'opponent_weapon';
     public static $ADJACENT_MINIONS                 = 'adjacent_minions';
