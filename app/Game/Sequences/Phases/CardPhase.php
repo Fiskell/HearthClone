@@ -230,6 +230,9 @@ abstract class CardPhase extends AbstractPhase
                 }
                 $targets = [$target];
                 break;
+            case TargetTypes::$FRIENDLY_WEAPON:
+                $targets = [$player->getHero()->getWeapon()];
+                break;
             default:
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
@@ -317,6 +320,11 @@ abstract class CardPhase extends AbstractPhase
 
             $delta_attack = array_get($trigger, 'attack', 0);
             $target->setAttack($target->getAttack() + $delta_attack);
+
+            // TODO jank
+            if($target instanceof Weapon) {
+                continue;
+            }
 
             $delta_max_health = array_get($trigger, 'max_health', 0);
             if($delta_max_health) {
