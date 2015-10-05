@@ -1,4 +1,4 @@
-<?php namespace tests;
+<?php
 
 use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;

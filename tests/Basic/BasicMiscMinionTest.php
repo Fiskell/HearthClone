@@ -1,13 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/19/15
- * Time: 11:50 AM
- */
-
-namespace tests;
-
 
 use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
