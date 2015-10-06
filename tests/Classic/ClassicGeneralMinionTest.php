@@ -5,9 +5,7 @@ use App\Models\HearthCloneTest;
 
 class ClassicGeneralMinionTest extends HearthCloneTest
 {
-    /* 'Inspired' */
-    // todo
-    
+
     /* Abomination */
     // todo
 
@@ -29,28 +27,13 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Alexstrasza */
     // todo
 
-    /* Alexstrasza's Fire */
-    // todo
-
     /* Amani Berserker */
-    // todo
-
-    /* Ancestral Spirit */
-    // todo
-
-    /* Ancestral Spirit */
     // todo
 
     /* Ancient Brewmaster */
     // todo
 
     /* Ancient Mage */
-    // todo
-
-    /* Ancient Secrets */
-    // todo
-
-    /* Ancient Teachings */
     // todo
 
     /* Ancient Watcher */
@@ -86,13 +69,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Armorsmith */
     // todo
 
-    /* Ashbringer */
-    // todo
-
     /* Auchenai Soulpriest */
-    // todo
-
-    /* Avenging Wrath */
     // todo
 
     /* Azure Drake */
@@ -101,73 +78,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Baine Bloodhoof */
     // todo
 
-    /* Bananas */
-    // todo
-
-    /* Bananas */
-    // todo
-
-    /* Bane of Doom */
-    // todo
-
     /* Baron Geddon */
     // todo
 
-    /* Battle Axe */
-    // todo
-
-    /* Battle Rage */
-    // todo
-
-    /* Bear Form */
-    // todo
-
-    /* Berserk */
-    // todo
-
-    /* Bestial Wrath */
-    // todo
-
-    /* Bestial Wrath */
-    // todo
-
-    /* Betrayal */
-    // todo
-
     /* Big Game Hunter */
-    // todo
-
-    /* Bite */
-    // todo
-
-    /* Bite */
-    // todo
-
-    /* Blade Flurry */
-    // todo
-
-    /* Blarghghl */
-    // todo
-
-    /* Blessed Champion */
-    // todo
-
-    /* Blessed Champion */
-    // todo
-
-    /* Blessing of Wisdom */
-    // todo
-
-    /* Blessing of Wisdom */
-    // todo
-
-    /* Blessing of Wisdom */
-    // todo
-
-    /* Blizzard */
-    // todo
-
-    /* Blood Fury */
     // todo
 
     /* Blood Imp */
@@ -176,13 +90,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Blood Knight */
     // todo
 
-    /* Blood Pact */
-    // todo
-
     /* Bloodmage Thalnos */
-    // todo
-
-    /* Bloodrage */
     // todo
 
     /* Bloodsail Corsair */
@@ -191,70 +99,22 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Bloodsail Raider */
     // todo
 
-    /* Bolstered */
-    // todo
-
-    /* Brawl */
-    // todo
-
     /* Cabal Shadow Priest */
     // todo
 
     /* Cairne Bloodhoof */
     // todo
 
-    /* Cannibalize */
-    // todo
-
     /* Captain Greenskin */
     // todo
 
-    /* Cat Form */
-    // todo
-
     /* Cenarius */
-    // todo
-
-    /* Circle of Healing */
-    // todo
-
-    /* Cold Blood */
-    // todo
-
-    /* Cold Blood */
-    // todo
-
-    /* Cold Blood */
     // todo
 
     /* Coldlight Oracle */
     // todo
 
     /* Coldlight Seer */
-    // todo
-
-    /* Commanding Shout */
-    // todo
-
-    /* Commanding Shout */
-    // todo
-
-    /* Commanding Shout */
-    // todo
-
-    /* Conceal */
-    // todo
-
-    /* Concealed */
-    // todo
-
-    /* Cone of Cold */
-    // todo
-
-    /* Consume */
-    // todo
-
-    /* Counterspell */
     // todo
 
     /* Crazed Alchemist */
@@ -272,9 +132,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Dark Iron Dwarf */
     // todo
 
-    /* Deadly Shot */
-    // todo
-
     /* Deathwing */
     // todo
 
@@ -290,19 +147,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Defias Ringleader */
     // todo
 
-    /* Demigod's Favor */
-    // todo
-
-    /* Demigod's Favor */
-    // todo
-
     /* Demolisher */
-    // todo
-
-    /* Demonfire */
-    // todo
-
-    /* Demonfire */
     // todo
 
     /* Devilsaur */
@@ -311,25 +156,13 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Dire Wolf Alpha */
     // todo
 
-    /* Dispel */
-    // todo
-
-    /* Divine Favor */
-    // todo
-
     /* Doomguard */
-    // todo
-
-    /* Doomhammer */
     // todo
 
     /* Doomsayer */
     // todo
 
     /* Dread Corsair */
-    // todo
-
-    /* Dream */
     // todo
 
     /* Druid of the Claw */
@@ -344,13 +177,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Dust Devil */
     // todo
 
-    /* Eaglehorn Bow */
-    // todo
-
     /* Earth Elemental */
-    // todo
-
-    /* Earth Shock */
     // todo
 
     /* Earthen Ring Farseer */
@@ -359,43 +186,13 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Edwin VanCleef */
     // todo
 
-    /* Elune's Grace */
-    // todo
-
     /* Emerald Drake */
     // todo
 
     /* Emperor Cobra */
     // todo
 
-    /* Empowered */
-    // todo
-
-    /* Equality */
-    // todo
-
-    /* Equality */
-    // todo
-
-    /* Equipped */
-    // todo
-
     /* Ethereal Arcanist */
-    // todo
-
-    /* Eviscerate */
-    // todo
-
-    /* Experiments! */
-    // todo
-
-    /* Explosive Shot */
-    // todo
-
-    /* Explosive Trap */
-    // todo
-
-    /* Eye for an Eye */
     // todo
 
     /* Faceless Manipulator */
@@ -404,19 +201,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Faerie Dragon */
     // todo
 
-    /* Far Sight */
-    // todo
-
-    /* Far Sight */
-    // todo
-
     /* Felguard */
     // todo
 
     /* Fen Creeper */
-    // todo
-
-    /* Feral Spirit */
     // todo
 
     /* Finkle Einhorn */
@@ -428,19 +216,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Flame of Azzinoth */
     // todo
 
-    /* Flare */
-    // todo
-
     /* Flesheating Ghoul */
-    // todo
-
-    /* Force of Nature */
-    // todo
-
-    /* Forked Lightning */
-    // todo
-
-    /* Freezing Trap */
     // todo
 
     /* Frost Elemental */
@@ -449,37 +225,16 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Frothing Berserker */
     // todo
 
-    /* Full Belly */
-    // todo
-
-    /* Full Strength */
-    // todo
-
     /* Gadgetzan Auctioneer */
-    // todo
-
-    /* Gladiator's Longbow */
     // todo
 
     /* Gnoll */
     // todo
 
-    /* Gorehowl */
-    // todo
-
-    /* Greenskin's Command */
-    // todo
-
     /* Grommash Hellscream */
     // todo
 
-    /* Growth */
-    // todo
-
     /* Gruul */
-    // todo
-
-    /* Hand of Argus */
     // todo
 
     /* Harrison Jones */
@@ -488,46 +243,16 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Harvest Golem */
     // todo
 
-    /* Headcrack */
-    // todo
-
-    /* Heavy Axe */
-    // todo
-
     /* Hogger */
     // todo
 
-    /* Holy Fire */
-    // todo
-
-    /* Holy Wrath */
-    // todo
-
     /* Hound */
-    // todo
-
-    /* Hour of Twilight */
     // todo
 
     /* Hungry Crab */
     // todo
 
     /* Hyena */
-    // todo
-
-    /* INFERNO! */
-    // todo
-
-    /* Ice Barrier */
-    // todo
-
-    /* Ice Block */
-    // todo
-
-    /* Ice Block */
-    // todo
-
-    /* Ice Lance */
     // todo
 
     /* Illidan Stormrage */
@@ -542,22 +267,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Infernal */
     // todo
 
-    /* Infusion */
-    // todo
-
     /* Injured Blademaster */
-    // todo
-
-    /* Inner Fire */
-    // todo
-
-    /* Inner Fire */
-    // todo
-
-    /* Inner Rage */
-    // todo
-
-    /* Inner Rage */
     // todo
 
     /* Ironbeak Owl */
@@ -570,19 +280,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Jungle Panther */
     // todo
 
-    /* Justice Served */
-    // todo
-
     /* Keeper of the Grove */
     // todo
 
-    /* Keeping Secrets */
-    // todo
-
     /* Kidnapper */
-    // todo
-
-    /* Kill Millhouse! */
     // todo
 
     /* King Krush */
@@ -600,31 +301,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Laughing Sister */
     // todo
 
-    /* Lava Burst */
-    // todo
-
-    /* Lay on Hands */
-    // todo
-
-    /* Leader of the Pack */
-    // todo
-
-    /* Leader of the Pack */
-    // todo
-
     /* Leeroy Jenkins */
     // todo
 
     /* Leper Gnome */
-    // todo
-
-    /* Level Up! */
-    // todo
-
-    /* Lightning Bolt */
-    // todo
-
-    /* Lightning Storm */
     // todo
 
     /* Lightspawn */
@@ -642,9 +322,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Lord Jaraxxus */
     // todo
 
-    /* Lord Jaraxxus */
-    // todo
-
     /* Lorewalker Cho */
     // todo
 
@@ -657,9 +334,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Mana Addict */
     // todo
 
-    /* Mana Gorged */
-    // todo
-
     /* Mana Tide Totem */
     // todo
 
@@ -667,24 +341,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     // todo
 
     /* Mana Wyrm */
-    // todo
-
-    /* Mark of Nature */
-    // todo
-
-    /* Mark of Nature */
-    // todo
-
-    /* Mark of Nature */
-    // todo
-
-    /* Mark of Nature */
-    // todo
-
-    /* Mark of Nature */
-    // todo
-
-    /* Mass Dispel */
     // todo
 
     /* Master Swordsmith */
@@ -699,43 +355,13 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Mind Control Tech */
     // todo
 
-    /* Mind Controlling */
-    // todo
-
-    /* Mind Shatter */
-    // todo
-
-    /* Mind Spike */
-    // todo
-
-    /* Mindgames */
-    // todo
-
-    /* Mirror Entity */
-    // todo
-
-    /* Misdirection */
-    // todo
-
     /* Mogu'shan Warden */
     // todo
 
     /* Molten Giant */
     // todo
 
-    /* Moonfire */
-    // todo
-
-    /* Mortal Strike */
-    // todo
-
     /* Mountain Giant */
-    // todo
-
-    /* Mrgglaargl! */
-    // todo
-
-    /* Mrghlglhal */
     // todo
 
     /* Murloc Tidecaller */
@@ -747,37 +373,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Nat Pagle */
     // todo
 
-    /* Naturalize */
-    // todo
-
-    /* Needs Sharpening */
-    // todo
-
-    /* Nightmare */
-    // todo
-
-    /* Nightmare */
-    // todo
-
-    /* Noble Sacrifice */
-    // todo
-
-    /* Nourish */
-    // todo
-
-    /* Nourish */
-    // todo
-
-    /* Nourish */
-    // todo
-
     /* Nozdormu */
     // todo
 
     /* Onyxia */
-    // todo
-
-    /* Overloading */
     // todo
 
     /* Panther */
@@ -786,40 +385,16 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Patient Assassin */
     // todo
 
-    /* Perdition's Blade */
-    // todo
-
     /* Pint-Sized Summoner */
     // todo
 
     /* Pit Lord */
     // todo
 
-    /* Power Overwhelming */
-    // todo
-
-    /* Power Overwhelming */
-    // todo
-
-    /* Power of the Kirin Tor */
-    // todo
-
-    /* Power of the Wild */
-    // todo
-
-    /* Preparation */
-    // todo
-
-    /* Preparation */
-    // todo
-
     /* Priestess of Elune */
     // todo
 
     /* Prophet Velen */
-    // todo
-
-    /* Pyroblast */
     // todo
 
     /* Questing Adventurer */
@@ -831,37 +406,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Ragnaros the Firelord */
     // todo
 
-    /* Rampage */
-    // todo
-
-    /* Rampage */
-    // todo
-
     /* Ravenholdt Assassin */
     // todo
 
-    /* Raw Power! */
-    // todo
-
-    /* Redemption */
-    // todo
-
-    /* Repentance */
-    // todo
-
-    /* Repentance */
-    // todo
-
-    /* Rooted */
-    // todo
-
-    /* Rooted */
-    // todo
-
     /* SI:7 Agent */
-    // todo
-
-    /* Savagery */
     // todo
 
     /* Savannah Highmane */
@@ -879,43 +427,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Secretkeeper */
     // todo
 
-    /* Sense Demons */
-    // todo
-
-    /* Shadow Madness */
-    // todo
-
-    /* Shadow Madness */
-    // todo
-
     /* Shadow of Nothing */
     // todo
 
-    /* Shadowflame */
-    // todo
-
-    /* Shadowform */
-    // todo
-
-    /* Shadows of M'uru */
-    // todo
-
-    /* Shadowstep */
-    // todo
-
-    /* Shan'do's Lesson */
-    // todo
-
-    /* Sharp! */
-    // todo
-
-    /* Shield Slam */
-    // todo
-
     /* Shieldbearer */
-    // todo
-
-    /* Silence */
     // todo
 
     /* Silver Hand Knight */
@@ -924,37 +439,16 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Silvermoon Guardian */
     // todo
 
-    /* Siphon Soul */
-    // todo
-
-    /* Slam */
-    // todo
-
     /* Snake */
     // todo
 
-    /* Snake Trap */
-    // todo
-
-    /* Snipe */
-    // todo
-
     /* Sorcerer's Apprentice */
-    // todo
-
-    /* Soul of the Forest */
-    // todo
-
-    /* Soul of the Forest */
     // todo
 
     /* Southsea Captain */
     // todo
 
     /* Southsea Deckhand */
-    // todo
-
-    /* Spellbender */
     // todo
 
     /* Spellbender */
@@ -978,28 +472,7 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Stampeding Kodo */
     // todo
 
-    /* Stand Down! */
-    // todo
-
-    /* Starfall */
-    // todo
-
-    /* Starfall */
-    // todo
-
-    /* Starfall */
-    // todo
-
-    /* Stormforged Axe */
-    // todo
-
     /* Stranglethorn Tiger */
-    // todo
-
-    /* Strength of the Pack */
-    // todo
-
-    /* Summon a Panther */
     // todo
 
     /* Summoning Portal */
@@ -1011,19 +484,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Sunwalker */
     // todo
 
-    /* Sword of Justice */
-    // todo
-
     /* Sylvanas Windrunner */
     // todo
 
     /* Tauren Warrior */
-    // todo
-
-    /* Teachings of the Kirin Tor */
-    // todo
-
-    /* Tempered */
     // todo
 
     /* Temple Enforcer */
@@ -1035,9 +499,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* The Black Knight */
     // todo
 
-    /* Thoughtsteal */
-    // todo
-
     /* Thrallmar Farseer */
     // todo
 
@@ -1047,9 +508,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Tirion Fordring */
     // todo
 
-    /* Trapped */
-    // todo
-
     /* Treant */
     // todo
 
@@ -1057,42 +515,12 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     // todo
 
     /* Treant */
-    // todo
-
-    /* Treasure Crazed */
     // todo
 
     /* Twilight Drake */
     // todo
 
-    /* Twisting Nether */
-    // todo
-
     /* Unbound Elemental */
-    // todo
-
-    /* Unleash the Hounds */
-    // todo
-
-    /* Upgrade! */
-    // todo
-
-    /* Upgraded */
-    // todo
-
-    /* Upgraded */
-    // todo
-
-    /* Uproot */
-    // todo
-
-    /* Uprooted */
-    // todo
-
-    /* VanCleef's Vengeance */
-    // todo
-
-    /* Vaporize */
     // todo
 
     /* Venture Co. Mercenary */
@@ -1107,19 +535,10 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Void Terror */
     // todo
 
-    /* Warded */
-    // todo
-
-    /* Well Fed */
-    // todo
-
     /* Whelp */
     // todo
 
     /* Whelp */
-    // todo
-
-    /* Whipped Into Shape */
     // todo
 
     /* Wild Pyromancer */
@@ -1137,18 +556,6 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Worthless Imp */
     // todo
 
-    /* Wrath */
-    // todo
-
-    /* Wrath */
-    // todo
-
-    /* Wrath */
-    // todo
-
-    /* Yarrr! */
-    // todo
-
     /* Young Dragonhawk */
     // todo
 
@@ -1161,7 +568,5 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     /* Ysera */
     // todo
 
-    /* Ysera Awakens */
-    // todo
 
 }
