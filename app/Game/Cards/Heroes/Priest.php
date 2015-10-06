@@ -16,7 +16,7 @@ class Priest extends AbstractHero
     protected $name = "Anduin Wrynn";
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct($player, $this->name);
         $this->hero_class = HeroClass::$PRIEST;
         $this->hero_power = HeroPower::$PRIEST;
     }

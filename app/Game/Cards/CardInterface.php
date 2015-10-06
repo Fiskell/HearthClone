@@ -10,5 +10,4 @@ namespace App\Game\Cards;
 
 interface CardInterface
 {
-    public function load($handle=null);
 }

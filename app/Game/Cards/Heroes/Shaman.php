@@ -22,7 +22,7 @@ class Shaman extends AbstractHero
 
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct($player, $this->name);
         $this->hero_class = HeroClass::$SHAMAN;
         $this->hero_power = HeroPower::$SHAMAN;
     }
@@ -36,8 +36,7 @@ class Shaman extends AbstractHero
     function useAbility(array $targets) {
         $active_player = $this->getOwner();
         /** @var Minion $card */
-        $card = app('Minion', [$active_player]);
-        $card->load($this->getRandomTotemName());
+        $card = app('Minion', [$active_player, $this->getRandomTotemName()]);
 
         $active_player->play($card);
     }

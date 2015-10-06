@@ -9,6 +9,7 @@
 namespace App\Game\Cards;
 
 use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Player;
 
 class Weapon extends Card
 {
@@ -18,8 +19,8 @@ class Weapon extends Card
     /** @var AbstractHero $hero */
     public $hero;
 
-    public function load($name = null) {
-        parent::load($name);
+    public function __construct(Player $player, $name = null) {
+        parent::__construct($player, $name);
         $this->attack     = array_get($this->card_json, 'attack', 0);
         $this->durability = array_get($this->card_json, 'durability', 0);
     }

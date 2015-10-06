@@ -17,47 +17,47 @@ class MiscCardTest extends HearthCloneTest
 {
     /** @expectedException \App\Exceptions\MissingCardNameException */
     public function test_card_load_throws_when_no_card_name_specified() {
-        $this->card->load();
+        app('Card', [$this->game->getPlayer1()]);
     }
 
     /** @expectedException \App\Exceptions\UnknownCardNameException */
     public function test_card_load_throws_when_unknown_name_is_given() {
-        $this->card->load('NOT_A_REAL_CARD_HANDLE');
+        app('Card', [$this->game->getPlayer1(), 'NOT_A_REAL_CARD_HANDLE']);
     }
 
     public function test_card_name_is_set_when_name_passed_into_load() {
-        $this->card->load('Wisp');
-        $this->assertEquals('Wisp', $this->card->getName());
+        $wisp = app('Minion', [$this->game->getPlayer1(), 'Wisp']);
+        $this->assertEquals('Wisp', $wisp->getName());
     }
 
     public function test_card_attack_is_set_on_load_wisp() {
-        $this->card->load('Wisp');
-        $this->assertEquals(1, $this->card->getAttack());
+        $wisp = app('Minion', [$this->game->getPlayer1(), 'Wisp']);
+        $this->assertEquals(1, $wisp->getAttack());
     }
 
     public function test_card_health_is_set_on_load_wisp() {
-        $this->card->load('Wisp');
-        $this->assertEquals(1, $this->card->getHealth());
+        $wisp = app('Minion', [$this->game->getPlayer1(), 'Wisp']);
+        $this->assertEquals(1, $wisp->getHealth());
     }
 
     public function test_card_attack_is_set_on_load_knife_juggler() {
-        $this->card->load('Knife Juggler');
-        $this->assertEquals(3, $this->card->getAttack());
+        $knife_juggler = app('Minion', [$this->game->getPlayer1(), 'Knife Juggler']);
+        $this->assertEquals(3, $knife_juggler->getAttack());
     }
 
     public function test_card_health_is_set_on_load_knife_juggler() {
-        $this->card->load('Knife Juggler');
-        $this->assertEquals(2, $this->card->getHealth());
+        $knife_juggler = app('Minion', [$this->game->getPlayer1(), 'Knife Juggler']);
+        $this->assertEquals(2, $knife_juggler->getHealth());
     }
 
     public function test_wisp_is_a_minion() {
-        $this->card->load('Wisp');
-        $this->assertEquals(CardType::$MINION, $this->card->getType());
+        $wisp = app('Minion', [$this->game->getPlayer1(), 'Wisp']);
+        $this->assertEquals(CardType::$MINION, $wisp->getType());
     }
 
     public function test_consecrate_is_a_spell() {
-        $this->card->load('Consecration');
-        $this->assertEquals(CardType::$SPELL, $this->card->getType());
+        $consecration = app('Minion', [$this->game->getPlayer1(), 'Consecration']);
+        $this->assertEquals(CardType::$SPELL, $consecration->getType());
     }
 
     public function test_knife_juggler_attack_kills_wisp_without_divine_shield() {
@@ -576,7 +576,7 @@ class MiscCardTest extends HearthCloneTest
     public function test_druid_ability_adds_one_attack_and_one_armor() {
         $this->initPlayers(HeroClass::$DRUID);
         $this->game->getPlayer1()->useAbility();
-        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getWeapon()->getAttack());
+        $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getAttack());
         $this->assertEquals(1, $this->game->getPlayer1()->getHero()->getArmor());
     }
 

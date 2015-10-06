@@ -18,19 +18,19 @@ class CardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('Card', function ($app, $params) {
-            return new Card(array_get($params, 0));
+            return new Card(array_get($params, 0), array_get($params, 1));
         });
 
         $this->app->bind('Minion', function ($app, $params) {
-            return new Minion(array_get($params, 0));
+            return new Minion(array_get($params, 0), array_get($params, 1));
         });
 
         $this->app->bind('Weapon', function ($app, $params) {
-            return new Weapon(array_get($params, 0));
+            return new Weapon(array_get($params, 0), array_get($params, 1));
         });
 
         $this->app->bind('Aura', function ($app, $params) {
-            return new Aura();
+            return new Aura(array_get($params, 0));
         });
 
         $this->app->singleton('CardSets', function () {

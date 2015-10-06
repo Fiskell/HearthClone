@@ -16,7 +16,7 @@ class Warrior extends AbstractHero
     protected $name = "Garrosh Hellscream";
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct($player, $this->name);
         $this->hero_class = HeroClass::$WARRIOR;
         $this->hero_power = HeroPower::$WARRIOR;
     }

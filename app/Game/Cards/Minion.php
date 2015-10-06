@@ -35,12 +35,9 @@ class Minion extends Card
         $this->auras = $auras;
     }
 
-    public function __construct(Player $player) {
-        parent::__construct($player);
-    }
+    public function __construct(Player $player, $name = null) {
+        parent::__construct($player, $name);
 
-    public function load($name = null) {
-        parent::load($name);
         $this->attack = array_get($this->card_json, 'attack', 0);
         $this->health = array_get($this->card_json, 'health', 0);
         $this->race   = array_get($this->card_json, 'race');

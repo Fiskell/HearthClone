@@ -48,18 +48,9 @@ class Card
     // todo this should not even be here =( all random numbers default to 0
     protected $random_number = 0;
 
-    public function __construct(Player $player) {
+    public function __construct(Player $player, $name = null) {
         $this->owner = $player;
-    }
 
-    /**
-     * Load a card from json into object.
-     *
-     * @param null $name
-     * @throws MissingCardNameException
-     * @throws \App\Exceptions\UnknownCardNameException
-     */
-    public function load($name = null) {
         if (is_null($name)) {
             throw new MissingCardNameException();
         }

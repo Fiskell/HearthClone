@@ -88,8 +88,7 @@ class CardGenerator extends Command
             $game = app('Game');
 
             /** @var Card $card */
-            $card = app('Card', [$game->getPlayer1()]);
-            $card->load($card_name);
+            $card = app('Card', [$game->getPlayer1(), $card_name]);
 
             $this->checkCardDoesNotExist($card);
 

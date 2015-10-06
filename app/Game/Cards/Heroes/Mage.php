@@ -16,7 +16,7 @@ class Mage extends AbstractHero
     protected $name        = "Jaina Proudmoore";
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct($player, $this->name);
         $this->hero_class = HeroClass::$MAGE;
         $this->hero_power = HeroPower::$MAGE;
     }
