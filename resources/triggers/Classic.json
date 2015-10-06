@@ -1,64 +1,72 @@
 {
-  "Abusive Sergeant": {
-    "battlecry": [
-      {
-        "attack": 2,
-        "buff": "spell",
-        "target_type": "provided_minion"
-      }
-    ]
-  },
-  "Argent Protector": {
-    "battlecry": [
-      {
-        "buff": "enchantment",
-        "mechanics": [
-          "Divine Shield"
-        ],
-        "target_type": "provided_minion"
-      }
-    ]
-  },
-  "Earth Elemental": {
-    "overload": 3
-  },
-  "Earthen Ring Farseer": {
-    "battlecry": [
-      {
-        "buff": "spell",
-        "health": 3,
-        "target_type": "provided_minion"
-      }
-    ]
-  },
-  "Keeper of the Grove": {
-    "choose_one": [
-      {
-        "0": {
-          "target_type": "provided_minion",
-          "damage": 2
-        },
-        "1": {
-          "target_type": "provided_minion",
-          "silence": true
-        }
-      }
-    ]
-  },
-  "Knife Juggler": {
-    "after_summon_phase": [
-      {
-        "damage": 1,
-        "target_type": "random_opponent_character"
-      }
-    ]
-  },
-  "Spellbreaker": {
-    "battlecry": [
-      {
-        "silence": true,
-        "target_type": "provided_minion"
-      }
-    ]
-  }
+    "Abusive Sergeant": {
+        "battlecry": [
+            {
+                "attack": 2,
+                "buff": "spell",
+                "target_type": "provided_minion"
+            }
+        ]
+    },
+    "Argent Protector": {
+        "battlecry": [
+            {
+                "buff": "enchantment",
+                "mechanics": [
+                    "Divine Shield"
+                ],
+                "target_type": "provided_minion"
+            }
+        ]
+    },
+    "Earth Elemental": {
+        "overload": 3
+    },
+    "Earthen Ring Farseer": {
+        "battlecry": [
+            {
+                "buff": "spell",
+                "health": 3,
+                "target_type": "provided_minion"
+            }
+        ]
+    },
+    "Ironbeak Owl": {
+        "battlecry": [
+            {
+                "target_type": "provided_minion",
+                "silence": true
+            }
+        ]
+    },
+    "Keeper of the Grove": {
+        "choose_one": [
+            [
+                {
+                    "target_type": "provided_minion",
+                    "damage": 2
+                },
+                {
+                    "target_type": "provided_minion",
+                    "silence": true
+                }
+            ]
+        ]
+    },
+    "Knife Juggler": {
+        "after_summon_phase": [
+            {
+                "damage": 1,
+                "target_type": "random_opponent_character"
+            }
+        ]
+    },
+    "Spellbreaker": {
+        "battlecry": [
+            {
+                "silence": true,
+                "target_type": "provided_minion"
+            }
+        ]
+    }
 }
