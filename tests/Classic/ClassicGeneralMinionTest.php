@@ -5,12 +5,17 @@ use App\Models\HearthCloneTest;
 
 class ClassicGeneralMinionTest extends HearthCloneTest
 {
-
     /* Abomination */
     // todo
 
     /* Abusive Sergeant */
-    // todo
+    public function test_abusive_sergeant_gives_wisp_2_attack() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Abusive Sergeant', 1, [$wisp]);
+        $this->assertEquals(3, $wisp->getAttack());
+        $this->assertEquals(1, $wisp->getHealth());
+        $this->assertTrue($wisp->isAlive());
+    }
 
     /* Acolyte of Pain */
     // todo
@@ -61,7 +66,11 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     // todo
 
     /* Argent Protector */
-    // todo
+    public function test_argent_protector_gives_wisp_divine_shield() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Argent Protector', 1, [$wisp]);
+        $this->assertTrue($wisp->hasMechanic(Mechanics::$DIVINE_SHIELD));
+    }
 
     /* Argent Squire */
     // todo
@@ -181,7 +190,13 @@ class ClassicGeneralMinionTest extends HearthCloneTest
     // todo
 
     /* Earthen Ring Farseer */
-    // todo
+    public function test_earthen_ring_farseer_heals_minion_by_three() {
+        $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti->takeDamage(4);
+        $this->assertEquals(1, $chillwind_yeti->getHealth());
+        $this->playCard('Earthen Ring Farseer', 1, [$chillwind_yeti]);
+        $this->assertEquals(4, $chillwind_yeti->getHealth());
+    }
 
     /* Edwin VanCleef */
     // todo
@@ -567,6 +582,4 @@ class ClassicGeneralMinionTest extends HearthCloneTest
 
     /* Ysera */
     // todo
-
-
 }
