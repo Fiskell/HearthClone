@@ -14,12 +14,12 @@ use TestCase;
  */
 class HearthCloneTest extends TestCase
 {
-    /** @var  Minion $card */
-    public $card;
-
     /** @var  Game $game */
     public $game;
 
+    /**
+     * Setup condition for every test.
+     */
     public function setUp() {
         parent::setUp();
         $this->game = app('Game');
@@ -27,6 +27,8 @@ class HearthCloneTest extends TestCase
     }
 
     /**
+     * Play card with endless mana.
+     *
      * @param $name
      * @param int $player_id
      * @param array $targets
@@ -65,6 +67,19 @@ class HearthCloneTest extends TestCase
         return $card;
     }
 
+    /**
+     * This is mean to allow control over turn summoning sickness.
+     *
+     * It also allows you to test EOT effects since the
+     * turn is not automatically ended.
+     *
+     * @param $name
+     * @param int $player_id
+     * @param int $turn
+     * @param array $targets
+     * @param null $choose_mechanic
+     * @return Card
+     */
     public function playCardStrict($name, $player_id = 1, $turn = 1, $targets = [], $choose_mechanic = null) {
         /** @var Player $player */
         $player = $this->game->getPlayer1();
@@ -91,6 +106,14 @@ class HearthCloneTest extends TestCase
         return $card;
     }
 
+    /**
+     * Initialize different classes and decks to test with.
+     *
+     * @param string $player1_class
+     * @param array $player1_deck
+     * @param string $player2_class
+     * @param array $player2_deck
+     */
     public function initPlayers($player1_class = 'Hunter', $player1_deck = [], $player2_class = 'Mage', $player2_deck = []) {
         $player1_deck = app('Deck', [app($player1_class, [$this->game->getPlayer1()]), $player1_deck]);
         $player2_deck = app('Deck', [app($player2_class, [$this->game->getPlayer2()]), $player2_deck]);
@@ -98,6 +121,13 @@ class HearthCloneTest extends TestCase
         $this->game->init($player1_deck, $player2_deck);
     }
 
+    /**
+     * Play a weapon card
+     *
+     * @param $weapon_name
+     * @param int $player_id
+     * @param array $targets
+     */
     public function playWeaponCard($weapon_name, $player_id = 1, $targets = []) {
 
         /** @var Player $player */
@@ -112,10 +142,20 @@ class HearthCloneTest extends TestCase
         $player->play($card, $targets);
     }
 
+    /**
+     * Get the active player id
+     *
+     * @return mixed
+     */
     public function getActivePlayerId() {
         return $this->game->getActivePlayer()->getPlayerId();
     }
 
+    /**
+     * Get the defending player id
+     *
+     * @return mixed
+     */
     public function getDefendingPlayerId() {
         return $this->game->getDefendingPlayer()->getPlayerId();
     }
@@ -130,5 +170,4 @@ class HearthCloneTest extends TestCase
     public function playWispAtPosition($player_id, $position) {
         return $this->playCard('Wisp', $player_id, [], false, null, $position);
     }
-
 }
