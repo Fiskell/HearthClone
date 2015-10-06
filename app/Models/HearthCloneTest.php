@@ -24,7 +24,6 @@ class HearthCloneTest extends TestCase
         parent::setUp();
         $this->game = app('Game');
         $this->initPlayers();
-        $this->card = app('Minion', [$this->game->getPlayer1()]);
     }
 
     /**
@@ -46,8 +45,7 @@ class HearthCloneTest extends TestCase
         }
 
         /** @var Card $card */
-        $card = app('Minion', [$player]);
-        $card->load($name);
+        $card = app('Minion', [$player, $name]);
         $card->setChooseOption($choose_mechanic);
 
         $this->game->getPlayer1()->setManaCrystalCount(1000);
@@ -75,8 +73,7 @@ class HearthCloneTest extends TestCase
         }
 
         /** @var Card $card */
-        $card = app('Minion', [$player]);
-        $card->load($name);
+        $card = app('Minion', [$player, $name]);
         $card->setChooseOption($choose_mechanic);
 
         if ($turn > 1) {
@@ -110,9 +107,7 @@ class HearthCloneTest extends TestCase
         }
 
         /** @var Card $card */
-        $card = app('Weapon', [$player]);
-        $card->load($weapon_name);
-
+        $card = app('Weapon', [$player, $weapon_name]);
 
         $player->play($card, $targets);
     }

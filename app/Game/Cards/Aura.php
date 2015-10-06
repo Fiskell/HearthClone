@@ -11,7 +11,7 @@ namespace App\Game\Cards;
 
 class Aura extends Enchantment
 {
-    public function load(Card $card) {
+    public function __construct(Card $card) {
         $aura                     = $card->getTrigger();
         $this->id                 = $card->getId();
         $this->source_card        = $card;

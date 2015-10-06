@@ -34,12 +34,8 @@ abstract class AbstractHero extends Minion
     protected $weapon;
 
 
-    public function __construct(Player $player) {
-        parent::__construct($player);
-    }
-
-    public function load($name=null) {
-        parent::load($name);
+    public function __construct(Player $player, $name = null) {
+        parent::__construct($player, $name);
         $this->health = array_get($this->card_json, 'health');
     }
 

@@ -273,8 +273,7 @@ abstract class CardPhase extends AbstractPhase
 
         /** @var Player $target */
         for ($i = 0; $i < $summon_quantity; $i++) {
-            $tmp_minion = app('Minion', [$this->card->getOwner()]);
-            $tmp_minion->load($summon_name);
+            $tmp_minion = app('Minion', [$this->card->getOwner(), $summon_name]);
             $this->card->getOwner()->play($tmp_minion);
         }
     }

@@ -38,8 +38,7 @@ class AuraHealth extends CardPhase
         $targets      = $this->getTargets($this->card, $target_type, $target_race);
 
         /** @var Aura $aura */
-        $aura = App('Aura');
-        $aura->load($this->card);
+        $aura = App('Aura', [$this->card]);
 
         /** @var Minion $target */
         foreach ($targets as $target) {

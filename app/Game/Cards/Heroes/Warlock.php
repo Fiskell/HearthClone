@@ -15,7 +15,7 @@ class Warlock extends AbstractHero
     protected $name = "Gul'dan";
 
     public function __construct(Player $player) {
-        parent::__construct($player);
+        parent::__construct($player, $this->name);
         $this->hero_class = HeroClass::$WARLOCK;
         $this->hero_power = HeroPower::$WARLOCK;
     }
