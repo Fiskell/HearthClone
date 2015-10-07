@@ -298,7 +298,27 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Holy Nova */
-    // todo
+    public function test_holy_nova_deals_two_damage_to_all_enemies_and_heals_all_friendly_characters_by_two() {
+        $player1 = $this->game->getPlayer1();
+        $player2 = $this->game->getPlayer2();
+        $player1->getHero()->takeDamage(5);
+        $wisp1 = $this->playCard('Wisp', 1);
+        $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
+        $chillwind_yeti1->takeDamage(3);
+
+        $wisp2 = $this->playCard('Wisp', 2);
+        $chillwind_yeti2 = $this->playCard('Chillwind Yeti', 2);
+        $this->playCard('Holy Nova', 1);
+
+        $this->assertEquals(1, $wisp1->getHealth());
+        $this->assertEquals(4, $chillwind_yeti1->getHealth());
+
+        $this->assertFalse($wisp2->isAlive());
+        $this->assertEquals(3, $chillwind_yeti2->getHealth());
+
+        $this->assertEquals(27, $player1->getHero()->getHealth());
+        $this->assertEquals(28, $player2->getHero()->getHealth());
+    }
 
     /* Holy Smite */
     public function test_holy_smite_deals_two_damage() {

@@ -383,6 +383,19 @@
             }
         ]
     },
+    "Holy Nova": {
+        "spell_text_phase": [
+            {
+                "target_type": "all_opponent_characters",
+                "damage": 2
+            },
+            {
+                "target_type": "all_friendly_characters",
+                "health": 2,
+                "buff": "enchantment"
+            }
+        ]
+    },
     "Holy Smite": {
         "spell_text_phase": [
             {
