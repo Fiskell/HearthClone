@@ -8,6 +8,7 @@ use App\Models\HearthCloneTest;
 
 class CardTest extends HearthCloneTest
 {
+    /* Card Load */
     /** @expectedException \App\Exceptions\MissingCardNameException */
     public function test_card_load_throws_when_no_card_name_specified() {
         app('Card', [$this->game->getPlayer1()]);
@@ -393,6 +394,4 @@ class CardTest extends HearthCloneTest
         $this->playCardStrict('Earth Elemental', $active_player_id, 5);
         $this->assertEquals(3, $this->game->getActivePlayer()->getLockedManaCrystalCount());
     }
-
-
 }
