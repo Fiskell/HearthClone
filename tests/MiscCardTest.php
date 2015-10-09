@@ -392,15 +392,6 @@ class MiscCardTest extends HearthCloneTest
         $this->assertEquals(3, $player_a->getManaCrystalsUsed());
     }
 
-    public function test_player_is_killed_when_hero_dies() {
-        $this->initPlayers();
-
-        $this->game->getPlayer2()->getHero()->takeDamage(28);
-        $this->game->getPlayer1()->useAbility();
-
-        $this->assertFalse($this->game->getPlayer2()->isAlive());
-    }
-
     public function test_game_ends_when_player_is_killed() {
         $this->initPlayers();
         $this->game->getPlayer2()->getHero()->takeDamage(28);
