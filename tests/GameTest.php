@@ -96,4 +96,56 @@ class GameTest extends HearthCloneTest
         $this->assertFalse($this->game->getPlayer2()->isAlive());
     }
 
+    public function test_cards_played_this_turn_is_reset_at_end_of_turn() {
+        $wisp = $this->playCard('Wisp', 2);
+
+        $this->playCard('Wisp', 1, [], true);
+
+        $this->game->getPlayer1()->passTurn();
+        $this->game->getPlayer2()->passTurn();
+
+        $this->playCard('SI:7 Agent', 1, [$wisp], true);
+
+        $this->assertTrue($wisp->isAlive());
+    }
+
+    public function test_player_mana_crystals_reset_at_beginning_of_next_turn() {
+        $player_a = $this->game->getActivePlayer();
+        $player_b = $this->game->getDefendingPlayer();
+
+        $this->assertEquals(0, $player_a->getManaCrystalsUsed());
+        $this->playCardStrict('Argent Squire', $player_a->getPlayerId());
+        $this->assertEquals(1, $player_a->getManaCrystalsUsed());
+
+        $player_a->passTurn(); // player a: 1 crystal
+        $player_b->passTurn(); // player b: 1 crystal
+
+        $this->assertEquals(0, $player_a->getManaCrystalsUsed());
+    }
+
+    public function test_player_gets_mana_crystal_at_beginning_of_turn() {
+        $player_a = $this->game->getActivePlayer();
+        $player_b = $this->game->getDefendingPlayer();
+        $this->assertEquals(1, $player_a->getManaCrystalCount());
+        $player_a->passTurn();
+        $player_b->passTurn();
+        $this->assertEquals(2, $player_a->getManaCrystalCount());
+    }
+
+    public function test_card_order_increments_when_card_is_played() {
+        $current_card_counter = $this->game->getCardsPlayedThisGame();
+        $this->playCard('Wisp', 1);
+        $this->assertEquals($current_card_counter + 1, $this->game->getCardsPlayedThisGame());
+        $this->playCard('Wisp', 2);
+        $this->assertEquals($current_card_counter + 2, $this->game->getCardsPlayedThisGame());
+    }
+
+    public function test_game_ends_when_player_is_killed() {
+        $this->initPlayers();
+        $this->game->getPlayer2()->getHero()->takeDamage(28);
+        $this->game->getPlayer1()->useAbility();
+        $this->assertTrue($this->game->isOver());
+        $this->assertEquals(1, $this->game->getWinningPlayer()->getPlayerId());
+    }
+
 }
