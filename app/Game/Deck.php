@@ -20,6 +20,9 @@ class Deck
     /** @var  Card[] $deck_list */
     protected $deck_list;
 
+    /** @var  int $remaining_count */
+    protected $remaining_count = 30;
+
     public function __construct($hero, array $deck_list) {
         $this->hero = $hero;
         $this->deck_list = $deck_list;
@@ -44,6 +47,17 @@ class Deck
      */
     public function getDeckList() {
         return $this->deck_list;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRemainingCount() {
+        return $this->remaining_count;
+    }
+
+    public function draw() {
+        $this->remaining_count--;
     }
 
 }

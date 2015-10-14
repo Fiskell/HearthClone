@@ -365,6 +365,7 @@ class Player
      */
     public function drawCard() {
         $this->hand_size++;
+        $this->getDeck()->draw();
     }
 
     /**
