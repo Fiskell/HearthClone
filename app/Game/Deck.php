@@ -56,6 +56,9 @@ class Deck
         return $this->remaining_count;
     }
 
+    /**
+     * Draw a card from the deck
+     */
     public function draw() {
         $this->remaining_count--;
     }
