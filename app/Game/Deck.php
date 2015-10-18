@@ -17,8 +17,11 @@ class Deck
     /** @var AbstractHero $hero */
     protected $hero;
 
-    /** @var  Card[] $deck_list */
+    /** @var array $deck_list */
     protected $deck_list;
+
+    /** @var array $deck */
+    protected $deck;
 
     /** @var  int $remaining_count */
     protected $remaining_count = 30;
@@ -26,6 +29,7 @@ class Deck
     public function __construct($hero, array $deck_list) {
         $this->hero = $hero;
         $this->deck_list = $deck_list;
+        $this->shuffleDeck();
     }
 
     /**
@@ -61,6 +65,30 @@ class Deck
      */
     public function draw() {
         $this->remaining_count--;
+    }
+
+    /**
+     * Shuffle the deck list and get the deck ready for play.
+     *
+     * First version is a naive shuffle where we just add each
+     *  card to the deck in order.
+     */
+    private function shuffleDeck() {
+        foreach($this->deck_list as $card_name => $card_qty) {
+            for($i = 0; $i < $card_qty; $i++) {
+                $this->deck[] = $card_name;
+            }
+        }
+        $this->remaining_count = count($this->deck);
+    }
+
+    /**
+     * Return the remaining cards in the deck.
+     *
+     * @return array
+     */
+    public function getDeck() {
+        return $this->deck;
     }
 
 }

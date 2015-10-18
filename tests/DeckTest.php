@@ -1,6 +1,7 @@
 <?php
 
 use App\Game\Cards\Heroes\HeroClass;
+use App\Game\Deck;
 use App\Models\HearthCloneTest;
 
 class DeckTest extends HearthCloneTest
@@ -25,6 +26,10 @@ class DeckTest extends HearthCloneTest
         $hunter_deck_json = file_get_contents(base_path() . "/resources/deck_lists/basic_only_hunter.json");
         $hero = app(HeroClass::$HUNTER, [$this->game->getPlayer1()]);
         $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
+
+        /** @var Deck $player1_deck */
         $player1_deck = app('Deck', [$hero, $cards]);
+        $deck = $player1_deck->getDeck();
+        $this->assertEquals(30, count($deck));
     }
 }
