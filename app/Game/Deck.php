@@ -29,6 +29,7 @@ class Deck
     public function __construct($hero, array $deck_list) {
         $this->hero = $hero;
         $this->deck_list = $deck_list;
+        $this->validate();
         $this->shuffleDeck();
     }
 
@@ -91,4 +92,19 @@ class Deck
         return $this->deck;
     }
 
+    /**
+     * Validate that the deck is valid.
+     *
+     *  - Hero is defined
+     *  - Card list is defined
+     *  - Hero is valid
+     *  - All cards are valid
+     *  - 30 cards
+     *  - Class cards belong to specified class
+     *  - Only two of each non-legendary card
+     *  - Only one of a particular legendary card
+     */
+    private function validate() {
+
+    }
 }
