@@ -8,6 +8,7 @@
 
 namespace App\Game;
 
+use App\Exceptions\InvalidDeckListException;
 use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\AbstractHero;
@@ -105,6 +106,9 @@ class Deck
      *  - Only one of a particular legendary card
      */
     private function validate() {
-
+        $deck_list_count = count($this->deck_list);
+        if($deck_list_count < 30 || $deck_list_count > 30) {
+            throw new InvalidDeckListException('Deck must contain 30 cards');
+        }
     }
 }
