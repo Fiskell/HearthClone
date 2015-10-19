@@ -1,4 +1,4 @@
-<?php
+<?php namespace tests;
 
 use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Deck;
@@ -33,5 +33,12 @@ class DeckTest extends HearthCloneTest
         $this->assertEquals(30, count($deck));
     }
 
-//    public function test_single_deck_
+    /** @expectedException \App\Exceptions\InvalidDeckListException */
+    public function test_deck_can_not_have_less_than_30_cards() {
+        $hunter_deck_json = file_get_contents(base_path() . "/resources/deck_lists/test_validation/less_than_thirty.json");
+        $hero = app(HeroClass::$HUNTER, [$this->game->getPlayer1()]);
+        $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
+
+        app('Deck', [$hero, $cards]);
+    }
 }

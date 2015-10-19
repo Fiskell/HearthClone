@@ -113,8 +113,8 @@ class Deck
      */
     private function validate() {
         $deck_card_count = count($this->deck);
+        echo $deck_card_count;
         if($deck_card_count < 30 || $deck_card_count > 30) {
-            echo $deck_card_count;
             throw new InvalidDeckListException('Deck must contain 30 cards');
         }
     }

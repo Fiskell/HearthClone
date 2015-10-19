@@ -8,7 +8,9 @@
 
 namespace App\Exceptions;
 
-class InvalidDeckListException extends \Exception
+use Exception;
+
+class InvalidDeckListException extends Exception
 {
 
 }
