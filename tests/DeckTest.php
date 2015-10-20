@@ -50,4 +50,13 @@ class DeckTest extends HearthCloneTest
 
         app('Deck', [$hero, $cards]);
     }
+
+    /** @expectedException \App\Exceptions\InvalidDeckListException */
+    public function test_deck_can_not_have_more_than_two_copies_of_one_card() {
+        $hunter_deck_json = file_get_contents(base_path() . "/resources/deck_lists/test_validation/more_than_two_copies.json");
+        $hero = app(HeroClass::$HUNTER, [$this->game->getPlayer1()]);
+        $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
+
+        app('Deck', [$hero, $cards]);
+    }
 }

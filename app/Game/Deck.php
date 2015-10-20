@@ -113,9 +113,17 @@ class Deck
      */
     private function validate() {
         $deck_card_count = count($this->deck);
-        echo $deck_card_count;
+
         if($deck_card_count < 30 || $deck_card_count > 30) {
             throw new InvalidDeckListException('Deck must contain 30 cards');
         }
+
+        array_walk($this->deck_list, function($card_quantity, $card_name) {
+            if($card_quantity > 2) {
+                throw new InvalidDeckListException("{$card_name} used more than twice");
+            }
+
+            // todo test legendary card only used once
+        });
     }
 }
