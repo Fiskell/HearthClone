@@ -53,6 +53,15 @@ class Deck
     }
 
     /**
+     * Return the remaining cards in the deck.
+     *
+     * @return array
+     */
+    public function getDeck() {
+        return $this->deck;
+    }
+
+    /**
      * @return int
      */
     public function getRemainingCount() {
@@ -85,15 +94,6 @@ class Deck
             }
         }
         $this->remaining_count = count($this->deck);
-    }
-
-    /**
-     * Return the remaining cards in the deck.
-     *
-     * @return array
-     */
-    public function getDeck() {
-        return $this->deck;
     }
 
     /**
