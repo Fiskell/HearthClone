@@ -1,4 +1,3 @@
-[ ![Codeship Status for Fiskell/HearthClone](https://codeship.com/projects/cdebaa90-5919-0133-8c99-6667f0f27100/status?branch=master)](https://codeship.com/projects/109910)
 [ ![Codeship Status for Fiskell/HearthClone](https://img.shields.io/codeship/cdebaa90-5919-0133-8c99-6667f0f27100/master.svg)](https://codeship.com/projects/109910)
 ## Hearthstone Engine Clone
 
