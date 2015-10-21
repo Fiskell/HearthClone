@@ -76,6 +76,24 @@ class Card
         $this->mechanics = array_get($this->card_json, 'mechanics', []);
     }
 
+    public static function load(Player $player, $name) {
+        // Todo this is not super efficient since card constructor calls as well
+        /** @var CardSets $card_sets */
+        $card_sets = app('CardSets');
+        $card_json = $card_sets->findCard($name);
+
+        $card_type = array_get($card_json, 'type');
+
+        $available_types = ['Minion', 'Spell', 'Weapon', 'Enchantment'];
+
+        $load_type = 'Card';
+        if (in_array($card_type, $available_types)) {
+            $load_type = $card_type;
+        }
+
+        return app($load_type, [$player, $name]);
+    }
+
     /**
      * @return int
      */

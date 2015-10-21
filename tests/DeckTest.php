@@ -1,5 +1,6 @@
 <?php namespace tests;
 
+use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Deck;
 use App\Models\HearthCloneTest;
@@ -10,16 +11,6 @@ class DeckTest extends HearthCloneTest
         $deck_card_count = $this->game->getPlayer1()->getDeck()->getRemainingCount();
         $this->game->getPlayer1()->drawCard();
         $this->assertEquals(($deck_card_count - 1), $this->game->getPlayer1()->getDeck()->getRemainingCount());
-    }
-
-    public function test_deck_list_is_loaded_on_initialization() {
-//        $hunter_deck_json = json_decode(file_get_contents(base_path() . "/resources/deck_lists/basic_only_hunter.json"));
-//        $priest_deck_json = json_decode(file_get_contents(base_path() . "/resources/deck_lists/basic_only_priest.json"));
-//        $player1_deck = app('Deck', [app(HeroClass::$HUNTER, [$this->game->getPlayer1()]), array_get($hunter_deck_json, [])]);
-//        $player2_deck = app('Deck', [app(HeroClass::$PRIEST, [$this->game->getPlayer2()]), array_get($priest_deck_json, [])]);
-//
-//        $this->game->init($player1_deck, $player2_deck);
-//        $this->assertEquals(30, $this->game->getPlayer1()->getDeck()->getRemainingCount());
     }
 
     public function test_single_deck_load() {
@@ -58,5 +49,18 @@ class DeckTest extends HearthCloneTest
         $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
 
         app('Deck', [$hero, $cards]);
+    }
+
+    public function test_drawing_card_adds_card_objecto_to_hand() {
+        $hunter_deck_json = file_get_contents(base_path() . "/resources/deck_lists/basic_only_hunter.json");
+        $hero = app(HeroClass::$HUNTER, [$this->game->getPlayer1()]);
+        $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
+        app('Deck', [$hero, $cards]);
+
+        $this->assertEquals(0, count($this->game->getPlayer1()->getHand()));
+        $this->game->getPlayer1()->drawCard();
+        $hand = $this->game->getPlayer1()->getHand();
+        $this->assertEquals(1, count($hand));
+        $this->assertTrue($hand[0] instanceof Card);
     }
 }

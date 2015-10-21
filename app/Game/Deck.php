@@ -41,7 +41,7 @@ class Deck
     }
 
     /**
-     * @return HeroClass
+     * @return AbstractHero
      */
     public function getHero() {
         return $this->hero;
@@ -73,6 +73,12 @@ class Deck
      */
     public function draw() {
         $this->remaining_count--;
+        $player = $this->getHero()->getOwner();
+        // todo this should now always be true, it's a temporary fix
+        if(count($this->deck) == 0) {
+            return Card::load($player, 'Wisp');
+        }
+        return Card::load($player, $this->deck[0]);
     }
 
     /**

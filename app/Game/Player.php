@@ -25,6 +25,9 @@ class Player
     /** @var int $hand_size */
     protected $hand_size = 0;
 
+    /** @var Card[] $hand */
+    protected $hand = [];
+
     /** @var  AbstractHero $hero */
     protected $hero;
 
@@ -365,7 +368,8 @@ class Player
      */
     public function drawCard() {
         $this->hand_size++;
-        $this->getDeck()->draw();
+        $drawn_card = $this->getDeck()->draw();
+        $this->hand[] = $drawn_card;
     }
 
     /**
@@ -392,6 +396,15 @@ class Player
         $all_minions      = $player_minions + $opponent_minions;
 
         return $all_minions;
+    }
+
+    /**
+     * Return all the card objects in hand.
+     *
+     * @return Card[]
+     */
+    public function getHand() {
+        return $this->hand;
     }
 
 }
