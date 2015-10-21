@@ -1,15 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 8/30/15
- * Time: 3:16 PM
- */
-
-namespace App\Game;
+<?php namespace App\Game;
 
 use App\Exceptions\InvalidDeckListException;
-use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\AbstractHero;
 
