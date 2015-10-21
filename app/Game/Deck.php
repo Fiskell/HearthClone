@@ -74,10 +74,13 @@ class Deck
     public function draw() {
         $this->remaining_count--;
         $player = $this->getHero()->getOwner();
+
         // todo this should now always be true, it's a temporary fix
+        // todo need to have a testing environment that returns Wisp
         if(count($this->deck) == 0) {
             return Card::load($player, 'Wisp');
         }
+
         return Card::load($player, $this->deck[0]);
     }
 
