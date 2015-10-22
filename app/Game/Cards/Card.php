@@ -49,15 +49,13 @@ class Card
     protected $random_number = 0;
 
     public function __construct(Player $player, $name = null) {
-        $this->owner = $player;
-
         if (is_null($name)) {
             throw new MissingCardNameException();
         }
 
-        /** @var CardSets $card_sets */
-        $card_sets       = app('CardSets');
-        $this->card_json = $card_sets->findCard($name);
+        $this->owner = $player;
+
+        $this->card_json = app('CardSets')->findCard($name);
 
         $this->owner->getGame()->incrementCardsPlayedThisGame();
         $this->play_order_id = $this->owner->getGame()->getCardsPlayedThisGame();
@@ -78,10 +76,7 @@ class Card
 
     public static function load(Player $player, $name) {
         // Todo this is not super efficient since card constructor calls as well
-        /** @var CardSets $card_sets */
-        $card_sets = app('CardSets');
-        $card_json = $card_sets->findCard($name);
-
+        $card_json = app('CardSets')->findCard($name);
         $card_type = array_get($card_json, 'type');
 
         $available_types = ['Minion', 'Spell', 'Weapon', 'Enchantment'];
