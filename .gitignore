@@ -6,3 +6,5 @@ Homestead.json
 /.idea/
 .idea/workspace.xml
 tests/coverage
+_ide_helper.php
+.phpstorm.meta.php
