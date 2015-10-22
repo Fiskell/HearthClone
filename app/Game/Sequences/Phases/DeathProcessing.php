@@ -1,19 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 7:24 PM
- */
+<?php namespace App\Game\Sequences\Phases;
 
-namespace App\Game\Sequences\Phases;
-
+use App\Game\Cards\Card;
 use App\Game\Cards\Mechanics;
-use App\Game\Cards\Minion;
 
 class DeathProcessing extends CardPhase
 {
-    function queue(Minion $minion, array $targets = []) {
+    function queue(Card $minion, array $targets = []) {
         $this->card    = $minion;
         $this->targets = $targets;
         App('TriggerQueue')->queue($this);

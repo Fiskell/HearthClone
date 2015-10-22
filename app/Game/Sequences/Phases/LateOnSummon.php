@@ -1,13 +1,13 @@
 <?php namespace App\Game\Sequences\Phases;
 
-use App\Game\Cards\Minion;
+use App\Game\Cards\Card;
 use App\Game\Cards\Triggers\TriggerTypes;
 
 class LateOnSummon extends CardPhase
 {
     public $phase_name = 'late_on_summon_phase';
 
-    function queue(Minion $minion, array $targets = []) {
+    function queue(Card $minion, array $targets = []) {
         $player           = $minion->getOwner();
         $player_minions   = $player->getMinionsInPlay();
 

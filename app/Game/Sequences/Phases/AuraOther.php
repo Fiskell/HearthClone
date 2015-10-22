@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 6:25 PM
- */
-
-namespace App\Game\Sequences\Phases;
+<?php namespace App\Game\Sequences\Phases;
 
 use App\Game\Cards\Aura;
 use App\Game\Cards\Minion;

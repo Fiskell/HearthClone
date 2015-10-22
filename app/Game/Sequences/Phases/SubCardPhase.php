@@ -1,14 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 6:58 PM
- */
+<?php namespace App\Game\Sequences\Phases;
 
-namespace App\Game\Sequences\Phases;
-
-use App\Game\Cards\Minion;
+use App\Game\Cards\Card;
 
 class SubCardPhase extends CardPhase
 {
@@ -19,8 +11,8 @@ class SubCardPhase extends CardPhase
         $this->card = $card;
     }
 
-    function queue(Minion $minion, array $targets = []) {
-        $this->card    = $minion;
+    function queue(Card $card, array $targets = []) {
+        $this->card    = $card;
         $this->targets = $targets;
         App('TriggerQueue')->queue($this);
     }

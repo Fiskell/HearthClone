@@ -17,7 +17,7 @@ abstract class CardPhase extends AbstractPhase
     protected $targets;
     public    $phase_name;
 
-    public function queue(Minion $minion, array $targets = []) {
+    public function queue(Card $card, array $targets = []) {
         throw new DumbassDeveloperException('Queue function not overridden');
     }
 

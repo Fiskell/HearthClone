@@ -8,13 +8,12 @@
 
 namespace App\Game\Sequences;
 
-use App\Events\SpellTextPhaseEvent;
-use App\Game\Cards\Minion;
+use App\Game\Cards\Card;
 use App\Models\TriggerQueue;
 
 class PlaySpellSequence extends CardSequence
 {
-    public function resolve(Minion $card, array $targets = []) {
+    public function resolve(Card $card, array $targets = []) {
         /** @var TriggerQueue $trigger_queue */
         $trigger_queue = app('TriggerQueue');
 

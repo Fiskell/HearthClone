@@ -1,22 +1,14 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/12/15
- * Time: 5:50 PM
- */
-
-namespace App\Game\Sequences\Phases;
+<?php namespace App\Game\Sequences\Phases;
 
 use App\Exceptions\DumbassDeveloperException;
+use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
-use App\Models\TriggerQueue;
 
 class AfterSummon extends CardPhase
 {
     public $phase_name = 'after_summon_phase';
 
-    function queue(Minion $minion, array $targets = []) {
+    function queue(Card $minion, array $targets = []) {
         $player           = $minion->getOwner();
         $player_minions   = $player->getMinionsInPlay();
         $opponent         = $player->getOtherPlayer();
@@ -57,9 +49,7 @@ class AfterSummon extends CardPhase
             $tmp_trigger->card    = $tmp_minion;
             $tmp_trigger->targets = [$minion];
 
-            /** @var TriggerQueue $trigger_queue */
-            $trigger_queue = app('TriggerQueue');
-            $trigger_queue->queue($tmp_trigger);
+            app('TriggerQueue')->queue($tmp_trigger);
         }
     }
 }
