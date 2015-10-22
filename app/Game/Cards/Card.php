@@ -79,7 +79,7 @@ class Card
         $card_json = app('CardSets')->findCard($name);
         $card_type = array_get($card_json, 'type');
 
-        $available_types = ['Minion', 'Spell', 'Weapon', 'Enchantment'];
+        $available_types = ['Minion', 'Weapon', 'Enchantment'];
 
         $load_type = 'Card';
         if (in_array($card_type, $available_types)) {
