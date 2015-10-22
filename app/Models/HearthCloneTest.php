@@ -87,8 +87,7 @@ class HearthCloneTest extends TestCase
             $player = $this->game->getPlayer2();
         }
 
-        /** @var Card $card */
-        $card = app('Minion', [$player, $name]);
+        $card = Card::load($player, $name);
         $card->setChooseOption($choose_mechanic);
 
         if ($turn > 1) {
@@ -129,16 +128,13 @@ class HearthCloneTest extends TestCase
      * @param array $targets
      */
     public function playWeaponCard($weapon_name, $player_id = 1, $targets = []) {
-
         /** @var Player $player */
         $player = $this->game->getPlayer1();
         if ($player_id == 2) {
             $player = $this->game->getPlayer2();
         }
 
-        /** @var Card $card */
-        $card = app('Weapon', [$player, $weapon_name]);
-
+        $card = Card::load($player, $weapon_name);
         $player->play($card, $targets);
     }
 
