@@ -29,9 +29,9 @@ abstract class CardPhase extends AbstractPhase
 
         // todo clean up this mess
         $triggers = array_get($this->card->getTrigger(), $this->phase_name);
-        $trigger = null;
+        $trigger  = null;
         if (array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0')) {
-            $trigger = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0.' . ($this->card->getChooseOption() - 1));
+            $trigger  = array_get($this->card->getTrigger(), TriggerTypes::$CHOOSE_ONE . '.0.' . ($this->card->getChooseOption() - 1));
             $triggers = [$trigger];
         }
 
@@ -39,6 +39,7 @@ abstract class CardPhase extends AbstractPhase
         if ($overload_trigger) {
             $overload_value = array_get($this->card->getTrigger(), TriggerTypes::$OVERLOAD);
             $this->card->getOwner()->addLockedManaCrystalCount($overload_value);
+
             return;
         }
 
@@ -46,7 +47,7 @@ abstract class CardPhase extends AbstractPhase
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
         }
 
-        foreach($triggers as $trigger) {
+        foreach ($triggers as $trigger) {
             $targets     = [];
             $target_type = array_get($trigger, 'target_type');
             $target_race = array_get($trigger, 'target_race');
@@ -200,8 +201,8 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$UNDAMAGED_PROVIDED_MINION:
                 /** @var Minion[] $targets */
                 $targets = $this->targets;
-                foreach($targets as $target) {
-                    if($target->getHealth() < $target->getMaxHealth()) {
+                foreach ($targets as $target) {
+                    if ($target->getHealth() < $target->getMaxHealth()) {
                         throw new InvalidTargetException('Target must be undamaged');
                     }
                 }
@@ -209,8 +210,8 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$DAMAGED_PROVIDED_MINION:
                 /** @var Minion[] $targets */
                 $targets = $this->targets;
-                foreach($targets as $target) {
-                    if($target->getHealth() == $target->getMaxHealth()) {
+                foreach ($targets as $target) {
+                    if ($target->getHealth() == $target->getMaxHealth()) {
                         throw new InvalidTargetException('Target must be damaged');
                     }
                 }
@@ -225,7 +226,7 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$PROVIDED_ENEMY_MINION:
                 /** @var Minion $target */
                 $target = current($this->targets);
-                if(!array_get($opponent_minions, $target->getId())) {
+                if (!array_get($opponent_minions, $target->getId())) {
                     throw new InvalidTargetException('Target must belong to opponent');
                 }
                 $targets = [$target];
@@ -265,10 +266,17 @@ abstract class CardPhase extends AbstractPhase
      */
     private function resolveSummonTrigger($trigger) {
         $summon_name     = array_get($trigger, 'summon.name');
+        $summon_random   = array_get($trigger, 'summon.random');
         $summon_quantity = array_get($trigger, 'summon.quantity');
 
-        if (is_null($summon_name)) {
+        if (is_null($summon_name) && is_null($summon_random)) {
             return;
+        }
+
+        if(!is_null($summon_random)) {
+//            $summon_name = $summon_random[$this->card->getRandomChoice(count($summon_random))];
+            $random_number = app('Random')->getFromRange(0, count($summon_random));
+            $summon_name = $summon_random[$random_number];
         }
 
         /** @var Player $target */
@@ -310,7 +318,7 @@ abstract class CardPhase extends AbstractPhase
      * @throws DumbassDeveloperException
      */
     private function resolveEnchantmentTrigger($trigger, $targets) {
-        if(array_get($trigger, 'buff') != 'enchantment') {
+        if (array_get($trigger, 'buff') != 'enchantment') {
             return;
         }
 
@@ -321,13 +329,13 @@ abstract class CardPhase extends AbstractPhase
             $target->setAttack($target->getAttack() + $delta_attack);
 
             // TODO jank
-            if($target instanceof Weapon) {
+            if ($target instanceof Weapon) {
                 continue;
             }
 
             $delta_max_health = array_get($trigger, 'max_health', 0);
-            if($delta_max_health) {
-                if($delta_max_health == 'double') {
+            if ($delta_max_health) {
+                if ($delta_max_health == 'double') {
                     $target->setMaxHealth($target->getMaxHealth() + $target->getMaxHealth());
                 } else {
                     $target->setMaxHealth($target->getMaxHealth() + $delta_max_health);
@@ -338,12 +346,12 @@ abstract class CardPhase extends AbstractPhase
             $target->setHealth($target->getHealth() + $delta_health);
 
             $set_health = array_get($trigger, 'set_health');
-            if($set_health) {
+            if ($set_health) {
                 $target->setHealth($set_health);
             }
 
             $armor = array_get($trigger, 'armor');
-            if($armor && $target instanceof AbstractHero) {
+            if ($armor && $target instanceof AbstractHero) {
                 $target->gainArmor($armor);
             }
         }
@@ -378,7 +386,7 @@ abstract class CardPhase extends AbstractPhase
             $target->setAttack($target->getAttack() + $delta_attack);
 
             $set_attack = array_get($trigger, 'set_attack');
-            if($set_attack) {
+            if ($set_attack) {
                 $target->setAttack($set_attack);
             }
 
@@ -391,7 +399,7 @@ abstract class CardPhase extends AbstractPhase
             }
 
             $armor = array_get($trigger, 'armor');
-            if($armor && $target instanceof AbstractHero) {
+            if ($armor && $target instanceof AbstractHero) {
                 $target->gainArmor($armor);
             }
         }
@@ -438,15 +446,15 @@ abstract class CardPhase extends AbstractPhase
         }
 
         foreach ($targets as $target) {
-            if($target instanceof AbstractHero) {
+            if ($target instanceof AbstractHero) {
                 throw new InvalidTargetException('You are not allowed to directly destroy a hero');
             }
 
-            if($target instanceof Weapon) {
+            if ($target instanceof Weapon) {
                 $target->getHero()->destroyWeapon();
             }
 
-            if($target instanceof Minion) {
+            if ($target instanceof Minion) {
                 $target->killed();
             }
         }
@@ -501,24 +509,24 @@ abstract class CardPhase extends AbstractPhase
      */
     private function resolveDamageTrigger($trigger, $targets) {
         $damage = array_get($trigger, 'damage');
-        if(!$damage) {
+        if (!$damage) {
             return;
         }
 
         /** @var Minion $target */
-        foreach($targets as $target) {
+        foreach ($targets as $target) {
             $target->takeDamage($damage);
         }
     }
 
     private function resolveFreezeTrigger($trigger, $targets) {
         $freeze = array_get($trigger, 'freeze');
-        if(!$freeze) {
+        if (!$freeze) {
             return;
         }
 
         /** @var Minion $target */
-        foreach($targets as $target) {
+        foreach ($targets as $target) {
             $target->freeze();
         }
     }
