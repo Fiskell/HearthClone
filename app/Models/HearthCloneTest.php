@@ -39,6 +39,7 @@ class HearthCloneTest extends TestCase
      * What goes up must come down.
      */
     public function tearDown() {
+        parent::tearDown();
         Mockery::close();
     }
 

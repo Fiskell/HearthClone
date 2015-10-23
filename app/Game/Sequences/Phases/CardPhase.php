@@ -274,8 +274,7 @@ abstract class CardPhase extends AbstractPhase
         }
 
         if(!is_null($summon_random)) {
-//            $summon_name = $summon_random[$this->card->getRandomChoice(count($summon_random))];
-            $random_number = app('Random')->getFromRange(0, count($summon_random));
+            $random_number = app('Random')->getFromRange(0, (count($summon_random) - 1));
             $summon_name = $summon_random[$random_number];
         }
 
