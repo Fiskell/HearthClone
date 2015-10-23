@@ -8,11 +8,11 @@ There will eventually be routes exposed to start a game, but wowza that is far a
 
 ## Setup
 
-Install laravel homestead
+`Install laravel homestead`
 
-Composer install
+`Composer install`
 
-npm install
+`npm install`
 
 ## Hearthstone API
 
