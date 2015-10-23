@@ -54,8 +54,7 @@ class HearthCloneTest extends TestCase
             $player = $this->game->getPlayer2();
         }
 
-        /** @var Card $card */
-        $card = app('Minion', [$player, $name]);
+        $card = Card::load($player, $name);
         $card->setChooseOption($choose_mechanic);
 
         $this->game->getPlayer1()->setManaCrystalCount(1000);
