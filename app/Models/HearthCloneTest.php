@@ -4,6 +4,7 @@ use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
 use App\Game\Game;
 use App\Game\Player;
+use Mockery;
 use TestCase;
 
 /**
@@ -32,6 +33,13 @@ class HearthCloneTest extends TestCase
         $this->initPlayers();
         $this->player1 = $this->game->getPlayer1();
         $this->player2 = $this->game->getPlayer2();
+    }
+
+    /**
+     * What goes up must come down.
+     */
+    public function tearDown() {
+        Mockery::close();
     }
 
     /**
