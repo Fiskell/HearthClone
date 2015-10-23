@@ -17,6 +17,12 @@ class HearthCloneTest extends TestCase
     /** @var  Game $game */
     public $game;
 
+    /** @var Player $player1 */
+    public $player1;
+
+    /** @var Player $player2 */
+    public $player2;
+
     /**
      * Setup condition for every test.
      */
@@ -24,6 +30,8 @@ class HearthCloneTest extends TestCase
         parent::setUp();
         $this->game = app('Game');
         $this->initPlayers();
+        $this->player1 = $this->game->getPlayer1();
+        $this->player2 = $this->game->getPlayer2();
     }
 
     /**

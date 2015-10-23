@@ -13,7 +13,10 @@ use App\Models\TriggerQueue;
 
 class Game
 {
+    /** @var Player $player1 */
     protected $player1;
+
+    /** @var Player $player2 */
     protected $player2;
 
     /** @var  Player $active_player */

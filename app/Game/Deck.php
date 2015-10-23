@@ -73,6 +73,7 @@ class Deck
      */
     public function draw() {
         $this->remaining_count--;
+
         $player = $this->getHero()->getOwner();
 
         // todo this should now always be true, it's a temporary fix
