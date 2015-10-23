@@ -49,9 +49,9 @@ class HearthCloneTest extends TestCase
     public function playCard($name, $player_id = 1, $targets = [], $summoning_sickness = false, $choose_mechanic = null, $position = 3) {
 
         /** @var Player $player */
-        $player = $this->game->getPlayer1();
+        $player = $this->player1;
         if ($player_id == 2) {
-            $player = $this->game->getPlayer2();
+            $player = $this->player2;
         }
 
         $card = Card::load($player, $name);
@@ -59,7 +59,6 @@ class HearthCloneTest extends TestCase
 
         $this->game->getPlayer1()->setManaCrystalCount(1000);
         $this->game->getPlayer2()->setManaCrystalCount(1000);
-
 
         $player->play($card, $targets, $position);
 
