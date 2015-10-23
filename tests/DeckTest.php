@@ -63,4 +63,5 @@ class DeckTest extends HearthCloneTest
         $this->assertEquals(1, count($hand));
         $this->assertTrue($hand[0] instanceof Card);
     }
+
 }

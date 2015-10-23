@@ -1,4 +1,5 @@
 <?php
+use App\Game\Cards\Card;
 use App\Game\Cards\Mechanics;
 use App\Models\HearthCloneTest;
 
@@ -21,7 +22,50 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Animal Companion */
-    // todo
+    public function test_animal_companion_summons_misha_on_random_0() {
+        $this->game->getPlayer1()->setManaCrystalCount(1000);
+
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(0);
+        $this->instance('Random', $random_mock);
+
+        $card = Card::load($this->player1, 'Animal Companion');
+        $this->player1->play($card, [], 1);
+
+        $minions = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions));
+        $this->assertEquals('Misha', current($minions)->getName());
+    }
+
+    public function test_animal_companion_summons_leokk_on_random_1() {
+        $this->game->getPlayer1()->setManaCrystalCount(1000);
+
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(1);
+        $this->instance('Random', $random_mock);
+
+        $card = Card::load($this->player1, 'Animal Companion');
+        $this->player1->play($card, [], 1);
+
+        $minions = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions));
+        $this->assertEquals('Leokk', current($minions)->getName());
+    }
+
+    public function test_animal_companion_summons_huffer_on_random_2() {
+        $this->game->getPlayer1()->setManaCrystalCount(1000);
+
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(2);
+        $this->instance('Random', $random_mock);
+
+        $card = Card::load($this->player1, 'Animal Companion');
+        $this->player1->play($card, [], 1);
+
+        $minions = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions));
+        $this->assertEquals('Huffer', current($minions)->getName());
+    }
 
     /* Arcane Explosion */
     public function test_arcane_explosion_deals_one_damage_to_all_enemy_minions() {
