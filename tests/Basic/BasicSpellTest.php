@@ -88,7 +88,11 @@ class BasicSpellTest extends HearthCloneTest
     }
 
     /* Arcane Missiles */
-    // todo
+    public function test_arcane_missiles_hits_hero_three_times_when_there_are_no_minions() {
+        $this->initPlayers();
+        $this->playCard('Arcane Missiles', 2);
+        $this->assertEquals(27, $this->player1->getHero()->getHealth());
+    }
 
     /* Arcane Shot */
     public function test_arcane_shot_does_two_damage_to_hero_when_played() {

@@ -49,6 +49,22 @@
       }
     ]
   },
+  "Arcane Missiles": {
+    "spell_text_phase": [
+      {
+        "damage": 1,
+        "target_type": "random_opponent_character"
+      },
+      {
+        "damage": 1,
+        "target_type": "random_opponent_character"
+      },
+      {
+        "damage": 1,
+        "target_type": "random_opponent_character"
+      }
+    ]
+  },
   "Arcane Shot": {
     "spell_text_phase": [
       {
