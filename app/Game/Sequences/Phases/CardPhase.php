@@ -146,6 +146,7 @@ abstract class CardPhase extends AbstractPhase
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
                 $targets                                         = $opponent_minions;
+                $targets = [$opponent->getHero()->getId() => $opponent->getHero()];
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
