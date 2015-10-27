@@ -1,6 +1,6 @@
 <?php namespace App\Providers;
 
-use app\Game\Helpers\Random;
+use App\Game\Helpers\Random;
 use Illuminate\Support\ServiceProvider;
 
 class HelperServiceProvider extends ServiceProvider

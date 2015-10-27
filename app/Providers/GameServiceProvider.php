@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Game\Deck;
 use App\Game\Game;
+use App\Game\Helpers\Random;
 use App\Game\Player;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +29,7 @@ class GameServiceProvider extends ServiceProvider
         $this->app->bind('Player', function () {
             return new Player();
         });
+
 
     }
 }
