@@ -104,6 +104,19 @@ class BasicSpellTest extends HearthCloneTest
         $this->assertEquals(2, $chillwindYeti->getHealth());
     }
 
+    public function test_arcane_missiles_can_target_two_minions() {
+        $chillwindYeti  = $this->playCard('Chillwind Yeti', 1);
+        $chillwindYeti2 = $this->playCard('Chillwind Yeti', 1);
+
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->times(3)->andReturn(0, 1, 0);
+        $this->instance('Random', $random_mock);
+
+        $this->playCard('Arcane Missiles', 2);
+        $this->assertEquals(3, $chillwindYeti->getHealth());
+        $this->assertEquals(4, $chillwindYeti2->getHealth());
+    }
+
     /* Arcane Shot */
     public function test_arcane_shot_does_two_damage_to_hero_when_played() {
         $player2 = $this->game->getPlayer2();
