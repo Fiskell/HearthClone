@@ -60,6 +60,10 @@ class CardTest extends HearthCloneTest
         $this->assertEquals(CardType::$SPELL, $consecration->getType());
     }
 
+    /* Target Types */
+    public function test_dead_minons_do_not_return() {
+    }
+
     /* Cost */
     /** @expectedException \App\Exceptions\NotEnoughManaCrystalsException */
     public function test_two_cost_minion_cannot_be_played_on_first_turn() {

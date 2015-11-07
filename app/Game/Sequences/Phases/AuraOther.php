@@ -2,6 +2,7 @@
 
 use App\Game\Cards\Aura;
 use App\Game\Cards\Minion;
+use App\Game\Cards\Triggers\TargetTypes;
 use App\Game\Player;
 
 class AuraOther extends CardPhase
@@ -26,7 +27,7 @@ class AuraOther extends CardPhase
         $aura_trigger = array_get($this->card->getTrigger(), 'aura.0');
         $target_type = array_get($aura_trigger, 'target_type');
         $target_race = array_get($aura_trigger, 'target_race');
-        $targets     = $this->getTargets($this->card, $target_type, $target_race);
+        $targets     = TargetTypes::getTargets($this->card, $target_type, $target_race, $this->targets);
 
         /** @var Aura $aura */
         $aura = App('Aura', [$this->card]);

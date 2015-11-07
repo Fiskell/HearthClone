@@ -1,4 +1,8 @@
 <?php namespace App\Game\Cards\Triggers;
+use App\Exceptions\DumbassDeveloperException;
+use App\Exceptions\InvalidTargetException;
+use App\Game\Cards\Card;
+use App\Game\Cards\Minion;
 
 /**
  * Created by PhpStorm.
@@ -30,4 +34,154 @@ class TargetTypes
     public static $OPPONENT_WEAPON                  = 'opponent_weapon';
     public static $ADJACENT_MINIONS                 = 'adjacent_minions';
     public static $SELF                             = 'self';
+
+    /**
+     * @param Card $trigger_card
+     * @param $target_type
+     * @param null $target_race
+     * @param array $provided_targets
+     * @return array
+     * @throws DumbassDeveloperException
+     * @throws InvalidTargetException
+     */
+    public static function getTargets(Card $trigger_card, $target_type, $target_race = null, $provided_targets = []) {
+        $player           = $trigger_card->getOwner();
+        $player_minions   = $player->getMinionsInPlay();
+        $opponent         = $player->getOtherPlayer();
+        $opponent_minions = $opponent->getMinionsInPlay();
+
+        switch ($target_type) {
+            case TargetTypes::$PROVIDED_MINION:
+                // todo some battlecry may require a minimum number of targets.
+                $targets = $provided_targets;
+                break;
+            case TargetTypes::$FRIENDLY_HERO:
+                $targets = [$player->getHero()];
+                break;
+            case TargetTypes::$FRIENDLY_PLAYER:
+                $targets = [$player];
+                break;
+            case TargetTypes::$ALL_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $player_minions[$player->getHero()->getId()]     = $player->getHero();
+
+                $targets = $opponent_minions + $player_minions;
+                break;
+            case TargetTypes::$ALL_OTHER_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $player_minions[$player->getHero()->getId()]     = $player->getHero();
+
+                $targets = $opponent_minions + $player_minions;
+                unset($targets[$trigger_card->getId()]);
+                break;
+            case TargetTypes::$OPPONENT_HERO:
+                $targets = [$opponent->getHero()];
+                break;
+            case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
+                $player_minions[$player->getHero()->getId()] = $player->getHero();
+                $targets                                     = $player_minions;
+                break;
+            case TargetTypes::$OTHER_FRIENDLY_MINIONS:
+                unset($player_minions[$trigger_card->getId()]);
+                $targets = $player_minions;
+                break;
+            case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $keys = array_keys($opponent_minions);
+                $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
+                $targets   = [$opponent_minions[$keys[$random_number]]];
+                break;
+            case TargetTypes::$ALL_OPPONENT_MINIONS:
+                $targets = $opponent_minions;
+                break;
+            case TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE:
+                unset($player_minions[$trigger_card->getId()]);
+                $targets = [];
+                /** @var Minion $player_minion */
+                foreach ($player_minions as $player_minion) {
+                    if ($player_minion->getRace() == $target_race) {
+                        $targets[] = $player_minion;
+                    }
+                }
+                break;
+            case TargetTypes::$All_OTHER_MINIONS_WITH_RACE:
+                unset($player_minions[$trigger_card->getId()]);
+                $targets = [];
+                foreach ($player_minions as $player_minion) {
+                    if ($player_minion->getRace() == $target_race) {
+                        $targets[] = $player_minion;
+                    }
+                }
+                foreach ($opponent_minions as $opponent_minion) {
+                    if ($opponent_minion->getRace() == $target_race) {
+                        $targets[] = $opponent_minion;
+                    }
+                }
+                break;
+            case TargetTypes::$ADJACENT_MINIONS:
+                /** @var Minion $trigger_card */
+                $adjacent_positions = [
+                    ($trigger_card->getPosition() - 1),
+                    ($trigger_card->getPosition() + 1)
+                ];
+
+                $targets = [];
+                foreach ($player_minions as $minion) {
+                    if (in_array($minion->getPosition(), $adjacent_positions)) {
+                        $targets[] = $minion;
+                    }
+                }
+
+                break;
+            case TargetTypes::$SELF:
+                $targets = [$trigger_card];
+                break;
+            case TargetTypes::$ALL_FRIENDLY_MINIONS:
+                $targets = $player_minions;
+                break;
+            case TargetTypes::$OPPONENT_WEAPON:
+                $targets = [$opponent->getHero()->getWeapon()];
+                break;
+            case TargetTypes::$UNDAMAGED_PROVIDED_MINION:
+                /** @var Minion[] $targets */
+                $targets = $provided_targets;
+                foreach ($targets as $target) {
+                    if ($target->getHealth() < $target->getMaxHealth()) {
+                        throw new InvalidTargetException('Target must be undamaged');
+                    }
+                }
+                break;
+            case TargetTypes::$DAMAGED_PROVIDED_MINION:
+                /** @var Minion[] $targets */
+                $targets = $provided_targets;
+                foreach ($targets as $target) {
+                    if ($target->getHealth() == $target->getMaxHealth()) {
+                        throw new InvalidTargetException('Target must be damaged');
+                    }
+                }
+                break;
+            case TargetTypes::$ALL_OPPONENT_CHARACTERS:
+                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
+                $targets                                         = $opponent_minions;
+                break;
+            case TargetTypes::$ALL_MINIONS:
+                $targets = $opponent_minions + $player_minions;
+                break;
+            case TargetTypes::$PROVIDED_ENEMY_MINION:
+                /** @var Minion $target */
+                $target = current($provided_targets);
+                if (!array_get($opponent_minions, $target->getId())) {
+                    throw new InvalidTargetException('Target must belong to opponent');
+                }
+                $targets = [$target];
+                break;
+            case TargetTypes::$FRIENDLY_WEAPON:
+                $targets = [$player->getHero()->getWeapon()];
+                break;
+            default:
+                throw new DumbassDeveloperException('Unknown target type ' . $target_type);
+        }
+
+        return $targets;
+    }
 }
