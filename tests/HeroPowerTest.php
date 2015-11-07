@@ -3,6 +3,7 @@
 use App\Game\Cards\Card;
 use App\Game\Cards\Heroes\HeroClass;
 use App\Game\Cards\Heroes\Shaman;
+use App\Game\Cards\Minion;
 use App\Models\HearthCloneTest;
 
 class HeroPowerTest extends HearthCloneTest
@@ -120,28 +121,69 @@ class HeroPowerTest extends HearthCloneTest
         $this->assertTrue(in_array($minion->getName(), $player1_hero->getTotems()));
     }
 
-//    public function test_shaman_ability_summons_wrath_of_air_totem() {
-//
-//        $player1 = $this->game->getPlayer1();
-//        $mock = \Mockery::mock('App\Models\Heroes\Shaman[getRandomTotemName]', 'Wrath of Air Totem');
-//        $mock = \Mockery::mock('App\Models\Heroes\Shaman');
-//        $mock->shouldReceive('getRandomTotemName')->andReturn('Wrath of Air Totem');
-//
-//        $player1_deck = app('Deck', [app($player1_class, [$this->game->getPlayer1()]), $player1_deck]);
-//        $player2_deck = app('Deck', [app($player2_class, [$this->game->getPlayer2()]), $player2_deck]);
-//
-//        $this->game->init($player1_deck, $player2_deck);
-//        $stub = $this->getMockBuilder('App\Models\Heroes\Shaman')->getMock();
-//        $stub->method('getRandomTotemName')->willReturn('Wrath of Air Totem');
-//
-//        $player1->useAbility();
-//        $minions_in_play = $player1->getMinionsInPlay();
-//        $this->assertEquals(1, count($minions_in_play));
-//
-//        /** @var Minion $minion */
-//        $minion = current($minions_in_play);
-//        $this->assertEquals($this->wrath_of_air_totem_name, $minion->getName());
-//    }
+    public function test_shaman_ability_summons_healing_totem() {
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(0);
+        $this->instance('Random', $random_mock);
+
+        $this->initPlayers(HeroClass::$SHAMAN);
+
+        $this->player1->useAbility();
+        $minions_in_play = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions_in_play));
+
+        /** @var Minion $minion */
+        $minion = current($minions_in_play);
+        $this->assertEquals('Healing Totem', $minion->getName());
+    }
+
+    public function test_shaman_ability_summons_searing_totem() {
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(1);
+        $this->instance('Random', $random_mock);
+
+        $this->initPlayers(HeroClass::$SHAMAN);
+
+        $this->player1->useAbility();
+        $minions_in_play = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions_in_play));
+
+        /** @var Minion $minion */
+        $minion = current($minions_in_play);
+        $this->assertEquals('Searing Totem', $minion->getName());
+    }
+
+    public function test_shaman_ability_summons_stoneclaw_totem() {
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(2);
+        $this->instance('Random', $random_mock);
+
+        $this->initPlayers(HeroClass::$SHAMAN);
+
+        $this->player1->useAbility();
+        $minions_in_play = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions_in_play));
+
+        /** @var Minion $minion */
+        $minion = current($minions_in_play);
+        $this->assertEquals('Stoneclaw Totem', $minion->getName());
+    }
+
+    public function test_shaman_ability_summons_wrath_of_air_totem() {
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->once()->andReturn(3);
+        $this->instance('Random', $random_mock);
+
+        $this->initPlayers(HeroClass::$SHAMAN);
+
+        $this->player1->useAbility();
+        $minions_in_play = $this->player1->getMinionsInPlay();
+        $this->assertEquals(1, count($minions_in_play));
+
+        /** @var Minion $minion */
+        $minion = current($minions_in_play);
+        $this->assertEquals('Wrath of Air Totem', $minion->getName());
+    }
 
     /* Warlock */
     public function test_using_warlock_power_deals_two_damage_to_hero_and_player_draws_card() {
