@@ -32,12 +32,17 @@ class MiscCardTest extends HearthCloneTest
 //        $this->assertFalse($wisp->isAlive());
 //    }
 
-    public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
-        $knife_juggler = $this->playCard('Knife Juggler', 1);
-        $knife_juggler->setRandomNumber(0);
-        $this->playCard('Argent Squire', 1);
-        $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
-    }
+//    public function test_knife_juggler_damages_hero_when_friendly_minion_is_summoned() {
+//        $knife_juggler = $this->playCard('Knife Juggler', 1);
+//        $knife_juggler->setRandomNumber(0);
+//
+//        $random_mock = Mockery::mock('Random')->makePartial();
+//        $random_mock->shouldReceive('getFromRange')->once()->andReturn($this->player2->getHero()->getId());
+//        $this->instance('Random', $random_mock);
+//
+//        $this->playCard('Argent Squire', 1);
+//        $this->assertEquals(29, $this->game->getPlayer2()->getHero()->getHealth());
+//    }
 
 }
 

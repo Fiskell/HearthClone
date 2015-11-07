@@ -12,4 +12,5 @@ class Random
     public function getFromRange($rangeStart, $rangeEnd) {
         return rand($rangeStart, $rangeEnd);
     }
+
 }

@@ -89,9 +89,19 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Arcane Missiles */
     public function test_arcane_missiles_hits_hero_three_times_when_there_are_no_minions() {
-        $this->initPlayers();
         $this->playCard('Arcane Missiles', 2);
         $this->assertEquals(27, $this->player1->getHero()->getHealth());
+    }
+
+    public function test_arcane_missiles_can_target_minions() {
+        $chillwindYeti = $this->playCard('Chillwind Yeti', 1);
+
+        $random_mock = Mockery::mock('Random')->makePartial();
+        $random_mock->shouldReceive('getFromRange')->times(3)->andReturn(0);
+        $this->instance('Random', $random_mock);
+
+        $this->playCard('Arcane Missiles', 2);
+        $this->assertEquals(2, $chillwindYeti->getHealth());
     }
 
     /* Arcane Shot */
@@ -204,7 +214,7 @@ class BasicSpellTest extends HearthCloneTest
     /* Drain Life */
     public function test_drain_life_deals_two_damage_to_a_character_and_heals_friendly_hero_for_2() {
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 2);
-        $player1 = $this->game->getPlayer1();
+        $player1        = $this->game->getPlayer1();
         $player1->getHero()->takeDamage(5);
         $this->playCard('Drain Life', 1, [$chillwind_yeti]);
         $this->assertEquals(3, $chillwind_yeti->getHealth());
@@ -307,8 +317,8 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Hellfire */
     public function test_hellfire_deals_three_damage_to_all_characters() {
-        $player1 = $this->game->getPlayer1();
-        $player2 = $this->game->getPlayer2();
+        $player1         = $this->game->getPlayer1();
+        $player2         = $this->game->getPlayer2();
         $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
         $chillwind_yeti2 = $this->playCard('Chillwind Yeti', 2);
         $this->playCard('Hellfire', 1);
@@ -350,11 +360,11 @@ class BasicSpellTest extends HearthCloneTest
         $player1 = $this->game->getPlayer1();
         $player2 = $this->game->getPlayer2();
         $player1->getHero()->takeDamage(5);
-        $wisp1 = $this->playCard('Wisp', 1);
+        $wisp1           = $this->playCard('Wisp', 1);
         $chillwind_yeti1 = $this->playCard('Chillwind Yeti', 1);
         $chillwind_yeti1->takeDamage(3);
 
-        $wisp2 = $this->playCard('Wisp', 2);
+        $wisp2           = $this->playCard('Wisp', 2);
         $chillwind_yeti2 = $this->playCard('Chillwind Yeti', 2);
         $this->playCard('Holy Nova', 1);
 
@@ -469,7 +479,7 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Savage Roar */
     public function test_savage_roar_gives_friendly_characters_two_attack_this_turn() {
-        $wisp = $this->playCard('Wisp', 1);
+        $wisp           = $this->playCard('Wisp', 1);
         $chillwind_yeti = $this->playCard('Chillwind Yeti', 1);
         $this->playCardStrict('Savage Roar', 1, 3);
         $this->assertEquals(3, $wisp->getAttack());
@@ -533,7 +543,7 @@ class BasicSpellTest extends HearthCloneTest
 
     /* Totemic Might */
     public function test_totemic_might_gives_all_totems_two_health() {
-        $healing_totem = $this->playCard('Healing Totem', 1);
+        $healing_totem      = $this->playCard('Healing Totem', 1);
         $wrath_of_air_totem = $this->playCard('Wrath of Air Totem', 1);
         $this->playCard('Totemic Might', 1);
         $this->assertEquals(4, $healing_totem->getHealth());

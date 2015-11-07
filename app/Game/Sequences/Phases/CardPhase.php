@@ -145,8 +145,9 @@ abstract class CardPhase extends AbstractPhase
                 break;
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $targets                                         = $opponent_minions;
-                $targets = [$opponent->getHero()->getId() => $opponent->getHero()];
+                $keys = array_keys($opponent_minions);
+                $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
+                $targets   = [$opponent_minions[$keys[$random_number]]];
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
@@ -274,9 +275,9 @@ abstract class CardPhase extends AbstractPhase
             return;
         }
 
-        if(!is_null($summon_random)) {
+        if (!is_null($summon_random)) {
             $random_number = app('Random')->getFromRange(0, (count($summon_random) - 1));
-            $summon_name = $summon_random[$random_number];
+            $summon_name   = $summon_random[$random_number];
         }
 
         /** @var Player $target */
