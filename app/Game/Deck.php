@@ -70,6 +70,7 @@ class Deck
 
     /**
      * Draw a card from the deck
+     * @return Card
      */
     public function draw() {
         $this->remaining_count--;

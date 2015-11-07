@@ -6,6 +6,7 @@ use App\Game\Deck;
 use App\Game\Game;
 use App\Game\Helpers\Random;
 use App\Game\Player;
+use App\Game\Zones\Decision;
 use Illuminate\Support\ServiceProvider;
 
 class GameServiceProvider extends ServiceProvider
@@ -30,6 +31,8 @@ class GameServiceProvider extends ServiceProvider
             return new Player();
         });
 
-
+        $this->app->bind('Decision', function() {
+            return new Decision();
+        });
     }
 }
