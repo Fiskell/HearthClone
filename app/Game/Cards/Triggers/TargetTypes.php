@@ -1,4 +1,5 @@
 <?php namespace App\Game\Cards\Triggers;
+
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
@@ -50,9 +51,19 @@ class TargetTypes
         $opponent         = $player->getOtherPlayer();
         $opponent_minions = $opponent->getMinionsInPlay();
 
+        if(is_null($provided_targets)) {
+            $provided_targets = [];
+        }
+
+        $alive_provided_targets = self::removeDeadMinions($provided_targets);
+        $player_minions   = self::removeDeadMinions($player_minions);
+        $opponent_minions = self::removeDeadMinions($opponent_minions);
+
         switch ($target_type) {
             case TargetTypes::$PROVIDED_MINION:
-                // todo some battlecry may require a minimum number of targets.
+                if(count($provided_targets) != count($alive_provided_targets)) {
+                    throw new InvalidTargetException();
+                }
                 $targets = $provided_targets;
                 break;
             case TargetTypes::$FRIENDLY_HERO:
@@ -87,9 +98,9 @@ class TargetTypes
                 break;
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
                 $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $keys = array_keys($opponent_minions);
-                $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
-                $targets   = [$opponent_minions[$keys[$random_number]]];
+                $keys                                            = array_keys($opponent_minions);
+                $random_number                                   = app('Random')->getFromRange(0, (count($keys) - 1));
+                $targets                                         = [$opponent_minions[$keys[$random_number]]];
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
@@ -182,6 +193,22 @@ class TargetTypes
                 throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
 
+        return $targets;
+    }
+
+    /**
+     * Minions being targeted are not allowed to be dead.
+     *
+     * @param array $targets
+     * @return array
+     */
+    public static function removeDeadMinions(array $targets) {
+        /** @var Minion $target */
+        foreach ($targets as $index => $target) {
+            if (!$target->isAlive()) {
+                unset($targets[$index]);
+            }
+        }
         return $targets;
     }
 }

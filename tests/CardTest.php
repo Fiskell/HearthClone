@@ -61,7 +61,11 @@ class CardTest extends HearthCloneTest
     }
 
     /* Target Types */
-    public function test_dead_minons_do_not_return() {
+    /** @expectedException \App\Exceptions\InvalidTargetException */
+    public function test_dead_minions_do_not_return() {
+        $wisp = $this->playCard('Wisp', 1);
+        $this->playCard('Elven Archer', 2, [$wisp]);
+        $this->playCard('Elven Archer', 2, [$wisp]);
     }
 
     /* Cost */
