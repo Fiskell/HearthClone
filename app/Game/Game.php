@@ -9,7 +9,7 @@
 namespace App\Game;
 
 use App\Game\Cards\Minion;
-use App\Models\TriggerQueue;
+use App\Game\Helpers\Random;
 
 class Game
 {
@@ -48,9 +48,14 @@ class Game
         $this->player2->setGame($this);
         $app->instance('Player2', $this->getPlayer2());
 
-        //TODO for now hard coding player 1 as default active player
         $this->active_player    = $this->player1;
         $this->defending_player = $this->player2;
+
+        $coin_flip = app('Random')->flipCoin();
+        if ($coin_flip == Random::$TAILS) {
+            $this->active_player    = $this->player2;
+            $this->defending_player = $this->player1;
+        }
     }
 
     public function init(Deck $player1, Deck $player2) {
@@ -58,7 +63,7 @@ class Game
         $this->getPlayer1()->setDeck($player1);
         $this->getPlayer2()->setDeck($player2);
 
-        App('TurnSequence')->resolveTurnOne($this->getPlayer1());
+        App('TurnSequence')->resolveTurnOne($this->active_player);
     }
 
     /**

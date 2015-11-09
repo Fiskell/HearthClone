@@ -26,13 +26,17 @@ class HearthCloneTest extends TestCase
 
     /**
      * Setup condition for every test.
+     * Forces player 1 to be the default starting player
      */
     public function setUp() {
         parent::setUp();
         $this->game = app('Game');
-        $this->initPlayers();
         $this->player1 = $this->game->getPlayer1();
         $this->player2 = $this->game->getPlayer2();
+        if($this->player1->getPlayerId() != $this->game->getActivePlayer()->getPlayerId()) {
+            $this->game->toggleActivePlayer();
+        }
+        $this->initPlayers();
     }
 
     /**
