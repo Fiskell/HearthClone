@@ -13,7 +13,7 @@ class Decision
      * @param Player $player
      * @return Card[]
      */
-    public function openingHandDraw(Player $player) {
+    public function drawOpeningHand(Player $player) {
         $opening_hand = [];
         for($i = 0; $i < 4; $i++) {
              $drawn_card = $player->getDeck()->draw();

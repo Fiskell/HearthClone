@@ -151,7 +151,7 @@ class GameTest extends HearthCloneTest
     /* Opening Hand */
     public function test_opening_hand_returns_three_cards_for_player_one() {
         $decision_zone = app('Decision');
-        $opening_cards = $decision_zone->openingHandDraw($this->player1);
+        $opening_cards = $decision_zone->drawOpeningHand($this->player1);
         $this->assertEquals(4, count($opening_cards));
     }
 }
