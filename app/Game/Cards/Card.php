@@ -25,9 +25,9 @@ class Card
 
     protected $type;
 
-    protected $mechanics = [];
+    protected $mechanics;
 
-    protected $sub_mechanics = [];
+    protected $sub_mechanics;
 
     protected $card_json;
 
