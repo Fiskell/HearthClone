@@ -23,6 +23,8 @@ class CardRemove extends Command
      */
     protected $signature = 'card:remove';
 
+    public $card_sets;
+
     /**
      * Create a new command instance.
      *
