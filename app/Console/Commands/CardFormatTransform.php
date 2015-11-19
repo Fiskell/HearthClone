@@ -12,6 +12,8 @@ class CardFormatTransform extends Command
      */
     protected $signature = 'card:transform';
 
+    public $card_sets = null;
+
     /**
      * Create a new command instance.
      *
