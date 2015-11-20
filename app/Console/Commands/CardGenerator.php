@@ -196,11 +196,6 @@ class CardGenerator extends Command
             $this->info("Action Value: " . $action_value);
         }
 
-        /* Build the trigger json*/
-        $trigger_json = [
-            $trigger => []
-        ];
-
         $trigger_obj = [];
 
         // Build json for targets.
