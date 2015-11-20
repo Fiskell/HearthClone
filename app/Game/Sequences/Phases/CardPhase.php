@@ -47,6 +47,10 @@ abstract class CardPhase extends AbstractPhase
             throw new DumbassDeveloperException('Trigger not specified for ' . $this->card->getName());
         }
 
+        if (!is_array($triggers)) {
+            throw new DumbassDeveloperException('Triggers for ' . $this->card->getName() . ' is not an array');
+        }
+
         foreach ($triggers as $trigger) {
             $targets     = [];
             $target_type = array_get($trigger, 'target_type');
