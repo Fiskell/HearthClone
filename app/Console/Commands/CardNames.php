@@ -30,11 +30,11 @@ class CardNames extends Command
         $list_types = $this->option('list_types');
 
         $set_code   = $this->argument('set_code');
-        if(!is_string($set_code)) {
+        if (!is_string($set_code)) {
             throw new \InvalidArgumentException('Invalid argument for set code, expects string');
         }
 
-        $set_name   = array_get(CardSets::$set_names, $set_code);
+        $set_name = array_get(CardSets::$set_names, $set_code);
         if (is_null($set_name)) {
             $this->info('Invalid set code ' . $set_code);
 
@@ -53,7 +53,7 @@ class CardNames extends Command
             }
 
             foreach ($set as $card) {
-                if($list_types) {
+                if ($list_types) {
                     $names[$card['type']] = $card['type'];
                 } else {
                     if (array_get($card, 'type') == $card_type) {
