@@ -98,7 +98,7 @@ abstract class AbstractHero extends Minion
     }
 
     public function killed() {
-        $this->alive = 0;
+        $this->alive = false;
     }
 
     public function resetHeroPower() {
