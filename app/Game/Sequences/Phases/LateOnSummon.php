@@ -1,6 +1,7 @@
 <?php namespace App\Game\Sequences\Phases;
 
 use App\Game\Cards\Card;
+use App\Game\Cards\Minion;
 use App\Game\Cards\Triggers\TriggerTypes;
 
 class LateOnSummon extends CardPhase
@@ -21,6 +22,7 @@ class LateOnSummon extends CardPhase
             }
 
             $summon_race = array_get($tmp_minion->getTrigger(), TriggerTypes::$LATE_ON_SUMMON_PHASE . '.0.race');
+            /** @var Minion $minion */
             if(!is_null($summon_race) && $minion->getRace() != $summon_race) {
                 return;
             }
