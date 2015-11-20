@@ -27,6 +27,5 @@ class PlayGame extends Command
      */
     public function handle()
     {
-//        app('Game')->start();
     }
 }

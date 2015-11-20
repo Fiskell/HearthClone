@@ -25,7 +25,6 @@ class PlaySpellSequence extends CardSequence
 
         /* Spell Text Phase */
         App('SpellText')->queue($card, $targets);
-//        event(new SpellTextPhaseEvent($card, $targets));
         $trigger_queue->resolveQueue();
 
         /* After Spell Phase */

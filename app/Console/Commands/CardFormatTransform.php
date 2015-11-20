@@ -92,7 +92,6 @@ class CardFormatTransform extends Command
             ksort($new_cards);
         }
         print_r(json_encode($new_cards));
-//        dd($new_cards);
     }
 
 }
