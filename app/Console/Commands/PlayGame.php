@@ -11,7 +11,7 @@ class PlayGame extends Command
      *
      * @var string
      */
-    protected $signature = 'game:play';
+    protected $signature = 'game:play {player_id}';
 
     /**
      * The console command description.
@@ -27,5 +27,6 @@ class PlayGame extends Command
      */
     public function handle()
     {
+        $this->info($this->argument('player_id'));
     }
 }
