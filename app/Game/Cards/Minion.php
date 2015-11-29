@@ -3,11 +3,11 @@
 use App\Exceptions\InvalidTargetException;
 use App\Exceptions\MinionAlreadyAttackedException;
 use App\Game\Cards\Triggers\TriggerTypes;
+use App\Game\Interfaces\ExportableInterface;
 use App\Game\Player;
-use App\Game\Sequences\Phases\CardPhase;
 use App\Game\Sequences\Phases\SubCardPhase;
 
-class Minion extends Card
+class Minion extends Card implements ExportableInterface
 {
     protected $attack;
     protected $health;
@@ -98,7 +98,7 @@ class Minion extends Card
      * @param $damage
      */
     public function takeDamage($damage) {
-        if($this->hasTrigger(TriggerTypes::$ON_DAMAGE)) {
+        if ($this->hasTrigger(TriggerTypes::$ON_DAMAGE)) {
             // TODO check if this is where this happens
 
             /** @var SubCardPhase $trigger */
@@ -303,12 +303,12 @@ class Minion extends Card
     public function heal($heal_value) {
         // todo this is stupid, make it a phase
         $player_minions = $this->getOwner()->getMinionsInPlay();
-        foreach($player_minions as $minion) {
-            if(!$minion->hasTrigger(TriggerTypes::$ON_MINION_HEALED)) {
+        foreach ($player_minions as $minion) {
+            if (!$minion->hasTrigger(TriggerTypes::$ON_MINION_HEALED)) {
                 continue;
             }
 
-            if($this->getHealth() == $this->getMaxHealth()) {
+            if ($this->getHealth() == $this->getMaxHealth()) {
                 continue;
             }
 
@@ -355,7 +355,7 @@ class Minion extends Card
 
         // todo this won't work for non-charge mechanics
         $modified_mechanics = $aura->getModifiedMechanics();
-        $this->mechanics = array_merge($this->mechanics, $modified_mechanics);
+        $this->mechanics    = array_merge($this->mechanics, $modified_mechanics);
     }
 
     /**
@@ -402,6 +402,29 @@ class Minion extends Card
      */
     public function hasTrigger($trigger_type) {
         return !!array_get($this->getTrigger(), $trigger_type);
+    }
+
+    /**
+     * @return string
+     */
+    public function export() {
+        $export = json_decode(parent::export(), true);
+
+        $export_minion_fields = [
+            'attack'                   => $this->attack,
+            'health'                   => $this->health,
+            'max_health'               => $this->max_health,
+            'race'                     => $this->race,
+            'alive'                    => $this->alive,
+            'sleeping'                 => $this->sleeping,
+            'frozen'                   => $this->frozen,
+            'times_attacked_this_turn' => $this->times_attacked_this_turn,
+            'position'                 => $this->position
+        ];
+        $export['Card'] = array_merge($export['Card'], $export_minion_fields);
+
+        $export = json_encode($export);
+        return $export;
     }
 
 }
