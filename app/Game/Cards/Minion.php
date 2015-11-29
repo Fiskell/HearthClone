@@ -261,6 +261,11 @@ class Minion extends Card implements ExportableInterface
         $this->times_attacked_this_turn = 0;
     }
 
+    /**
+     * Checks if minion has already attacked
+     *
+     * @return bool
+     */
     public function alreadyAttacked() {
         if ($this->hasMechanic(Mechanics::$WINDFURY)) {
             return $this->getTimesAttackedThisTurn() == 2;
