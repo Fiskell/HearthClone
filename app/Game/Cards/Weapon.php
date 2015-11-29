@@ -74,6 +74,9 @@ class Weapon extends Card implements ExportableInterface
         $this->hero = $hero;
     }
 
+    /**
+     * @return string
+     */
     public function export() {
         $export = json_decode(parent::export(), true);
 
