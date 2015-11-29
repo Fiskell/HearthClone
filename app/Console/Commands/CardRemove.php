@@ -60,7 +60,7 @@ class CardRemove extends Command
 
     private function checkCardExists(Card $card) {
         $filename = $this->getCardFilename($card);
-        $json     = @file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
+        $json     = file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
         $array    = json_decode($json, true);
         if (!array_get($array, $card->getName())) {
             throw new Exception('Card ' . $card->getName() . ' does not exist in class ' . $filename);
@@ -82,7 +82,7 @@ class CardRemove extends Command
     private function removeCard(Card $card) {
         $filename = $this->getCardFilename($card);
         $filepath = __DIR__ . '/../../../resources/triggers/' . $filename;
-        $json     = @file_get_contents($filepath);
+        $json     = file_get_contents($filepath);
         $array    = json_decode($json, true);
         unset($array[$card->getName()]);
         ksort($array);

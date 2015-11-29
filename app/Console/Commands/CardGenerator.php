@@ -415,7 +415,7 @@ class CardGenerator extends Command
      */
     private function checkCardDoesNotExist(Card $card) {
         $filename = $this->getCardFilename($card);
-        $json     = @file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
+        $json     = file_get_contents(__DIR__ . '/../../../resources/triggers/' . $filename);
         $array    = json_decode($json, true);
         if (array_get($array, $card->getName())) {
             throw new Exception('Card ' . $card->getName() . ' already exists in class ' . $filename);
@@ -444,7 +444,7 @@ class CardGenerator extends Command
     private function writeCard($card, $card_trigger_info_array) {
         $filename = $this->getCardFilename($card);
         $filepath = __DIR__ . '/../../../resources/triggers/' . $filename;
-        $json     = @file_get_contents($filepath);
+        $json     = file_get_contents($filepath);
         $array    = json_decode($json, true);
         $array    = array_merge($array, $card_trigger_info_array);
         ksort($array);
