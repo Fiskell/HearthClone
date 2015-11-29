@@ -27,6 +27,11 @@ class PlayGame extends Command
      */
     public function handle()
     {
-        $this->info($this->argument('player_id'));
+        $player_id = $this->argument('player_id');
+        if(!is_numeric($player_id)) {
+            $this->error('Player id must be a number');
+        }
+
+        $this->info($player_id);
     }
 }
