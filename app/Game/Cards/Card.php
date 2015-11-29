@@ -1,7 +1,6 @@
 <?php namespace App\Game\Cards;
 
 use App\Exceptions\MissingCardNameException;
-use App\Game\Game;
 use App\Game\Interfaces\ExportableInterface;
 use App\Game\Player;
 
@@ -28,9 +27,6 @@ class Card implements ExportableInterface
     protected $choose_option;
 
     protected $text;
-
-    /** @var  Game $game */
-    protected $game;
 
     /** @var  Player $owner */
     protected $owner = null;
@@ -114,13 +110,6 @@ class Card implements ExportableInterface
      */
     public function setOwner(Player $owner) {
         $this->owner = $owner;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGame() {
-        return $this->game;
     }
 
     /**
