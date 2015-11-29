@@ -33,9 +33,6 @@ class Card implements ExportableInterface
 
     protected $play_order_id;
 
-    // todo this should not even be here =( all random numbers default to 0
-    protected $random_number = 0;
-
     public function __construct(Player $player, $name = null) {
         if (is_null($name)) {
             throw new MissingCardNameException();
@@ -62,6 +59,14 @@ class Card implements ExportableInterface
         $this->mechanics = array_get($this->card_json, 'mechanics', []);
     }
 
+    /**
+     * Load card by name and return a new card instance.
+     *
+     * @param Player $player
+     * @param $name
+     * @return \Illuminate\Foundation\Application|mixed
+     * @throws \App\Exceptions\UnknownCardNameException
+     */
     public static function load(Player $player, $name) {
         // Todo this is not super efficient since card constructor calls as well
         $card_json = app('CardSets')->findCard($name);
@@ -166,26 +171,20 @@ class Card implements ExportableInterface
         return array_search($mechanic, $this->mechanics) !== false;
     }
 
+    /**
+     * Remove a single mechanic from the card
+     *
+     * @param $mechanic
+     */
     public function removeMechanic($mechanic) {
         $this->mechanics = array_diff($this->mechanics, [$mechanic]);
     }
 
+    /**
+     * Remove all mechanics from the card
+     */
     public function removeAllMechanics() {
         $this->mechanics = [];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRandomNumber() {
-        return $this->random_number;
-    }
-
-    /**
-     * @param mixed $random_number
-     */
-    public function setRandomNumber($random_number) {
-        $this->random_number = $random_number;
     }
 
     /**
