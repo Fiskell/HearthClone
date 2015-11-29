@@ -1,17 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/1/15
- * Time: 11:12 PM
- */
-
-namespace App\Game\Cards;
+<?php namespace App\Game\Cards;
 
 use App\Game\Cards\Heroes\AbstractHero;
+use App\Game\Interfaces\ExportableInterface;
 use App\Game\Player;
 
-class Weapon extends Card
+class Weapon extends Card implements ExportableInterface
 {
     public $attack;
     public $durability;
@@ -79,6 +72,19 @@ class Weapon extends Card
      */
     public function setHero($hero) {
         $this->hero = $hero;
+    }
+
+    public function export() {
+        $export = json_decode(parent::export(), true);
+
+        $export_weapon_fields = [
+            "attack"     => $this->attack,
+            "durability" => $this->durability
+        ];
+
+        $fields = array_merge($export['Card'], $export_weapon_fields);
+
+        return json_encode(['Weapon' => $fields]);
     }
 
 }

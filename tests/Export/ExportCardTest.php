@@ -3,12 +3,11 @@
 class ExportCardTest extends AbstractCardTest
 {
     public function test_export_card_for_minion() {
-        $wisp = $this->playCard('Wisp', 1);
+        $wisp   = $this->playCard('Wisp', 1);
         $export = $wisp->export();
 
-        $expected =
-        '{
-            "Card": {
+        $expected = '{
+            "Minion": {
                 "cost":0,
                 "name":"Wisp",
                 "play_order_id":3,
@@ -21,6 +20,23 @@ class ExportCardTest extends AbstractCardTest
                 "frozen":false,
                 "times_attacked_this_turn":0,
                 "position":3
+            }
+        }';
+
+        $this->assertJsonEquals($expected, $export);
+    }
+
+    public function test_export_card_for_weapon() {
+        $wisp   = $this->playCard("Assassin's Blade", 1);
+        $export = $wisp->export();
+
+        $expected = '{
+            "Weapon": {
+                "cost":5,
+                "name":"Assassin\'s Blade",
+                "play_order_id":3,
+                "attack":3,
+                "durability":4
             }
         }';
 
