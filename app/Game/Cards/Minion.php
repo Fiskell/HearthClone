@@ -292,20 +292,6 @@ class Minion extends Card implements ExportableInterface
     }
 
     /**
-     * Resolve the preparation phase of the player initiated attack sequence.
-     *
-     * @param $target
-     * @throws InvalidTargetException
-     */
-    public function resolvePreparationPhase($target) {
-        if(!($target instanceof Minion)) {
-            throw new InvalidTargetException('Target must be a minion');
-        }
-
-        return;
-    }
-
-    /**
      * Phase to heal the target.
      *
      * @param $heal_value
