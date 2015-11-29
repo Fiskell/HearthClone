@@ -21,14 +21,13 @@ class Priest extends AbstractHero
         $this->hero_power = HeroPower::$PRIEST;
     }
 
-
     /**
      * Use the heroes ability
      *
      * @param array $targets
      * @throws InvalidTargetException
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         if(count($targets) != 1) {
             throw new InvalidTargetException('Must select one target');
         }

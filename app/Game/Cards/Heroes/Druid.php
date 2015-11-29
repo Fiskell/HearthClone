@@ -28,7 +28,7 @@ class Druid extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $this->gainArmor($this->hero_power_armor);
 
         /** @var Weapon $weapon */

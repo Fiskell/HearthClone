@@ -33,7 +33,7 @@ class Shaman extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $active_player = $this->getOwner();
         $totem_index = app('Random')->getFromRange(0, count($this->totems) - 1);
 

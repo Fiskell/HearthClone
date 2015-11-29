@@ -25,7 +25,7 @@ class Warlock extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $active_player = $this->getOwner();
         $active_player->drawCard();
         $active_player->getHero()->takeDamage($this->life_lost);

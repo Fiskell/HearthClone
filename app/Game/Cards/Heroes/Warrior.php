@@ -26,7 +26,7 @@ class Warrior extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $active_player = $this->getOwner();
         $active_player->getHero()->gainArmor($this->armor_gained);
     }

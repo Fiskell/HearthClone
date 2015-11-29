@@ -26,7 +26,7 @@ class Paladin extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $active_player = $this->getOwner();
         /** @var Minion $card */
         $card = app('Minion', [$active_player, $this->hero_power_minion_name]);

@@ -19,13 +19,12 @@ class Hunter extends AbstractHero
         $this->hero_power = HeroPower::$HUNTER;
     }
 
-
     /**
      * Use the heroes ability
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $defending_player = $this->getOwner()->getOtherPlayer();
         $defending_player->getHero()->takeDamage($this->hero_damage);
     }

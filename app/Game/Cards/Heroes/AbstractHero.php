@@ -84,7 +84,7 @@ abstract class AbstractHero extends Minion
      *
      * @param array $targets
      */
-    abstract function useAbility(array $targets);
+    abstract public function useAbility(array $targets);
 
     /**
      * @return int

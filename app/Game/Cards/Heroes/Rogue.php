@@ -20,7 +20,7 @@ class Rogue extends AbstractHero
      *
      * @param array $targets
      */
-    function useAbility(array $targets) {
+    public function useAbility(array $targets) {
         $active_player = $this->getOwner();
         /** @var Weapon $weapon */
         $weapon = app('Weapon', [$active_player, $this->hero_weapon_name]);
