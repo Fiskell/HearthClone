@@ -1,20 +1,11 @@
 <?php namespace App\Game\Cards\Heroes;
 
-use App\Game\Cards\Heroes\AbstractHero;
 use App\Game\Cards\Weapon;
 use App\Game\Player;
 
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 8/30/15
- * Time: 3:36 PM
- */
 class Rogue extends AbstractHero
 {
-    private $hero_weapon_name       = "Wicked Knife";
-    private $hero_weapon_attack     = 1;
-    private $hero_weapon_durability = 2;
+    private $hero_weapon_name = "Wicked Knife";
 
     protected $name = "Valeera Sanguinar";
 
@@ -23,7 +14,6 @@ class Rogue extends AbstractHero
         $this->hero_class = HeroClass::$ROGUE;
         $this->hero_power = HeroPower::$ROGUE;
     }
-
 
     /**
      * Use the heroes ability
@@ -34,7 +24,6 @@ class Rogue extends AbstractHero
         $active_player = $this->getOwner();
         /** @var Weapon $weapon */
         $weapon = app('Weapon', [$active_player, $this->hero_weapon_name]);
-        $weapon->setDurability($this->hero_weapon_durability);
         $this->equipWeapon($weapon);
     }
 }
