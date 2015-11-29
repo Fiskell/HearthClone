@@ -421,10 +421,10 @@ class Minion extends Card implements ExportableInterface
             'times_attacked_this_turn' => $this->times_attacked_this_turn,
             'position'                 => $this->position
         ];
-        $export['Card'] = array_merge($export['Card'], $export_minion_fields);
 
-        $export = json_encode($export);
-        return $export;
+        $fields = array_merge($export['Card'], $export_minion_fields);
+
+        return json_encode(['Minion' => $fields]);
     }
 
 }
