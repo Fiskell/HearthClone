@@ -1,19 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/1/15
- * Time: 9:36 PM
- */
-
-namespace App\Game\Cards;
+<?php namespace App\Game\Cards;
 
 use App\Exceptions\MissingCardNameException;
-use App\Game\CardSets\CardSets;
 use App\Game\Game;
+use App\Game\Interfaces\ExportableInterface;
 use App\Game\Player;
 
-class Card
+class Card implements ExportableInterface
 {
     protected $id;
 
@@ -242,4 +234,16 @@ class Card
         return $this->text;
     }
 
+    /**
+     * @return string
+     */
+    public function export() {
+        return json_encode([
+            "Card" => [
+                "cost"          => $this->cost,
+                "name"          => $this->name,
+
+                "play_order_id" => $this->play_order_id
+            ]]);
+    }
 }
