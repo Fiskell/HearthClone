@@ -242,7 +242,6 @@ class Card implements ExportableInterface
             "Card" => [
                 "cost"          => $this->cost,
                 "name"          => $this->name,
-
                 "play_order_id" => $this->play_order_id
             ]]);
     }
