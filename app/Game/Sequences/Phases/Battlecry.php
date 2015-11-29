@@ -9,7 +9,7 @@ class Battlecry extends CardPhase
 {
     public $phase_name = 'battlecry';
 
-    function queue(Card $minion, array $targets = []) {
+    public function queue(Card $minion, array $targets = []) {
 
         if (!$minion->hasMechanic(Mechanics::$BATTLECRY)) {
             return;

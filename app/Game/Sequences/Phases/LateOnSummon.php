@@ -8,7 +8,7 @@ class LateOnSummon extends CardPhase
 {
     public $phase_name = 'late_on_summon_phase';
 
-    function queue(Card $minion, array $targets = []) {
+    public function queue(Card $minion, array $targets = []) {
         $player           = $minion->getOwner();
         $player_minions   = $player->getMinionsInPlay();
 

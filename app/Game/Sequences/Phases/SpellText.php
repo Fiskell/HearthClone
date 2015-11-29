@@ -6,7 +6,7 @@ class SpellText extends CardPhase
 {
     public $phase_name = 'spell_text_phase';
 
-    function queue(Card $card, array $targets = []) {
+    public function queue(Card $card, array $targets = []) {
         $this->card    = $card;
         $this->targets = $targets;
 
