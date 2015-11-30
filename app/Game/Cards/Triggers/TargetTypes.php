@@ -46,22 +46,30 @@ class TargetTypes
      * @throws InvalidTargetException
      */
     public static function getTargets(Card $trigger_card, $target_type, $target_race = null, $provided_targets = []) {
-        $player           = $trigger_card->getOwner();
-        $player_minions   = $player->getMinionsInPlay();
-        $opponent         = $player->getOtherPlayer();
-        $opponent_minions = $opponent->getMinionsInPlay();
+        $player   = $trigger_card->getOwner();
+        $opponent = $player->getOtherPlayer();
 
-        if(is_null($provided_targets)) {
+        $opponent_minions                                          = $opponent->getMinionsInPlay();
+        $opponent_minions_with_hero                                = $opponent_minions;
+        $opponent_minions_with_hero[$opponent->getHero()->getId()] = $opponent->getHero();
+
+        $player_minions                                        = $player->getMinionsInPlay();
+        $player_minions_with_hero                              = $player_minions;
+        $player_minions_with_hero[$player->getHero()->getId()] = $player->getHero();
+
+        $all_minions_with_heroes = $opponent_minions_with_hero + $player_minions_with_hero;
+
+        if (is_null($provided_targets)) {
             $provided_targets = [];
         }
 
         $alive_provided_targets = self::removeDeadMinions($provided_targets);
-        $player_minions   = self::removeDeadMinions($player_minions);
-        $opponent_minions = self::removeDeadMinions($opponent_minions);
+        $player_minions         = self::removeDeadMinions($player_minions);
+        $opponent_minions       = self::removeDeadMinions($opponent_minions);
 
         switch ($target_type) {
             case TargetTypes::$PROVIDED_MINION:
-                if(count($provided_targets) != count($alive_provided_targets)) {
+                if (count($provided_targets) != count($alive_provided_targets)) {
                     throw new InvalidTargetException();
                 }
                 $targets = $provided_targets;
@@ -73,34 +81,26 @@ class TargetTypes
                 $targets = [$player];
                 break;
             case TargetTypes::$ALL_CHARACTERS:
-                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $player_minions[$player->getHero()->getId()]     = $player->getHero();
-
-                $targets = $opponent_minions + $player_minions;
+                $targets = $all_minions_with_heroes;
                 break;
             case TargetTypes::$ALL_OTHER_CHARACTERS:
-                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $player_minions[$player->getHero()->getId()]     = $player->getHero();
-
-                $targets = $opponent_minions + $player_minions;
+                $targets = $all_minions_with_heroes;
                 unset($targets[$trigger_card->getId()]);
                 break;
             case TargetTypes::$OPPONENT_HERO:
                 $targets = [$opponent->getHero()];
                 break;
             case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
-                $player_minions[$player->getHero()->getId()] = $player->getHero();
-                $targets                                     = $player_minions;
+                $targets = $player_minions_with_hero;
                 break;
             case TargetTypes::$OTHER_FRIENDLY_MINIONS:
                 unset($player_minions[$trigger_card->getId()]);
                 $targets = $player_minions;
                 break;
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
-                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $keys                                            = array_keys($opponent_minions);
-                $random_number                                   = app('Random')->getFromRange(0, (count($keys) - 1));
-                $targets                                         = [$opponent_minions[$keys[$random_number]]];
+                $keys          = array_keys($opponent_minions_with_hero);
+                $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
+                $targets       = [$opponent_minions_with_hero[$keys[$random_number]]];
                 break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
@@ -172,8 +172,7 @@ class TargetTypes
                 }
                 break;
             case TargetTypes::$ALL_OPPONENT_CHARACTERS:
-                $opponent_minions[$opponent->getHero()->getId()] = $opponent->getHero();
-                $targets                                         = $opponent_minions;
+                $targets = $opponent_minions_with_hero;
                 break;
             case TargetTypes::$ALL_MINIONS:
                 $targets = $opponent_minions + $player_minions;
@@ -209,6 +208,7 @@ class TargetTypes
                 unset($targets[$index]);
             }
         }
+
         return $targets;
     }
 }
