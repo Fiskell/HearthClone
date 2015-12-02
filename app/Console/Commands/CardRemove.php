@@ -87,6 +87,6 @@ class CardRemove extends Command
         unset($array[$card->getName()]);
         ksort($array);
         $new_json = json_encode($array, JSON_PRETTY_PRINT);
-        @file_put_contents($filepath, $new_json);
+        file_put_contents($filepath, $new_json);
     }
 }

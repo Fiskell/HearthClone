@@ -449,7 +449,7 @@ class CardGenerator extends Command
         $array    = array_merge($array, $card_trigger_info_array);
         ksort($array);
         $new_json = json_encode($array, JSON_PRETTY_PRINT);
-        @file_put_contents($filepath, $new_json);
+        file_put_contents($filepath, $new_json);
     }
 
 }
