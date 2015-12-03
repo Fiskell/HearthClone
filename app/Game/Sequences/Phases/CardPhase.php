@@ -90,11 +90,7 @@ abstract class CardPhase extends AbstractPhase
             $this->resolveSummonTrigger($trigger);
 
             /* Modify Mana Crystals */
-            $create_mana_crystals = array_get($trigger, 'create_mana_crystals');
-            if ($create_mana_crystals) {
-                $player = $this->card->getOwner();
-                $player->setManaCrystalCount($player->getManaCrystalCount() + $create_mana_crystals);
-            }
+            $this->modifyManaCrystals($trigger);
         }
     }
 
@@ -375,6 +371,10 @@ abstract class CardPhase extends AbstractPhase
         }
     }
 
+    /**
+     * @param $trigger
+     * @param $targets
+     */
     private function resolveFreezeTrigger($trigger, $targets) {
         $freeze = array_get($trigger, 'freeze');
         if (!$freeze) {
@@ -384,6 +384,17 @@ abstract class CardPhase extends AbstractPhase
         /** @var Minion $target */
         foreach ($targets as $target) {
             $target->freeze();
+        }
+    }
+
+    /**
+     * @param $trigger
+     */
+    private function modifyManaCrystals($trigger) {
+        $create_mana_crystals = array_get($trigger, 'create_mana_crystals');
+        if ($create_mana_crystals) {
+            $player = $this->card->getOwner();
+            $player->setManaCrystalCount($player->getManaCrystalCount() + $create_mana_crystals);
         }
     }
 
