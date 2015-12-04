@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\CardRemove::class,
         \App\Console\Commands\CardFormatTransform::class,
         \App\Console\Commands\PlayGame::class,
+        \App\Console\Commands\TestFirebase::class,
     ];
 
     /**
