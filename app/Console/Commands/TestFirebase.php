@@ -25,12 +25,27 @@ class TestFirebase extends Command
      */
     protected $description = 'Talk to firebase';
 
+    public function handle() {
+        $firebase = app('FirebaseModel');
+        $s1 = microtime(true);
+        $firebase->init();
+        $s2 = microtime(true);
+        $firebase->getConnection()->set('/cards/played/wisp', 'data');
+        $s3 = microtime(true);
+        $firebase->getConnection()->get('/cards/played/wisp');
+        $s4 = microtime(true);
+
+        $this->info('Getting token' . ($s2 - $s1));
+        $this->info('Making request' . ($s3 - $s2));
+        $this->info('get request' . ($s4 - $s3));
+    }
+
     /**
      * Execute the console command.
      *
      * @return mixed
      */
-    public function handle()
+    public function handle_old()
     {
         try {
             $DEFAULT_URL = 'https://inkeeper.firebaseio.com/';

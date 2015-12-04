@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+use App\Exceptions\DumbassDeveloperException;
 use Firebase\FirebaseLib;
 use Firebase\Token\TokenGenerator;
 
@@ -19,9 +20,18 @@ class FirebaseModel
     private function getToken() {
         // todo handle users better
         $generator = new TokenGenerator(getenv('FIREBASE_SECRET'));
-        $token = $generator
-            ->setData(array('uid' => 'exampleID'))
+        $token     = $generator
+            ->setData(['uid' => 'exampleID'])
             ->create();
+
         return $token;
+    }
+
+    public function getConnection() {
+        if (!$this->connection) {
+            throw new DumbassDeveloperException('Must call init before you can talk to firebase');
+        }
+
+        return $this->connection;
     }
 }
