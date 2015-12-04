@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "77ae89c00e46585a7b5572edbf056eca",
+    "hash": "bfba39b7f2b9fd2c760cb0a1c218c936",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -280,6 +280,101 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "firebase/php-jwt",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
+                "reference": "fa8a06e96526eb7c0eeaa47e4f39be59d21f16e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2015-07-22 18:31:08"
+        },
+        {
+            "name": "firebase/token-generator",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/firebase-token-generator-php.git",
+                "reference": "60f74f02ae9e0ab498def706bdf43582379086f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/firebase-token-generator-php/zipball/60f74f02ae9e0ab498def706bdf43582379086f6",
+                "reference": "60f74f02ae9e0ab498def706bdf43582379086f6",
+                "shasum": ""
+            },
+            "require": {
+                "firebase/php-jwt": "^3.0",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\Token\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Chris Raynor",
+                    "email": "chris@firebase.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to generate JWT tokens for authenticating to a Firebase.",
+            "homepage": "https://github.com/firebase/firebase-token-generator-php",
+            "time": "2015-11-19 06:18:40"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -423,6 +518,48 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
+        },
+        {
+            "name": "ktamas77/firebase-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ktamas77/firebase-php.git",
+                "reference": "31ab40dd01b1e0024841d7701d51927c711ec56b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ktamas77/firebase-php/zipball/31ab40dd01b1e0024841d7701d51927c711ec56b",
+                "reference": "31ab40dd01b1e0024841d7701d51927c711ec56b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tamas Kalman",
+                    "email": "ktamas77@gmail.com"
+                }
+            ],
+            "description": "Firebase PHP Client",
+            "homepage": "https://github.com/ktamas77/firebase-php",
+            "keywords": [
+                "firebase",
+                "rest",
+                "wrapper"
+            ],
+            "time": "2015-05-08 02:43:44"
         },
         {
             "name": "laravel/framework",
@@ -3037,7 +3174,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ktamas77/firebase-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
