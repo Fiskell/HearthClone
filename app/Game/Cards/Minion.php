@@ -146,74 +146,15 @@ class Minion extends Card implements ExportableInterface
      * @throws MinionAlreadyAttackedException
      */
     public function resolveCombatPhase(Minion $target) {
-        if ($this->isSleeping()) {
-            throw new InvalidTargetException('This minion cannot attack because it is asleep');
-        }
+        $this->checkValidAttack();
 
-        if ($this->isFrozen()) {
-            throw new InvalidTargetException('This minion cannot attack because it is frozen');
-        }
+        $this->resolveCombatTaunt($target);
 
-        if ($this->alreadyAttacked()) {
-            throw new MinionAlreadyAttackedException('This minion has already attacked this turn');
-        }
+        $this->resolveCombatStealth($target);
 
-        $attacking_player = $this->getOwner();
-        $defending_player = $attacking_player->getOtherPlayer();
+        $this->resolveCombatDivineShield($target);
 
-        /* Taunt */
-        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
-        $player_has_taunt = $defending_player->hasMechanic(Mechanics::$TAUNT);
-
-        if (!$target_has_taunt && $player_has_taunt) {
-            throw new InvalidTargetException('You may only attack a minion with taunt');
-        }
-
-        /* Stealth */
-        if ($target->hasMechanic(Mechanics::$STEALTH)) {
-            throw new InvalidTargetException('You cannot attack a stealth minion');
-        }
-
-        if ($this->hasMechanic(Mechanics::$STEALTH)) {
-            $this->removeMechanic(Mechanics::$STEALTH);
-        }
-
-        /* Divine Shield */
-        $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
-        if ($target_has_divine_shield) {
-            $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
-        }
-
-        $attacker_has_divine_shield = $this->hasMechanic(Mechanics::$DIVINE_SHIELD);
-        if ($attacker_has_divine_shield) {
-            $this->removeMechanic(Mechanics::$DIVINE_SHIELD);
-        }
-
-        /* Enrage */
-        if ($target->hasMechanic(Mechanics::$ENRAGE)) {
-            $target->setAttack($target->getAttack() + 3);
-        }
-
-        if ($this->hasMechanic(Mechanics::$ENRAGE)) {
-            $this->setAttack($this->getAttack() + 3);
-        }
-
-        if (!$attacker_has_divine_shield) {
-            $this->takeDamage($target->getAttack());
-
-            if ($target->hasMechanic(Mechanics::$FREEZE)) {
-                $this->freeze();
-            }
-        }
-
-        if (!$target_has_divine_shield) {
-
-            $target->takeDamage($this->getAttack());
-
-            if ($this->hasMechanic(Mechanics::$FREEZE)) {
-                $target->freeze();
-            }
-        }
+        $this->resolveCombatEnrage($target);
 
         $this->incrementTimesAttackedThisTurn();
     }
@@ -421,6 +362,95 @@ class Minion extends Card implements ExportableInterface
         $fields = array_merge($export['Card'], $export_minion_fields);
 
         return json_encode(['Minion' => $fields]);
+    }
+
+    /**
+     * @param Minion $target
+     * @throws InvalidTargetException
+     */
+    private function resolveCombatStealth(Minion $target) {
+        if ($target->hasMechanic(Mechanics::$STEALTH)) {
+            throw new InvalidTargetException('You cannot attack a stealth minion');
+        }
+
+        if ($this->hasMechanic(Mechanics::$STEALTH)) {
+            $this->removeMechanic(Mechanics::$STEALTH);
+        }
+    }
+
+    /**
+     * @param Minion $target
+     * @throws InvalidTargetException
+     */
+    private function resolveCombatTaunt(Minion $target) {
+        $target_has_taunt = $target->hasMechanic(Mechanics::$TAUNT);
+        $player_has_taunt = $this->getOwner()->getOtherPlayer()->hasMechanic(Mechanics::$TAUNT);
+
+        if (!$target_has_taunt && $player_has_taunt) {
+            throw new InvalidTargetException('You may only attack a minion with taunt');
+        }
+    }
+
+    /**
+     * @param Minion $target
+     */
+    private function resolveCombatDivineShield(Minion $target) {
+        $target_has_divine_shield = $target->hasMechanic(Mechanics::$DIVINE_SHIELD);
+        if ($target_has_divine_shield) {
+            $target->removeMechanic(Mechanics::$DIVINE_SHIELD);
+        }
+
+        $attacker_has_divine_shield = $this->hasMechanic(Mechanics::$DIVINE_SHIELD);
+        if ($attacker_has_divine_shield) {
+            $this->removeMechanic(Mechanics::$DIVINE_SHIELD);
+        }
+
+        if (!$attacker_has_divine_shield) {
+            $this->resolveCombatDamage($target, $this);
+        }
+
+        if (!$target_has_divine_shield) {
+            $this->resolveCombatDamage($this, $target);
+        }
+    }
+
+    /**
+     * @param Minion $target
+     */
+    private function resolveCombatEnrage(Minion $target) {
+        if ($target->hasMechanic(Mechanics::$ENRAGE)) {
+            $target->setAttack($target->getAttack() + 3);
+        }
+
+        if ($this->hasMechanic(Mechanics::$ENRAGE)) {
+            $this->setAttack($this->getAttack() + 3);
+        }
+    }
+
+    private function checkValidAttack() {
+        if ($this->isSleeping()) {
+            throw new InvalidTargetException('This minion cannot attack because it is asleep');
+        }
+
+        if ($this->isFrozen()) {
+            throw new InvalidTargetException('This minion cannot attack because it is frozen');
+        }
+
+        if ($this->alreadyAttacked()) {
+            throw new MinionAlreadyAttackedException('This minion has already attacked this turn');
+        }
+    }
+
+    /**
+     * @param Card $attacker
+     * @param Card $defender
+     */
+    private function resolveCombatDamage(Card $attacker, Card $defender) {
+        $defender->takeDamage($attacker->getAttack());
+
+        if ($attacker->hasMechanic(Mechanics::$FREEZE)) {
+            $defender->freeze();
+        }
     }
 
 }
