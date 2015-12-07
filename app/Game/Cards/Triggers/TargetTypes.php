@@ -4,6 +4,8 @@ use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
+use App\Game\Cards\TargetTypes\BoardTargetGroups;
+use App\Game\Cards\TargetTypes\ProvidedMinion;
 
 /**
  * Created by PhpStorm.
@@ -63,17 +65,21 @@ class TargetTypes
             $provided_targets = [];
         }
 
-        $alive_provided_targets = self::removeDeadMinions($provided_targets);
-        $player_minions         = self::removeDeadMinions($player_minions);
-        $opponent_minions       = self::removeDeadMinions($opponent_minions);
+        $player_minions   = BoardTargetGroups::removeDeadMinions($player_minions);
+        $opponent_minions = BoardTargetGroups::removeDeadMinions($opponent_minions);
+
+        $boardTargetGroups = new BoardTargetGroups();
+        $boardTargetGroups->setProvidedTargets($provided_targets);
+        $boardTargetGroups->setTriggerCard($trigger_card);
+
+        $target_types = [TargetTypes::$PROVIDED_MINION => new ProvidedMinion($boardTargetGroups)];
+
+        $found_target = array_get($target_types, $target_type);
+        if (!is_null($found_target)) {
+            return $found_target->getTargets($boardTargetGroups);
+        }
 
         switch ($target_type) {
-            case TargetTypes::$PROVIDED_MINION:
-                if (count($provided_targets) != count($alive_provided_targets)) {
-                    throw new InvalidTargetException();
-                }
-                $targets = $provided_targets;
-                break;
             case TargetTypes::$FRIENDLY_HERO:
                 $targets = [$player->getHero()];
                 break;
@@ -195,20 +201,4 @@ class TargetTypes
         return $targets;
     }
 
-    /**
-     * Minions being targeted are not allowed to be dead.
-     *
-     * @param array $targets
-     * @return array
-     */
-    public static function removeDeadMinions(array $targets) {
-        /** @var Minion $target */
-        foreach ($targets as $index => $target) {
-            if (!$target->isAlive()) {
-                unset($targets[$index]);
-            }
-        }
-
-        return $targets;
-    }
 }
