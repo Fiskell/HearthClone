@@ -442,10 +442,10 @@ class Minion extends Card implements ExportableInterface
     }
 
     /**
-     * @param Card $attacker
-     * @param Card $defender
+     * @param Minion $attacker
+     * @param Minion $defender
      */
-    private function resolveCombatDamage(Card $attacker, Card $defender) {
+    private function resolveCombatDamage(Minion $attacker, Minion $defender) {
         $defender->takeDamage($attacker->getAttack());
 
         if ($attacker->hasMechanic(Mechanics::$FREEZE)) {
