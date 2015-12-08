@@ -4,6 +4,7 @@ use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
+use App\Game\Cards\TargetTypes\AllCharacters;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
@@ -77,7 +78,8 @@ class TargetTypes
         $target_types = [
             TargetTypes::$PROVIDED_MINION => new ProvidedMinion(),
             TargetTypes::$FRIENDLY_HERO   => new FriendlyHero(),
-            TargetTypes::$FRIENDLY_PLAYER => new FriendlyPlayer()
+            TargetTypes::$FRIENDLY_PLAYER => new FriendlyPlayer(),
+            TargetTypes::$ALL_CHARACTERS  => new AllCharacters()
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -86,8 +88,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ALL_CHARACTERS:
-                break;
             case TargetTypes::$ALL_OTHER_CHARACTERS:
                 $targets = $all_minions_with_heroes;
                 unset($targets[$trigger_card->getId()]);

@@ -88,8 +88,8 @@ class BoardTargetGroups
         $this->player_minions           = $this->player->getMinionsInPlay();
         $this->player_minions_with_hero = $this->player_minions;
 
-        $this->opponent_minions_with_hero[$this->player->getHero()->getId()]       = $this->opponent->getHero();
-        $this->player_minions_with_hero[$this->player->getHero()->getId()] = $this->player->getHero();
+        $this->opponent_minions_with_hero[$this->opponent->getHero()->getId()] = $this->opponent->getHero();
+        $this->player_minions_with_hero[$this->player->getHero()->getId()]     = $this->player->getHero();
 
         $this->all_minions_with_heroes = $this->opponent_minions_with_hero + $this->player_minions_with_hero;
 
