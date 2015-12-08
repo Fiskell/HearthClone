@@ -14,6 +14,7 @@ class BoardTargetGroups
     private $all_minions_with_heroes;
     private $provided_targets;
     private $alive_provided_targets;
+    private $triggerCard;
 
     /**
      * @return mixed
@@ -79,6 +80,8 @@ class BoardTargetGroups
     }
 
     public function setTriggerCard(Card $card) {
+        $this->triggerCard = $card;
+
         $this->player   = $card->getOwner();
         $this->opponent = $this->player->getOtherPlayer();
 
@@ -119,5 +122,12 @@ class BoardTargetGroups
         }
 
         return $targets;
+    }
+
+    /**
+     * @return Card
+     */
+    public function getTriggerCard() {
+        return $this->triggerCard;
     }
 }
