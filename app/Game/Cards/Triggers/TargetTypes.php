@@ -87,7 +87,6 @@ class TargetTypes
 
         switch ($target_type) {
             case TargetTypes::$ALL_CHARACTERS:
-                $targets = $all_minions_with_heroes;
                 break;
             case TargetTypes::$ALL_OTHER_CHARACTERS:
                 $targets = $all_minions_with_heroes;
