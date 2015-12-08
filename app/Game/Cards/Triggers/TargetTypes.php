@@ -63,8 +63,6 @@ class TargetTypes
         $player_minions_with_hero                              = $player_minions;
         $player_minions_with_hero[$player->getHero()->getId()] = $player->getHero();
 
-        $all_minions_with_heroes = $opponent_minions_with_hero + $player_minions_with_hero;
-
         if (is_null($provided_targets)) {
             $provided_targets = [];
         }
