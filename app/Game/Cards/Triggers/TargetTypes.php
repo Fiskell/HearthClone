@@ -5,6 +5,7 @@ use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
+use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 
 /**
@@ -72,7 +73,10 @@ class TargetTypes
         $boardTargetGroups->setProvidedTargets($provided_targets);
         $boardTargetGroups->setTriggerCard($trigger_card);
 
-        $target_types = [TargetTypes::$PROVIDED_MINION => new ProvidedMinion($boardTargetGroups)];
+        $target_types = [
+            TargetTypes::$PROVIDED_MINION => new ProvidedMinion(),
+            TargetTypes::$FRIENDLY_HERO => new FriendlyHero()
+        ];
 
         $found_target = array_get($target_types, $target_type);
         if (!is_null($found_target)) {
@@ -80,9 +84,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$FRIENDLY_HERO:
-                $targets = [$player->getHero()];
-                break;
             case TargetTypes::$FRIENDLY_PLAYER:
                 $targets = [$player];
                 break;
