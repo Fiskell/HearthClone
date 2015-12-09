@@ -328,9 +328,6 @@ class Player
      * @param int $position
      */
     public function play(Card $card, array $targets = [], $position=3) {
-//        $firebase = app('FirebaseModel');
-//        $firebase->init();
-//        $firebase->getConnection()->set('/cards/played/' . $card->getName(), $card->export());
         App('CardSequence')->play($card, $targets, $position);
     }
 
