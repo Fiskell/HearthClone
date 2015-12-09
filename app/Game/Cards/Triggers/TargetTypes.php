@@ -9,6 +9,7 @@ use App\Game\Cards\TargetTypes\AllOtherCharacters;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
+use App\Game\Cards\TargetTypes\OpponentHero;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 
 /**
@@ -79,7 +80,8 @@ class TargetTypes
             TargetTypes::$FRIENDLY_HERO        => new FriendlyHero(),
             TargetTypes::$FRIENDLY_PLAYER      => new FriendlyPlayer(),
             TargetTypes::$ALL_CHARACTERS       => new AllCharacters(),
-            TargetTypes::$ALL_OTHER_CHARACTERS => new AllOtherCharacters()
+            TargetTypes::$ALL_OTHER_CHARACTERS => new AllOtherCharacters(),
+            TargetTypes::$OPPONENT_HERO        => new OpponentHero()
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -88,9 +90,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$OPPONENT_HERO:
-                $targets = [$opponent->getHero()];
-                break;
             case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
                 $targets = $player_minions_with_hero;
                 break;
