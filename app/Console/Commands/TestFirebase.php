@@ -72,10 +72,7 @@ class TestFirebase extends Command
             $firebase->set($DEFAULT_PATH . '/name/contact001', "John Doe");
 
             // --- reading the stored string ---
-            $name = $firebase->get($DEFAULT_PATH . '/name/contact001');
-            $stuff = $firebase->get($DEFAULT_PATH);
-            $this->info($stuff);
-            $this->info($name);
+            echo $firebase->get($DEFAULT_PATH . '/name/contact001');
         } catch (TokenException $e) {
             echo "Error: ".$e->getMessage();
         }
