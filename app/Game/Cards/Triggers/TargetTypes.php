@@ -96,9 +96,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ALL_OPPONENT_MINIONS:
-                $targets = $opponent_minions;
-                break;
             case TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE:
                 unset($player_minions[$trigger_card->getId()]);
                 $targets = [];
