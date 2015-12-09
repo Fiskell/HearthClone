@@ -8,6 +8,7 @@ use App\Game\Cards\TargetTypes\AllCharacters;
 use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
 use App\Game\Cards\TargetTypes\AllOpponentMinions;
 use App\Game\Cards\TargetTypes\AllOtherCharacters;
+use App\Game\Cards\TargetTypes\AllOtherMinionsWithRace;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
@@ -93,6 +94,7 @@ class TargetTypes
             TargetTypes::$RANDOM_OPPONENT_CHARACTER        => new RandomOpponentCharacter(),
             TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE => new OtherFriendlyMinionsWithRace(),
             TargetTypes::$ALL_OPPONENT_MINIONS             => new AllOpponentMinions(),
+            TargetTypes::$All_OTHER_MINIONS_WITH_RACE      => new AllOtherMinionsWithRace(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -101,20 +103,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$All_OTHER_MINIONS_WITH_RACE:
-                unset($player_minions[$trigger_card->getId()]);
-                $targets = [];
-                foreach ($player_minions as $player_minion) {
-                    if ($player_minion->getRace() == $target_race) {
-                        $targets[] = $player_minion;
-                    }
-                }
-                foreach ($opponent_minions as $opponent_minion) {
-                    if ($opponent_minion->getRace() == $target_race) {
-                        $targets[] = $opponent_minion;
-                    }
-                }
-                break;
             case TargetTypes::$ADJACENT_MINIONS:
                 /** @var Minion $trigger_card */
                 $adjacent_positions = [
