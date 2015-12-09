@@ -7,6 +7,7 @@ use App\Game\Cards\Minion;
 use App\Game\Cards\TargetTypes\AdjacentMinions;
 use App\Game\Cards\TargetTypes\AllCharacters;
 use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
+use App\Game\Cards\TargetTypes\AllFriendlyMinions;
 use App\Game\Cards\TargetTypes\AllOpponentMinions;
 use App\Game\Cards\TargetTypes\AllOtherCharacters;
 use App\Game\Cards\TargetTypes\AllOtherMinionsWithRace;
@@ -99,6 +100,7 @@ class TargetTypes
             TargetTypes::$All_OTHER_MINIONS_WITH_RACE      => new AllOtherMinionsWithRace(),
             TargetTypes::$ADJACENT_MINIONS                 => new AdjacentMinions(),
             TargetTypes::$SELF                             => new TriggerCard(),
+            TargetTypes::$ALL_FRIENDLY_MINIONS             => new AllFriendlyMinions(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -107,9 +109,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ALL_FRIENDLY_MINIONS:
-                $targets = $player_minions;
-                break;
             case TargetTypes::$OPPONENT_WEAPON:
                 $targets = [$opponent->getHero()->getWeapon()];
                 break;
