@@ -4,6 +4,7 @@ use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
+use App\Game\Cards\TargetTypes\AdjacentMinions;
 use App\Game\Cards\TargetTypes\AllCharacters;
 use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
 use App\Game\Cards\TargetTypes\AllOpponentMinions;
@@ -95,6 +96,7 @@ class TargetTypes
             TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE => new OtherFriendlyMinionsWithRace(),
             TargetTypes::$ALL_OPPONENT_MINIONS             => new AllOpponentMinions(),
             TargetTypes::$All_OTHER_MINIONS_WITH_RACE      => new AllOtherMinionsWithRace(),
+            TargetTypes::$ADJACENT_MINIONS                 => new AdjacentMinions(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -103,21 +105,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ADJACENT_MINIONS:
-                /** @var Minion $trigger_card */
-                $adjacent_positions = [
-                    ($trigger_card->getPosition() - 1),
-                    ($trigger_card->getPosition() + 1)
-                ];
-
-                $targets = [];
-                foreach ($player_minions as $minion) {
-                    if (in_array($minion->getPosition(), $adjacent_positions)) {
-                        $targets[] = $minion;
-                    }
-                }
-
-                break;
             case TargetTypes::$SELF:
                 $targets = [$trigger_card];
                 break;
