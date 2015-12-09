@@ -77,6 +77,7 @@ class TargetTypes
         $boardTargetGroups = new BoardTargetGroups();
         $boardTargetGroups->setProvidedTargets($provided_targets);
         $boardTargetGroups->setTriggerCard($trigger_card);
+        $boardTargetGroups->setTargetRace($target_race);
 
         $target_types = [
             TargetTypes::$PROVIDED_MINION           => new ProvidedMinion(),
@@ -97,14 +98,7 @@ class TargetTypes
 
         switch ($target_type) {
             case TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE:
-                unset($player_minions[$trigger_card->getId()]);
-                $targets = [];
-                /** @var Minion $player_minion */
-                foreach ($player_minions as $player_minion) {
-                    if ($player_minion->getRace() == $target_race) {
-                        $targets[] = $player_minion;
-                    }
-                }
+
                 break;
             case TargetTypes::$All_OTHER_MINIONS_WITH_RACE:
                 unset($player_minions[$trigger_card->getId()]);
