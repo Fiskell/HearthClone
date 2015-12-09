@@ -18,6 +18,7 @@ use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
 use App\Game\Cards\TargetTypes\OtherFriendlyMinionsWithRace;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 use App\Game\Cards\TargetTypes\RandomOpponentCharacter;
+use App\Game\Cards\TargetTypes\TriggerCard;
 
 /**
  * Created by PhpStorm.
@@ -97,6 +98,7 @@ class TargetTypes
             TargetTypes::$ALL_OPPONENT_MINIONS             => new AllOpponentMinions(),
             TargetTypes::$All_OTHER_MINIONS_WITH_RACE      => new AllOtherMinionsWithRace(),
             TargetTypes::$ADJACENT_MINIONS                 => new AdjacentMinions(),
+            TargetTypes::$SELF                             => new TriggerCard(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -105,9 +107,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$SELF:
-                $targets = [$trigger_card];
-                break;
             case TargetTypes::$ALL_FRIENDLY_MINIONS:
                 $targets = $player_minions;
                 break;
