@@ -5,6 +5,7 @@ use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\Minion;
 use App\Game\Cards\TargetTypes\AllCharacters;
+use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
 use App\Game\Cards\TargetTypes\AllOtherCharacters;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\FriendlyHero;
@@ -76,12 +77,13 @@ class TargetTypes
         $boardTargetGroups->setTriggerCard($trigger_card);
 
         $target_types = [
-            TargetTypes::$PROVIDED_MINION      => new ProvidedMinion(),
-            TargetTypes::$FRIENDLY_HERO        => new FriendlyHero(),
-            TargetTypes::$FRIENDLY_PLAYER      => new FriendlyPlayer(),
-            TargetTypes::$ALL_CHARACTERS       => new AllCharacters(),
-            TargetTypes::$ALL_OTHER_CHARACTERS => new AllOtherCharacters(),
-            TargetTypes::$OPPONENT_HERO        => new OpponentHero()
+            TargetTypes::$PROVIDED_MINION         => new ProvidedMinion(),
+            TargetTypes::$FRIENDLY_HERO           => new FriendlyHero(),
+            TargetTypes::$FRIENDLY_PLAYER         => new FriendlyPlayer(),
+            TargetTypes::$ALL_CHARACTERS          => new AllCharacters(),
+            TargetTypes::$ALL_OTHER_CHARACTERS    => new AllOtherCharacters(),
+            TargetTypes::$OPPONENT_HERO           => new OpponentHero(),
+            TargetTypes::$ALL_FRIENDLY_CHARACTERS => new AllFriendlyCharacters(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -90,9 +92,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ALL_FRIENDLY_CHARACTERS:
-                $targets = $player_minions_with_hero;
-                break;
             case TargetTypes::$OTHER_FRIENDLY_MINIONS:
                 unset($player_minions[$trigger_card->getId()]);
                 $targets = $player_minions;
