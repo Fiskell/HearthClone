@@ -14,5 +14,6 @@ class OtherFriendlyMinionsWithRace implements TargetTypeInterface
                 $targets[] = $player_minion;
             }
         }
+        return $targets;
     }
 }
