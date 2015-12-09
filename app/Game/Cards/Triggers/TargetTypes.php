@@ -13,6 +13,7 @@ use App\Game\Cards\TargetTypes\FriendlyPlayer;
 use App\Game\Cards\TargetTypes\OpponentHero;
 use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
+use App\Game\Cards\TargetTypes\RandomOpponentCharacter;
 
 /**
  * Created by PhpStorm.
@@ -78,14 +79,15 @@ class TargetTypes
         $boardTargetGroups->setTriggerCard($trigger_card);
 
         $target_types = [
-            TargetTypes::$PROVIDED_MINION         => new ProvidedMinion(),
-            TargetTypes::$FRIENDLY_HERO           => new FriendlyHero(),
-            TargetTypes::$FRIENDLY_PLAYER         => new FriendlyPlayer(),
-            TargetTypes::$ALL_CHARACTERS          => new AllCharacters(),
-            TargetTypes::$ALL_OTHER_CHARACTERS    => new AllOtherCharacters(),
-            TargetTypes::$OPPONENT_HERO           => new OpponentHero(),
-            TargetTypes::$ALL_FRIENDLY_CHARACTERS => new AllFriendlyCharacters(),
-            TargetTypes::$OTHER_FRIENDLY_MINIONS  => new OtherFriendlyMinions(),
+            TargetTypes::$PROVIDED_MINION           => new ProvidedMinion(),
+            TargetTypes::$FRIENDLY_HERO             => new FriendlyHero(),
+            TargetTypes::$FRIENDLY_PLAYER           => new FriendlyPlayer(),
+            TargetTypes::$ALL_CHARACTERS            => new AllCharacters(),
+            TargetTypes::$ALL_OTHER_CHARACTERS      => new AllOtherCharacters(),
+            TargetTypes::$OPPONENT_HERO             => new OpponentHero(),
+            TargetTypes::$ALL_FRIENDLY_CHARACTERS   => new AllFriendlyCharacters(),
+            TargetTypes::$OTHER_FRIENDLY_MINIONS    => new OtherFriendlyMinions(),
+            TargetTypes::$RANDOM_OPPONENT_CHARACTER => new RandomOpponentCharacter(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -94,11 +96,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
-                $keys          = array_keys($opponent_minions_with_hero);
-                $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
-                $targets       = [$opponent_minions_with_hero[$keys[$random_number]]];
-                break;
             case TargetTypes::$ALL_OPPONENT_MINIONS:
                 $targets = $opponent_minions;
                 break;
