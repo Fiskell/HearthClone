@@ -11,6 +11,7 @@ use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
 use App\Game\Cards\TargetTypes\OpponentHero;
+use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 
 /**
@@ -84,6 +85,7 @@ class TargetTypes
             TargetTypes::$ALL_OTHER_CHARACTERS    => new AllOtherCharacters(),
             TargetTypes::$OPPONENT_HERO           => new OpponentHero(),
             TargetTypes::$ALL_FRIENDLY_CHARACTERS => new AllFriendlyCharacters(),
+            TargetTypes::$OTHER_FRIENDLY_MINIONS  => new OtherFriendlyMinions(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -92,10 +94,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$OTHER_FRIENDLY_MINIONS:
-                unset($player_minions[$trigger_card->getId()]);
-                $targets = $player_minions;
-                break;
             case TargetTypes::$RANDOM_OPPONENT_CHARACTER:
                 $keys          = array_keys($opponent_minions_with_hero);
                 $random_number = app('Random')->getFromRange(0, (count($keys) - 1));
