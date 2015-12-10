@@ -2,10 +2,12 @@
 
 use App\Game\Cards\Card;
 use App\Game\Cards\Mechanics;
+use App\Game\Cards\Minion;
 
 class DeathProcessing extends CardPhase
 {
     public function queue(Card $minion, array $targets = []) {
+        /** @var Minion $minion */
         $this->card    = $minion;
         $this->targets = $targets;
         App('TriggerQueue')->queue($this);
