@@ -69,24 +69,6 @@ class TargetTypes
      * @throws InvalidTargetException
      */
     public static function getTargets(Card $trigger_card, $target_type, $target_race = null, $provided_targets = []) {
-        $player   = $trigger_card->getOwner();
-        $opponent = $player->getOtherPlayer();
-
-        $opponent_minions                                          = $opponent->getMinionsInPlay();
-        $opponent_minions_with_hero                                = $opponent_minions;
-        $opponent_minions_with_hero[$opponent->getHero()->getId()] = $opponent->getHero();
-
-        $player_minions                                        = $player->getMinionsInPlay();
-        $player_minions_with_hero                              = $player_minions;
-        $player_minions_with_hero[$player->getHero()->getId()] = $player->getHero();
-
-        if (is_null($provided_targets)) {
-            $provided_targets = [];
-        }
-
-        $player_minions   = BoardTargetGroups::removeDeadMinions($player_minions);
-        $opponent_minions = BoardTargetGroups::removeDeadMinions($opponent_minions);
-
         $boardTargetGroups = new BoardTargetGroups();
         $boardTargetGroups->setProvidedTargets($provided_targets);
         $boardTargetGroups->setTriggerCard($trigger_card);
