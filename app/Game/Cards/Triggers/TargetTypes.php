@@ -17,6 +17,7 @@ use App\Game\Cards\TargetTypes\BoardTargetGroups;
 use App\Game\Cards\TargetTypes\DamagedProvidedMinion;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
+use App\Game\Cards\TargetTypes\FriendlyWeapon;
 use App\Game\Cards\TargetTypes\OpponentHero;
 use App\Game\Cards\TargetTypes\OpponentWeapon;
 use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
@@ -113,6 +114,7 @@ class TargetTypes
             TargetTypes::$ALL_OPPONENT_CHARACTERS          => new AllOpponentCharacters(),
             TargetTypes::$ALL_MINIONS                      => new AllMinions(),
             TargetTypes::$PROVIDED_ENEMY_MINION            => new ProvidedEnemyMinion(),
+            TargetTypes::$FRIENDLY_WEAPON                  => new FriendlyWeapon(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -120,15 +122,7 @@ class TargetTypes
             return $found_target->getTargets($boardTargetGroups);
         }
 
-        switch ($target_type) {
-            case TargetTypes::$FRIENDLY_WEAPON:
-                $targets = [$player->getHero()->getWeapon()];
-                break;
-            default:
-                throw new DumbassDeveloperException('Unknown target type ' . $target_type);
-        }
-
-        return $targets;
+        throw new DumbassDeveloperException('Unknown target type ' . $target_type);
     }
 
 }
