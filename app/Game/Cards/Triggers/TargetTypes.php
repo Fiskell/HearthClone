@@ -12,6 +12,7 @@ use App\Game\Cards\TargetTypes\AllOpponentMinions;
 use App\Game\Cards\TargetTypes\AllOtherCharacters;
 use App\Game\Cards\TargetTypes\AllOtherMinionsWithRace;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
+use App\Game\Cards\TargetTypes\DamagedProvidedMinion;
 use App\Game\Cards\TargetTypes\FriendlyHero;
 use App\Game\Cards\TargetTypes\FriendlyPlayer;
 use App\Game\Cards\TargetTypes\OpponentHero;
@@ -105,6 +106,7 @@ class TargetTypes
             TargetTypes::$ALL_FRIENDLY_MINIONS             => new AllFriendlyMinions(),
             TargetTypes::$OPPONENT_WEAPON                  => new OpponentWeapon(),
             TargetTypes::$UNDAMAGED_PROVIDED_MINION        => new UndamagedProvidedMinion(),
+            TargetTypes::$DAMAGED_PROVIDED_MINION          => new DamagedProvidedMinion(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -113,15 +115,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$DAMAGED_PROVIDED_MINION:
-                /** @var Minion[] $targets */
-                $targets = $provided_targets;
-                foreach ($targets as $target) {
-                    if ($target->getHealth() == $target->getMaxHealth()) {
-                        throw new InvalidTargetException('Target must be damaged');
-                    }
-                }
-                break;
             case TargetTypes::$ALL_OPPONENT_CHARACTERS:
                 $targets = $opponent_minions_with_hero;
                 break;
