@@ -21,6 +21,7 @@ use App\Game\Cards\TargetTypes\OtherFriendlyMinionsWithRace;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 use App\Game\Cards\TargetTypes\RandomOpponentCharacter;
 use App\Game\Cards\TargetTypes\TriggerCard;
+use App\Game\Cards\TargetTypes\UndamagedProvidedMinion;
 
 /**
  * Created by PhpStorm.
@@ -103,6 +104,7 @@ class TargetTypes
             TargetTypes::$SELF                             => new TriggerCard(),
             TargetTypes::$ALL_FRIENDLY_MINIONS             => new AllFriendlyMinions(),
             TargetTypes::$OPPONENT_WEAPON                  => new OpponentWeapon(),
+            TargetTypes::$UNDAMAGED_PROVIDED_MINION        => new UndamagedProvidedMinion(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -111,15 +113,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$UNDAMAGED_PROVIDED_MINION:
-                /** @var Minion[] $targets */
-                $targets = $provided_targets;
-                foreach ($targets as $target) {
-                    if ($target->getHealth() < $target->getMaxHealth()) {
-                        throw new InvalidTargetException('Target must be undamaged');
-                    }
-                }
-                break;
             case TargetTypes::$DAMAGED_PROVIDED_MINION:
                 /** @var Minion[] $targets */
                 $targets = $provided_targets;
