@@ -21,6 +21,7 @@ use App\Game\Cards\TargetTypes\OpponentHero;
 use App\Game\Cards\TargetTypes\OpponentWeapon;
 use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
 use App\Game\Cards\TargetTypes\OtherFriendlyMinionsWithRace;
+use App\Game\Cards\TargetTypes\ProvidedEnemyMinion;
 use App\Game\Cards\TargetTypes\ProvidedMinion;
 use App\Game\Cards\TargetTypes\RandomOpponentCharacter;
 use App\Game\Cards\TargetTypes\TriggerCard;
@@ -111,6 +112,7 @@ class TargetTypes
             TargetTypes::$DAMAGED_PROVIDED_MINION          => new DamagedProvidedMinion(),
             TargetTypes::$ALL_OPPONENT_CHARACTERS          => new AllOpponentCharacters(),
             TargetTypes::$ALL_MINIONS                      => new AllMinions(),
+            TargetTypes::$PROVIDED_ENEMY_MINION            => new ProvidedEnemyMinion(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -119,14 +121,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$PROVIDED_ENEMY_MINION:
-                /** @var Minion $target */
-                $target = current($provided_targets);
-                if (!array_get($opponent_minions, $target->getId())) {
-                    throw new InvalidTargetException('Target must belong to opponent');
-                }
-                $targets = [$target];
-                break;
             case TargetTypes::$FRIENDLY_WEAPON:
                 $targets = [$player->getHero()->getWeapon()];
                 break;
