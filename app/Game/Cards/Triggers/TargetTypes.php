@@ -3,37 +3,8 @@
 use App\Exceptions\DumbassDeveloperException;
 use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
-use App\Game\Cards\Minion;
-use App\Game\Cards\TargetTypes\AdjacentMinions;
-use App\Game\Cards\TargetTypes\AllCharacters;
-use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
-use App\Game\Cards\TargetTypes\AllFriendlyMinions;
-use App\Game\Cards\TargetTypes\AllMinions;
-use App\Game\Cards\TargetTypes\AllOpponentCharacters;
-use App\Game\Cards\TargetTypes\AllOpponentMinions;
-use App\Game\Cards\TargetTypes\AllOtherCharacters;
-use App\Game\Cards\TargetTypes\AllOtherMinionsWithRace;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
-use App\Game\Cards\TargetTypes\DamagedProvidedMinion;
-use App\Game\Cards\TargetTypes\FriendlyHero;
-use App\Game\Cards\TargetTypes\FriendlyPlayer;
-use App\Game\Cards\TargetTypes\FriendlyWeapon;
-use App\Game\Cards\TargetTypes\OpponentHero;
-use App\Game\Cards\TargetTypes\OpponentWeapon;
-use App\Game\Cards\TargetTypes\OtherFriendlyMinions;
-use App\Game\Cards\TargetTypes\OtherFriendlyMinionsWithRace;
-use App\Game\Cards\TargetTypes\ProvidedEnemyMinion;
-use App\Game\Cards\TargetTypes\ProvidedMinion;
-use App\Game\Cards\TargetTypes\RandomOpponentCharacter;
-use App\Game\Cards\TargetTypes\TriggerCard;
-use App\Game\Cards\TargetTypes\UndamagedProvidedMinion;
 
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 9/5/15
- * Time: 6:59 PM
- */
 class TargetTypes
 {
     public static $PROVIDED_MINION                  = 'provided_minion';
@@ -64,9 +35,8 @@ class TargetTypes
      * @param $target_type
      * @param null $target_race
      * @param array $provided_targets
-     * @return array
+     * @return mixed
      * @throws DumbassDeveloperException
-     * @throws InvalidTargetException
      */
     public static function getTargets(Card $trigger_card, $target_type, $target_race = null, $provided_targets = []) {
         $boardTargetGroups = new BoardTargetGroups();
@@ -74,37 +44,10 @@ class TargetTypes
         $boardTargetGroups->setTriggerCard($trigger_card);
         $boardTargetGroups->setTargetRace($target_race);
 
-        $target_types = [
-            TargetTypes::$PROVIDED_MINION                  => new ProvidedMinion(),
-            TargetTypes::$FRIENDLY_HERO                    => new FriendlyHero(),
-            TargetTypes::$FRIENDLY_PLAYER                  => new FriendlyPlayer(),
-            TargetTypes::$ALL_CHARACTERS                   => new AllCharacters(),
-            TargetTypes::$ALL_OTHER_CHARACTERS             => new AllOtherCharacters(),
-            TargetTypes::$OPPONENT_HERO                    => new OpponentHero(),
-            TargetTypes::$ALL_FRIENDLY_CHARACTERS          => new AllFriendlyCharacters(),
-            TargetTypes::$OTHER_FRIENDLY_MINIONS           => new OtherFriendlyMinions(),
-            TargetTypes::$RANDOM_OPPONENT_CHARACTER        => new RandomOpponentCharacter(),
-            TargetTypes::$OTHER_FRIENDLY_MINIONS_WITH_RACE => new OtherFriendlyMinionsWithRace(),
-            TargetTypes::$ALL_OPPONENT_MINIONS             => new AllOpponentMinions(),
-            TargetTypes::$All_OTHER_MINIONS_WITH_RACE      => new AllOtherMinionsWithRace(),
-            TargetTypes::$ADJACENT_MINIONS                 => new AdjacentMinions(),
-            TargetTypes::$SELF                             => new TriggerCard(),
-            TargetTypes::$ALL_FRIENDLY_MINIONS             => new AllFriendlyMinions(),
-            TargetTypes::$OPPONENT_WEAPON                  => new OpponentWeapon(),
-            TargetTypes::$UNDAMAGED_PROVIDED_MINION        => new UndamagedProvidedMinion(),
-            TargetTypes::$DAMAGED_PROVIDED_MINION          => new DamagedProvidedMinion(),
-            TargetTypes::$ALL_OPPONENT_CHARACTERS          => new AllOpponentCharacters(),
-            TargetTypes::$ALL_MINIONS                      => new AllMinions(),
-            TargetTypes::$PROVIDED_ENEMY_MINION            => new ProvidedEnemyMinion(),
-            TargetTypes::$FRIENDLY_WEAPON                  => new FriendlyWeapon(),
-        ];
-
-        $found_target = array_get($target_types, $target_type);
-        if (!is_null($found_target)) {
-            return $found_target->getTargets($boardTargetGroups);
+        try {
+            return app($target_type)->getTargets($boardTargetGroups);
+        } catch(\ReflectionException $ex) {
+            throw new DumbassDeveloperException('Unknown target type ' . $target_type);
         }
-
-        throw new DumbassDeveloperException('Unknown target type ' . $target_type);
     }
-
 }
