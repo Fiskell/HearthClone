@@ -8,6 +8,7 @@ use App\Game\Cards\TargetTypes\AdjacentMinions;
 use App\Game\Cards\TargetTypes\AllCharacters;
 use App\Game\Cards\TargetTypes\AllFriendlyCharacters;
 use App\Game\Cards\TargetTypes\AllFriendlyMinions;
+use App\Game\Cards\TargetTypes\AllMinions;
 use App\Game\Cards\TargetTypes\AllOpponentCharacters;
 use App\Game\Cards\TargetTypes\AllOpponentMinions;
 use App\Game\Cards\TargetTypes\AllOtherCharacters;
@@ -109,6 +110,7 @@ class TargetTypes
             TargetTypes::$UNDAMAGED_PROVIDED_MINION        => new UndamagedProvidedMinion(),
             TargetTypes::$DAMAGED_PROVIDED_MINION          => new DamagedProvidedMinion(),
             TargetTypes::$ALL_OPPONENT_CHARACTERS          => new AllOpponentCharacters(),
+            TargetTypes::$ALL_MINIONS                      => new AllMinions(),
         ];
 
         $found_target = array_get($target_types, $target_type);
@@ -117,9 +119,6 @@ class TargetTypes
         }
 
         switch ($target_type) {
-            case TargetTypes::$ALL_MINIONS:
-                $targets = $opponent_minions + $player_minions;
-                break;
             case TargetTypes::$PROVIDED_ENEMY_MINION:
                 /** @var Minion $target */
                 $target = current($provided_targets);
