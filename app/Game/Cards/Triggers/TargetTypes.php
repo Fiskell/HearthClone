@@ -1,7 +1,6 @@
 <?php namespace App\Game\Cards\Triggers;
 
 use App\Exceptions\DumbassDeveloperException;
-use App\Exceptions\InvalidTargetException;
 use App\Game\Cards\Card;
 use App\Game\Cards\TargetTypes\BoardTargetGroups;
 
