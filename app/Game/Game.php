@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kegimaro
- * Date: 8/26/15
- * Time: 1:28 AM
- */
-
-namespace App\Game;
+<?php namespace App\Game;
 
 use App\Game\Cards\Minion;
 use App\Game\Helpers\Random;
@@ -101,6 +93,9 @@ class Game
         return $this->active_player;
     }
 
+    /**
+     * @return Player
+     */
     public function getDefendingPlayer() {
         return $this->defending_player;
     }
