@@ -303,14 +303,7 @@ class Minion extends Card implements ExportableInterface
         $minions        = $this->getOwner()->getMinionsInPlay();
         $this->position = $position;
 
-        $minion_map = [];
-        // TODO fix, this is lame
-        foreach ($minions as $minion) {
-            if ($minion->getId() == $this->getId()) {
-                continue;
-            }
-            $minion_map[$minion->getPosition()] = $minion;
-        }
+        $minion_map = $this->getMinionPositionMap($minions);
 
         /** @var Minion $minion */
         foreach ($minion_map as $minion) {
@@ -451,6 +444,23 @@ class Minion extends Card implements ExportableInterface
         if ($attacker->hasMechanic(Mechanics::$FREEZE)) {
             $defender->freeze();
         }
+    }
+
+    /**
+     * @param Minion[] $minions
+     * @return array
+     */
+    private function getMinionPositionMap($minions) {
+        $minion_map = [];
+        /** @var Minion $minion */
+        foreach ($minions as $minion) {
+            if ($minion->getId() == $this->getId()) {
+                continue;
+            }
+            $minion_map[$minion->getPosition()] = $minion;
+        }
+
+        return $minion_map;
     }
 
 }
