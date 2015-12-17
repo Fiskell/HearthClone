@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'CardJsonController@index');
+
+Route::get('/users', 'UserController@index');
