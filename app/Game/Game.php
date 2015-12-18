@@ -5,6 +5,9 @@ use App\Game\Helpers\Random;
 
 class Game
 {
+    /** @var int $id */
+    protected $id;
+
     /** @var Player $player1 */
     protected $player1;
 
@@ -54,8 +57,16 @@ class Game
         /** @var Game $game */
         $this->getPlayer1()->setDeck($player1);
         $this->getPlayer2()->setDeck($player2);
+        $this->out('Game has begun');
 
         App('TurnSequence')->resolveTurnOne($this->active_player);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId() {
+        return $this->id;
     }
 
     /**
@@ -259,6 +270,15 @@ class Game
         }
 
         $player->recalculateActiveMechanics();
+    }
+
+    /**
+     * Print out a message
+     *
+     * @param $message
+     */
+    public function out($message) {
+        echo $message . "\n";
     }
 
 }

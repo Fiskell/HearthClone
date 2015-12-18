@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Game\Cards\Heroes\HeroClass;
+use App\Game\Deck;
 use Illuminate\Console\Command;
 
 class PlayGame extends Command
@@ -11,7 +13,7 @@ class PlayGame extends Command
      *
      * @var string
      */
-    protected $signature = 'game:play {player_id}';
+    protected $signature = 'game:play';
 
     /**
      * The console command description.
@@ -27,11 +29,32 @@ class PlayGame extends Command
      */
     public function handle()
     {
-        $player_id = $this->argument('player_id');
-        if(!is_numeric($player_id)) {
-            $this->error('Player id must be a number');
-        }
+        $game = app('Game');
+        $player1 = $game->getPlayer1();
+        $player2 = $game->getPlayer2();
+        $deck1 = $this->getPlayer1Deck($player1);
+        $deck2 = $this->getPlayer2Deck($player2);
 
-        $this->info($player_id);
+        $game->init($deck1, $deck2);
+    }
+
+    /**
+     * @param $player
+     * @return Deck
+     */
+    public function getPlayer1Deck($player) {
+        $hunter_deck_json = file_get_contents(base_path() . "/resources/deck_lists/basic_only_hunter.json");
+        $hero = app(HeroClass::$HUNTER, [$player]);
+        $cards = array_get(json_decode($hunter_deck_json, true), 'Cards', []);
+
+        return app('Deck', [$hero, $cards]);
+    }
+
+    /**
+     * @param $player
+     * @return Deck
+     */
+    public function getPlayer2Deck($player) {
+        return $this->getPlayer1Deck($player);
     }
 }
