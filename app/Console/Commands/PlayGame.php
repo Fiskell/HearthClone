@@ -30,12 +30,20 @@ class PlayGame extends Command
     public function handle()
     {
         $game = app('Game');
+
         $player1 = $game->getPlayer1();
         $player2 = $game->getPlayer2();
+
         $deck1 = $this->getPlayer1Deck($player1);
         $deck2 = $this->getPlayer2Deck($player2);
 
         $game->init($deck1, $deck2);
+
+        $this->waitForUserAction();
+    }
+
+    public function waitForUserAction() {
+        $action = $this->ask('hey there');
     }
 
     /**
