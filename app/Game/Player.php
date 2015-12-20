@@ -62,6 +62,9 @@ class Player
     /** @var int $mana_crystals_used_this_turn */
     protected $mana_crystals_used_this_turn = 0;
 
+    /* Possible Moves */
+    protected $possible_moves;
+
     /* ------ Getters and Setters ------- */
 
     /**
@@ -205,6 +208,31 @@ class Player
         }
 
         return app('Player1');
+    }
+
+    /**
+     * Return the possible moves this player can make on their turn
+     *
+     * @return array
+     */
+    public function getPossibleMoves() {
+        return $this->possible_moves;
+    }
+
+    /**
+     * Set the possible moves
+     *
+     * @param $possible_moves
+     */
+    public function setPossibleMoves($possible_moves) {
+        $this->possible_moves = $possible_moves;
+    }
+
+    /**
+     * Figure out the possible moves for the turn.
+     */
+    public function generatePossibleMoves() {
+        $this->possible_moves = [];
     }
 
     /**
