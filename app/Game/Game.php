@@ -43,14 +43,7 @@ class Game
         $this->player2->setGame($this);
         $app->instance('Player2', $this->getPlayer2());
 
-        $this->active_player    = $this->player1;
-        $this->defending_player = $this->player2;
-
-        $coin_flip = app('Random')->flipCoin();
-        if ($coin_flip == Random::$TAILS) {
-            $this->active_player    = $this->player2;
-            $this->defending_player = $this->player1;
-        }
+        $this->decideStartingPlayer();
     }
 
     public function init(Deck $player1, Deck $player2) {
@@ -60,6 +53,19 @@ class Game
         $this->out('Game has begun');
 
         App('TurnSequence')->resolveTurnOne($this->active_player);
+    }
+
+    public function decideStartingPlayer() {
+        $this->active_player    = $this->player1;
+        $this->defending_player = $this->player2;
+
+        $coin_flip = app('Random')->flipCoin();
+        if ($coin_flip == Random::$TAILS) {
+            $this->active_player    = $this->player2;
+            $this->defending_player = $this->player1;
+        }
+
+        $this->out('Player ' . $this->active_player->getPlayerId() . ' is going first.');
     }
 
     /**
