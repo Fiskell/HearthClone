@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\CardFormatTransform::class,
         \App\Console\Commands\PlayGame::class,
         \App\Console\Commands\TestFirebase::class,
+        \App\Console\Commands\Server::class,
     ];
 
     /**
