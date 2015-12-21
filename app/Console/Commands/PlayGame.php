@@ -13,7 +13,7 @@ class PlayGame extends Command
      *
      * @var string
      */
-    protected $signature = 'game:play';
+    protected $signature = 'play:game';
 
     /**
      * The console command description.
