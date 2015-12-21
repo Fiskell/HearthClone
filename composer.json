@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "barryvdh/laravel-ide-helper": "^2.1",
         "firebase/token-generator": "^3.0",
-        "ktamas77/firebase-php": "dev-master"
+        "ktamas77/firebase-php": "dev-master",
+        "react/react": "^0.4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
