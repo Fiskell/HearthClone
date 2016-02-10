@@ -14,5 +14,12 @@
 Route::get('/', 'CardJsonController@index');
 
 Route::get('/users', 'UserController@index');
+//Route::post('/users', 'UserController@post');
+Route::post('/users', function() {
+    return 'asdfasdf';
+});
 
-Route::post('/users', 'UserController@post');
+//Route::post('/login', 'UserController@login');
+Route::post('/login', function() {
+    dd('asdf');
+});

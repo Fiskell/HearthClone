@@ -85,4 +85,9 @@ class UserController extends Controller
     {
         //
     }
+
+    public function login(){
+//        dd($request);
+        dd('hey meow');
+    }
 }
