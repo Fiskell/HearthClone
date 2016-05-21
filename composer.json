@@ -11,7 +11,8 @@
         "firebase/token-generator": "^3.0",
         "ktamas77/firebase-php": "dev-master",
         "react/react": "^0.4.2",
-        "cartalyst/sentinel": "2.0.*"
+        "cartalyst/sentinel": "2.0.*",
+        "lucadegasperi/oauth2-server-laravel": "5.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
